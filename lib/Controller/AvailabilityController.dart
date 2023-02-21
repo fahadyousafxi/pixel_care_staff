@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AvailabilityController {
+
   Future<AvailbilityModel> GetAvail({month, year}) async {
     print(month.toString());
     print(year.toString());
@@ -46,4 +47,24 @@ class AvailabilityController {
 
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
+
+
+
+  DeleteAvail(id) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var token = await pref.getString('token');
+    var headers = {'Authorization': 'Bearer $token'};
+    var request = http.Request(
+        'DELETE',
+        Uri.parse(
+            'https://pixelcare.stackbuffers.com/api/user/availability/delete?avalability_id=$id'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    return jsonDecode(await response.stream.bytesToString())['message'];
+  }
+
+
 }

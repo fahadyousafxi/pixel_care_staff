@@ -14,6 +14,7 @@ class AvailabilityView extends StatefulWidget {
 }
 
 class _AvailabilityViewState extends State<AvailabilityView> {
+
   var focused = DateTime.now();
   var _selectedDay = DateTime.now();
   var _focusedDay = DateTime.now();
@@ -62,12 +63,13 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       Data data = new Data(
+
                           date: _selectedDay.year.toString() +
                               "-" +
                               _selectedDay.month.toString() +
                               "-" +
                               _selectedDay.day.toString(),
-                          scheduleList: selected.toString());
+                          scheduleList: selected.toString(), id: DateTime.now().microsecondsSinceEpoch);
                         var contain = false;
 
                       var focus = 10;
@@ -98,6 +100,7 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                         child: Column(
                           children: [
                             TableCalendar(
+                              startingDayOfWeek: StartingDayOfWeek.monday,
                               headerStyle:
                                   HeaderStyle(formatButtonVisible: false),
                               firstDay: DateTime.utc(2010, 10, 16),
@@ -110,6 +113,8 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                             ? Colors.pink.shade300
                                             : Colors.grey),
                               ),
+
+
                               selectedDayPredicate: (date) {
                                 if (date == _focusedDay) {
                                   return true;
@@ -135,10 +140,14 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                               calendarBuilders: CalendarBuilders(
                                   markerBuilder: (context, date, list) {
                                 var cool = 0;
+
+                                // data
+
                                 Data data = new Data(
                                     date: date.year.toString() +
                                         "-${date.month.toString().length == 1 ? "0" + date.month.toString() : date.month.toString()}-${date.day.toString().length == 1 ? "0" + date.day.toString() : date.day.toString()}",
-                                    scheduleList: "2");
+                                    scheduleList: "2",
+                                    id: DateTime.now().microsecondsSinceEpoch);
                                 snapshot.data!.data.forEach((element) {
                                   // && int.parse(element.date.toString().split("-").first)>=DateTime.now().year&& int.parse(element.date.toString().split("-").elementAt(1))>=DateTime.now().month&& int.parse(element.date.toString().split("-").last)>=DateTime.now().day
                                   //print(DateFormat("yyyy-MM-dd")
@@ -378,7 +387,30 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                               height: 10,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () async {
+
+                                // code of deleting
+                                var response =
+                                    await AvailabilityController().DeleteAvail(
+
+                                      89
+                                    );
+                                setState(() {
+
+                                });
+
+                                ScaffoldMessenger.of(
+                                    context)
+                                    .showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                          "Deletion is in progress...",
+                                          style: TextStyle(
+                                              color: Colors
+                                                  .white),
+                                        )));
+
+                              },
                               child: Container(
                                 height: 50.h,
                                 width: 350.w,

@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/screens/Booking1.dart';
 import 'package:pixel_app/screens/TimeSheet.dart';
+import 'package:pixel_app/screens/Upcoming_Shifts.dart';
 import 'package:pixel_app/screens/Vacancy.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
@@ -169,17 +170,21 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
+
                         Divider(
                           thickness: 1,
                           color: Colors.grey,
                         ),
-                        Text(
+                        TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => UpcomingShifts()));
+                        }, child: Text(
                           'Show All',
                           style: TextStyle(
                             color: Colors.grey,
                           ),
-                        ),
-                        SizedBox(height: 10.h),
+                        ),),
+
+                        // SizedBox(height: 10.h),
                       ],
                     ),
                   ),
