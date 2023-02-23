@@ -66,7 +66,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                 margin: const EdgeInsets.fromLTRB(
                                     20, 20, 20, 10),
                                 child: const Text(
-                                    "No Confirmed Booking")));
+                                    "No Data")));
                       } else {
                         return ListView.builder(
                             itemCount:
@@ -144,21 +144,61 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                                 child: Text(
                                                   'Shift Date: ${snapshot.data?.data?.elementAt(index).date.toString().substring(0,10)}',
                                                   style: TextStyle(
-                                                      color: const Color(
-                                                          0xff687bb9),
+                                                      color: Colors.black,
                                                       fontSize: 17.sp),
                                                 ),
                                               ),
+
+                                              SizedBox(
+                                                width: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .width *
+                                                    0.5,
+                                                child: snapshot.data?.data?.elementAt(index).shift.toString() == "1" ? Text(
+                                                  'Shift Type: Day',
+                                                  style: TextStyle(
+                                                      color:  Colors.red,
+                                                      fontSize: 17.sp),
+                                                ) :
+                                                Text(
+                                                  'Night',
+                                                  style: TextStyle(
+                                                      color:  Colors.blue,
+                                                      fontSize: 17.sp),
+                                                )
+                                              ),
                                               /// will change it
 
-                                              // Text(
-                                              //   '${snapshot.data?.data?.elementAt(index).date.toString().substring(0,11)} - ${snapshot.data?.data?.elementAt(index).jobEndDate.toString().substring(0,11)}',
-                                              //   style:
-                                              //   TextStyle(
-                                              //     color: Color(
-                                              //         0xff687bb9),
-                                              //   ),
-                                              // ),
+                                              SizedBox(
+                                                width: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .width *
+                                                    0.5,
+                                                child: Text(
+                                                  'Shift Start: ${snapshot.data?.data?.elementAt(index)?.timeStart.toString()}',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17.sp),
+                                                ),
+                                              ),
+
+                                              SizedBox(
+                                                width: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .width *
+                                                    0.5,
+                                                child: Text(
+                                                  'Shift End:   ${snapshot.data?.data?.elementAt(index)?.timeEnd.toString()}',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17.sp),
+                                                ),
+                                              ),
+
+
                                             ],
                                           ),
                                           const Spacer(),
@@ -212,3 +252,6 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
     );
   }
 }
+
+
+

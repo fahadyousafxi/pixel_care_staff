@@ -599,8 +599,8 @@ class EditReferencePageState extends State<EditReferencePage> {
                             },
                             child: Container(
                               alignment: Alignment.center,
-                              height: 40.h,
-                              width: 150.w,
+                              height: 60.h,
+                              width: 350.w,
                               decoration: BoxDecoration(
                                 color: namecont.text != "" &&
                                         jobcont.text != "" &&

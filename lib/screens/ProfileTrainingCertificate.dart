@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixel_app/screens/Profile.dart';
 
 import '../Application_Form/Employement.dart';
 import '../Application_Form/Model/ApplicationFormModel.dart';
@@ -81,325 +82,335 @@ class _TrainingCertificateProfileState
   GlobalKey<FormState> formKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.pink,
-        leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )),
-        actions: [
-          GestureDetector(
+    return WillPopScope(
+      onWillPop: () {
+        // bottomNavigationBarState.selectedIndex = 0;
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => ProfilePage()),
+                (Route route) => false);
+        return false as Future<bool>;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.pink,
+          leading: GestureDetector(
               onTap: () {
-                navigator = true;
-                setState(() {});
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TrainingCertificates()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
               },
-              child: Container(
-                  height: 30,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  padding: EdgeInsets.all(05),
-                  margin: EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Text(
-                        ' Add New Training ',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  ))),
-        ],
-      ),
-      backgroundColor: Colors.grey.shade50,
-      body: SafeArea(
-        child: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                      top: 40.h,
-                    ),
-                    child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.start,
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
+          actions: [
+            GestureDetector(
+                onTap: () {
+                  navigator = true;
+                  setState(() {});
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TrainingCertificates()));
+                },
+                child: Container(
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    padding: EdgeInsets.all(05),
+                    margin: EdgeInsets.all(10),
+                    child: Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.8,
-                              child: SingleChildScrollView(
-                                child: FutureBuilder<AccademicCertModel>(
-                                    future: AuthController().GetCert(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        if (snapshot.data!.data!.length != 0) {
-                                          Future.delayed(Duration(seconds: 1))
-                                              .then((value) => setState(() {
-                                                    emp = true;
-                                                  }));
-                                          return Column(
-                                            children: [
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Column(
-                                                  children: List.generate(
-                                                      snapshot
-                                                          .data!.data!.length,
-                                                      (index) => Container(
-                                                            width:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            margin: EdgeInsets
-                                                                .symmetric(
-                                                                    vertical:
-                                                                        10,
-                                                                    horizontal:
-                                                                        20),
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade100,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10),
-                                                                boxShadow: [
-                                                                  BoxShadow(
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade400,
-                                                                      spreadRadius:
-                                                                          1,
-                                                                      blurRadius:
-                                                                          10)
-                                                                ]),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                // Text(
-                                                                //     'Training Name: ${snapshot.data?.data!.elementAt(index).docCategoryName}',
-                                                                //     style: TextStyle()),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Container(
-                                                                      child:
-                                                                          Row(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
+                        Text(
+                          ' Add New Training ',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ))),
+          ],
+        ),
+        backgroundColor: Colors.grey.shade50,
+        body: SafeArea(
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: 40.h,
+                      ),
+                      child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: MediaQuery.of(context).size.height * 0.8,
+                                child: SingleChildScrollView(
+                                  child: FutureBuilder<AccademicCertModel>(
+                                      future: AuthController().GetCert(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          if (snapshot.data!.data!.length != 0) {
+                                            Future.delayed(Duration(seconds: 1))
+                                                .then((value) => setState(() {
+                                                      emp = true;
+                                                    }));
+                                            return Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Column(
+                                                    children: List.generate(
+                                                        snapshot
+                                                            .data!.data!.length,
+                                                        (index) => Container(
+                                                              width:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                              padding:
+                                                                  EdgeInsets.all(
+                                                                      10),
+                                                              margin: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          10,
+                                                                      horizontal:
+                                                                          20),
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade100,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                        color: Colors
+                                                                            .grey
+                                                                            .shade400,
+                                                                        spreadRadius:
+                                                                            1,
+                                                                        blurRadius:
+                                                                            10)
+                                                                  ]),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  // Text(
+                                                                  //     'Training Name: ${snapshot.data?.data!.elementAt(index).docCategoryName}',
+                                                                  //     style: TextStyle()),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Container(
+                                                                        child:
+                                                                            Row(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
 
-                                                                          Text(
-                                                                            'Date of Completion: ',
-                                                                            style:
-                                                                                TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                                                          ),
-                                                                          Text(
-                                                                              '${snapshot.data?.data?.elementAt(index).dateOfCompletion}',
-                                                                              style: TextStyle()),
-                                                                        ],
+                                                                            Text(
+                                                                              'Date of Completion: ',
+                                                                              style:
+                                                                                  TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                                                            ),
+                                                                            Text(
+                                                                                '${snapshot.data?.data?.elementAt(index).dateOfCompletion.toString().substring(0, 10)} ',
+                                                                                style: TextStyle()),
+                                                                          ],
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                    Row(
-                                                                      children: [
-                                                                        GestureDetector(
-                                                                            onTap:
-                                                                                () async {
-                                                                              showDialog<void>(
-                                                                                context: context,
-                                                                                barrierDismissible: false, // user must tap button!
-                                                                                builder: (BuildContext context) {
-                                                                                  return AlertDialog(
-                                                                                    title: Text('Are you sure?'),
-                                                                                    content: SingleChildScrollView(
-                                                                                      child: ListBody(
-                                                                                        children: <Widget>[
-                                                                                          Text('This action cannot be undone.'),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                    actions: <Widget>[
-                                                                                      TextButton(
-                                                                                        child: Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
-                                                                                        onPressed: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        child: Text(
-                                                                                          'Delete',
-                                                                                          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                                                                      Row(
+                                                                        children: [
+                                                                          GestureDetector(
+                                                                              onTap:
+                                                                                  () async {
+                                                                                showDialog<void>(
+                                                                                  context: context,
+                                                                                  barrierDismissible: false, // user must tap button!
+                                                                                  builder: (BuildContext context) {
+                                                                                    return AlertDialog(
+                                                                                      title: Text('Are you sure?'),
+                                                                                      content: SingleChildScrollView(
+                                                                                        child: ListBody(
+                                                                                          children: <Widget>[
+                                                                                            Text('This action cannot be undone.'),
+                                                                                          ],
                                                                                         ),
-                                                                                        onPressed: () async {
-                                                                                          // Perform the delete action here
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                                                                              content: Text(
-                                                                                            "Deletion is in progress...",
-                                                                                            style: TextStyle(color: Colors.white),
-                                                                                          )));
-                                                                                          var response = await AuthController().DeleteCert(snapshot.data?.data?.elementAt(index).id);
-                                                                                          setState(() {
+                                                                                      ),
+                                                                                      actions: <Widget>[
+                                                                                        TextButton(
+                                                                                          child: Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                                                                                          onPressed: () {
+                                                                                            Navigator.of(context).pop();
+                                                                                          },
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          child: Text(
+                                                                                            'Delete',
+                                                                                            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                                                                                          ),
+                                                                                          onPressed: () async {
+                                                                                            // Perform the delete action here
                                                                                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                                                                                 content: Text(
-                                                                                              response,
+                                                                                              "Deletion is in progress...",
                                                                                               style: TextStyle(color: Colors.white),
                                                                                             )));
-                                                                                            Navigator.of(context).pop();
-                                                                                            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                                                                                builder: (context) => TrainingCertificateProfile(
-                                                                                                      model: model1,
-                                                                                                    )));
-                                                                                          });
-                                                                                        },
-                                                                                      ),
-                                                                                    ],
-                                                                                  );
-                                                                                },
-                                                                              );
-                                                                            },
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.delete,
-                                                                              color: Colors.red,
-                                                                            ))
+                                                                                            var response = await AuthController().DeleteCert(snapshot.data?.data?.elementAt(index).id);
+                                                                                            setState(() {
+                                                                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                                                                  content: Text(
+                                                                                                response,
+                                                                                                style: TextStyle(color: Colors.white),
+                                                                                              )));
+                                                                                              Navigator.of(context).pop();
+                                                                                              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                                                                                  builder: (context) => TrainingCertificateProfile(
+                                                                                                        model: model1,
+                                                                                                      )));
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                );
+                                                                              },
+                                                                              child:
+                                                                                  Icon(
+                                                                                Icons.delete,
+                                                                                color: Colors.red,
+                                                                              ))
+                                                                        ],
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 05,
+                                                                  ),
+                                                                  Container(
+                                                                    child: Row(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Text(
+                                                                          'Expiry Date: ',
+                                                                          style: TextStyle(
+                                                                              fontWeight:
+                                                                                  FontWeight.bold,
+                                                                              fontSize: 16),
+                                                                        ),
+                                                                        Flexible(
+                                                                            child: Text(
+                                                                                '${snapshot.data?.data?.elementAt(index).expiryDate.toString().substring(0, 10)}',
+                                                                                style: TextStyle())),
                                                                       ],
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 05,
-                                                                ),
-                                                                Container(
-                                                                  child: Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        'Expiry Date: ',
-                                                                        style: TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontSize: 16),
-                                                                      ),
-                                                                      Flexible(
-                                                                          child: Text(
-                                                                              '${snapshot.data?.data?.elementAt(index).expiryDate}',
-                                                                              style: TextStyle())),
-                                                                    ],
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Container(
-                                                                  child: Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        'File: ',
-                                                                        style: TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontSize: 16),
-                                                                      ),
-                                                                    ],
+                                                                  SizedBox(
+                                                                    height: 10,
                                                                   ),
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Container(
-                                                                      height:
-                                                                          100.h,
-                                                                      width:
-                                                                          100.w,
-                                                                      margin: EdgeInsets
-                                                                          .all(
-                                                                              10),
-                                                                      decoration: BoxDecoration(
-                                                                          color: Colors
-                                                                              .grey,
-                                                                          image: DecorationImage(
-                                                                              fit: BoxFit.fill,
-                                                                              image: NetworkImage('${snapshot.data?.data.elementAt(index).image}'))),
-                                                                    )
-                                                                  ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ))),
-                                            ],
-                                          );
+                                                                  Container(
+                                                                    child: Row(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Text(
+                                                                          'File: ',
+                                                                          style: TextStyle(
+                                                                              fontWeight:
+                                                                                  FontWeight.bold,
+                                                                              fontSize: 16),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      Container(
+                                                                        height:
+                                                                            100.h,
+                                                                        width:
+                                                                            100.w,
+                                                                        margin: EdgeInsets
+                                                                            .all(
+                                                                                10),
+                                                                        decoration: BoxDecoration(
+                                                                            color: Colors
+                                                                                .grey,
+                                                                            image: DecorationImage(
+                                                                                fit: BoxFit.fill,
+                                                                                image: NetworkImage('${snapshot.data?.data.elementAt(index).image}'))),
+                                                                      )
+                                                                    ],
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ))),
+                                              ],
+                                            );
+                                          } else {
+                                            return Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.5,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: Center(
+                                                child: Text(
+                                                  'No certificate added yet!',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              ),
+                                            );
+                                          }
                                         } else {
                                           return Container(
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 0.5,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
+                                            width:
+                                                MediaQuery.of(context).size.width,
                                             child: Center(
-                                              child: Text(
-                                                'No certificate added yet!',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
+                                                child: Container(
+                                              height: 30,
+                                              width: 30,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.pinkAccent.shade100
+                                                    .withOpacity(0.5),
                                               ),
-                                            ),
+                                            )),
                                           );
                                         }
-                                      } else {
-                                        return Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.5,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          child: Center(
-                                              child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            child: CircularProgressIndicator(
-                                              color: Colors.pinkAccent.shade100
-                                                  .withOpacity(0.5),
-                                            ),
-                                          )),
-                                        );
-                                      }
-                                    }),
+                                      }),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

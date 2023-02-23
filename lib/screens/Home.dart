@@ -10,7 +10,9 @@ import 'package:pixel_app/screens/Upcoming_Shifts.dart';
 import 'package:pixel_app/screens/Vacancy.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
+import '../Controller/UpcomingShiftsController.dart';
 import '../DocumentsUpload/document_upload.dart';
+import '../Model/Upcomming_Shifts_Model.dart';
 import 'Avaiability.dart';
 import 'Booking2.dart';
 import 'ReferFriend.dart';
@@ -27,6 +29,37 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
   GlobalKey<ScaffoldState> key = new GlobalKey();
   var color = Colors.transparent;
+
+  var todayDate = DateTime.now().toString().substring(0, 10);
+  var tomorrowDate = DateTime.now().toString().substring(0, 10);
+
+  // final now = DateTime.now();
+  // String today = DateTime.now().toString();
+  //  DateTime today = DateTime(now.year, now.month, now.day);
+  // final yesterday = DateTime(now.year, now.month, now.day - 1);
+  // final tomorrow = DateTime(now.year, now.month, now.day + 1);
+
+  var todayTimeStart = '0';
+  var todayTimeEnd = '0';
+  var tomorrowTimeStart = '1';
+  var tomorrowTimeEnd = '1';
+
+  Future<UpcommingShiftsModel>? upcoming;
+
+  void initState() {
+    GetData1();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future<void> GetData() async {
+    upcoming = UpcomingShiftsController().GetAll();
+  }
+
+  GetData1() async {
+    await GetData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,123 +105,213 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w, right: 20.w),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.shade400.withOpacity(0.7),
-                              spreadRadius: 1,
-                              blurRadius: 10)
-                        ]),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.h),
-                          child: Image(
-                            image:
-                                AssetImage('assets/images/upcoming shifts.png'),
-                            height: 50.h,
-                            width: 50.w,
-                          ),
-                        ),
-                        Text(
-                          'Upcoming Shifts',
-                          style: TextStyle(
-                              color: Color(0xff3B53A4),
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.h, left: 20.w),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'TODAY',
-                                    style: TextStyle(fontSize: 14.sp),
-                                  ),
-                                  SizedBox(height: 2.h),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '08-00',
-                                        style: TextStyle(
-                                          color: Color(0xff3b53a4),
-                                        ),
-                                      ),
-                                      Text(
-                                        '------------------------------------------------------',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14.sp),
-                                      ),
-                                      Text(
-                                        '20-00',
-                                        style: TextStyle(
-                                          color: Color(0xff3b53a4),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 2.h),
-                                  Text(
-                                    'TOMMORROW',
-                                    style: TextStyle(fontSize: 14.sp),
-                                  ),
-                                  SizedBox(height: 2.h),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '08-00',
-                                        style: TextStyle(
-                                          color: Color(0xff3b53a4),
-                                        ),
-                                      ),
-                                      Text(
-                                        '------------------------------------------------------',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14.sp),
-                                      ),
-                                      Text(
-                                        '20-00',
-                                        style: TextStyle(
-                                          color: Color(0xff3b53a4),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 2.h),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                SizedBox(
+                  height: 160,
+                  width: double.infinity,
+                  child: StreamBuilder<UpcommingShiftsModel>(
+                      stream: upcoming?.asStream(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          if (snapshot.data?.data == null) {
+                            return Center(
+                                child: Container(
+                                    margin: const EdgeInsets.fromLTRB(
+                                        20, 20, 20, 10),
+                                    child: const Text("No Data")));
+                          } else {
+                            return ListView.builder(
+                                itemCount: 1,
+                                itemBuilder: (context, index) {
+                                  var theDate = snapshot.data?.data.elementAt(index);
+                                  if (todayDate == theDate?.date.toString().substring(0, 10)) {
+                                    todayDate = 'wow';
+                                    todayTimeStart = '${theDate?.timeStart.toString()}';
+                                    todayTimeEnd = '${theDate?.timeEnd.toString()}';
 
-                        Divider(
-                          thickness: 1,
-                          color: Colors.grey,
-                        ),
-                        TextButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => UpcomingShifts()));
-                        }, child: Text(
-                          'Show All',
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),),
+                                  }
 
-                        // SizedBox(height: 10.h),
-                      ],
-                    ),
-                  ),
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 20.w, right: 20.w),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey.shade400
+                                                    .withOpacity(0.7),
+                                                spreadRadius: 1,
+                                                blurRadius: 10)
+                                          ]),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 5.h),
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/upcoming shifts.png'),
+                                              height: 50.h,
+                                              width: 50.w,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Upcoming Shift',
+                                            style: TextStyle(
+                                                color: Color(0xff3B53A4),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 5.h, left: 20.w),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'TODAY',
+                                                      style: TextStyle(
+                                                          fontSize: 14.sp),
+                                                    ),
+                                                    SizedBox(height: 2.h),
+                                                    todayTimeStart == '0' ?  Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        SizedBox( width: MediaQuery.of(context).size.width * .8, height: 22,
+                                                          child: Center(
+                                                            child: Text('No Shift', style: TextStyle(
+                                                              color: Color(
+                                                                  0xff3b53a4),
+                                                            ),),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )  :
+
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          todayTimeStart == '0' ?  'No Shift'  :'$todayTimeStart',
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xff3b53a4),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          '-----------------------------',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 14.sp),
+                                                        ),
+                                                        Text(
+                                                          todayTimeEnd == '0' ? 'No Shift': '$todayTimeEnd' ,
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xff3b53a4),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height: 2.h),
+                                                    // Text(
+                                                    //   'TOMMORROW',
+                                                    //   style: TextStyle(
+                                                    //       fontSize: 14.sp),
+                                                    // ),
+                                                    // SizedBox(height: 2.h),
+                                                    // Row(
+                                                    //   children: [
+                                                    //     Text(
+                                                    //       '08-00',
+                                                    //       style: TextStyle(
+                                                    //         color: Color(
+                                                    //             0xff3b53a4),
+                                                    //       ),
+                                                    //     ),
+                                                    //     Text(
+                                                    //       '-----------------------------',
+                                                    //       style: TextStyle(
+                                                    //           color:
+                                                    //               Colors.grey,
+                                                    //           fontSize: 14.sp),
+                                                    //     ),
+                                                    //     Text(
+                                                    //       '20-00',
+                                                    //       style: TextStyle(
+                                                    //         color: Color(
+                                                    //             0xff3b53a4),
+                                                    //       ),
+                                                    //     ),
+                                                    //   ],
+                                                    // ),
+                                                    SizedBox(height: 2.h),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+
+                                          Divider(
+                                            thickness: 1,
+                                            color: Colors.grey,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UpcomingShifts()));
+                                            },
+                                            child: Text(
+                                              'Show All',
+                                              style: TextStyle(
+                                                color: Colors.pink,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.h)
+
+                                          // SizedBox(height: 10.h),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          }
+                        } else {
+                          return const Center(
+                            child: SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: CircularProgressIndicator(
+                                  color: Color(0xfffaeaea),
+                                )),
+                          );
+                        }
+                      }),
                 ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /// nnnnnnnnnn
                 SizedBox(height: 10.h),
                 Padding(
                   padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
@@ -242,7 +365,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             'Show All',
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.pink,
                             ),
                           ),
                           SizedBox(height: 10.h)
@@ -608,8 +731,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       boxShadow: [
                                         BoxShadow(
-                                            color: Colors.blue
-                                                .withOpacity(0.5),
+                                            color: Colors.blue.withOpacity(0.5),
                                             spreadRadius: -2,
                                             offset: Offset(10, 10),
                                             blurRadius: 20)

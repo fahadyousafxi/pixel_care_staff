@@ -62,6 +62,7 @@ dependencies:
   dio: ^4.0.4
   syncfusion_flutter_pdfviewer: any
   csc_picker: ^0.2.7
+  flutter_pdfview: ^1.2.5
     
 
 dev_dependencies:

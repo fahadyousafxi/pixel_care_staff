@@ -5,6 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Constants/Constant.dart';
@@ -25,7 +26,10 @@ class TrainingCertificates extends StatefulWidget {
 class _TrainingCertificatesState extends State<TrainingCertificates> {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
   GlobalKey<FormState> formKey = new GlobalKey();
-  List<File> images = [];
+  List<File>? images = [];
+  List<String>? pdfs = [];
+
+
   var date;
   var month = 'September';
   var day = '1';
@@ -697,14 +701,50 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                       height: 20.h,
                     ),
                     Column(
-                        children: List.generate(images.length, (index) {
+                        children: List.generate(images!.length, (index) {
                       return Container(
                         margin: EdgeInsets.symmetric(vertical: 5),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * .3,
+
+                        /// pdf changes
+
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: FileImage(images.elementAt(index)))),
+                                image: FileImage(images!.elementAt(index)))),
+                        // child: Stack(
+                        //   children: [
+                        //     if (pdfs != null)
+                        //       Container(
+                        //         margin: EdgeInsets.symmetric(vertical: 5),
+                        //         width: MediaQuery.of(context).size.width,
+                        //         height: MediaQuery.of(context).size.height * .3,
+                        //         child: PDFView(
+                        //           filePath: pdfs!.elementAt(index),
+                        //           fitEachPage: true,
+                        //
+                        //           // fitPolicy: ,
+                        //         ),
+                        //       ),
+                        //     if (images != null)
+                        //       Container(
+                        //        decoration: BoxDecoration(
+                        //            image: DecorationImage(
+                        //                image: FileImage(images!.elementAt(index)))),
+                        //         )
+                        //     else Container(
+                        //       decoration: BoxDecoration(
+                        //           image: DecorationImage(
+                        //               image: FileImage(images!.elementAt(index)))),
+                        //     )
+                        //
+                        //       // Image.file(
+                        //       //   images! as File,
+                        //       //   fit: BoxFit.cover,
+                        //       // ),
+                        //   ],
+                        // ),
+
                       );
                     })),
                     SizedBox(
@@ -712,6 +752,9 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                     ),
                     InkWell(
                       onTap: () async {
+
+
+                        // _modalBottomSheetMenu();
                         FilePickerResult? result =
                             await FilePicker.platform.pickFiles(
                           allowMultiple: true,
@@ -721,12 +764,15 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                           result.files.forEach((element) {
                             File file = File(element.path!);
                             setState(() {
-                              images.add(file);
+                              images!.add(file);
                             });
                           });
                         } else {
                           // User canceled the picker
                         }
+
+
+
                       },
                       child: DottedBorder(
                         color: Colors.black,
@@ -835,7 +881,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         expiry = year + '-' + month + '-' + day;
                         date = year1 + '-' + month1 + '-' + day1;
                         if (formKey.currentState!.validate()) {
-                          if (images.isEmpty) {
+                          if (images!.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                               'Please input images',
@@ -890,7 +936,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         height: 60.h,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: images.isNotEmpty
+                          color: images!.isNotEmpty
                               ? Colors.pink
                               : Color(0xfffaeaea),
                           borderRadius: BorderRadius.circular(5),
@@ -900,7 +946,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                             'Upload',
                             style: TextStyle(
                                 fontSize: 18.sp,
-                                color: images.isNotEmpty
+                                color: images!.isNotEmpty
                                     ? Colors.white
                                     : Colors.black),
                           ),
@@ -914,4 +960,75 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
       ),
     );
   }
+
+  void _modalBottomSheetMenu(){
+    showModalBottomSheet(
+        context: context,
+        builder: (builder){
+          return  Container(
+            height: 350.0,
+            color: Colors.white, //could change this to Color(0xFF737373),
+            //so you don't have to change MaterialApp canvasColor
+            child:  Container(
+                // decoration: new BoxDecoration(
+                //     color: Colors.white,
+                //     borderRadius: new BorderRadius.only(
+                //         topLeft: const Radius.circular(10.0),
+                //         topRight: const Radius.circular(10.0))),
+                child:  Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles(
+                          allowMultiple: true,
+                          type: FileType.image,
+                        );
+                        if (result != null) {
+                          result.files.forEach((element) {
+                            File file = File(element.path!);
+                            setState(() {
+                              images!.add(file);
+                            });
+                          });
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Center(
+                        child:  Text("Pick From Gallary"),
+                      ),
+                    ),
+                    InkWell(
+
+                      onTap: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles(
+                          allowMultiple: true,
+                          type: FileType.any,
+                        );
+                        if (result != null) {
+                          result.files.forEach((element) {
+                            File file = File(element.path!);
+                            setState(() {
+                              images!.add(file);
+                            });
+                          });
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+
+                      child: Center(
+                        child:  Text("Pick From Files"),
+                      ),
+                    ),
+                  ],
+                )),
+          );
+        }
+    );
+  }
+
 }

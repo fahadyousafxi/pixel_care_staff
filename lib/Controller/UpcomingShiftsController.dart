@@ -14,7 +14,7 @@ class UpcomingShiftsController {
     var headers = {'Authorization': 'Bearer $token'};
 
     var request = http.Request('GET',
-      Uri.parse('https://pixelcare.stackbuffers.com/api/care-home-jobs/get',),);
+      Uri.parse('https://pixelcare.stackbuffers.com/api/user/care-home-jobs/upcoming',),);
 
     request.headers.addAll(headers);
 

@@ -288,7 +288,7 @@ class _Booking1PageState extends State<Booking1Page> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              '${snapshot.data?.data?.elementAt(index).date}',
+                                                              '${snapshot.data?.data?.elementAt(index).date} - ${snapshot.data?.data?.elementAt(index).jobEndDate}',
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .grey,
@@ -309,42 +309,42 @@ class _Booking1PageState extends State<Booking1Page> {
                                                         ),
                                                         const Spacer(),
                                                         // SizedBox(width: 20.w),
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Container(
-                                                              height: 25.h,
-                                                              width: 25.w,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .redAccent
-                                                                    .shade100,
-                                                              ),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  '-asdfsfasdfsf',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        20.sp,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                                height: 25.h),
-                                                          ],
-                                                        ),
+                                                        // Column(
+                                                        //   crossAxisAlignment:
+                                                        //       CrossAxisAlignment
+                                                        //           .end,
+                                                        //   children: [
+                                                        //     Container(
+                                                        //       height: 25.h,
+                                                        //       width: 25.w,
+                                                        //       decoration:
+                                                        //           BoxDecoration(
+                                                        //         shape: BoxShape
+                                                        //             .circle,
+                                                        //         color: Colors
+                                                        //             .redAccent
+                                                        //             .shade100,
+                                                        //       ),
+                                                        //       child: Center(
+                                                        //         child: Text(
+                                                        //           '-asdfsfasdfsf',
+                                                        //           style:
+                                                        //               TextStyle(
+                                                        //             fontSize:
+                                                        //                 20.sp,
+                                                        //             color: Colors
+                                                        //                 .white,
+                                                        //             fontWeight:
+                                                        //                 FontWeight
+                                                        //                     .w700,
+                                                        //           ),
+                                                        //         ),
+                                                        //       ),
+                                                        //     ),
+                                                        //     SizedBox(
+                                                        //         height: 25.h),
+                                                        //   ],
+                                                        // ),
                                                         SizedBox(width: 10.w),
                                                       ],
                                                     ),
@@ -360,7 +360,8 @@ class _Booking1PageState extends State<Booking1Page> {
                                                         //       fontSize: 17.sp),
                                                         // ),
                                                       ],
-                                                    )
+                                                    ),
+                                                    SizedBox(height: 6,)
                                                   ],
                                                 ),
                                               ),

@@ -92,6 +92,7 @@ class Data {
   String? image;
   String? description;
   String? date;
+  String? jobEndDate;
   String? timeStart;
   String? timeEnd;
   Null? deleatedAt;
@@ -113,6 +114,7 @@ class Data {
         this.createdAt,
         this.updatedAt,
         this.careHome,
+        this.jobEndDate,
         this.careHomeJobApplied});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -122,6 +124,7 @@ class Data {
     image = json['image'];
     description = json['description'];
     date = json['date'];
+    jobEndDate = json['job_end_date'];
     timeStart = json['time_start'];
     timeEnd = json['time_end'];
     deleatedAt = json['deleated_at'];
@@ -143,6 +146,7 @@ class Data {
     data['image'] = this.image;
     data['description'] = this.description;
     data['date'] = this.date;
+    data['job_end_date'] = this.jobEndDate;
     data['time_start'] = this.timeStart;
     data['time_end'] = this.timeEnd;
     data['deleated_at'] = this.deleatedAt;
