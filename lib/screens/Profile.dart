@@ -70,9 +70,10 @@ class _ProfilePageState extends State<ProfilePage> {
     return WillPopScope(
       onWillPop: () {
         bottomNavigationBarState.selectedIndex = 0;
-        Navigator.of(context).pushAndRemoveUntil(
+        Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => bottomNavigationBar()),
-                (Route route) => false);
+                // (Route route) => false);
+        );
         return false as Future<bool>;
       },
       child: Scaffold(
@@ -275,7 +276,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             SizedBox(height: 10.h),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
+                                Navigator.pushReplacement( context, MaterialPageRoute(
                                     builder: (context) => AccademicView()));
                               },
                               child: TextField(
@@ -300,7 +301,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             SizedBox(height: 2.h),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
+                                Navigator.pushReplacement(context, MaterialPageRoute(
                                     builder: (context) => RefrenceView()));
                               },
                               child: TextField(

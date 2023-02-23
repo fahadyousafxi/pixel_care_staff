@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Starting_Form.dart';
 import 'package:pixel_app/screens/Booking1.dart';
+import 'package:pixel_app/screens/Pay_Outs_Screen.dart';
 import 'package:pixel_app/screens/jobs.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -191,12 +192,18 @@ class _SidebarPageState extends State<SidebarPage> {
                   ),
                 ),
                 SizedBox(height: 30.h),
-                Text(
-                  'Pay-outs',
-                  style: TextStyle(
-                    color: Color(0xff969bc5),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.sp,
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PayOutsScreen()));
+                  },
+                  child: Text(
+                    'Pay-outs',
+                    style: TextStyle(
+                      color: Color(0xff969bc5),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.sp,
+                    ),
                   ),
                 ),
                 // SizedBox(height: 30.h),

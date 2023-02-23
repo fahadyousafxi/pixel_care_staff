@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pixel_app/Controller/Download_Controller.dart';
 
-class DownLoadsPage extends StatefulWidget {
-  const DownLoadsPage({Key? key}) : super(key: key);
+class PayOutsScreen extends StatefulWidget {
+  const PayOutsScreen({Key? key}) : super(key: key);
 
   @override
-  State<DownLoadsPage> createState() => _DownLoadsPageState();
+  State<PayOutsScreen> createState() => _PayOutsScreenState();
 }
 
-class _DownLoadsPageState extends State<DownLoadsPage> {
+class _PayOutsScreenState extends State<PayOutsScreen> {
   String fileurl = "https://www.africau.edu/images/default/sample.pdf";
   // final fileurl =  DownloadController();
   // String fileurl = ref;
@@ -35,7 +35,7 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
         backgroundColor: Colors.grey.shade100,
         elevation: 0,
         title: Text(
-          'Downloads',
+          'Pay-Outs',
           style: TextStyle(
               fontSize: 18.sp,
               color: Colors.black,
@@ -82,7 +82,7 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
 
                         if (statuses[Permission.storage]!.isGranted) {
                           var dir =
-                              await DownloadsPathProvider.downloadsDirectory;
+                          await DownloadsPathProvider.downloadsDirectory;
                           if (dir != null) {
                             String savename = "myfile.pdf";
                             String savePath = dir.path + "/$savename";
@@ -92,13 +92,13 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
                             try {
                               await Dio().download(fileurl.toString(), savePath,
                                   onReceiveProgress: (received, total) {
-                                if (total != -1) {
-                                  print((received / total * 100)
+                                    if (total != -1) {
+                                      print((received / total * 100)
                                           .toStringAsFixed(0) +
-                                      "%");
-                                  //you can build progressbar feature too
-                                }
-                              });
+                                          "%");
+                                      //you can build progressbar feature too
+                                    }
+                                  });
                               print("File is saved to download folder.");
                             } on DioError catch (e) {
                               print(e.message);
@@ -114,23 +114,23 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
                         //         builder: (context) => widgets[index]));
                       },
                       child: Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(5),
-                            // border: ,
-                            boxShadow: [
-                              BoxShadow(
+                          margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(5),
+                              // border: ,
+                              boxShadow: [
+                                BoxShadow(
                                   color: Colors.blue,
                                   spreadRadius: 1,
-                                  )
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(child: Text('Download My Profile')),
-                        )
+                                )
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(child: Text('Download My Pay-Outs')),
+                          )
 //                         ListTile(
 //                           leading: Icon(
 //                             Icons.file_copy_outlined,

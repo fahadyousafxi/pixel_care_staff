@@ -96,7 +96,7 @@ class _TrainingCertificateProfileState
           backgroundColor: Colors.pink,
           leading: GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(context,
+                Navigator.pop(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
               },
               child: Icon(

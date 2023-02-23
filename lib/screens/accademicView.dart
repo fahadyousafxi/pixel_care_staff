@@ -7,6 +7,8 @@ import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
 import 'AcademicQualification.dart';
 import 'Profile.dart';
+import '../widgets/bottomNavigationBar/BottomNavigation.dart';
+
 
 class AccademicView extends StatefulWidget {
   const AccademicView({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class _AccademicViewState extends State<AccademicView> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        // bottomNavigationBarState.selectedIndex = 0;
+        bottomNavigationBarState.selectedIndex = 0;
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => ProfilePage()),
                 (Route route) => false);

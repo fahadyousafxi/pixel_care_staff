@@ -36,7 +36,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
   var titleSelectedgen = 'Mr';
   var month = 'September';
   var day = '1';
-  var year = '2024';
+  var year = '2010';
   var dob;
 
   Future<void> _SetVals() async {
@@ -605,9 +605,9 @@ class _StartingFormPageState extends State<StartingFormPage> {
 
                           DateTime now = DateTime.now();
 
-                          if (int.parse(year) == now.year) {
-                            if (now.month >= int.parse(month)) {
-                              if (int.parse(day) >= now.day) {
+                          // if (int.parse(year) == now.year) {
+                            // if (now.month >= int.parse(month)) {
+                              // if (int.parse(day) >= now.day) {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
                                   SharedPreferences _prefs =
@@ -633,72 +633,83 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                   );
                                 }
                                 print("Evaluated");
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                        'Expiry Date Must not be from past....................')));
-                                print(
-                                    "Expiry Date Must not be from past....................");
-                              }
-                            }
+                              // } else {
+                              //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              //       content: Text(
+                              //           'Expiry Date Must not be from past....................')));
+                              //   print(
+                              //       "Expiry Date Must not be from past....................");
+                              // }
+                            // }
                             // else if(){
 
                             // }
-                            else {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Expiry Date Must not be from past....................')));
-                              print(
-                                  "Expiry Date Must not be from past....................");
-                            }
-                          } else if (int.parse(year) > now.year) {
-                            if (int.parse(month) >= now.month ||
-                                int.parse(month) <= now.month) {
-                              if (int.parse(day) >= now.day ||
-                                  int.parse(day) <= now.day) {
-                                SharedPreferences _prefs =
-                                    await SharedPreferences.getInstance();
-                                _prefs.setString("monthdb", month);
+                            // else {
+                            //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            //       content: Text(
+                            //           'Expiry Date Must not be from past....................')));
+                            //   print(
+                            //       "Expiry Date Must not be from past....................");
+                            // }
+                          // } else if (int.parse(year) > now.year) {
+                          //   if (int.parse(month) >= now.month ||
+                          //       int.parse(month) <= now.month) {
+                          //     if (int.parse(day) >= now.day ||
+                          //         int.parse(day) <= now.day) {
+                          //       SharedPreferences _prefs =
+                          //           await SharedPreferences.getInstance();
+                          //       _prefs.setString("monthdb", month);
+                          //
+                          //       _prefs.setString("yeardb", year);
+                          //
+                          //       _prefs.setString("daydb", day);
+                          //       NmcDetail nmc = new NmcDetail();
+                          //       model.postAppliedFor =
+                          //           title.indexOf(titleSelected).toString();
+                          //       model.howHeardVacancy = howKnow.text;
+                          //       nmc.nmcPinNo = pin.text;
+                          //       nmc.expiryDate = year + '-' + month + '-' + day;
+                          //       model.nmcDetail = nmc;
+                          //       Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) =>
+                          //                 PersonalDetailPage(model: model)),
+                          //       );
+                          //
+                          //       print("Evaluated");
+                          //     } else {
+                          //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //           content: Text(
+                          //               'Expiry Date Must not be from past....................')));
+                          //       print(
+                          //           "Expiry Date Must not be from past....................");
+                          //     }
+                          //   } else {
+                          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //         content: Text(
+                          //             'Expiry Date Must not be from past....................')));
+                          //     print(
+                          //         "Expiry Date Must not be from past....................");
+                          //   }
+                          // } else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //       content: Text(
+                          //           'Expiry Date Must not be from past....................')));
+                          //   print(
+                          //       "Expiry Date Must not be from past....................");
+                          // }
 
-                                _prefs.setString("yeardb", year);
 
-                                _prefs.setString("daydb", day);
-                                NmcDetail nmc = new NmcDetail();
-                                model.postAppliedFor =
-                                    title.indexOf(titleSelected).toString();
-                                model.howHeardVacancy = howKnow.text;
-                                nmc.nmcPinNo = pin.text;
-                                nmc.expiryDate = year + '-' + month + '-' + day;
-                                model.nmcDetail = nmc;
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PersonalDetailPage(model: model)),
-                                );
 
-                                print("Evaluated");
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                        'Expiry Date Must not be from past....................')));
-                                print(
-                                    "Expiry Date Must not be from past....................");
-                              }
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Expiry Date Must not be from past....................')));
-                              print(
-                                  "Expiry Date Must not be from past....................");
-                            }
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(
-                                    'Expiry Date Must not be from past....................')));
-                            print(
-                                "Expiry Date Must not be from past....................");
-                          }
+
+
+
+
+
+
+
+                          /// old Comment
                           // } else {
                           //   ScaffoldMessenger.of(context).showSnackBar(
                           //       SnackBar(content: Text('Pick Date')));
