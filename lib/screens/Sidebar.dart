@@ -1,22 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Starting_Form.dart';
 import 'package:pixel_app/screens/Booking1.dart';
-import 'package:pixel_app/screens/Pay_Outs_Screen.dart';
-import 'package:pixel_app/screens/jobs.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Controller/AuthController.dart';
 import '../Model/UserModel.dart';
-import 'DownloadsScreen.dart';
 import 'SignUp.dart';
-import 'Vacancy.dart';
 
 class SidebarPage extends StatefulWidget {
   const SidebarPage({Key? key}) : super(key: key);
@@ -179,8 +170,8 @@ class _SidebarPageState extends State<SidebarPage> {
                 SizedBox(height: 30.h),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DownLoadsPage()));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => DownLoadsPage()));
                   },
                   child: Text(
                     'Downloads',
