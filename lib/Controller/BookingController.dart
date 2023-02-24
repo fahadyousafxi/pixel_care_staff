@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/BookingModel.dart';
 import '../Model/NextKinModel.dart';
+import '../widgets/Constants.dart';
 var token;
 class BookingController{
   Future<BookingModel> GetConfirmed()async{
@@ -23,7 +24,7 @@ class BookingController{
     };
 
 
-    var request = http.Request('GET', Uri.parse('https://pixelcare.stackbuffers.com/api/care-home-jobs/get/confirmed'));
+    var request = http.Request('GET', Uri.parse('$baseUrl/api/care-home-jobs/get/confirmed'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -38,7 +39,7 @@ class BookingController{
     };
 
 
-    var request = http.Request('GET', Uri.parse('https://pixelcare.stackbuffers.com/api/care-home-jobs/get/unconfirmed'));
+    var request = http.Request('GET', Uri.parse('$baseUrl/api/care-home-jobs/get/unconfirmed'));
 
     request.headers.addAll(headers);
 

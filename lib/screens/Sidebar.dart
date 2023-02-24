@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Controller/AuthController.dart';
 import '../Model/UserModel.dart';
+import 'DownloadsScreen.dart';
+import 'Pay_Outs_Screen.dart';
 import 'SignUp.dart';
 
 class SidebarPage extends StatefulWidget {
@@ -170,8 +172,8 @@ class _SidebarPageState extends State<SidebarPage> {
                 SizedBox(height: 30.h),
                 InkWell(
                   onTap: () {
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => DownLoadsPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DownLoadsPage()));
                   },
                   child: Text(
                     'Downloads',
@@ -184,10 +186,10 @@ class _SidebarPageState extends State<SidebarPage> {
                 ),
                 SizedBox(height: 30.h),
                 InkWell(
-                  // onTap: () {
-                  //   Navigator.of(context).push(MaterialPageRoute(
-                  //       builder: (context) => PayOutsScreen()));
-                  // },
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PayOutsScreen()));
+                  },
                   child: Text(
                     'Pay-outs',
                     style: TextStyle(

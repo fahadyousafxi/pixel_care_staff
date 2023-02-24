@@ -12,6 +12,7 @@ import 'package:pixel_app/Model/VacancyModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/NextKinModel.dart';
+import '../widgets/Constants.dart';
 
 var token;
 
@@ -23,7 +24,7 @@ class VacancyController {
     var headers = {'Authorization': 'Bearer $token'};
 
     var request = http.Request('GET',
-        Uri.parse('https://pixelcare.stackbuffers.com/api/care-home-jobs/get',),);
+        Uri.parse('$baseUrl/api/care-home-jobs/get',),);
 
     request.headers.addAll(headers);
 
@@ -41,7 +42,7 @@ class VacancyController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/care-home-jobs/get/relevant'));
+            '$baseUrl/api/care-home-jobs/get/relevant'));
 
     request.headers.addAll(headers);
 
@@ -59,7 +60,7 @@ class VacancyController {
     var request = http.Request(
         'PUT',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/care-home-jobs/apply?care_home_job_id=$id'));
+            '$baseUrl/api/care-home-jobs/apply?care_home_job_id=$id'));
 
     request.headers.addAll(headers);
 

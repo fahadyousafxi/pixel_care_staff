@@ -11,6 +11,7 @@ import 'package:pixel_app/Model/UserModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/NextKinModel.dart';
+import '../widgets/Constants.dart';
 
 var token;
 
@@ -22,7 +23,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/passport/store'));
+            '$baseUrl/api/user/passport/store'));
     request.fields.addAll(
         {'passport_number': '$passportNumber', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
@@ -45,7 +46,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/enhanced-dbs-certificate/store'));
+            '$baseUrl/api/user/enhanced-dbs-certificate/store'));
     request.fields.addAll({'dbs_number': '$number', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
@@ -71,7 +72,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/right-to-work/store'));
+            '$baseUrl/api/user/right-to-work/store'));
     request.fields.addAll({
       'right_to_work_type': '$type',
       'british_residence_permit': '$number',
@@ -97,7 +98,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/proof-of-address/store'));
+            '$baseUrl/api/user/proof-of-address/store'));
     request.fields.addAll({'type': '$type'});
     images?.forEach((element) async {
       request.files
@@ -119,7 +120,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/naional-insurance/store'));
+            '$baseUrl/api/user/naional-insurance/store'));
     request.fields
         .addAll({'insurance_number': '$number', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
@@ -143,7 +144,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/P45-P46-P60/store'));
+            '$baseUrl/api/user/P45-P46-P60/store'));
     request.fields.addAll({'type': '$type', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
@@ -165,7 +166,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/vaccination-proof/store'));
+            '$baseUrl/api/user/vaccination-proof/store'));
     request.fields.addAll({
       'dose_type': '$type',
       'name_of_vaccine': '$name',
@@ -191,7 +192,7 @@ class DocumentController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/nmc-letter/store'));
+            '$baseUrl/api/user/nmc-letter/store'));
     request.fields.addAll({'nmc_pin': '$number', 'Expiry_date': '$date'});
     images?.forEach((element) async {
       request.files
@@ -219,7 +220,7 @@ class DocumentController {
       var request = http.MultipartRequest(
           'POST',
           Uri.parse(
-              'https://pixelcare.stackbuffers.com/api/user/term-letter/store'));
+              '$baseUrl/api/user/term-letter/store'));
       request.fields
           .addAll({'term_letter_start': '$date1', 'term_letter_end': '$date2'});
 
@@ -246,7 +247,7 @@ class DocumentController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/my-referral-id'));
+            '$baseUrl/api/user/my-referral-id'));
 
     request.headers.addAll(headers);
 

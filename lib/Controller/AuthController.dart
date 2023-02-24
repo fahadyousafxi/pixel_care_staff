@@ -18,6 +18,7 @@ import '../Model/AccountModel.dart';
 import '../Model/NewPassword.dart';
 import '../Model/NextKinModel.dart';
 import '../screens/UpdatePassword.dart';
+import '../widgets/Constants.dart';
 
 var token;
 
@@ -25,7 +26,7 @@ class AuthController {
   CreateAccount(
       {var name, var email, var password, scaffoldKey, context}) async {
     var response = await http.post(Uri.parse(
-        'https://pixelcare.stackbuffers.com/api/user/store?name=$name&email=$email&password=$password'));
+        '$baseUrl/api/user/store?name=$name&email=$email&password=$password'));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['message'] == 'Register Successfuly.') {
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -42,7 +43,7 @@ class AuthController {
 
   LoginAccount({var email, var password, scaffoldKey, context}) async {
     var response = await http.post(Uri.parse(
-        'https://pixelcare.stackbuffers.com/api/user/login?email=$email&password=$password'));
+        '$baseUrl/api/user/login?email=$email&password=$password'));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['message'] == 'Login Successfuly.') {
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -69,7 +70,7 @@ class AuthController {
     var token = await pref.getString('token');
     var response = await http.post(
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/update/password?old_password=$oldPassword&new_password=$newPassword'),
+            '$baseUrl/api/user/update/password?old_password=$oldPassword&new_password=$newPassword'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
     if (response.statusCode == 200) {
       return jsonDecode(response.body)['message'];
@@ -93,7 +94,7 @@ class AuthController {
     print(headers);
     print(model!.toJson());
     var request = await http.MultipartRequest('POST',
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/update'));
+        Uri.parse('$baseUrl/api/user/update'));
     request.fields.addAll({
       'name': '${model.data?.name}',
       'email': '${model.data?.email}',
@@ -109,7 +110,7 @@ class AuthController {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var response2 = await http.get(
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/get'),
+        Uri.parse('$baseUrl/api/user/get'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
     pref.setString('userPersonalInfo', response2.body);
     return jsonDecode(await response.stream.bytesToString())['message'];
@@ -123,7 +124,7 @@ class AuthController {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/next-kin/create-or-update?title=${model.data?.title}&name=${model.data?.name}&address=${model.data?.address}&city=${model.data?.city}&country=${model.data?.country}&zip_code=${model.data?.zipCode}'));
+            '$baseUrl/api/user/next-kin/create-or-update?title=${model.data?.title}&name=${model.data?.name}&address=${model.data?.address}&city=${model.data?.city}&country=${model.data?.country}&zip_code=${model.data?.zipCode}'));
 
     request.headers.addAll(headers);
 
@@ -136,7 +137,7 @@ class AuthController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var response = await http.get(
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/next-kin/get'),
+        Uri.parse('$baseUrl/api/user/next-kin/get'),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -159,7 +160,7 @@ class AuthController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var response = await http.get(
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/nmc-detail/get'),
+        Uri.parse('$baseUrl/api/user/nmc-detail/get'),
         headers: headers);
     if (response.statusCode == 200) {
       print(response.body);
@@ -184,7 +185,7 @@ class AuthController {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/nmc-detail/create-or-update?nmc_pin=${model!.data!.nmcPin}&expiry_date=${model.data!.expiryDate}'));
+            '$baseUrl/api/user/nmc-detail/create-or-update?nmc_pin=${model!.data!.nmcPin}&expiry_date=${model.data!.expiryDate}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     print(await response.reasonPhrase);
@@ -198,7 +199,7 @@ class AuthController {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/academic-qualification/create?degree=$degree&university=$uni&passing_year=$year'));
+            '$baseUrl/api/user/academic-qualification/create?degree=$degree&university=$uni&passing_year=$year'));
 
     request.headers.addAll(headers);
 
@@ -221,7 +222,7 @@ class AuthController {
 
     var response = await http.post(
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/reference/create?name=$name&job_title=$jobTitle&organization=$organization&address=$address&phone_number=$phoneNumber&email=$email&relation=$relation'),
+            '$baseUrl/api/user/reference/create?name=$name&job_title=$jobTitle&organization=$organization&address=$address&phone_number=$phoneNumber&email=$email&relation=$relation'),
         headers: headers);
 
     print(await response.statusCode);
@@ -244,7 +245,7 @@ class AuthController {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/reference/edit?id=$id&name=$name&job_title=$jobTitle&organization=$organization&address=$address&phone_number=$phoneNumber&email=$email&relation=$relation'));
+            '$baseUrl/api/user/reference/edit?id=$id&name=$name&job_title=$jobTitle&organization=$organization&address=$address&phone_number=$phoneNumber&email=$email&relation=$relation'));
 
     request.headers.addAll(headers);
 
@@ -261,7 +262,7 @@ class AuthController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/training-certificates/create'));
+            '$baseUrl/api/user/training-certificates/create'));
     request.fields.addAll({
       'date_of_completion': '$completion',
       'expiry_date': '$expiry',
@@ -281,7 +282,7 @@ class AuthController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var response = await http.get(
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/reference/get'),
+        Uri.parse('$baseUrl/api/user/reference/get'),
         headers: headers);
     if (response.statusCode == 200) {
       return ReferenceModel.fromJson(jsonDecode(response.body));
@@ -297,7 +298,7 @@ class AuthController {
     var request = http.Request(
         'DELETE',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/reference/delete?id=$id'));
+            '$baseUrl/api/user/reference/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -313,7 +314,7 @@ class AuthController {
     var request = http.Request(
         'DELETE',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/training-certificates/delete?id=$id'));
+            '$baseUrl/api/user/training-certificates/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -329,7 +330,7 @@ class AuthController {
     var request = http.Request(
         'DELETE',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/academic-qualification/delete?id=$id'));
+            '$baseUrl/api/user/academic-qualification/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -346,7 +347,7 @@ class AuthController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/training-certificates/get'));
+            '$baseUrl/api/user/training-certificates/get'));
 
     request.headers.addAll(headers);
 
@@ -368,7 +369,7 @@ class AuthController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/academic-qualification/get'));
+            '$baseUrl/api/user/academic-qualification/get'));
 
     request.headers.addAll(headers);
 
@@ -387,7 +388,7 @@ class AuthController {
     try {
       var response = await http.post(
           Uri.parse(
-              "https://pixelcare.stackbuffers.com/api/user/forget-password/send-otp"),
+              "$baseUrl/api/user/forget-password/send-otp"),
           body: {"email": email});
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -415,7 +416,7 @@ class AuthController {
       Otp o = Otp(email: uemail, otp: otp);
       var response = await http.post(
           Uri.parse(
-              "https://pixelcare.stackbuffers.com/api/user/forget-password/verify-otp"),
+              "$baseUrl/api/user/forget-password/verify-otp"),
           headers: <String, String>{
             'Content-Type': 'application/json;charset=UTF-8'
           },
@@ -443,7 +444,7 @@ class AuthController {
       NewPasswordModel n = NewPasswordModel(email: uemail, password: npasword);
       var response = await http.post(
           Uri.parse(
-              "https://pixelcare.stackbuffers.com/api/user/forget-password/update"),
+              "$baseUrl/api/user/forget-password/update"),
           headers: <String, String>{
             'Content-Type': 'application/json;charset=UTF-8'
           },

@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
+import '../widgets/Constants.dart';
+
 
 class DownloadController {
 
@@ -40,7 +42,7 @@ class DownloadController {
 
      // final url = 'https://example.com/api/get_pdf';
      final headers = {'Authorization': 'Bearer $token'};
-     final response = await http.get(Uri.parse("https://pixelcare.stackbuffers.com/api/user/document/pdf"), headers: headers);
+     final response = await http.get(Uri.parse("$baseUrl/api/user/document/pdf"), headers: headers);
 
      // Check if the response was successful
      if (response.statusCode == 200) {

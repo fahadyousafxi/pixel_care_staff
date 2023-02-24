@@ -4,6 +4,8 @@ import 'package:pixel_app/Model/Upcomming_Shifts_Model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import '../widgets/Constants.dart';
+
 
 class UpcomingShiftsController {
 
@@ -14,7 +16,7 @@ class UpcomingShiftsController {
     var headers = {'Authorization': 'Bearer $token'};
 
     var request = http.Request('GET',
-      Uri.parse('https://pixelcare.stackbuffers.com/api/user/care-home-jobs/upcoming',),);
+      Uri.parse('$baseUrl/api/user/care-home-jobs/upcoming',),);
 
     request.headers.addAll(headers);
 

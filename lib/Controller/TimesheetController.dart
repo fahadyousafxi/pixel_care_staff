@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/TimesheetModel.dart';
+import '../widgets/Constants.dart';
 
 class TimesheetController {
   Future<TimesheetModel> GetAvail() async {
@@ -12,7 +13,7 @@ class TimesheetController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request('GET',
-        Uri.parse('https://pixelcare.stackbuffers.com/api/user/time-sheet'));
+        Uri.parse('$baseUrl/api/user/time-sheet'));
 
     request.headers.addAll(headers);
 
@@ -40,7 +41,7 @@ class TimesheetController {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/time-sheet/save'));
+            '$baseUrl/api/user/time-sheet/save'));
     request.fields.addAll({
       'business_unit': '$unit',
       'application_from_id': '$applicationid',

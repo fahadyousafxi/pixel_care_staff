@@ -13,6 +13,8 @@ import '../Model/BookingModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import '../widgets/Constants.dart';
+
 class Booking1Page extends StatefulWidget {
   Booking1Page({Key? key, this.ind}) : super(key: key);
   int? ind = 0;
@@ -607,7 +609,7 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                   http.Request(
                                                                       'PUT',
                                                                       Uri.parse(
-                                                                          'https://pixelcare.stackbuffers.com/api/care-home-jobs/update/reject?care_home_job_id=${snapshot.data?.data?.elementAt(index).id}'));
+                                                                          '$baseUrl/api/care-home-jobs/update/reject?care_home_job_id=${snapshot.data?.data?.elementAt(index).id}'));
 
                                                               request.headers
                                                                   .addAll(
@@ -683,7 +685,7 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                   http.Request(
                                                                       'PUT',
                                                                       Uri.parse(
-                                                                          'https://pixelcare.stackbuffers.com/api/care-home-jobs/update/accept?care_home_job_id=${snapshot.data?.data?.elementAt(index).id}'));
+                                                                          '$baseUrl/api/care-home-jobs/update/accept?care_home_job_id=${snapshot.data?.data?.elementAt(index).id}'));
 
                                                               request.headers
                                                                   .addAll(

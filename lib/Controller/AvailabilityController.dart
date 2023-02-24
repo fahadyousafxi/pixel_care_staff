@@ -4,6 +4,8 @@ import 'package:pixel_app/Model/AvailabilityModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../widgets/Constants.dart';
+
 class AvailabilityController {
 
   Future<AvailbilityModel> GetAvail({month, year}) async {
@@ -15,7 +17,7 @@ class AvailabilityController {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/availability?month=$month&year=$year'));
+            '$baseUrl/api/user/availability?month=$month&year=$year'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
@@ -39,7 +41,7 @@ class AvailabilityController {
     var request = http.MultipartRequest(
         'PUT',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/availability/${true ? 'save' : 'edit'}?date=$date&schedule_list=$time'));
+            '$baseUrl/api/user/availability/${true ? 'save' : 'edit'}?date=$date&schedule_list=$time'));
 
     request.headers.addAll(headers);
 
@@ -57,7 +59,7 @@ class AvailabilityController {
     var request = http.Request(
         'DELETE',
         Uri.parse(
-            'https://pixelcare.stackbuffers.com/api/user/availability/delete?avalability_id=$id'));
+            '$baseUrl/api/user/availability/delete?avalability_id=$id'));
 
     request.headers.addAll(headers);
 

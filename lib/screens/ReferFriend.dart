@@ -9,6 +9,8 @@ import 'package:pixel_app/Controller/DocumentController.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
+import '../widgets/Constants.dart';
+
 class ReferFriendPage extends StatefulWidget {
   const ReferFriendPage({Key? key}) : super(key: key);
 
@@ -125,7 +127,7 @@ class _ReferFriendPageState extends State<ReferFriendPage> {
                           onTap: () {
                             if (snapshot.data != null) {
                               Share.share(
-                                  'https://pixelcare.stackbuffers.com/my-referral-id:${snapshot.data}');
+                                  '$baseUrl/my-referral-id:${snapshot.data}');
                             }
                           },
                           child: Container(
