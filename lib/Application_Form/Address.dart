@@ -1,31 +1,30 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import 'BankDetails.dart';
 import 'Model/ApplicationFormModel.dart';
 import 'Next_of_Kin.dart';
 
 class AddressPage extends StatefulWidget {
- AddressPage({required this.model});
- ApplicationFormModel model=new ApplicationFormModel();
+  AddressPage({super.key, required this.model});
+  ApplicationFormModel model = new ApplicationFormModel();
   @override
   State<AddressPage> createState() => _AddressPageState();
 }
 
 class _AddressPageState extends State<AddressPage> {
   Widget MyTextField(
-      {required InputDecoration decoration, required String hinttext,controller,keyboardType}) {
+      {required InputDecoration decoration,
+      required String hinttext,
+      controller,
+      keyboardType}) {
     return Padding(
       padding: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
       child: TextFormField(
-        keyboardType: keyboardType??TextInputType.text,
+        keyboardType: keyboardType ?? TextInputType.text,
         controller: controller,
-        validator: (value){
-          if(value!.isEmpty){
+        validator: (value) {
+          if (value!.isEmpty) {
             return 'Please fill out this field';
           }
         },
@@ -62,20 +61,18 @@ class _AddressPageState extends State<AddressPage> {
     );
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey=new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
 
-  GlobalKey<FormState> formKey=new GlobalKey();
+  GlobalKey<FormState> formKey = new GlobalKey();
 
-  TextEditingController house=new TextEditingController();
-  TextEditingController address=new TextEditingController();
-  TextEditingController code=new TextEditingController();
+  TextEditingController house = new TextEditingController();
+  TextEditingController address = new TextEditingController();
+  TextEditingController code = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-
-
       body: Form(
         key: formKey,
         child: SafeArea(
@@ -90,9 +87,7 @@ class _AddressPageState extends State<AddressPage> {
                       Text(
                         'Address',
                         style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20
-                        ),
+                            fontWeight: FontWeight.w700, fontSize: 20),
                       ),
                       SizedBox(height: 10.h),
                       Text(
@@ -137,93 +132,97 @@ class _AddressPageState extends State<AddressPage> {
                           color: Colors.white,
                           size: 20.sp,
                         ),
-                      ),        Spacer(),
+                      ),
+                      Spacer(),
                       Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-
-
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
-                        ),                      Spacer(),
-
-                      Container(
-                          height: 10.h,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue.shade200,
-                          ),
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
                         ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 10.h,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue.shade200,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -259,15 +258,15 @@ class _AddressPageState extends State<AddressPage> {
                       decoration: InputDecoration(),
                       hinttext: 'Enter address',
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height*0.3),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.3),
                     Padding(
-                      padding:
-                          EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h),
+                      padding: EdgeInsets.only(
+                          left: 20.w, right: 20.w, bottom: 20.h),
                       child: Row(
                         children: [
                           Expanded(
                             child: InkWell(
-                              onTap:(){
+                              onTap: () {
                                 Navigator.of(context).pop();
                               },
                               child: Container(
@@ -278,7 +277,12 @@ class _AddressPageState extends State<AddressPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(
-                                  child: Text('Previous',style: TextStyle(fontWeight: FontWeight.w500,color:Colors.grey.shade500),),
+                                  child: Text(
+                                    'Previous',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade500),
+                                  ),
                                 ),
                               ),
                             ),
@@ -287,18 +291,20 @@ class _AddressPageState extends State<AddressPage> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                if(formKey.currentState!.validate()){
-                                Address addressmodel=new Address();
-                                addressmodel.houseNumber=house.text;
-                                addressmodel.postalCode=code.text;
-                                addressmodel.address=address.text;
-                                widget.model.address=addressmodel;
-                                print(widget.model.toJson());
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => NextOfKinPage(model:widget.model)),
-                                );}
+                                if (formKey.currentState!.validate()) {
+                                  Address addressmodel = new Address();
+                                  addressmodel.houseNumber = house.text;
+                                  addressmodel.postalCode = code.text;
+                                  addressmodel.address = address.text;
+                                  widget.model.address = addressmodel;
+                                  print(widget.model.toJson());
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            NextOfKinPage(model: widget.model)),
+                                  );
+                                }
                               },
                               child: Container(
                                 height: 60.h,
@@ -308,7 +314,12 @@ class _AddressPageState extends State<AddressPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(
-                                  child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color:Colors.grey.shade500),),
+                                  child: Text(
+                                    'Next',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade500),
+                                  ),
                                 ),
                               ),
                             ),

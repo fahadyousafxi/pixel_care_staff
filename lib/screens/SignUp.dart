@@ -1,8 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/screens/Register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,12 +19,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  GlobalKey<FormState> formkey = new GlobalKey();
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-  TextEditingController email = new TextEditingController();
-  TextEditingController name = new TextEditingController();
-  TextEditingController password = new TextEditingController();
-  TextEditingController confirmpassword = new TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  TextEditingController email = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
   bool isChecked = false;
   bool isPasswordHidden = true;
   @override
@@ -35,11 +35,11 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   _CheckPassword() async {
-    SharedPreferences _p = await SharedPreferences.getInstance();
+    SharedPreferences p = await SharedPreferences.getInstance();
 
-    if (_p.getString("password") != null && _p.getString("Uemail") != null) {
-      email.text = _p.getString("Uemail")!;
-      password.text = _p.getString("password")!;
+    if (p.getString("password") != null && p.getString("Uemail") != null) {
+      email.text = p.getString("Uemail")!;
+      password.text = p.getString("password")!;
       setState(() {});
     }
   }
@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
       key: scaffoldKey,
       body: SingleChildScrollView(
           child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Form(
           key: formkey,
           child: Column(
@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   SizedBox(height: 5.h),
-                  Text('Excited to welcome you'),
+                  const Text('Excited to welcome you'),
                 ],
               ),
               Column(
@@ -110,28 +110,29 @@ class _SignUpPageState extends State<SignUpPage> {
                         if (value!.isEmpty) {
                           return 'Please fillout this field';
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                         hintStyle: GoogleFonts.dmSans(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.sp,
-                          color: Color(0xffACA9A9),
+                          color: const Color(0xffACA9A9),
                         ),
-                        fillColor: Color(0xffEEEEEE),
+                        fillColor: const Color(0xffEEEEEE),
                         filled: true,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
@@ -159,6 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         if (value!.isEmpty) {
                           return 'Please fillout this field';
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                         suffix: InkWell(
@@ -170,28 +172,28 @@ class _SignUpPageState extends State<SignUpPage> {
                               isPasswordHidden
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: Color(0xffF5591f),
+                              color: const Color(0xffF5591f),
                             )),
                         hintStyle: GoogleFonts.dmSans(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.sp,
-                          color: Color(0xffACA9A9),
+                          color: const Color(0xffACA9A9),
                         ),
-                        fillColor: Color(0xffEEEEEE),
+                        fillColor: const Color(0xffEEEEEE),
                         filled: true,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
@@ -218,22 +220,23 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Text(
                           'Remember Password!',
                           style: TextStyle(
-                            color: Color.fromARGB(255, 0, 133, 55),
+                            color: const Color.fromARGB(255, 0, 133, 55),
                             fontSize: 15.sp,
                           ),
                         ),
                       ),
-                      SizedBox(width: 18),
+                      const SizedBox(width: 18),
                       Container(
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ForgotPasswordPage()));
+                                builder: (context) =>
+                                    const ForgotPasswordPage()));
                           },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
-                              color: Color(0xff3b53a4),
+                              color: const Color(0xff3b53a4),
                               fontSize: 15.sp,
                             ),
                           ),
@@ -251,11 +254,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 60.h,
                         width: 600.w,
                         child: Center(
@@ -270,15 +273,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
                     child: InkWell(
                       onTap: () async {
-                        AuthController controller = new AuthController();
+                        AuthController controller = AuthController();
                         if (formkey.currentState!.validate()) {
                           showDialog(
                             context: context,
                             barrierDismissible: false,
                             builder: (BuildContext context) {
                               return Container(
-                                  child: Center(
-                                      child: new CircularProgressIndicator(
+                                  child: const Center(
+                                      child: CircularProgressIndicator(
                                 color: Color(0xfffaeaea),
                               )));
                             },
@@ -291,25 +294,26 @@ class _SignUpPageState extends State<SignUpPage> {
 
                           /// will change
                           ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar( content: Text('${data}')));
+                              .showSnackBar(SnackBar(content: Text('$data')));
                           if (data == 'Login Successfuly.') {
                             if (isChecked) {
-                              SharedPreferences _prefs =
+                              SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
-                              _prefs.setString("password", password.text);
-                              _prefs.setString("Uemail", email.text);
+                              prefs.setString("password", password.text);
+                              prefs.setString("Uemail", email.text);
                               Navigator.of(context).pop();
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        bottomNavigationBar()),
+                                        const bottomNavigationBar()),
                               );
                             }
                             Navigator.of(context).pop();
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => bottomNavigationBar()),
+                                  builder: (context) =>
+                                      const bottomNavigationBar()),
                             );
                           } else {
                             Navigator.of(context).pop();
@@ -323,7 +327,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         decoration: BoxDecoration(
                           color: email.text != "" && password.text != ""
                               ? Colors.pink
-                              : Color(0xfffaeaea),
+                              : const Color(0xfffaeaea),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(

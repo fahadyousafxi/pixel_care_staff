@@ -1,22 +1,16 @@
-import 'dart:convert';
+import 'dart:io';
 
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Employement.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
-import 'dart:io';
+import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+
 import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
 import '../DocumentsUpload/training_certificates.dart';
 import '../Model/AccademicCertModel.dart';
-import 'Employment_Previous.dart';
 import 'Model/ApplicationFormModel.dart';
-import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 
 class TrainingPage extends StatefulWidget {
   TrainingPage({required this.model});
@@ -49,27 +43,27 @@ class _TrainingPageState extends State<TrainingPage> {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -95,7 +89,8 @@ class _TrainingPageState extends State<TrainingPage> {
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+              MaterialPageRoute(
+                  builder: (context) => const bottomNavigationBar()),
               (Route route) => false);
           return false as Future<bool>;
         },
@@ -114,13 +109,13 @@ class _TrainingPageState extends State<TrainingPage> {
                       child: Column(
                         //mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Training',
                             style: TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 20),
                           ),
                           SizedBox(height: 10.h),
-                          Text(
+                          const Text(
                             'Trainings relevant to the post applying',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -136,7 +131,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                 Container(
                                   height: 20.h,
                                   width: 20.w,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
@@ -146,11 +141,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                     size: 20.sp,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 20.h,
                                   width: 20.w,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
@@ -160,11 +155,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                     size: 20.sp,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 20.h,
                                   width: 20.w,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
@@ -174,11 +169,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                     size: 20.sp,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 20.h,
                                   width: 20.w,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
@@ -188,11 +183,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                     size: 20.sp,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 20.h,
                                   width: 20.w,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),
@@ -202,7 +197,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     size: 20.sp,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 10.h,
                                   width: 10.w,
@@ -211,7 +206,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     color: Colors.blue.shade200,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 10.h,
                                   width: 10.w,
@@ -220,7 +215,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     color: Colors.blue.shade200,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 10.h,
                                   width: 10.w,
@@ -229,7 +224,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                     color: Colors.blue.shade200,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   height: 10.h,
                                   width: 10.w,
@@ -250,19 +245,19 @@ class _TrainingPageState extends State<TrainingPage> {
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                TrainingCertificates()));
+                                                const TrainingCertificates()));
                                   },
                                   child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           color: Colors.blue),
-                                      padding: EdgeInsets.all(10),
-                                      margin: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(10),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: [
+                                        children: const [
                                           Text(
                                             ' Add New Certificate ',
                                             style:
@@ -278,21 +273,21 @@ class _TrainingPageState extends State<TrainingPage> {
                                       future: AuthController().GetCert(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          if (snapshot.data!.data!.length !=
-                                              0) {
-                                            Future.delayed(Duration(seconds: 1))
+                                          if (snapshot.data!.data.isNotEmpty) {
+                                            Future.delayed(
+                                                    const Duration(seconds: 1))
                                                 .then((value) => setState(() {
                                                       emp = true;
                                                     }));
                                             return Column(
                                               children: [
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Column(
                                                     children: List.generate(
                                                         snapshot
-                                                            .data!.data!.length,
+                                                            .data!.data.length,
                                                         (index) => Container(
                                                               width:
                                                                   MediaQuery.of(
@@ -300,14 +295,13 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                       .size
                                                                       .width,
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(10),
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          10,
-                                                                      horizontal:
-                                                                          20),
+                                                              margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10,
+                                                                  horizontal:
+                                                                      20),
                                                               decoration: BoxDecoration(
                                                                   color: Colors
                                                                       .grey
@@ -341,12 +335,12 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text(
+                                                                            const Text(
                                                                               'Date of Completion: ',
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                                                                             ),
-                                                                            Text('${snapshot.data?.data?.elementAt(index).dateOfCompletion}',
-                                                                                style: TextStyle()),
+                                                                            Text('${snapshot.data?.data.elementAt(index).dateOfCompletion}',
+                                                                                style: const TextStyle()),
                                                                           ],
                                                                         ),
                                                                       ),
@@ -359,33 +353,33 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                                   barrierDismissible: false, // user must tap button!
                                                                                   builder: (BuildContext context) {
                                                                                     return AlertDialog(
-                                                                                      title: Text('Are you sure?'),
+                                                                                      title: const Text('Are you sure?'),
                                                                                       content: SingleChildScrollView(
                                                                                         child: ListBody(
-                                                                                          children: <Widget>[
+                                                                                          children: const <Widget>[
                                                                                             Text('This action cannot be undone.'),
                                                                                           ],
                                                                                         ),
                                                                                       ),
                                                                                       actions: <Widget>[
                                                                                         TextButton(
-                                                                                          child: Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                                                                                          child: const Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
                                                                                           onPressed: () {
                                                                                             Navigator.of(context).pop();
                                                                                           },
                                                                                         ),
                                                                                         TextButton(
-                                                                                          child: Text(
+                                                                                          child: const Text(
                                                                                             'Delete',
                                                                                             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                                                                                           ),
                                                                                           onPressed: () async {
                                                                                             // Perform the delete action here
 
-                                                                                            var response = await AuthController().DeleteCert(snapshot.data?.data?.elementAt(index).id);
+                                                                                            var response = await AuthController().DeleteCert(snapshot.data?.data.elementAt(index).id);
 
                                                                                             setState(() {
-                                                                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                                                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                                                                                   content: Text(
                                                                                                 "This record and its details will be permanently deleted.",
                                                                                                 style: TextStyle(color: Colors.white),
@@ -408,7 +402,7 @@ class _TrainingPageState extends State<TrainingPage> {
 
                                                                                 /////////
                                                                               },
-                                                                              child: Icon(
+                                                                              child: const Icon(
                                                                                 Icons.delete,
                                                                                 color: Colors.red,
                                                                               ))
@@ -416,7 +410,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                       )
                                                                     ],
                                                                   ),
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                     height: 05,
                                                                   ),
                                                                   Container(
@@ -425,7 +419,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                           CrossAxisAlignment
                                                                               .start,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                           'Expiry Date: ',
                                                                           style: TextStyle(
                                                                               fontWeight: FontWeight.bold,
@@ -433,11 +427,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                         ),
                                                                         Flexible(
                                                                             child:
-                                                                                Text('${snapshot.data?.data?.elementAt(index).expiryDate}', style: TextStyle())),
+                                                                                Text('${snapshot.data?.data.elementAt(index).expiryDate}', style: const TextStyle())),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                     height: 10,
                                                                   ),
                                                                   Container(
@@ -445,7 +439,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                       crossAxisAlignment:
                                                                           CrossAxisAlignment
                                                                               .start,
-                                                                      children: [
+                                                                      children: const [
                                                                         Text(
                                                                           'Images: ',
                                                                           style: TextStyle(
@@ -463,11 +457,11 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                         width:
                                                                             100.w,
                                                                         margin:
-                                                                            EdgeInsets.all(10),
+                                                                            const EdgeInsets.all(10),
                                                                         decoration: BoxDecoration(
                                                                             color:
                                                                                 Colors.grey,
-                                                                            image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('${snapshot.data?.data?.elementAt(index).image}'))),
+                                                                            image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('${snapshot.data?.data.elementAt(index).image}'))),
                                                                       )
                                                                     ],
                                                                   )
@@ -485,7 +479,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              child: Center(
+                                              child: const Center(
                                                 child: Text(
                                                   'No certificate added yet!',
                                                   style: TextStyle(
@@ -540,7 +534,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'Previous',
                                     style: TextStyle(
@@ -573,7 +567,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                 decoration: BoxDecoration(
                                   color: emp == true
                                       ? Colors.pink
-                                      : Color(0xfffaeaea),
+                                      : const Color(0xfffaeaea),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(

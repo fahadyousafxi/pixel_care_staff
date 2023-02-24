@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Controller/AuthController.dart';
 import '../widgets/bottomNavigationBar/BottomNavigation.dart';
-import 'Register.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _SplashPageState extends State<SplashPage>
         vsync: this,
         lowerBound: 0.8,
         upperBound: 1.2,
-        duration: Duration(seconds: 1));
+        duration: const Duration(seconds: 1));
 
     controller!.repeat(reverse: true);
   }
@@ -45,7 +46,7 @@ class _SplashPageState extends State<SplashPage>
           SizedBox(height: 10.h),
           AnimatedBuilder(
             animation: controller!,
-            child: Icon(
+            child: const Icon(
               Icons.notifications,
               size: 35,
               color: Colors.white,
@@ -68,17 +69,17 @@ class _SplashPageState extends State<SplashPage>
             child: InkWell(
               onTap: () async {
                 SharedPreferences pref = await SharedPreferences.getInstance();
-                token = await pref.getString('token');
+                token = pref.getString('token');
                 if (pref.getBool('Logined') == true) {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => bottomNavigationBar()),
+                        builder: (context) => const bottomNavigationBar()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                    MaterialPageRoute(builder: (context) => const SignUpPage()),
                   );
                 }
               },
@@ -89,7 +90,7 @@ class _SplashPageState extends State<SplashPage>
                   color: Colors.pink,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     'GET STARTED',
                     style: TextStyle(color: Colors.white),

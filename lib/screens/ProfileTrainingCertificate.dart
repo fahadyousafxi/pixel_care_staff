@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/screens/Profile.dart';
 
-import '../Application_Form/Employement.dart';
 import '../Application_Form/Model/ApplicationFormModel.dart';
 import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
@@ -45,27 +44,27 @@ class _TrainingCertificateProfileState
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -86,8 +85,8 @@ class _TrainingCertificateProfileState
       onWillPop: () {
         // bottomNavigationBarState.selectedIndex = 0;
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ProfilePage()),
-                (Route route) => false);
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
+            (Route route) => false);
         return false as Future<bool>;
       },
       child: Scaffold(
@@ -96,10 +95,12 @@ class _TrainingCertificateProfileState
           backgroundColor: Colors.pink,
           leading: GestureDetector(
               onTap: () {
-                Navigator.pop(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
+                Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               )),
@@ -109,18 +110,18 @@ class _TrainingCertificateProfileState
                   navigator = true;
                   setState(() {});
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => TrainingCertificates()));
+                      builder: (context) => const TrainingCertificates()));
                 },
                 child: Container(
                     height: 30,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white),
-                    padding: EdgeInsets.all(05),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(05),
+                    margin: const EdgeInsets.all(10),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           ' Add New Training ',
                           style: TextStyle(color: Colors.black),
                         ),
@@ -148,26 +149,28 @@ class _TrainingCertificateProfileState
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: MediaQuery.of(context).size.height * 0.8,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
                                 child: SingleChildScrollView(
                                   child: FutureBuilder<AccademicCertModel>(
                                       future: AuthController().GetCert(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          if (snapshot.data!.data!.length != 0) {
-                                            Future.delayed(Duration(seconds: 1))
+                                          if (snapshot.data!.data.isNotEmpty) {
+                                            Future.delayed(
+                                                    const Duration(seconds: 1))
                                                 .then((value) => setState(() {
                                                       emp = true;
                                                     }));
                                             return Column(
                                               children: [
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Column(
                                                     children: List.generate(
                                                         snapshot
-                                                            .data!.data!.length,
+                                                            .data!.data.length,
                                                         (index) => Container(
                                                               width:
                                                                   MediaQuery.of(
@@ -175,22 +178,20 @@ class _TrainingCertificateProfileState
                                                                       .size
                                                                       .width,
                                                               padding:
-                                                                  EdgeInsets.all(
-                                                                      10),
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          10,
-                                                                      horizontal:
-                                                                          20),
+                                                                  const EdgeInsets
+                                                                      .all(10),
+                                                              margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10,
+                                                                  horizontal:
+                                                                      20),
                                                               decoration: BoxDecoration(
                                                                   color: Colors
                                                                       .grey
                                                                       .shade100,
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10),
+                                                                          .circular(10),
                                                                   boxShadow: [
                                                                     BoxShadow(
                                                                         color: Colors
@@ -220,61 +221,57 @@ class _TrainingCertificateProfileState
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-
-                                                                            Text(
+                                                                            const Text(
                                                                               'Date of Completion: ',
-                                                                              style:
-                                                                                  TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                                                                             ),
-                                                                            Text(
-                                                                                '${snapshot.data?.data?.elementAt(index).dateOfCompletion.toString().substring(0, 10)} ',
-                                                                                style: TextStyle()),
+                                                                            Text('${snapshot.data?.data.elementAt(index).dateOfCompletion.toString().substring(0, 10)} ',
+                                                                                style: const TextStyle()),
                                                                           ],
                                                                         ),
                                                                       ),
                                                                       Row(
                                                                         children: [
                                                                           GestureDetector(
-                                                                              onTap:
-                                                                                  () async {
+                                                                              onTap: () async {
                                                                                 showDialog<void>(
                                                                                   context: context,
                                                                                   barrierDismissible: false, // user must tap button!
                                                                                   builder: (BuildContext context) {
                                                                                     return AlertDialog(
-                                                                                      title: Text('Are you sure?'),
+                                                                                      title: const Text('Are you sure?'),
                                                                                       content: SingleChildScrollView(
                                                                                         child: ListBody(
                                                                                           children: <Widget>[
-                                                                                            Text('This action cannot be undone.'),
+                                                                                            const Text('This action cannot be undone.'),
                                                                                           ],
                                                                                         ),
                                                                                       ),
                                                                                       actions: <Widget>[
                                                                                         TextButton(
-                                                                                          child: Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                                                                                          child: const Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
                                                                                           onPressed: () {
                                                                                             Navigator.of(context).pop();
                                                                                           },
                                                                                         ),
                                                                                         TextButton(
-                                                                                          child: Text(
+                                                                                          child: const Text(
                                                                                             'Delete',
                                                                                             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                                                                                           ),
                                                                                           onPressed: () async {
                                                                                             // Perform the delete action here
-                                                                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                                                                                 content: Text(
                                                                                               "Deletion is in progress...",
                                                                                               style: TextStyle(color: Colors.white),
                                                                                             )));
-                                                                                            var response = await AuthController().DeleteCert(snapshot.data?.data?.elementAt(index).id);
+                                                                                            var response = await AuthController().DeleteCert(snapshot.data?.data.elementAt(index).id);
                                                                                             setState(() {
                                                                                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                                                                                   content: Text(
                                                                                                 response,
-                                                                                                style: TextStyle(color: Colors.white),
+                                                                                                style: const TextStyle(color: Colors.white),
                                                                                               )));
                                                                                               Navigator.of(context).pop();
                                                                                               Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -289,8 +286,7 @@ class _TrainingCertificateProfileState
                                                                                   },
                                                                                 );
                                                                               },
-                                                                              child:
-                                                                                  Icon(
+                                                                              child: const Icon(
                                                                                 Icons.delete,
                                                                                 color: Colors.red,
                                                                               ))
@@ -298,7 +294,7 @@ class _TrainingCertificateProfileState
                                                                       )
                                                                     ],
                                                                   ),
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                     height: 05,
                                                                   ),
                                                                   Container(
@@ -307,21 +303,19 @@ class _TrainingCertificateProfileState
                                                                           CrossAxisAlignment
                                                                               .start,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                           'Expiry Date: ',
                                                                           style: TextStyle(
-                                                                              fontWeight:
-                                                                                  FontWeight.bold,
+                                                                              fontWeight: FontWeight.bold,
                                                                               fontSize: 16),
                                                                         ),
                                                                         Flexible(
-                                                                            child: Text(
-                                                                                '${snapshot.data?.data?.elementAt(index).expiryDate.toString().substring(0, 10)}',
-                                                                                style: TextStyle())),
+                                                                            child:
+                                                                                Text('${snapshot.data?.data.elementAt(index).expiryDate.toString().substring(0, 10)}', style: const TextStyle())),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                     height: 10,
                                                                   ),
                                                                   Container(
@@ -330,11 +324,10 @@ class _TrainingCertificateProfileState
                                                                           CrossAxisAlignment
                                                                               .start,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                           'File: ',
                                                                           style: TextStyle(
-                                                                              fontWeight:
-                                                                                  FontWeight.bold,
+                                                                              fontWeight: FontWeight.bold,
                                                                               fontSize: 16),
                                                                         ),
                                                                       ],
@@ -347,15 +340,12 @@ class _TrainingCertificateProfileState
                                                                             100.h,
                                                                         width:
                                                                             100.w,
-                                                                        margin: EdgeInsets
-                                                                            .all(
-                                                                                10),
+                                                                        margin:
+                                                                            const EdgeInsets.all(10),
                                                                         decoration: BoxDecoration(
-                                                                            color: Colors
-                                                                                .grey,
-                                                                            image: DecorationImage(
-                                                                                fit: BoxFit.fill,
-                                                                                image: NetworkImage('${snapshot.data?.data.elementAt(index).image}'))),
+                                                                            color:
+                                                                                Colors.grey,
+                                                                            image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('${snapshot.data?.data.elementAt(index).image}'))),
                                                                       )
                                                                     ],
                                                                   )
@@ -373,7 +363,7 @@ class _TrainingCertificateProfileState
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              child: Center(
+                                              child: const Center(
                                                 child: Text(
                                                   'No certificate added yet!',
                                                   style: TextStyle(
@@ -388,14 +378,16 @@ class _TrainingCertificateProfileState
                                                     .size
                                                     .height *
                                                 0.5,
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             child: Center(
                                                 child: Container(
                                               height: 30,
                                               width: 30,
                                               child: CircularProgressIndicator(
-                                                color: Colors.pinkAccent.shade100
+                                                color: Colors
+                                                    .pinkAccent.shade100
                                                     .withOpacity(0.5),
                                               ),
                                             )),

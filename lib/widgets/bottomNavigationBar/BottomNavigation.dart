@@ -1,21 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pixel_app/Application_Form/Starting_Form.dart';
-import 'package:pixel_app/screens/Booking1.dart';
-import 'package:pixel_app/screens/Calendar.dart';
-import 'package:pixel_app/screens/NMC_details.dart';
 import 'package:pixel_app/screens/Profile.dart';
 
-import '../../screens/AcademicQualification.dart';
+import '../../chat_module/chat_app.dart';
 import '../../screens/Home.dart';
-import '../../screens/NextOfKin.dart';
 import '../../screens/Notifications.dart';
-import '../../screens/PasswordDetails.dart';
-import '../../screens/PersonalDetails.dart';
-import '../../screens/Sidebar.dart';
-import '../../screens/TimeSheet.dart';
 
 class bottomNavigationBar extends StatefulWidget {
   const bottomNavigationBar({Key? key}) : super(key: key);
@@ -33,11 +23,11 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
   var smallHeading = 15.0;
   var largeHeading = 20.0;
   static var selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    NotificationsPage(),
-    NotificationsPage(),
-    ProfilePage(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePage(),
+    const NotificationsPage(),
+    const ChatApp(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -49,11 +39,11 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+            MaterialPageRoute(
+                builder: (context) => const bottomNavigationBar()),
           );
           return false;
         }
-
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -64,7 +54,7 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
           showSelectedLabels: false,
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.grey,
-          selectedItemColor: Color.fromARGB(255, 255, 17, 1),
+          selectedItemColor: const Color.fromARGB(255, 255, 17, 1),
           onTap: _onTap,
           currentIndex: selectedIndex,
           // selectedLabelStyle: GoogleFonts.poppins(fontSize: 10),
@@ -74,7 +64,7 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
               icon: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -111,16 +101,17 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
                 icon: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade400.withOpacity(0.7),
-                                  spreadRadius: 1,
-                                  blurRadius: 5)
-                            ]),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade400.withOpacity(0.7),
+                                spreadRadius: 1,
+                                blurRadius: 5)
+                          ],
+                        ),
                         child: Column(
                           children: [
                             Icon(Icons.notifications_none, size: 18.r),
@@ -140,20 +131,21 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
                 ),
                 label: "Booking"),
             BottomNavigationBarItem(
-              backgroundColor: Colors.red,
+                backgroundColor: Colors.red,
                 icon: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade400.withOpacity(0.7),
-                                  spreadRadius: 1,
-                                  blurRadius: 5)
-                            ]),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade400.withOpacity(0.7),
+                                spreadRadius: 1,
+                                blurRadius: 5),
+                          ],
+                        ),
                         child: Column(
                           children: [
                             Icon(CupertinoIcons.chat_bubble_text, size: 18.r),
@@ -176,7 +168,7 @@ class bottomNavigationBarState extends State<bottomNavigationBar> {
                 icon: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),

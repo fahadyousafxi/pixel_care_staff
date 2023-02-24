@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixel_app/Controller/AuthController.dart';
 import 'package:pixel_app/Model/AccademicCertModel.dart';
 
-import '../Application_Form/Reference_Form.dart';
 import '../DocumentsUpload/training_certificates.dart';
-import 'AcademicQualification.dart';
 
 class TrainingView extends StatefulWidget {
   const TrainingView({Key? key}) : super(key: key);
@@ -28,7 +26,7 @@ class _TrainingViewState extends State<TrainingView> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             )),
@@ -36,17 +34,17 @@ class _TrainingViewState extends State<TrainingView> {
           GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TrainingCertificates()));
+                    builder: (context) => const TrainingCertificates()));
               },
               child: Container(
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white),
-                  padding: EdgeInsets.all(05),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(05),
+                  margin: const EdgeInsets.all(10),
                   child: Row(
-                    children: [
+                    children: const [
                       Text(
                         ' Add New Certificate ',
                         style: TextStyle(color: Colors.black),
@@ -60,19 +58,19 @@ class _TrainingViewState extends State<TrainingView> {
             future: AuthController().GetCert(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                if (snapshot.data!.data!.length != 0) {
+                if (snapshot.data!.data.isNotEmpty) {
                   return Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Column(
                           children: List.generate(
-                              snapshot.data!.data!.length,
+                              snapshot.data!.data.length,
                               (index) => Container(
                                     width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.all(10),
+                                    margin: const EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 20),
                                     decoration: BoxDecoration(
                                         color: Colors.grey.shade100,
@@ -96,7 +94,7 @@ class _TrainingViewState extends State<TrainingView> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     'Date of Completion: ',
                                                     style: TextStyle(
                                                         fontWeight:
@@ -104,8 +102,8 @@ class _TrainingViewState extends State<TrainingView> {
                                                         fontSize: 16),
                                                   ),
                                                   Text(
-                                                      '${snapshot.data?.data?.elementAt(index).dateOfCompletion}',
-                                                      style: TextStyle()),
+                                                      '${snapshot.data?.data.elementAt(index).dateOfCompletion}',
+                                                      style: const TextStyle()),
                                                 ],
                                               ),
                                             ),
@@ -115,11 +113,12 @@ class _TrainingViewState extends State<TrainingView> {
                                                     onTap: () async {
                                                       var response =
                                                           await AuthController()
-                                                              .DeleteCert(snapshot
-                                                                  .data?.data
-                                                                  ?.elementAt(
-                                                                      index)
-                                                                  .id);
+                                                              .DeleteCert(
+                                                                  snapshot.data
+                                                                      ?.data
+                                                                      .elementAt(
+                                                                          index)
+                                                                      .id);
                                                       setState(() {
                                                         ScaffoldMessenger.of(
                                                                 context)
@@ -128,13 +127,14 @@ class _TrainingViewState extends State<TrainingView> {
                                                                     content:
                                                                         Text(
                                                           response,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
                                                         )));
                                                       });
                                                     },
-                                                    child: Icon(
+                                                    child: const Icon(
                                                       Icons.delete,
                                                       color: Colors.red,
                                                     ))
@@ -142,7 +142,7 @@ class _TrainingViewState extends State<TrainingView> {
                                             )
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 05,
                                         ),
                                         Container(
@@ -150,7 +150,7 @@ class _TrainingViewState extends State<TrainingView> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'Expiry Date: ',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -158,19 +158,20 @@ class _TrainingViewState extends State<TrainingView> {
                                               ),
                                               Flexible(
                                                   child: Text(
-                                                      '${snapshot.data?.data?.elementAt(index).expiryDate}',
-                                                      style: TextStyle())),
+                                                      '${snapshot.data?.data.elementAt(index).expiryDate}',
+                                                      style:
+                                                          const TextStyle())),
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Container(
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: [
+                                            children: const [
                                               Text(
                                                 'Images: ',
                                                 style: TextStyle(
@@ -185,13 +186,13 @@ class _TrainingViewState extends State<TrainingView> {
                                             Container(
                                               height: 100.h,
                                               width: 100.w,
-                                              margin: EdgeInsets.all(10),
+                                              margin: const EdgeInsets.all(10),
                                               decoration: BoxDecoration(
                                                   color: Colors.grey,
                                                   image: DecorationImage(
                                                       fit: BoxFit.fill,
                                                       image: NetworkImage(
-                                                          '${snapshot.data?.data?.elementAt(index).image}'))),
+                                                          '${snapshot.data?.data.elementAt(index).image}'))),
                                             )
                                           ],
                                         )
@@ -204,7 +205,7 @@ class _TrainingViewState extends State<TrainingView> {
                   return Container(
                     height: MediaQuery.of(context).size.height * 0.8,
                     width: MediaQuery.of(context).size.width,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'No certificate added yet!',
                         style: TextStyle(color: Colors.grey),
