@@ -1,9 +1,8 @@
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Application_Form/Model/ApplicationFormModel.dart';
 
-ApplicationFormModel model1 = new ApplicationFormModel();
+ApplicationFormModel model1 = ApplicationFormModel();
 var navigator = false;
 var academicnav = false;
 String uemail = "";
@@ -16,6 +15,7 @@ String p45p60Status = "Pending";
 String termLetterStatus = "Pending";
 String vaccinationProofStatus = "Pending";
 String nmcLetterStatus = "Pending";
+const baseUrl = "https://admin.pixelcare.co.uk";
 void hide() {
   // This will hide the bottom system navigation bar
   // Only the status bar on the top will show up

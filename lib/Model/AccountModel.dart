@@ -9,43 +9,43 @@ class UserAccountinfo {
   UserAccountinfo.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['token'] = this.token;
+    data['token'] = token;
     return data;
   }
 }
 
 class Data {
   int? id;
-  String? name;
-  String? phone;
-  String? email;
-  String? emailOtp;
-  String? country;
-  String? hourlyRate;
-  String? dob;
-  String? status;
+  dynamic name;
+  dynamic phone;
+  dynamic email;
+  dynamic emailOtp;
+  dynamic country;
+  dynamic hourlyRate;
+  dynamic dob;
+  dynamic status;
   Null? temporaryBlockStart;
   Null? temporaryBlockEnd;
   Null? type;
-  String? avatar;
-  String? nextOfKin;
-  String? referralId;
+  dynamic avatar;
+  dynamic nextOfKin;
+  dynamic referralId;
   Null? refferBy;
-  String? isBlocked;
-  String? role;
-  String? createdAt;
-  String? updatedAt;
+  dynamic isBlocked;
+  dynamic role;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   Data(
       {this.id,
@@ -93,27 +93,27 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['email'] = this.email;
-    data['email_otp'] = this.emailOtp;
-    data['country'] = this.country;
-    data['hourly_rate'] = this.hourlyRate;
-    data['dob'] = this.dob;
-    data['status'] = this.status;
-    data['temporary_block_start'] = this.temporaryBlockStart;
-    data['temporary_block_end'] = this.temporaryBlockEnd;
-    data['type'] = this.type;
-    data['avatar'] = this.avatar;
-    data['next_of_kin'] = this.nextOfKin;
-    data['referral_id'] = this.referralId;
-    data['reffer_by'] = this.refferBy;
-    data['is_blocked'] = this.isBlocked;
-    data['role'] = this.role;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['phone'] = phone;
+    data['email'] = email;
+    data['email_otp'] = emailOtp;
+    data['country'] = country;
+    data['hourly_rate'] = hourlyRate;
+    data['dob'] = dob;
+    data['status'] = status;
+    data['temporary_block_start'] = temporaryBlockStart;
+    data['temporary_block_end'] = temporaryBlockEnd;
+    data['type'] = type;
+    data['avatar'] = avatar;
+    data['next_of_kin'] = nextOfKin;
+    data['referral_id'] = referralId;
+    data['reffer_by'] = refferBy;
+    data['is_blocked'] = isBlocked;
+    data['role'] = role;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

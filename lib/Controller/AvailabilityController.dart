@@ -1,23 +1,19 @@
 import 'dart:convert';
 
-import 'package:pixel_app/Model/AvailabilityModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:pixel_app/Constants/Constant.dart';
+import 'package:pixel_app/Model/AvailabilityModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../widgets/Constants.dart';
-
 class AvailabilityController {
-
   Future<AvailbilityModel> GetAvail({month, year}) async {
     print(month.toString());
     print(year.toString());
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$baseUrl/api/user/availability?month=$month&year=$year'));
+    var request = http.Request('GET',
+        Uri.parse('$baseUrl/api/user/availability?month=$month&year=$year'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
@@ -50,16 +46,12 @@ class AvailabilityController {
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 
-
-
   DeleteAvail(id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var request = http.Request(
-        'DELETE',
-        Uri.parse(
-            '$baseUrl/api/user/availability/delete?avalability_id=$id'));
+    var request = http.Request('DELETE',
+        Uri.parse('$baseUrl/api/user/availability/delete?avalability_id=$id'));
 
     request.headers.addAll(headers);
 
@@ -67,6 +59,4 @@ class AvailabilityController {
 
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
-
-
 }

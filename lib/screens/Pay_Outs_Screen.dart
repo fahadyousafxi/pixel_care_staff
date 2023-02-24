@@ -1,20 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dio/dio.dart';
-import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
-import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:pixel_app/Controller/Download_Controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-import '../widgets/Constants.dart';
-import 'Pdf_Screen.dart';
+import '../Constants/Constant.dart';
 
 class PayOutsScreen extends StatefulWidget {
   const PayOutsScreen({Key? key}) : super(key: key);
@@ -85,8 +80,6 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
                     padding: EdgeInsets.all(6),
                     child: InkWell(
                       onTap: () async {
-
-
                         downloadPDF();
 
                         // Map<Permission, PermissionStatus> statuses = await [
@@ -128,8 +121,8 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
                         // //         builder: (context) => widgets[index]));
                       },
                       child: Container(
-                          margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               color: Colors.grey.shade100,
@@ -170,7 +163,7 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
 //                                 TextStyle(color: Colors.blue, fontSize: 15.sp),
 //                           ),
 //                         ),
-                      ),
+                          ),
                     ),
                   );
                 })
@@ -178,9 +171,7 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
         ),
       ),
     );
-
   }
-
 
   Future<File?> downloadPDF() async {
     showDialog(
@@ -189,17 +180,16 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
       builder: (BuildContext context) {
         return Container(
             child: Center(
-                child: new CircularProgressIndicator(
-                  color: const Color(0xfffaeaea),
-                )));
+                child: CircularProgressIndicator(
+          color: const Color(0xfffaeaea),
+        )));
       },
     );
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
 
-    Dio dioClient = new Dio();
-    final url = Uri.parse(
-        '$baseUrl/api/user/payout/pdf');
+    Dio dioClient = Dio();
+    final url = Uri.parse('$baseUrl/api/user/payout/pdf');
     final headers = {
       "Authorization": "Bearer $token",
     };
@@ -239,5 +229,4 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
     }
     return null;
   }
-
 }

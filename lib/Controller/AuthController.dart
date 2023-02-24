@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -18,7 +20,6 @@ import '../Model/AccountModel.dart';
 import '../Model/NewPassword.dart';
 import '../Model/NextKinModel.dart';
 import '../screens/UpdatePassword.dart';
-import '../widgets/Constants.dart';
 
 var token;
 
@@ -42,8 +43,8 @@ class AuthController {
   }
 
   LoginAccount({var email, var password, scaffoldKey, context}) async {
-    var response = await http.post(Uri.parse(
-        '$baseUrl/api/user/login?email=$email&password=$password'));
+    var response = await http.post(
+        Uri.parse('$baseUrl/api/user/login?email=$email&password=$password'));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['message'] == 'Login Successfuly.') {
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -67,7 +68,7 @@ class AuthController {
       scaffoldKey,
       context}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var response = await http.post(
         Uri.parse(
             '$baseUrl/api/user/update/password?old_password=$oldPassword&new_password=$newPassword'),
@@ -81,20 +82,20 @@ class AuthController {
 
   Future<UserModel> GetUserData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var userData_snap = await pref.getString('userPersonalInfo');
+    var userData_snap = pref.getString('userPersonalInfo');
     print(userData_snap);
     return UserModel.fromJson(jsonDecode(userData_snap!));
   }
 
   Future UpdateProfile({UserModel? model, var imageLink}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
 
     var headers = {'Authorization': 'Bearer $token'};
     print(headers);
     print(model!.toJson());
-    var request = await http.MultipartRequest('POST',
-        Uri.parse('$baseUrl/api/user/update'));
+    var request =
+        http.MultipartRequest('POST', Uri.parse('$baseUrl/api/user/update'));
     request.fields.addAll({
       'name': '${model.data?.name}',
       'email': '${model.data?.email}',
@@ -109,8 +110,7 @@ class AuthController {
     // }
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    var response2 = await http.get(
-        Uri.parse('$baseUrl/api/user/get'),
+    var response2 = await http.get(Uri.parse('$baseUrl/api/user/get'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
     pref.setString('userPersonalInfo', response2.body);
     return jsonDecode(await response.stream.bytesToString())['message'];
@@ -119,7 +119,7 @@ class AuthController {
   UpdateNextKin({NextKinModel? model}) async {
     print(model!.data!.toJson());
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
         'POST',
@@ -134,10 +134,9 @@ class AuthController {
 
   GetNextKinApi() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var response = await http.get(
-        Uri.parse('$baseUrl/api/user/next-kin/get'),
+    var response = await http.get(Uri.parse('$baseUrl/api/user/next-kin/get'),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -151,16 +150,15 @@ class AuthController {
   Future<NextKinModel> GetNextKinUi() async {
     var response = await GetNextKinApi();
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var data = await pref.getString('NextKin');
+    var data = pref.getString('NextKin');
     return NextKinModel.fromJson(jsonDecode(data!));
   }
 
   GetNmcApi() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var response = await http.get(
-        Uri.parse('$baseUrl/api/user/nmc-detail/get'),
+    var response = await http.get(Uri.parse('$baseUrl/api/user/nmc-detail/get'),
         headers: headers);
     if (response.statusCode == 200) {
       print(response.body);
@@ -173,13 +171,13 @@ class AuthController {
   Future<NmcModel> GetNmcUi() async {
     var response = await GetNmcApi();
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var data = await pref.getString('NMC');
+    var data = pref.getString('NMC');
     return NmcModel.fromJson(jsonDecode(data!));
   }
 
   UpdateNmc({NmcModel? model}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     print(model?.toJson());
     var request = http.Request(
@@ -188,13 +186,13 @@ class AuthController {
             '$baseUrl/api/user/nmc-detail/create-or-update?nmc_pin=${model!.data!.nmcPin}&expiry_date=${model.data!.expiryDate}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print(await response.reasonPhrase);
+    print(response.reasonPhrase);
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 
   updateAccademicQualification({var uni, var degree, var year}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
         'POST',
@@ -217,7 +215,7 @@ class AuthController {
     var relation,
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
 
     var response = await http.post(
@@ -225,7 +223,7 @@ class AuthController {
             '$baseUrl/api/user/reference/create?name=$name&job_title=$jobTitle&organization=$organization&address=$address&phone_number=$phoneNumber&email=$email&relation=$relation'),
         headers: headers);
 
-    print(await response.statusCode);
+    print(response.statusCode);
 
     return jsonDecode(response.body)['message'];
   }
@@ -240,7 +238,7 @@ class AuthController {
       var relation,
       var id}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
         'POST',
@@ -256,20 +254,18 @@ class AuthController {
   UpdateTrainingCert(
       {var completion, var expiry, List<File>? images, position}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
 
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/training-certificates/create'));
+        'POST', Uri.parse('$baseUrl/api/user/training-certificates/create'));
     request.fields.addAll({
       'date_of_completion': '$completion',
       'expiry_date': '$expiry',
       "doc_category": position
     });
-    request.files.add(await http.MultipartFile.fromPath(
-        'image', '${images!.elementAt(0).path}'));
+    request.files.add(
+        await http.MultipartFile.fromPath('image', images!.elementAt(0).path));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -279,10 +275,9 @@ class AuthController {
 
   Future<ReferenceModel> GetRef() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var response = await http.get(
-        Uri.parse('$baseUrl/api/user/reference/get'),
+    var response = await http.get(Uri.parse('$baseUrl/api/user/reference/get'),
         headers: headers);
     if (response.statusCode == 200) {
       return ReferenceModel.fromJson(jsonDecode(response.body));
@@ -293,12 +288,10 @@ class AuthController {
 
   DeleteRef(id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'DELETE',
-        Uri.parse(
-            '$baseUrl/api/user/reference/delete?id=$id'));
+        'DELETE', Uri.parse('$baseUrl/api/user/reference/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -309,12 +302,10 @@ class AuthController {
 
   DeleteCert(id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var request = http.Request(
-        'DELETE',
-        Uri.parse(
-            '$baseUrl/api/user/training-certificates/delete?id=$id'));
+    var request = http.Request('DELETE',
+        Uri.parse('$baseUrl/api/user/training-certificates/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -325,12 +316,10 @@ class AuthController {
 
   DeleteQual(id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
-    var request = http.Request(
-        'DELETE',
-        Uri.parse(
-            '$baseUrl/api/user/academic-qualification/delete?id=$id'));
+    var request = http.Request('DELETE',
+        Uri.parse('$baseUrl/api/user/academic-qualification/delete?id=$id'));
 
     request.headers.addAll(headers);
 
@@ -341,13 +330,11 @@ class AuthController {
 
   Future<AccademicCertModel> GetCert() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
 
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$baseUrl/api/user/training-certificates/get'));
+        'GET', Uri.parse('$baseUrl/api/user/training-certificates/get'));
 
     request.headers.addAll(headers);
 
@@ -364,12 +351,10 @@ class AuthController {
 
   Future<AccademicQualModel> GetQual() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var token = await pref.getString('token');
+    var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$baseUrl/api/user/academic-qualification/get'));
+        'GET', Uri.parse('$baseUrl/api/user/academic-qualification/get'));
 
     request.headers.addAll(headers);
 
@@ -387,11 +372,10 @@ class AuthController {
   ForgotPassword(String email, BuildContext context) async {
     try {
       var response = await http.post(
-          Uri.parse(
-              "$baseUrl/api/user/forget-password/send-otp"),
+          Uri.parse("$baseUrl/api/user/forget-password/send-otp"),
           body: {"email": email});
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
           "Please check your email, an otp has been send to your email",
           style: TextStyle(color: Colors.white),
@@ -399,7 +383,7 @@ class AuthController {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => OtpVerificationPage(),
+            builder: (context) => const OtpVerificationPage(),
           ),
         );
         print(response.body.toString());
@@ -415,8 +399,7 @@ class AuthController {
     try {
       Otp o = Otp(email: uemail, otp: otp);
       var response = await http.post(
-          Uri.parse(
-              "$baseUrl/api/user/forget-password/verify-otp"),
+          Uri.parse("$baseUrl/api/user/forget-password/verify-otp"),
           headers: <String, String>{
             'Content-Type': 'application/json;charset=UTF-8'
           },
@@ -425,13 +408,13 @@ class AuthController {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => UpdatePasswordPage(),
+            builder: (context) => const UpdatePasswordPage(),
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
           response.body.toString(),
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         )));
       }
     } catch (e) {
@@ -443,14 +426,13 @@ class AuthController {
     try {
       NewPasswordModel n = NewPasswordModel(email: uemail, password: npasword);
       var response = await http.post(
-          Uri.parse(
-              "$baseUrl/api/user/forget-password/update"),
+          Uri.parse("$baseUrl/api/user/forget-password/update"),
           headers: <String, String>{
             'Content-Type': 'application/json;charset=UTF-8'
           },
           body: jsonEncode(n.tojson()));
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
           "Password has been Updated...Login Now",
           style: TextStyle(color: Colors.white),
@@ -458,7 +440,7 @@ class AuthController {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => SignUpPage(),
+            builder: (context) => const SignUpPage(),
           ),
         );
       }

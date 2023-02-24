@@ -33,41 +33,42 @@ class UpcommingShiftsModel {
   int to;
   int total;
 
-  factory UpcommingShiftsModel.fromJson(Map<String, dynamic> json) => UpcommingShiftsModel(
-    status: json["status"],
-    message: json["message"],
-    currentPage: json["current_page"],
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    firstPageUrl: json["first_page_url"],
-    from: json["from"],
-    lastPage: json["last_page"],
-    lastPageUrl: json["last_page_url"],
-    links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
-    nextPageUrl: json["next_page_url"],
-    path: json["path"],
-    perPage: json["per_page"],
-    prevPageUrl: json["prev_page_url"],
-    to: json["to"],
-    total: json["total"],
-  );
+  factory UpcommingShiftsModel.fromJson(Map<String, dynamic> json) =>
+      UpcommingShiftsModel(
+        status: json["status"],
+        message: json["message"],
+        currentPage: json["current_page"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        firstPageUrl: json["first_page_url"],
+        from: json["from"],
+        lastPage: json["last_page"],
+        lastPageUrl: json["last_page_url"],
+        links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
+        nextPageUrl: json["next_page_url"],
+        path: json["path"],
+        perPage: json["per_page"],
+        prevPageUrl: json["prev_page_url"],
+        to: json["to"],
+        total: json["total"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "current_page": currentPage,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "first_page_url": firstPageUrl,
-    "from": from,
-    "last_page": lastPage,
-    "last_page_url": lastPageUrl,
-    "links": List<dynamic>.from(links.map((x) => x.toJson())),
-    "next_page_url": nextPageUrl,
-    "path": path,
-    "per_page": perPage,
-    "prev_page_url": prevPageUrl,
-    "to": to,
-    "total": total,
-  };
+        "status": status,
+        "message": message,
+        "current_page": currentPage,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "first_page_url": firstPageUrl,
+        "from": from,
+        "last_page": lastPage,
+        "last_page_url": lastPageUrl,
+        "links": List<dynamic>.from(links.map((x) => x.toJson())),
+        "next_page_url": nextPageUrl,
+        "path": path,
+        "per_page": perPage,
+        "prev_page_url": prevPageUrl,
+        "to": to,
+        "total": total,
+      };
 }
 
 class Datum {
@@ -93,65 +94,68 @@ class Datum {
   });
 
   int id;
-  String careHomeId;
-  String position;
-  String title;
+  dynamic careHomeId;
+  dynamic position;
+  dynamic title;
   dynamic image;
-  String description;
+  dynamic description;
   DateTime date;
   DateTime jobEndDate;
   dynamic timeStart;
   dynamic timeEnd;
-  String noOfStaff;
-  String shift;
+  dynamic noOfStaff;
+  dynamic shift;
   dynamic deleatedAt;
   DateTime createdAt;
   DateTime updatedAt;
-  String shiftDetailName;
+  dynamic shiftDetailName;
   CareHome careHome;
   CareHomeJobApplied careHomeJobApplied;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"],
-    careHomeId: json["care_home_id"],
-    position: json["position"],
-    title: json["title"],
-    image: json["image"],
-    description: json["description"],
-    date: DateTime.parse(json["date"]),
-    jobEndDate: DateTime.parse(json["job_end_date"]),
-    timeStart: json["time_start"],
-    timeEnd: json["time_end"],
-    noOfStaff: json["no_of_staff"],
-    shift: json["shift"],
-    deleatedAt: json["deleated_at"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    shiftDetailName: json["shift_detail_name"],
-    careHome: CareHome.fromJson(json["care_home"]),
-    careHomeJobApplied: CareHomeJobApplied.fromJson(json["care_home_job_applied"]),
-  );
+        id: json["id"],
+        careHomeId: json["care_home_id"],
+        position: json["position"],
+        title: json["title"],
+        image: json["image"],
+        description: json["description"],
+        date: DateTime.parse(json["date"]),
+        jobEndDate: DateTime.parse(json["job_end_date"]),
+        timeStart: json["time_start"],
+        timeEnd: json["time_end"],
+        noOfStaff: json["no_of_staff"],
+        shift: json["shift"],
+        deleatedAt: json["deleated_at"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        shiftDetailName: json["shift_detail_name"],
+        careHome: CareHome.fromJson(json["care_home"]),
+        careHomeJobApplied:
+            CareHomeJobApplied.fromJson(json["care_home_job_applied"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "care_home_id": careHomeId,
-    "position": position,
-    "title": title,
-    "image": image,
-    "description": description,
-    "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-    "job_end_date": "${jobEndDate.year.toString().padLeft(4, '0')}-${jobEndDate.month.toString().padLeft(2, '0')}-${jobEndDate.day.toString().padLeft(2, '0')}",
-    "time_start": timeStart,
-    "time_end": timeEnd,
-    "no_of_staff": noOfStaff,
-    "shift": shift,
-    "deleated_at": deleatedAt,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-    "shift_detail_name": shiftDetailName,
-    "care_home": careHome.toJson(),
-    "care_home_job_applied": careHomeJobApplied.toJson(),
-  };
+        "id": id,
+        "care_home_id": careHomeId,
+        "position": position,
+        "title": title,
+        "image": image,
+        "description": description,
+        "date":
+            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "job_end_date":
+            "${jobEndDate.year.toString().padLeft(4, '0')}-${jobEndDate.month.toString().padLeft(2, '0')}-${jobEndDate.day.toString().padLeft(2, '0')}",
+        "time_start": timeStart,
+        "time_end": timeEnd,
+        "no_of_staff": noOfStaff,
+        "shift": shift,
+        "deleated_at": deleatedAt,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "shift_detail_name": shiftDetailName,
+        "care_home": careHome.toJson(),
+        "care_home_job_applied": careHomeJobApplied.toJson(),
+      };
 }
 
 class CareHome {
@@ -204,54 +208,54 @@ class CareHome {
   String careHomeUserId;
 
   factory CareHome.fromJson(Map<String, dynamic> json) => CareHome(
-    id: json["id"],
-    groupName: json["group_name"],
-    name: json["name"],
-    image: json["image"],
-    cityId: json["city_id"],
-    postalCode: json["postal_code"],
-    address: json["address"],
-    contactNumber: json["contact_number"],
-    managerName: json["manager_name"],
-    managerEmail: json["manager_email"],
-    adminName: json["admin_name"],
-    adminEmail: json["admin_email"],
-    accountantName: json["accountant_name"],
-    accountantEmail: json["accountant_email"],
-    hourlyRate: json["hourly_rate"],
-    careHomeRateTypeId: json["care_home_rate_type_id"],
-    paymentTerms: json["payment_terms"],
-    website: json["website"],
-    status: json["status"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    careHomeUserId: json["care_home_user_id"],
-  );
+        id: json["id"],
+        groupName: json["group_name"],
+        name: json["name"],
+        image: json["image"],
+        cityId: json["city_id"],
+        postalCode: json["postal_code"],
+        address: json["address"],
+        contactNumber: json["contact_number"],
+        managerName: json["manager_name"],
+        managerEmail: json["manager_email"],
+        adminName: json["admin_name"],
+        adminEmail: json["admin_email"],
+        accountantName: json["accountant_name"],
+        accountantEmail: json["accountant_email"],
+        hourlyRate: json["hourly_rate"],
+        careHomeRateTypeId: json["care_home_rate_type_id"],
+        paymentTerms: json["payment_terms"],
+        website: json["website"],
+        status: json["status"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        careHomeUserId: json["care_home_user_id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "group_name": groupName,
-    "name": name,
-    "image": image,
-    "city_id": cityId,
-    "postal_code": postalCode,
-    "address": address,
-    "contact_number": contactNumber,
-    "manager_name": managerName,
-    "manager_email": managerEmail,
-    "admin_name": adminName,
-    "admin_email": adminEmail,
-    "accountant_name": accountantName,
-    "accountant_email": accountantEmail,
-    "hourly_rate": hourlyRate,
-    "care_home_rate_type_id": careHomeRateTypeId,
-    "payment_terms": paymentTerms,
-    "website": website,
-    "status": status,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-    "care_home_user_id": careHomeUserId,
-  };
+        "id": id,
+        "group_name": groupName,
+        "name": name,
+        "image": image,
+        "city_id": cityId,
+        "postal_code": postalCode,
+        "address": address,
+        "contact_number": contactNumber,
+        "manager_name": managerName,
+        "manager_email": managerEmail,
+        "admin_name": adminName,
+        "admin_email": adminEmail,
+        "accountant_name": accountantName,
+        "accountant_email": accountantEmail,
+        "hourly_rate": hourlyRate,
+        "care_home_rate_type_id": careHomeRateTypeId,
+        "payment_terms": paymentTerms,
+        "website": website,
+        "status": status,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "care_home_user_id": careHomeUserId,
+      };
 }
 
 class CareHomeJobApplied {
@@ -265,17 +269,18 @@ class CareHomeJobApplied {
   String careHomeJobId;
   String status;
 
-  factory CareHomeJobApplied.fromJson(Map<String, dynamic> json) => CareHomeJobApplied(
-    id: json["id"],
-    careHomeJobId: json["care_home_job_id"],
-    status: json["status"],
-  );
+  factory CareHomeJobApplied.fromJson(Map<String, dynamic> json) =>
+      CareHomeJobApplied(
+        id: json["id"],
+        careHomeJobId: json["care_home_job_id"],
+        status: json["status"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "care_home_job_id": careHomeJobId,
-    "status": status,
-  };
+        "id": id,
+        "care_home_job_id": careHomeJobId,
+        "status": status,
+      };
 }
 
 class Link {
@@ -290,14 +295,14 @@ class Link {
   bool active;
 
   factory Link.fromJson(Map<String, dynamic> json) => Link(
-    url: json["url"],
-    label: json["label"],
-    active: json["active"],
-  );
+        url: json["url"],
+        label: json["label"],
+        active: json["active"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "url": url,
-    "label": label,
-    "active": active,
-  };
+        "url": url,
+        "label": label,
+        "active": active,
+      };
 }

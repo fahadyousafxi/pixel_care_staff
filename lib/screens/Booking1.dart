@@ -1,19 +1,13 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Constants/Constant.dart';
 import '../Controller/BookingController.dart';
 import '../Model/BookingModel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-
-import '../widgets/Constants.dart';
 
 class Booking1Page extends StatefulWidget {
   Booking1Page({Key? key, this.ind}) : super(key: key);
@@ -242,8 +236,12 @@ class _Booking1PageState extends State<Booking1Page> {
                                                       children: [
                                                         Column(
                                                           children: [
-                                                            Image(image: AssetImage('assets/images/calendar2.png'), height: 44, width: 44,),
-
+                                                            Image(
+                                                              image: AssetImage(
+                                                                  'assets/images/calendar2.png'),
+                                                              height: 44,
+                                                              width: 44,
+                                                            ),
                                                           ],
                                                         ),
                                                         SizedBox(width: 10.w),
@@ -282,11 +280,12 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                       .width *
                                                                   0.5,
                                                               child: Text(
-                                                                'Shift Details: ${snapshot.data?.data?.elementAt(index).timeStart.toString().substring(0,4)} - ${snapshot.data?.data?.elementAt(index).timeEnd.toString().substring(0,4)}',
+                                                                'Shift Details: ${snapshot.data?.data?.elementAt(index).timeStart.toString().substring(0, 4)} - ${snapshot.data?.data?.elementAt(index).timeEnd.toString().substring(0, 4)}',
                                                                 style: TextStyle(
                                                                     color: const Color(
                                                                         0xff687bb9),
-                                                                    fontSize: 17.sp),
+                                                                    fontSize:
+                                                                        17.sp),
                                                               ),
                                                             ),
                                                             Text(
@@ -297,6 +296,7 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                   fontSize:
                                                                       17.sp),
                                                             ),
+
                                                             /// will change it
 
                                                             // Text(
@@ -363,7 +363,9 @@ class _Booking1PageState extends State<Booking1Page> {
                                                         // ),
                                                       ],
                                                     ),
-                                                    SizedBox(height: 6,)
+                                                    SizedBox(
+                                                      height: 6,
+                                                    )
                                                   ],
                                                 ),
                                               ),
@@ -506,7 +508,12 @@ class _Booking1PageState extends State<Booking1Page> {
                                                         //     ),
                                                         //   ],
                                                         // ),
-                                                        Image(image: AssetImage('assets/images/calendar2.png'), height: 44, width: 44,),
+                                                        Image(
+                                                          image: AssetImage(
+                                                              'assets/images/calendar2.png'),
+                                                          height: 44,
+                                                          width: 44,
+                                                        ),
                                                         SizedBox(width: 12.w),
                                                         Container(
                                                           height: 80.h,
@@ -537,27 +544,29 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                       .size
                                                                       .width *
                                                                   0.5,
-                                                                child: Text(
-                                                                  'Shift Details: ${snapshot.data?.data?.elementAt(index).timeStart.toString().substring(0,4)} - ${snapshot.data?.data?.elementAt(index).timeEnd.toString().substring(0,4)}',
-                                                                  style: TextStyle(
-                                                                      color: const Color(
-                                                                          0xff687bb9),
-                                                                      fontSize: 17.sp),
-                                                                ),),
-                                                              // child: Text(
-                                                              //   '${snapshot.data?.data?.elementAt(index).description}',
-                                                              //   maxLines: 3,
-                                                              //   overflow:
-                                                              //       TextOverflow
-                                                              //           .ellipsis,
-                                                              //   style:
-                                                              //       TextStyle(
-                                                              //     color: Colors
-                                                              //         .grey,
-                                                              //     fontSize:
-                                                              //         12.sp,
-                                                              //   ),
-                                                              // ),
+                                                              child: Text(
+                                                                'Shift Details: ${snapshot.data?.data?.elementAt(index).timeStart.toString().substring(0, 4)} - ${snapshot.data?.data?.elementAt(index).timeEnd.toString().substring(0, 4)}',
+                                                                style: TextStyle(
+                                                                    color: const Color(
+                                                                        0xff687bb9),
+                                                                    fontSize:
+                                                                        17.sp),
+                                                              ),
+                                                            ),
+                                                            // child: Text(
+                                                            //   '${snapshot.data?.data?.elementAt(index).description}',
+                                                            //   maxLines: 3,
+                                                            //   overflow:
+                                                            //       TextOverflow
+                                                            //           .ellipsis,
+                                                            //   style:
+                                                            //       TextStyle(
+                                                            //     color: Colors
+                                                            //         .grey,
+                                                            //     fontSize:
+                                                            //         12.sp,
+                                                            //   ),
+                                                            // ),
                                                             //   child: Text(
                                                             //       '${snapshot.data?.data?.elementAt(index).}'),,
                                                             // ),
@@ -656,8 +665,10 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               5.r)),
-                                                              child: const Center(
-                                                                  child: Text(
+                                                              child:
+                                                                  const Center(
+                                                                      child:
+                                                                          Text(
                                                                 'Reject',
                                                                 style: TextStyle(
                                                                     color: Colors
@@ -740,8 +751,10 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               5.r)),
-                                                              child: const Center(
-                                                                  child: Text(
+                                                              child:
+                                                                  const Center(
+                                                                      child:
+                                                                          Text(
                                                                 'Accept',
                                                                 style: TextStyle(
                                                                     color: Colors

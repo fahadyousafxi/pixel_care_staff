@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+            MaterialPageRoute(builder: (context) => const bottomNavigationBar()),
           );
           return false;
         }
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         key: key,
-        endDrawer: SidebarPage(),
+        endDrawer: const SidebarPage(),
         backgroundColor: Colors.blue.shade50.withOpacity(0.4),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -166,13 +166,13 @@ class _HomePageState extends State<HomePage> {
                                             Padding(
                                               padding: EdgeInsets.only(top: 5.h),
                                               child: Image(
-                                                image: AssetImage(
+                                                image: const AssetImage(
                                                     'assets/images/upcoming shifts.png'),
                                                 height: 50.h,
                                                 width: 50.w,
                                               ),
                                             ),
-                                            Text(
+                                            const Text(
                                               'Upcoming Shift',
                                               style: TextStyle(
                                                   color: Color(0xff3B53A4),
@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
                                                           SizedBox( width: MediaQuery.of(context).size.width * .8, height: 22,
-                                                            child: Center(
+                                                            child: const Center(
                                                               child: Text('No Shift', style: TextStyle(
                                                                 color: Color(
                                                                     0xff3b53a4),
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                                                         children: [
                                                           Text(
                                                             todayTimeStart == '0' ?  'No Shift'  :'$todayTimeStart',
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                               color: Color(
                                                                   0xff3b53a4),
                                                             ),
@@ -225,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           Text(
                                                             todayTimeEnd == '0' ? 'No Shift': '$todayTimeEnd' ,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                               color: Color(
                                                                   0xff3b53a4),
                                                             ),
@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                             ),
 
-                                            Divider(
+                                            const Divider(
                                               thickness: 1,
                                               color: Colors.grey,
                                             ),
@@ -281,9 +281,9 @@ class _HomePageState extends State<HomePage> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            UpcomingShifts()));
+                                                            const UpcomingShifts()));
                                               },
-                                              child: Text(
+                                              child: const Text(
                                                 'Show All',
                                                 style: TextStyle(
                                                   color: Colors.pink,
@@ -353,13 +353,13 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: EdgeInsets.only(top: 10.h),
                               child: Image(
-                                image: AssetImage('assets/images/unconfirm.jpg'),
+                                image: const AssetImage('assets/images/unconfirm.jpg'),
                                 height: 60.h,
                                 width: 60.w,
                               ),
                             ),
                             SizedBox(height: 5.h),
-                            Text(
+                            const Text(
                               'Unconfirmed Bookings',
                               style: TextStyle(
                                   color: Color(0xff3b53a4),
@@ -373,11 +373,11 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 12.sp,
                               ),
                             ),
-                            Divider(
+                            const Divider(
                               thickness: 1,
                               color: Colors.grey,
                             ),
-                            Text(
+                            const Text(
                               'Show All',
                               style: TextStyle(
                                 color: Colors.pink,
@@ -392,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: EdgeInsets.only(left: 20.w, top: 20.h),
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       'Stay Informed',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
@@ -415,12 +415,12 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => VacancyPage()));
+                                      builder: (context) => const VacancyPage()));
                             },
                             child: Stack(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 10),
                                   child: Column(
                                     children: [
                                       Container(
@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                                                   color: Colors.orange.shade300
                                                       .withOpacity(0.5),
                                                   spreadRadius: -2,
-                                                  offset: Offset(10, 10),
+                                                  offset: const Offset(10, 10),
                                                   blurRadius: 20)
                                             ],
                                             borderRadius:
@@ -497,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                             child: Stack(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 10),
                                   child: Column(
                                     children: [
                                       Container(
@@ -510,7 +510,7 @@ class _HomePageState extends State<HomePage> {
                                                   color: Colors.blue
                                                       .withOpacity(0.5),
                                                   spreadRadius: -2,
-                                                  offset: Offset(10, 10),
+                                                  offset: const Offset(10, 10),
                                                   blurRadius: 20)
                                             ],
                                             borderRadius:
@@ -569,10 +569,10 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => AvailabilityView()));
+                                      builder: (context) => const AvailabilityView()));
                             },
                             child: Container(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
@@ -585,7 +585,7 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.blue.shade300
                                                   .withOpacity(0.5),
                                               spreadRadius: -2,
-                                              offset: Offset(10, 10),
+                                              offset: const Offset(10, 10),
                                               blurRadius: 20)
                                         ],
                                         borderRadius: BorderRadius.circular(15.r),
@@ -629,10 +629,10 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TimeSheetPage()));
+                                      builder: (context) => const TimeSheetPage()));
                             },
                             child: Container(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
@@ -645,7 +645,7 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.teal.shade300
                                                   .withOpacity(0.5),
                                               spreadRadius: -2,
-                                              offset: Offset(10, 10),
+                                              offset: const Offset(10, 10),
                                               blurRadius: 20)
                                         ],
                                         borderRadius: BorderRadius.circular(15.r),
@@ -681,10 +681,10 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReferFriendPage()));
+                                      builder: (context) => const ReferFriendPage()));
                             },
                             child: Container(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
@@ -697,7 +697,7 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.pink.shade300
                                                   .withOpacity(0.5),
                                               spreadRadius: -2,
-                                              offset: Offset(10, 10),
+                                              offset: const Offset(10, 10),
                                               blurRadius: 20)
                                         ],
                                         borderRadius: BorderRadius.circular(15.r),
@@ -736,7 +736,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) => DocumentsUpload()));
                             },
                             child: Container(
-                              padding: EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 children: [
                                   Container(
@@ -748,7 +748,7 @@ class _HomePageState extends State<HomePage> {
                                           BoxShadow(
                                               color: Colors.blue.withOpacity(0.5),
                                               spreadRadius: -2,
-                                              offset: Offset(10, 10),
+                                              offset: const Offset(10, 10),
                                               blurRadius: 20)
                                         ],
                                         borderRadius: BorderRadius.circular(15.r),

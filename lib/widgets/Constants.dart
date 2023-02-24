@@ -1,1 +1,0 @@
-String baseUrl = "https://admin.pixelcare.co.uk";

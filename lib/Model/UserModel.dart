@@ -29,19 +29,19 @@ class UserModel {
 
 class Data {
   int? id;
-  String? name;
-  String? phone;
-  String? email;
-  String? country;
-  String? hourlyRate;
-  String? dob;
-  String? status;
-  String? type;
-  String? avatar;
-  String? nextOfKin;
-  String? isBlocked;
-  String? createdAt;
-  String? updatedAt;
+  dynamic name;
+  dynamic phone;
+  dynamic email;
+  dynamic country;
+  dynamic hourlyRate;
+  dynamic dob;
+  dynamic status;
+  dynamic type;
+  dynamic avatar;
+  dynamic nextOfKin;
+  dynamic isBlocked;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   Data(
       {this.id,

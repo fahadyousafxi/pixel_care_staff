@@ -7,7 +7,7 @@ import 'Next_of_Kin.dart';
 
 class AddressPage extends StatefulWidget {
   AddressPage({super.key, required this.model});
-  ApplicationFormModel model = new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
   @override
   State<AddressPage> createState() => _AddressPageState();
 }
@@ -61,13 +61,13 @@ class _AddressPageState extends State<AddressPage> {
     );
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
-  TextEditingController house = new TextEditingController();
-  TextEditingController address = new TextEditingController();
-  TextEditingController code = new TextEditingController();
+  TextEditingController house = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController code = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -292,7 +292,7 @@ class _AddressPageState extends State<AddressPage> {
                             child: InkWell(
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  Address addressmodel = new Address();
+                                  Address addressmodel = Address();
                                   addressmodel.houseNumber = house.text;
                                   addressmodel.postalCode = code.text;
                                   addressmodel.address = address.text;

@@ -1,17 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pixel_app/Model/AccademicCertModel.dart';
-import 'package:pixel_app/Model/AccademicQualModel.dart';
-import 'package:pixel_app/Model/NmcModel.dart';
-import 'package:pixel_app/Model/ReferenceModel.dart';
-import 'package:pixel_app/Model/UserModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Model/NextKinModel.dart';
-import '../widgets/Constants.dart';
+import '../Constants/Constant.dart';
 
 var token;
 
@@ -21,14 +14,12 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/passport/store'));
+        'POST', Uri.parse('$baseUrl/api/user/passport/store'));
     request.fields.addAll(
         {'passport_number': '$passportNumber', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -44,13 +35,11 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/enhanced-dbs-certificate/store'));
+        'POST', Uri.parse('$baseUrl/api/user/enhanced-dbs-certificate/store'));
     request.fields.addAll({'dbs_number': '$number', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -70,9 +59,7 @@ class DocumentController {
       "Authorization": "Bearer $token"
     };
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/right-to-work/store'));
+        'POST', Uri.parse('$baseUrl/api/user/right-to-work/store'));
     request.fields.addAll({
       'right_to_work_type': '$type',
       'british_residence_permit': '$number',
@@ -80,7 +67,7 @@ class DocumentController {
     });
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -96,13 +83,11 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/proof-of-address/store'));
+        'POST', Uri.parse('$baseUrl/api/user/proof-of-address/store'));
     request.fields.addAll({'type': '$type'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -118,14 +103,12 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/naional-insurance/store'));
+        'POST', Uri.parse('$baseUrl/api/user/naional-insurance/store'));
     request.fields
         .addAll({'insurance_number': '$number', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -142,13 +125,11 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/P45-P46-P60/store'));
+        'POST', Uri.parse('$baseUrl/api/user/P45-P46-P60/store'));
     request.fields.addAll({'type': '$type', 'Expiry_date': '$expiry'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -164,9 +145,7 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/vaccination-proof/store'));
+        'POST', Uri.parse('$baseUrl/api/user/vaccination-proof/store'));
     request.fields.addAll({
       'dose_type': '$type',
       'name_of_vaccine': '$name',
@@ -174,7 +153,7 @@ class DocumentController {
     });
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -190,13 +169,11 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
     var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            '$baseUrl/api/user/nmc-letter/store'));
+        'POST', Uri.parse('$baseUrl/api/user/nmc-letter/store'));
     request.fields.addAll({'nmc_pin': '$number', 'Expiry_date': '$date'});
     images?.forEach((element) async {
       request.files
-          .add(await http.MultipartFile.fromPath('image[]', '${element.path}'));
+          .add(await http.MultipartFile.fromPath('image[]', element.path));
     });
     request.headers.addAll(headers);
 
@@ -218,14 +195,12 @@ class DocumentController {
         'Authorization': 'Bearer $token'
       };
       var request = http.MultipartRequest(
-          'POST',
-          Uri.parse(
-              '$baseUrl/api/user/term-letter/store'));
+          'POST', Uri.parse('$baseUrl/api/user/term-letter/store'));
       request.fields
           .addAll({'term_letter_start': '$date1', 'term_letter_end': '$date2'});
 
-      request.files.add(await http.MultipartFile.fromPath(
-          'image[]', '${images!.first.path}'));
+      request.files.add(
+          await http.MultipartFile.fromPath('image[]', images!.first.path));
 
       request.headers.addAll(headers);
 
@@ -244,10 +219,8 @@ class DocumentController {
     var token = await pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
 
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$baseUrl/api/user/my-referral-id'));
+    var request =
+        http.Request('GET', Uri.parse('$baseUrl/api/user/my-referral-id'));
 
     request.headers.addAll(headers);
 

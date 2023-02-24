@@ -1,15 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_share/flutter_share.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Controller/DocumentController.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import '../widgets/Constants.dart';
+import '../Constants/Constant.dart';
 
 class ReferFriendPage extends StatefulWidget {
   const ReferFriendPage({Key? key}) : super(key: key);

@@ -1,30 +1,16 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dio/dio.dart';
-import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
-import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:pixel_app/Controller/Download_Controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:io';
-
-// import 'package:carehome/View/pdfView.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 // import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../widgets/Constants.dart';
-import 'Pdf_Screen.dart';
-import 'SplashScreen.dart';
-
+import '../Constants/Constant.dart';
 
 class DownLoadsPage extends StatefulWidget {
   const DownLoadsPage({Key? key}) : super(key: key);
@@ -95,8 +81,6 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
                     padding: EdgeInsets.all(6),
                     child: InkWell(
                       onTap: () async {
-
-
                         downloadPDF();
 
                         //
@@ -151,23 +135,23 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
                         // //         builder: (context) => widgets[index]));
                       },
                       child: Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(5),
-                            // border: ,
-                            boxShadow: [
-                              BoxShadow(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(5),
+                              // border: ,
+                              boxShadow: [
+                                BoxShadow(
                                   color: Colors.blue,
                                   spreadRadius: 1,
-                                  )
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(child: Text('Download My Profile')),
-                        )
+                                )
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(child: Text('Download My Profile')),
+                          )
 //                         ListTile(
 //                           leading: Icon(
 //                             Icons.file_copy_outlined,
@@ -193,7 +177,7 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
 //                                 TextStyle(color: Colors.blue, fontSize: 15.sp),
 //                           ),
 //                         ),
-                      ),
+                          ),
                     ),
                   );
                 })
@@ -201,8 +185,6 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
         ),
       ),
     );
-
-
   }
 
   Future<File?> downloadPDF() async {
@@ -212,17 +194,16 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
       builder: (BuildContext context) {
         return Container(
             child: Center(
-                child: new CircularProgressIndicator(
-                  color: const Color(0xfffaeaea),
-                )));
+                child: CircularProgressIndicator(
+          color: const Color(0xfffaeaea),
+        )));
       },
     );
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
 
-    Dio dioClient = new Dio();
-    final url = Uri.parse(
-        '$baseUrl/api/user/document/pdf');
+    Dio dioClient = Dio();
+    final url = Uri.parse('$baseUrl/api/user/document/pdf');
     final headers = {
       "Authorization": "Bearer $token",
     };
@@ -262,10 +243,7 @@ class _DownLoadsPageState extends State<DownLoadsPage> {
     }
     return null;
   }
-
 }
-
-
 
 // files.exists() == false
 //     ? ScaffoldMessenger.of(context)

@@ -293,30 +293,39 @@ class _SignUpPageState extends State<SignUpPage> {
                           );
 
                           /// will change
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar(content: Text('$data')));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('$data'),
+                            ),
+                          );
                           if (data == 'Login Successfuly.') {
                             if (isChecked) {
                               SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               prefs.setString("password", password.text);
                               prefs.setString("Uemail", email.text);
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pushReplacement(
+                              Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const bottomNavigationBar()),
+                                  builder: (context) =>
+                                      const bottomNavigationBar(),
+                                ),
+                                (route) => false,
                               );
                             }
-                            Navigator.of(context).pop();
-                            Navigator.pushReplacement(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const bottomNavigationBar()),
+                                builder: (context) =>
+                                    const bottomNavigationBar(),
+                              ),
+                              (route) => false,
                             );
                           } else {
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const SignUpPage(),
+                              ),
+                            );
                           }
                         }
                         //
