@@ -193,10 +193,10 @@ class _SidebarPageState extends State<SidebarPage> {
                 ),
                 SizedBox(height: 30.h),
                 InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PayOutsScreen()));
-                  },
+                  // onTap: () {
+                  //   Navigator.of(context).push(MaterialPageRoute(
+                  //       builder: (context) => PayOutsScreen()));
+                  // },
                   child: Text(
                     'Pay-outs',
                     style: TextStyle(
