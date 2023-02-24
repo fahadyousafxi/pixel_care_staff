@@ -16,7 +16,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   Future<void> deleteAll() async {
     final collection =
-        await FirebaseFirestore.instance.collection("pixelChat").get();
+        await FirebaseFirestore.instance.collection("chat").get();
 
     final batch = FirebaseFirestore.instance.batch();
 

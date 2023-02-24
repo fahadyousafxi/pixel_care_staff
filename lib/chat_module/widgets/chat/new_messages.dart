@@ -16,16 +16,18 @@ class _NewMessagesState extends State<NewMessages> {
   Future<void> _sendMessage() async {
     FocusScope.of(context).unfocus();
 
-    final user = FirebaseAuth.instance.currentUser;
-    final userData = await FirebaseFirestore.instance
-        .collection('pixelUsers')
-        .doc(user!.uid)
+    final pixelUser = FirebaseAuth.instance.currentUser;
+
+    final pixelData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(pixelUser!.uid)
         .get();
-    FirebaseFirestore.instance.collection('pixelChat').add({
+
+    FirebaseFirestore.instance.collection('chat').add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'userId': user.uid,
-      'username': userData['username'],
+      'userId': pixelUser.uid,
+      'username': pixelData['username'],
     });
     _messagesController.clear();
   }
