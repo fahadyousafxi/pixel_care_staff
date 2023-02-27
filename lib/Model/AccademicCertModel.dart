@@ -36,15 +36,16 @@ class Datum {
     required this.docCategoryName,
   });
 
+
   int id;
-  String userId;
+  dynamic userId;
   DateTime dateOfCompletion;
   DateTime expiryDate;
-  String docCategory;
-  String image;
+  dynamic docCategory;
+  dynamic image;
   DateTime createdAt;
   DateTime updatedAt;
-  String docCategoryName;
+  dynamic docCategoryName;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],

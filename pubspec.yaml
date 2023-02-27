@@ -63,9 +63,9 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.4
   flutter_switch: ^0.3.2
-  syncfusion_flutter_core: ^20.4.51
-  syncfusion_flutter_signaturepad: ^20.3.47
-  syncfusion_flutter_pdfviewer: ^20.4.51
+  syncfusion_flutter_core: ^20.4.50
+  syncfusion_flutter_signaturepad: ^20.4.50
+  syncfusion_flutter_pdfviewer: ^20.4.50
   downloads_path_provider_28: ^0.1.2
 
 dev_dependencies:

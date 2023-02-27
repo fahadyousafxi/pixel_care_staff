@@ -81,32 +81,59 @@ class AuthController {
   }
 
   Future<UserModel> GetUserData() async {
+    // SharedPreferences pref = await SharedPreferences.getInstance();
+    // var userData_snap = pref.getString('userPersonalInfo');
+    // print(userData_snap);
+    // return UserModel.fromJson(jsonDecode(userData_snap!));
+
+
+
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var userData_snap = pref.getString('userPersonalInfo');
-    print(userData_snap);
-    return UserModel.fromJson(jsonDecode(userData_snap!));
+    var token = pref.getString('token');
+    print(token);
+    var headers = {'Authorization': 'Bearer $token'};
+
+    var request = http.Request(
+      'GET',
+      Uri.parse(
+        '$baseUrl/api/user/get',
+      ),
+    );
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    return UserModel.fromJson(jsonDecode(await response.stream.bytesToString()));
   }
 
-  Future UpdateProfile({UserModel? model, var imageLink}) async {
+  Future UpdateProfile({dynamic name, dynamic email, dynamic phone, dynamic country = null, dynamic dob = null, dynamic nextOfKin, var imageLink}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
 
     var headers = {'Authorization': 'Bearer $token'};
     print(headers);
-    print(model!.toJson());
+    // print(model!.toJson());
     var request =
         http.MultipartRequest('POST', Uri.parse('$baseUrl/api/user/update'));
     request.fields.addAll({
-      'name': '${model.data?.name}',
-      'email': '${model.data?.email}',
-      'phone': '${model.data?.phone}',
-      'country': '${model.data?.country}',
-      'dob': '${model.data?.dob}',
-      'next_of_kin': '${model.data?.nextOfKin}',
+      // 'email': '${model.data?.email}',
+      // 'phone': '${model.data?.phone}',
+      // 'country': '${model.data?.country}',
+      // 'dob': '${model.data?.dob}',
+      // 'next_of_kin': '${model.data?.nextOfKin}',
+
+
+      'name': '$name',
+      'email': '$email',
+      'phone': '$phone',
+      'country': '$country',
+      'dob': '$dob',
+      'next_of_kin': '$nextOfKin',
     });
     // if (imageLink != model.data?.avatar && imageLink != null) {
     request.files.add(
-        await http.MultipartFile.fromPath('avatar', '${model.data?.avatar}'));
+        await http.MultipartFile.fromPath('avatar', '$imageLink'));
     // }
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -114,6 +141,8 @@ class AuthController {
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
     pref.setString('userPersonalInfo', response2.body);
     return jsonDecode(await response.stream.bytesToString())['message'];
+    // return UserModel.fromJson(jsonDecode(await response.stream.bytesToString())['message']);
+
   }
 
   UpdateNextKin({NextKinModel? model}) async {

@@ -26,6 +26,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
   var month = 'September';
   var day = '1';
   var year = '2022';
+  dynamic userDob = '2022';
   var imageLink;
   List country = [
     "Afghanistan",
@@ -292,6 +293,9 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
     super.initState();
   }
 
+  FilePickerResult? result = null;
+  File? file = null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -326,7 +330,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
 
               if (snapShot.hasData) {
                 model = snapShot.data!;
-                imageLink = snapShot.data!.data?.avatar;
+                // imageLink = snapShot.data!.data?.avatar;
+                imageLink = file;
                 if (model.data!.dob != null) {
                   year = model.data!.dob.toString().split('-').first;
                   if (model.data!.dob.toString().split('-').elementAt(1) ==
@@ -433,14 +438,17 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                         children: [
                           GestureDetector(
                             onTap: () async {
-                              FilePickerResult? result =
+                               result =
                                   await FilePicker.platform.pickFiles(
                                 allowMultiple: false,
                                 type: FileType.image,
                               );
                               if (result != null) {
-                                File file = File(result.files.single.path!);
-                                model.data!.avatar = file.path;
+                                file = File(result!.files.single.path!);
+                                model.data!.avatar = file!.path;
+                                setState(() {
+
+                                });
                               } else {
                                 // User canceled the picker
                               }
@@ -449,8 +457,9 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                               children: [
                                 CircleAvatar(
                                   radius: 70.r,
-                                  backgroundImage: NetworkImage(
-                                      "${snapShot.data!.data?.avatar}"),
+                                  // backgroundColor: result == null ? Colors.red : Colors.green,
+                                  backgroundImage: result == null ? NetworkImage(
+                                      "${snapShot.data!.data?.avatar}") :  Image.file(file!).image,
                                 ),
                                 Positioned(
                                   top: -5,
@@ -508,7 +517,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                     Radius.circular(8),
                                   ),
                                 ),
-                                hintText: '${snapShot.data?.data?.name}',
+                                hintText: '${snapShot.data!.data!.name}',
                               ),
                             ),
                           ),
@@ -645,6 +654,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                   .toList(),
                               onChanged: (value) {
                                 model.data?.country = value.toString();
+                                selectedCountry = value.toString();
                               },
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(18),
@@ -950,6 +960,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                         child: GestureDetector(
                           onTap: () async {
                             model.data!.dob = day + '-' + month + '-' + year;
+                            userDob = day + '-' + month + '-' + year;
+
+                            print(' $userDob   ');
+                            print(' ${name.text.toString()}   ');
+                            print(' ${email.text.toString()}   ');
+                            print(' ${phone.text.toString()}   ');
+                            print(' $userDob   ');
+
                             showDialog(
                               context: context,
                               barrierDismissible: false,
@@ -962,7 +980,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                               },
                             );
                             var data = await AuthController().UpdateProfile(
-                                model: model, imageLink: imageLink);
+                                name: name.text.toString(), email: email.text.toString(), phone: phone.text,  nextOfKin: nxt.text.toString(), country: selectedCountry, dob: userDob, imageLink: imageLink);
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(

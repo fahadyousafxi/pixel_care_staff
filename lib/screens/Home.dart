@@ -135,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                                       child: const Text("No Data")));
                             } else {
                               return ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
                                   itemCount: 1,
                                   itemBuilder: (context, index) {
                                     var theDate = snapshot.data?.data.elementAt(index);
@@ -300,14 +301,94 @@ class _HomePageState extends State<HomePage> {
                                   });
                             }
                           } else {
-                            return const Center(
-                              child: SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: CircularProgressIndicator(
-                                    color: Color(0xfffaeaea),
-                                  )),
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                  left: 20.w, right: 20.w),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                    BorderRadius.circular(5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.shade400
+                                              .withOpacity(0.7),
+                                          spreadRadius: 1,
+                                          blurRadius: 10)
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 5.h),
+                                      child: Image(
+                                        image: const AssetImage(
+                                            'assets/images/upcoming shifts.png'),
+                                        height: 50.h,
+                                        width: 50.w,
+                                      ),
+                                    ),
+                                    const Text(
+                                      'Upcoming Shift',
+                                      style: TextStyle(
+                                          color: Color(0xff3B53A4),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+
+                                    SizedBox(height: 25,),
+
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '    TODAY',
+                                          style: TextStyle(
+                                              fontSize: 14.sp),
+                                        ),
+                                      ],
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        'No Shifts',
+                                        style: TextStyle(
+                                            fontSize: 14.sp),
+                                      ),
+                                    ),
+
+                                    const Divider(
+                                      thickness: 1,
+                                      color: Colors.grey,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                const UpcomingShifts()));
+                                      },
+                                      child: const Text(
+                                        'Show All',
+                                        style: TextStyle(
+                                          color: Colors.pink,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 2.h)
+
+                                    // SizedBox(height: 10.h),
+                                  ],
+                                ),
+                              ),
                             );
+
+                            //   Center(
+                            //   child: SizedBox(
+                            //       height: 30,
+                            //       width: 30,
+                            //       child: CircularProgressIndicator(
+                            //         color: Color(0xfffaeaea),
+                            //       )),
+                            // );
                           }
                         }),
                   ),
