@@ -334,77 +334,34 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                 imageLink = file;
                 if (model.data!.dob != null) {
                   year = model.data!.dob.toString().split('-').first;
-                  if (model.data!.dob.toString().split('-').elementAt(1) ==
-                      01) {
+                  if (model.data!.dob.toString().split('-').elementAt(1) == '01') {
                     month = 'January';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      02) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '02') {
                     month = 'February';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      03) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '03') {
                     month = 'March';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      04) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '04') {
                     month = 'April';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      05) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '05') {
                     month = 'May';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      06) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '06') {
                     month = 'June';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      07) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '07') {
                     month = 'July';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      08) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '08') {
                     month = 'August';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      09) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '09') {
                     month = 'September';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      10) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '10') {
                     month = 'October';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      11) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '11') {
                     month = 'November';
-                  } else if (model.data!.dob
-                          .toString()
-                          .split('-')
-                          .elementAt(1) ==
-                      12) {
+                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '12') {
                     month = 'December';
                   }
                   day = model.data!.dob.toString().split('-').last;
+
+                  selectedCountry =  model.data!.country.toString();
                 }
                 return SingleChildScrollView(
                   child: Column(
@@ -742,7 +699,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                   height: 50.h,
                                   width: 90.w,
                                   child: DropdownButtonFormField<String>(
-                                    value: '1',
+                                    value: day,
                                     items: dropdownItems,
                                     // List.generate(
                                     //     31,
@@ -980,7 +937,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                               },
                             );
                             var data = await AuthController().UpdateProfile(
-                                name: name.text.toString(), email: email.text.toString(), phone: phone.text,  nextOfKin: nxt.text.toString(), country: selectedCountry, dob: userDob, imageLink: imageLink);
+                                name: name.text.toString(), email: email.text.toString(), phone: phone.text,  nextOfKin: nxt.text.toString(), country: selectedCountry, dob: userDob, imageLink: imageLink, imageFile: file);
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(

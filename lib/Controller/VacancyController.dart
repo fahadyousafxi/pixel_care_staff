@@ -42,8 +42,7 @@ class VacancyController {
 
     http.StreamedResponse response = await request.send();
 
-    return vacancyModel
-        .fromJson(jsonDecode(await response.stream.bytesToString()));
+    return vacancyModel.fromJson(jsonDecode(await response.stream.bytesToString()));
   }
 
   Apply(var id) async {

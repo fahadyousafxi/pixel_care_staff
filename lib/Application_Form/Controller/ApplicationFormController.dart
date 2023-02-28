@@ -18,6 +18,7 @@ class ApplicationFormController {
     request.body = json.encode(model!.toJson());
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print(response.statusCode);
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 }

@@ -63,14 +63,14 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                 stream: upcoming?.asStream(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    if (snapshot.data?.data == null) {
+                    if (snapshot.data?.data!.length == 0) {
                       return Center(
                           child: Container(
                               margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                               child: const Text("No Data")));
                     } else {
                       return ListView.builder(
-                          itemCount: snapshot.data?.data.length,
+                          itemCount: snapshot.data?.data!.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(
@@ -105,7 +105,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                                '${snapshot.data?.data.elementAt(index).careHome.name}'),
+                                                '${snapshot.data?.data!.elementAt(index).careHome.name}'),
                                             SizedBox(
                                               width: MediaQuery.of(context)
                                                       .size
@@ -132,7 +132,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                                       .width *
                                                   0.5,
                                               child: Text(
-                                                'Shift Date: ${snapshot.data?.data.elementAt(index).date.toString().substring(0, 10)}',
+                                                'Shift Date: ${snapshot.data?.data!.elementAt(index).date.toString().substring(0, 10)}',
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 17.sp),
@@ -144,7 +144,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                                         .size
                                                         .width *
                                                     0.5,
-                                                child: snapshot.data?.data
+                                                child: snapshot.data?.data!
                                                             .elementAt(index)
                                                             .shift
                                                             .toString() ==
@@ -170,7 +170,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                                       .width *
                                                   0.5,
                                               child: Text(
-                                                'Shift Start: ${snapshot.data?.data.elementAt(index).timeStart.toString()}',
+                                                'Shift Start: ${snapshot.data?.data!.elementAt(index).timeStart.toString()}',
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 17.sp),
@@ -183,7 +183,7 @@ class _UpcomingShiftsState extends State<UpcomingShifts> {
                                                       .width *
                                                   0.5,
                                               child: Text(
-                                                'Shift End:   ${snapshot.data?.data.elementAt(index).timeEnd.toString()}',
+                                                'Shift End:   ${snapshot.data?.data!.elementAt(index).timeEnd.toString()}',
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 17.sp),

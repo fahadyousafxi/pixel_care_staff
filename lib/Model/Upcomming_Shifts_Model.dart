@@ -2,48 +2,48 @@ class UpcommingShiftsModel {
   UpcommingShiftsModel({
     required this.status,
     required this.message,
-    required this.currentPage,
-    required this.data,
-    required this.firstPageUrl,
-    required this.from,
-    required this.lastPage,
-    required this.lastPageUrl,
-    required this.links,
+    this.currentPage,
+    this.data,
+    this.firstPageUrl,
+    this.from,
+    this.lastPage,
+    this.lastPageUrl,
+    // this.links,
     this.nextPageUrl,
-    required this.path,
-    required this.perPage,
+    this.path,
+    this.perPage,
     this.prevPageUrl,
-    required this.to,
-    required this.total,
+    this.to,
+    this.total,
   });
 
   int status;
   String message;
-  int currentPage;
-  List<Datum> data;
-  String firstPageUrl;
-  int from;
-  int lastPage;
-  String lastPageUrl;
-  List<Link> links;
+  int? currentPage;
+  List<Datum>? data;
+  String? firstPageUrl;
+  int? from;
+  int? lastPage;
+  String? lastPageUrl;
+  // List<Link>? links;
   dynamic nextPageUrl;
-  String path;
-  int perPage;
+  String? path;
+  int? perPage;
   dynamic prevPageUrl;
-  int to;
-  int total;
+  int? to;
+  int? total;
 
   factory UpcommingShiftsModel.fromJson(Map<String, dynamic> json) =>
       UpcommingShiftsModel(
         status: json["status"],
         message: json["message"],
         currentPage: json["current_page"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: json["data"] != null ? List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))) : [],
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
         lastPageUrl: json["last_page_url"],
-        links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
+        // links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
         nextPageUrl: json["next_page_url"],
         path: json["path"],
         perPage: json["per_page"],
@@ -56,12 +56,12 @@ class UpcommingShiftsModel {
         "status": status,
         "message": message,
         "current_page": currentPage,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": data != null ? List<dynamic>.from(data!.map((x) => x.toJson())) : [],
         "first_page_url": firstPageUrl,
         "from": from,
         "last_page": lastPage,
         "last_page_url": lastPageUrl,
-        "links": List<dynamic>.from(links.map((x) => x.toJson())),
+        // "links": List<dynamic>.from(links!.map((x) => x.toJson())),
         "next_page_url": nextPageUrl,
         "path": path,
         "per_page": perPage,
@@ -100,7 +100,7 @@ class Datum {
   dynamic image;
   dynamic description;
   DateTime date;
-  DateTime jobEndDate;
+  DateTime? jobEndDate;
   dynamic timeStart;
   dynamic timeEnd;
   dynamic noOfStaff;
@@ -120,7 +120,7 @@ class Datum {
         image: json["image"],
         description: json["description"],
         date: DateTime.parse(json["date"]),
-        jobEndDate: DateTime.parse(json["job_end_date"]),
+        jobEndDate: json["job_end_date"] != null ? DateTime.parse(json["job_end_date"]) : null,
         timeStart: json["time_start"],
         timeEnd: json["time_end"],
         noOfStaff: json["no_of_staff"],
@@ -130,8 +130,7 @@ class Datum {
         updatedAt: DateTime.parse(json["updated_at"]),
         shiftDetailName: json["shift_detail_name"],
         careHome: CareHome.fromJson(json["care_home"]),
-        careHomeJobApplied:
-            CareHomeJobApplied.fromJson(json["care_home_job_applied"]),
+        careHomeJobApplied: CareHomeJobApplied.fromJson(json["care_home_job_applied"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -141,10 +140,8 @@ class Datum {
         "title": title,
         "image": image,
         "description": description,
-        "date":
-            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-        "job_end_date":
-            "${jobEndDate.year.toString().padLeft(4, '0')}-${jobEndDate.month.toString().padLeft(2, '0')}-${jobEndDate.day.toString().padLeft(2, '0')}",
+        "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "job_end_date": "${jobEndDate!.year.toString().padLeft(4, '0')}-${jobEndDate!.month.toString().padLeft(2, '0')}-${jobEndDate!.day.toString().padLeft(2, '0')}",
         "time_start": timeStart,
         "time_end": timeEnd,
         "no_of_staff": noOfStaff,

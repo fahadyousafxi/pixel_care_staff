@@ -424,7 +424,8 @@ class _NextKinPageState extends State<NextKinPage> {
                                     ),
                                   )
                                   .toList(),
-                              value: snapshot.data!.data!.title == null ? title : snapshot.data!.data!.title,
+                              // value: snapshot.data!.data!.title == null ? title : snapshot.data!.data!.title,
+                              value: title,
                               onChanged: (String? value) {
                                 title = value!;
                               },

@@ -43,8 +43,8 @@ class AuthController {
   }
 
   LoginAccount({var email, var password, scaffoldKey, context}) async {
-    var response = await http.post(
-        Uri.parse('$baseUrl/api/user/login?email=$email&password=$password'));
+    var response = await http.post(Uri.parse('$baseUrl/api/user/login?email=$email&password=$password'));
+    print(response.body);
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['message'] == 'Login Successfuly.') {
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -107,7 +107,7 @@ class AuthController {
     return UserModel.fromJson(jsonDecode(await response.stream.bytesToString()));
   }
 
-  Future UpdateProfile({dynamic name, dynamic email, dynamic phone, dynamic country = null, dynamic dob = null, dynamic nextOfKin, var imageLink}) async {
+  Future UpdateProfile({dynamic name, dynamic email, dynamic phone, dynamic country = null, dynamic dob = null, dynamic nextOfKin, var imageLink, File? imageFile}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
 
@@ -131,17 +131,29 @@ class AuthController {
       'dob': '$dob',
       'next_of_kin': '$nextOfKin',
     });
+    // print('$dob');
     // if (imageLink != model.data?.avatar && imageLink != null) {
     /// The profile pic
     // request.files.add(
     //     await http.MultipartFile.fromPath('avatar', '$imageLink'));
     // }
+
+    if(imageFile != null) {
+      request.files.add(
+          await http.MultipartFile.fromPath('avatar', imageFile.path));
+    }
+
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+
     var response2 = await http.get(Uri.parse('$baseUrl/api/user/get'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
+
     pref.setString('userPersonalInfo', response2.body);
+
     return jsonDecode(await response.stream.bytesToString())['message'];
+    return jsonDecode(await response.stream.bytesToString())['message'];
+
     // return UserModel.fromJson(jsonDecode(await response.stream.bytesToString())['message']);
 
   }
@@ -271,8 +283,10 @@ class AuthController {
         headers: headers);
 
     print(response.statusCode);
-
-    return jsonDecode(response.body)['message'];
+    if(response.statusCode == 429){
+      return 'Too many requests';
+    }
+    return jsonDecode(await response.body.toString())['message'];
   }
 
   EditReference(
@@ -298,26 +312,24 @@ class AuthController {
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 
-  UpdateTrainingCert(
-      {var completion, var expiry, List<File>? images, position}) async {
+  UpdateTrainingCert({var completion, var expiry, List<File>? images, position}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
     var headers = {'Authorization': 'Bearer $token'};
 
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('$baseUrl/api/user/training-certificates/create'));
+    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/api/user/training-certificates/create'));
     request.fields.addAll({
       'date_of_completion': '$completion',
       'expiry_date': '$expiry',
       "doc_category": position
     });
-    request.files.add(
-        await http.MultipartFile.fromPath('image', images!.elementAt(0).path));
+
+    request.files.add(await http.MultipartFile.fromPath('image', images!.elementAt(0).path));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
-    return jsonDecode(await response.stream.bytesToString())['message'];
+    String msg = jsonDecode(await response.stream.bytesToString())['message'];
+    return msg;
   }
 
   Future<ReferenceModel> GetRef() async {

@@ -563,10 +563,21 @@ class _BankDetailPageState extends State<BankDetailPage> {
                                     details.nameOfBank = bankname.text;
                                     details.sortCode = code.text;
                                     widget.model.bankDetails = details;
+
+                                    // uncomment me
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => refrenceform(
+                                    //       model: widget.model,
+                                    //     ),
+                                    //   ),
+                                    // );
+
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => refrenceform(
+                                        builder: (context) => HealthPage(
                                           model: widget.model,
                                         ),
                                       ),

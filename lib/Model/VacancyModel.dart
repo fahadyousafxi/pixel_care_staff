@@ -136,7 +136,7 @@ class Data {
     image = json['image'];
     description = json['description'];
     date = json['date'];
-    jobEndDate = DateTime.parse(json["job_end_date"]);
+    jobEndDate = json["job_end_date"] != null ? DateTime.parse(json["job_end_date"]) : null;
     timeStart = json['time_start'];
     timeEnd = json['time_end'];
     noOfStaff = json['no_of_staff'];

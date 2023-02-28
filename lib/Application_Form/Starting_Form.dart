@@ -185,8 +185,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() async {
-                                    SharedPreferences _prefs =
-                                        await SharedPreferences.getInstance();
+                                    SharedPreferences _prefs = await SharedPreferences.getInstance();
                                     titleSelected = value!;
                                     _prefs.setString("rgn", value);
                                     setState(() {});
@@ -285,8 +284,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                             Visibility(
                               visible:
                                   titleSelected == 'Registered Nurse (RGN)' ||
-                                      titleSelected ==
-                                          'Registered Mental Nurse (RMN)',
+                                      titleSelected == 'Registered Mental Nurse (RMN)',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

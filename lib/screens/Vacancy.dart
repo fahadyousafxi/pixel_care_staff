@@ -936,6 +936,7 @@ class _VacancyPageState extends State<VacancyPage> {
   Future<void> GetData() async {
     allVacancies = VacancyController().GetAll();
     relevantVacancies = VacancyController().GetRelevant();
+
   }
 
   GetData1() async {
@@ -1017,8 +1018,7 @@ class _VacancyPageState extends State<VacancyPage> {
                     // ),
 
                     Padding(
-                      padding:
-                          EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
                       child: Container(
                         height: 60.h,
                         width: 700.w,
@@ -1375,8 +1375,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                           child: Container(
                                               margin: EdgeInsets.fromLTRB(
                                                   20, 20, 20, 10),
-                                              child: Text(
-                                                  "No Vacancy Available")));
+                                              child: Text("No Vacancy Available")));
                                     } else {
                                       return ListView.builder(
                                           itemCount:
@@ -1644,6 +1643,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                 stream: relevantVacancies.asStream(),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
+
                                     if (snapshot.data?.data == null) {
                                       return Center(
                                           child: Container(
@@ -1653,9 +1653,19 @@ class _VacancyPageState extends State<VacancyPage> {
                                                   "No Relavent Vacancy Available")));
                                     } else {
                                       return ListView.builder(
-                                          itemCount:
-                                              snapshot.data!.data!.length,
+                                          itemCount: snapshot.data!.data!.length,
                                           itemBuilder: (context, index) {
+                                            // start setting date
+                                            String? date = '';
+                                            if(snapshot.data!.data!.elementAt(index).date != null){
+                                              date = snapshot.data!.data!.elementAt(index).date.toString().substring(0,10);
+                                            }
+                                            if(snapshot.data!.data!.elementAt(index).jobEndDate != null){
+                                              date = "${date} - ";
+                                              date = date + snapshot.data!.data!.elementAt(index).jobEndDate.toString().substring(0,11);
+                                            }
+                                            // end setting date
+
                                             return Padding(
                                               padding: EdgeInsets.only(
                                                   left: 20.w,
@@ -1911,7 +1921,8 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                       width:
                                                                           5.w),
                                                                   Text(
-                                                                    '${snapshot.data?.data!.elementAt(index).date.toString().substring(0,10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0,11)}',
+                                                                    date.toString(),
+                                                                    // '${snapshot.data?.data!.elementAt(index).date.toString().substring(0,10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0,11)}',
                                                                     style:
                                                                     TextStyle(
                                                                       color: Color(
@@ -1981,9 +1992,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                     }
                                   } else {
                                     return Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.8,
+                                      height: MediaQuery.of(context).size.height * 0.8,
                                       width: MediaQuery.of(context).size.width,
                                       child: Center(
                                         child: Container(
