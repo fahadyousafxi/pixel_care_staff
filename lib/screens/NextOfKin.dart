@@ -320,10 +320,10 @@ class _NextKinPageState extends State<NextKinPage> {
           child: FutureBuilder<NextKinModel>(
               future: AuthController().GetNextKinUi(),
               builder: (context, snapshot) {
-                NextKinModel model = new NextKinModel();
+                NextKinModel model =  NextKinModel();
                 if (snapshot.hasData) {
                   model = snapshot.data!;
-                }
+
                 return Form(
                   key: formKey,
                   child: Column(
@@ -418,7 +418,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                     (e) => DropdownMenuItem(
                                       child: Text(
                                         e.toString(),
-                                        style: TextStyle(color: Colors.grey),
+                                        style: TextStyle(color: Colors.black),
                                       ),
                                       value: e,
                                     ),
@@ -478,7 +478,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                     Radius.circular(8),
                                   ),
                                 ),
-                                hintText: 'Enter name',
+                                hintText: '${snapshot.data!.data!.name}',
                               ),
                             ),
                           ),
@@ -860,7 +860,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                           content: Text(
-                                    '$data',
+                                    'data',
                                     style: TextStyle(color: Colors.white),
                                   )));
                                 }
@@ -897,7 +897,15 @@ class _NextKinPageState extends State<NextKinPage> {
                       ),
                     ],
                   ),
-                );
+                );} else {
+                  return Center(
+                    child: Container(
+                      height: 90,
+                      width: 30,
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                  );
+                }
               }),
         ),
       ),

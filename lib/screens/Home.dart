@@ -448,7 +448,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(height: 5.h),
                             Text(
-                              'Please Confirm Your bookings',
+                              'Please Confirm Your Booking',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 12.sp,

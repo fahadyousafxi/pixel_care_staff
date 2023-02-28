@@ -132,8 +132,9 @@ class AuthController {
       'next_of_kin': '$nextOfKin',
     });
     // if (imageLink != model.data?.avatar && imageLink != null) {
-    request.files.add(
-        await http.MultipartFile.fromPath('avatar', '$imageLink'));
+    /// The profile pic
+    // request.files.add(
+    //     await http.MultipartFile.fromPath('avatar', '$imageLink'));
     // }
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -177,10 +178,27 @@ class AuthController {
   }
 
   Future<NextKinModel> GetNextKinUi() async {
-    var response = await GetNextKinApi();
+    // var response = await GetNextKinApi();
+    // SharedPreferences pref = await SharedPreferences.getInstance();
+    // var data = pref.getString('NextKin');
+    // return NextKinModel.fromJson(jsonDecode(data!));
+
+
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var data = pref.getString('NextKin');
-    return NextKinModel.fromJson(jsonDecode(data!));
+    var token = pref.getString('token');
+    print(token);
+    var headers = {'Authorization': 'Bearer $token'};
+
+    var request = http.Request(
+      'GET',
+      Uri.parse(
+        '$baseUrl/api/user/next-kin/get',
+      ),
+    );
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    return NextKinModel.fromJson(jsonDecode(await response.stream.bytesToString()));
+
   }
 
   GetNmcApi() async {

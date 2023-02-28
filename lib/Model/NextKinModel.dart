@@ -24,15 +24,15 @@ class NextKinModel {
 
 class Data {
   int? id;
-  String? userId;
-  String? title;
-  String? name;
-  String? address;
-  String? city;
-  String? country;
-  String? zipCode;
-  String? createdAt;
-  String? updatedAt;
+  dynamic? userId;
+  dynamic? title;
+  dynamic? name;
+  dynamic? address;
+  dynamic? city;
+  dynamic? country;
+  dynamic? zipCode;
+  dynamic? createdAt;
+  dynamic? updatedAt;
 
   Data(
       {this.id,

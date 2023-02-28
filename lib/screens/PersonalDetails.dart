@@ -459,7 +459,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                   radius: 70.r,
                                   // backgroundColor: result == null ? Colors.red : Colors.green,
                                   backgroundImage: result == null ? NetworkImage(
-                                      "${snapShot.data!.data?.avatar}") :  Image.file(file!).image,
+                                      "${snapShot.data!.data!.avatar}") :  Image.file(file!).image,
                                 ),
                                 Positioned(
                                   top: -5,
@@ -987,6 +987,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                               '$data',
                               style: TextStyle(color: Colors.white),
                             )));
+                            Navigator.pop(context);
                           },
                           child: Container(
                             height: 60.h,

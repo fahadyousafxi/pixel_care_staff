@@ -29,17 +29,17 @@ class UserModel {
 
 class Data {
   int? id;
-  dynamic name;
-  dynamic phone;
-  dynamic email;
-  dynamic country;
-  dynamic hourlyRate;
-  dynamic dob;
-  dynamic status;
-  dynamic type;
-  dynamic avatar;
-  dynamic nextOfKin;
-  dynamic isBlocked;
+  String? name;
+  String? phone;
+  String? email;
+  String? country;
+  String? hourlyRate;
+  String? dob;
+  String? status;
+  String? type;
+  String? avatar;
+  String? nextOfKin;
+  String? isBlocked;
   dynamic createdAt;
   dynamic updatedAt;
 
