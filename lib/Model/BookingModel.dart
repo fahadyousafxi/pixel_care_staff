@@ -87,17 +87,17 @@ class BookingModel {
 
 class Data {
   int? id;
-  String? careHomeId;
-  String? title;
-  String? image;
-  String? description;
-  String? date;
-  String? jobEndDate;
-  String? timeStart;
-  String? timeEnd;
+  dynamic? careHomeId;
+  dynamic? title;
+  dynamic? image;
+  dynamic? description;
+  dynamic? date;
+  dynamic? jobEndDate;
+  dynamic? timeStart;
+  dynamic? timeEnd;
   Null? deleatedAt;
-  String? createdAt;
-  String? updatedAt;
+  dynamic? createdAt;
+  dynamic? updatedAt;
   CareHome? careHome;
   CareHomeJobApplied? careHomeJobApplied;
 
@@ -164,12 +164,12 @@ class Data {
 
 class CareHome {
   int? id;
-  String? name;
-  String? image;
-  String? hourlyRate;
-  String? status;
-  String? createdAt;
-  String? updatedAt;
+  dynamic? name;
+  dynamic? image;
+  dynamic? hourlyRate;
+  dynamic? status;
+  dynamic? createdAt;
+  dynamic? updatedAt;
 
   CareHome(
       {this.id,
@@ -205,9 +205,9 @@ class CareHome {
 
 class CareHomeJobApplied {
   int? id;
-  String? careHomeJobId;
-  String? status;
-  String? action;
+  dynamic? careHomeJobId;
+  dynamic? status;
+  dynamic? action;
 
   CareHomeJobApplied({this.id, this.careHomeJobId, this.status, this.action});
 
@@ -229,8 +229,8 @@ class CareHomeJobApplied {
 }
 
 class Links {
-  String? url;
-  String? label;
+  dynamic? url;
+  dynamic? label;
   bool? active;
 
   Links({this.url, this.label, this.active});

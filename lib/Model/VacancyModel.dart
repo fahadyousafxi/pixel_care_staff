@@ -88,21 +88,21 @@ class vacancyModel {
 
 class Data {
   int? id;
-  String? careHomeId;
-  String? position;
-  String? title;
-  String? image;
-  String? description;
-  String? date;
+  dynamic? careHomeId;
+  dynamic? position;
+  dynamic? title;
+  dynamic? image;
+  dynamic? description;
+  dynamic? date;
   DateTime? jobEndDate;
-  String? timeStart;
-  String? timeEnd;
+  dynamic? timeStart;
+  dynamic? timeEnd;
   dynamic noOfStaff;
-  String? shift;
+  dynamic? shift;
   Null? deleatedAt;
-  String? createdAt;
-  String? updatedAt;
-  String? shiftDetailName;
+  dynamic? createdAt;
+  dynamic? updatedAt;
+  dynamic? shiftDetailName;
   CareHome? careHome;
   CareHomeJobApplied? careHomeJobApplied;
 
@@ -179,12 +179,12 @@ class Data {
 
 class CareHome {
   int? id;
-  String? name;
-  String? image;
-  String? hourlyRate;
-  String? status;
-  String? createdAt;
-  String? updatedAt;
+  dynamic? name;
+  dynamic? image;
+  dynamic? hourlyRate;
+  dynamic? status;
+  dynamic? createdAt;
+  dynamic? updatedAt;
 
   CareHome(
       {this.id,
@@ -220,8 +220,8 @@ class CareHome {
 
 class CareHomeJobApplied {
   int? id;
-  String? careHomeJobId;
-  String? status;
+  dynamic? careHomeJobId;
+  dynamic? status;
 
   CareHomeJobApplied({this.id, this.careHomeJobId, this.status});
 
@@ -241,8 +241,8 @@ class CareHomeJobApplied {
 }
 
 class Links {
-  String? url;
-  String? label;
+  dynamic? url;
+  dynamic? label;
   bool? active;
 
   Links({this.url, this.label, this.active});

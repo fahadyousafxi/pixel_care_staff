@@ -339,7 +339,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                               'Date of Completion: ',
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                                                                             ),
-                                                                            Text('${snapshot.data?.data.elementAt(index).dateOfCompletion}',
+                                                                            Text('${snapshot.data?.data.elementAt(index).dateOfCompletion.toString().substring(0, 10)}',
                                                                                 style: const TextStyle()),
                                                                           ],
                                                                         ),
@@ -427,7 +427,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                                                         ),
                                                                         Flexible(
                                                                             child:
-                                                                                Text('${snapshot.data?.data.elementAt(index).expiryDate}', style: const TextStyle())),
+                                                                                Text('${snapshot.data?.data.elementAt(index).expiryDate.toString().substring(0, 10)}', style: const TextStyle())),
                                                                       ],
                                                                     ),
                                                                   ),

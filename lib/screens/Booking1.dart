@@ -414,6 +414,10 @@ class _Booking1PageState extends State<Booking1Page> {
                                           itemCount:
                                               snapshot.data!.data!.length,
                                           itemBuilder: (context, index) {
+
+                                            var shiftDetailsStartTime = "${snapshot.data?.data?.elementAt(index).timeStart.toString()} :  ";
+                                            var shiftDetailsEndTime = "${snapshot.data?.data?.elementAt(index).timeEnd.toString()} :  ";
+
                                             return Padding(
                                               padding: EdgeInsets.only(
                                                   left: 20.w,
@@ -549,7 +553,7 @@ class _Booking1PageState extends State<Booking1Page> {
                                                                       .width *
                                                                   0.5,
                                                               child: Text(
-                                                                'Shift Details: ${snapshot.data?.data?.elementAt(index).timeStart.toString().substring(0, 4)} - ${snapshot.data?.data?.elementAt(index).timeEnd.toString().substring(0, 4)}',
+                                                                'Shift Details: ${shiftDetailsStartTime.substring(0, 5)} - ${shiftDetailsStartTime.substring(0, 5)}',
                                                                 style: TextStyle(
                                                                     color: const Color(
                                                                         0xff687bb9),

@@ -68,7 +68,7 @@ class _NextKinPageState extends State<NextKinPage> {
   TextEditingController zipcode = TextEditingController();
   // TextEditingController city = TextEditingController();
 
-  String? countryValue = "Pakistan";
+  String? countryValue = "Country";
   String? stateValue = "Islamabad";
   String? cityValue = "Islamabad";
 
@@ -424,7 +424,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                     ),
                                   )
                                   .toList(),
-                              value: title,
+                              value: snapshot.data!.data!.title == null ? title : snapshot.data!.data!.title,
                               onChanged: (String? value) {
                                 title = value!;
                               },
@@ -491,177 +491,6 @@ class _NextKinPageState extends State<NextKinPage> {
                           // ),
                           Container(
                             margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                            child: Text('Address',
-                                style: TextStyle(fontSize: 17.sp)),
-                          ),
-
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: 10.h, left: 20.w, right: 20.w),
-                            child: TextFormField(
-                              controller: address,
-                              onChanged: (value) {
-                                model.data?.address = value.toString();
-                                setState(() {});
-                              },
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please fill out this field';
-                                }
-                              },
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(18),
-                                hintStyle: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.sp,
-                                  color: Color(0xffACA9A9),
-                                ),
-                                fillColor: Colors.grey.shade200,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                hintText: 'Enter address',
-                              ),
-                            ),
-                          ),
-                          // MyTextField(
-                          //   onChanged: (value) {
-                          //     model.data?.address = value.toString();
-                          //   },
-                          //   decoration: InputDecoration(),
-                          //   hinttext: 'Enter address',
-                          // ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                            child: Text('Post Code',
-                                style: TextStyle(fontSize: 17.sp)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: 10.h, left: 20.w, right: 20.w),
-                            child: TextFormField(
-                              controller: zipcode,
-                              onChanged: (value) {
-                                model.data?.zipCode = value.toString();
-                                setState(() {});
-                              },
-                              keyboardType: TextInputType.multiline,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please fill out this field';
-                                }
-                              },
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(18),
-                                hintStyle: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.sp,
-                                  color: Color(0xffACA9A9),
-                                ),
-                                fillColor: Colors.grey.shade200,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                hintText: 'Enter post code',
-                              ),
-                            ),
-                          ),
-                          // MyTextField(
-                          //   onChanged: (value) {
-                          //     model.data?.zipCode = value.toString();
-                          //   },
-                          //   decoration: InputDecoration(),
-                          //   hinttext: 'Enter zip code',
-                          // ),
-                          // Container(
-                          //   margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          //   child: Text('Country',
-                          //       style: TextStyle(fontSize: 17.sp)),
-                          // ),
-                          // Padding(
-                          //   padding: EdgeInsets.only(
-                          //       left: 20.w, right: 20.w, top: 10),
-                          //   child: DropdownButtonFormField<String>(
-                          //     value: selectedCountry,
-                          //     validator: (value) {
-                          //       if (value!.isEmpty) {
-                          //         return 'Please select from this field';
-                          //       }
-                          //     },
-                          //     items: country
-                          //         .map((e) => DropdownMenuItem<String>(
-                          //               child: Text(e),
-                          //               value: e,
-                          //             ))
-                          //         .toList(),
-                          //     onChanged: (value) {
-                          //       model.data?.country = value.toString();
-                          //     },
-                          //     decoration: InputDecoration(
-                          //       contentPadding: EdgeInsets.all(18),
-                          //       hintStyle: GoogleFonts.dmSans(
-                          //         fontWeight: FontWeight.w500,
-                          //         fontSize: 15.sp,
-                          //         color: Color(0xffACA9A9),
-                          //       ),
-                          //       fillColor: Colors.grey.shade200,
-                          //       filled: true,
-                          //       border: OutlineInputBorder(
-                          //         borderSide: BorderSide.none,
-                          //         borderRadius: BorderRadius.all(
-                          //           Radius.circular(8),
-                          //         ),
-                          //       ),
-                          //       enabledBorder: OutlineInputBorder(
-                          //         borderSide: BorderSide.none,
-                          //         borderRadius: BorderRadius.all(
-                          //           Radius.circular(8),
-                          //         ),
-                          //       ),
-                          //       focusedBorder: OutlineInputBorder(
-                          //         borderSide: BorderSide.none,
-                          //         borderRadius: BorderRadius.all(
-                          //           Radius.circular(8),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-
-                          Container(
-                            margin: EdgeInsets.only(left: 20.w, top: 15.h),
                             child: Text('Country',
                                 style: TextStyle(fontSize: 17.sp)),
                           ),
@@ -682,10 +511,10 @@ class _NextKinPageState extends State<NextKinPage> {
                                 ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                                 dropdownDecoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    BorderRadius.all(Radius.circular(10)),
                                     color: Colors.grey.shade200,
                                     border:
-                                        Border.fromBorderSide(BorderSide.none)),
+                                    Border.fromBorderSide(BorderSide.none)),
 
                                 ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
                                 // disabledDropdownDecoration: BoxDecoration(
@@ -696,14 +525,14 @@ class _NextKinPageState extends State<NextKinPage> {
                                 //         color: Colors.grey.shade300, width: 1)),
 
                                 ///placeholders for dropdown search field
-                                countrySearchPlaceholder: countryValue!,
+                                countrySearchPlaceholder: snapshot.data!.data!.country ?? countryValue!,
                                 stateSearchPlaceholder: "State",
-                                citySearchPlaceholder: "City",
+                                citySearchPlaceholder: snapshot.data!.data!.city ?? "City",
 
                                 ///labels for dropdown
-                                countryDropdownLabel: countryValue!,
+                                countryDropdownLabel: snapshot.data!.data!.country ?? countryValue,
                                 stateDropdownLabel: "State",
-                                cityDropdownLabel: "City",
+                                cityDropdownLabel: snapshot.data!.data!.city ?? "City",
 
                                 //  / /Default Country
                                 // defaultCountry: DefaultCountry.India,
@@ -813,6 +642,177 @@ class _NextKinPageState extends State<NextKinPage> {
                             //   ),
                             // ),
                           ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20.w, top: 15.h),
+                            child: Text('Address',
+                                style: TextStyle(fontSize: 17.sp)),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: 10.h, left: 20.w, right: 20.w),
+                            child: TextFormField(
+                              controller: address,
+                              onChanged: (value) {
+                                model.data?.address = value.toString();
+                                setState(() {});
+                              },
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please fill out this field';
+                                }
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(18),
+                                hintStyle: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  color: Color(0xffACA9A9),
+                                ),
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                hintText: '${snapshot.data!.data!.address}',
+                              ),
+                            ),
+                          ),
+                          // MyTextField(
+                          //   onChanged: (value) {
+                          //     model.data?.address = value.toString();
+                          //   },
+                          //   decoration: InputDecoration(),
+                          //   hinttext: 'Enter address',
+                          // ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20.w, top: 15.h),
+                            child: Text('Post Code',
+                                style: TextStyle(fontSize: 17.sp)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: 10.h, left: 20.w, right: 20.w),
+                            child: TextFormField(
+                              controller: zipcode,
+                              onChanged: (value) {
+                                model.data?.zipCode = value.toString();
+                                setState(() {});
+                              },
+                              keyboardType: TextInputType.multiline,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please fill out this field';
+                                }
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(18),
+                                hintStyle: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  color: Color(0xffACA9A9),
+                                ),
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                hintText: '${snapshot.data!.data!.zipCode}',
+                              ),
+                            ),
+                          ),
+                          // MyTextField(
+                          //   onChanged: (value) {
+                          //     model.data?.zipCode = value.toString();
+                          //   },
+                          //   decoration: InputDecoration(),
+                          //   hinttext: 'Enter zip code',
+                          // ),
+                          // Container(
+                          //   margin: EdgeInsets.only(left: 20.w, top: 15.h),
+                          //   child: Text('Country',
+                          //       style: TextStyle(fontSize: 17.sp)),
+                          // ),
+                          // Padding(
+                          //   padding: EdgeInsets.only(
+                          //       left: 20.w, right: 20.w, top: 10),
+                          //   child: DropdownButtonFormField<String>(
+                          //     value: selectedCountry,
+                          //     validator: (value) {
+                          //       if (value!.isEmpty) {
+                          //         return 'Please select from this field';
+                          //       }
+                          //     },
+                          //     items: country
+                          //         .map((e) => DropdownMenuItem<String>(
+                          //               child: Text(e),
+                          //               value: e,
+                          //             ))
+                          //         .toList(),
+                          //     onChanged: (value) {
+                          //       model.data?.country = value.toString();
+                          //     },
+                          //     decoration: InputDecoration(
+                          //       contentPadding: EdgeInsets.all(18),
+                          //       hintStyle: GoogleFonts.dmSans(
+                          //         fontWeight: FontWeight.w500,
+                          //         fontSize: 15.sp,
+                          //         color: Color(0xffACA9A9),
+                          //       ),
+                          //       fillColor: Colors.grey.shade200,
+                          //       filled: true,
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //       enabledBorder: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //       focusedBorder: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+
 
                           // MyTextField(
                           //   onChanged: (value) {
@@ -847,9 +847,14 @@ class _NextKinPageState extends State<NextKinPage> {
                                   print(model.data?.city);
                                   print(model.data?.country);
                                   model.data?.city = cityValue.toString();
-                                  model.data?.country = countryValue.toString();
+                                  model.data?.country = countryValue.toString().substring(8);
                                   model.data?.address = address.text.toString();
                                   model.data?.zipCode = zipcode.text.toString();
+                                  model.data?.name = name.text.toString();
+                                  print(model.data?.country.toString());
+                                  print("fasdfasdfasdfasdfasdfsadfasdfd");
+
+
 
                                   var data = await AuthController()
                                       .UpdateNextKin(model: model);
@@ -860,7 +865,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                           content: Text(
-                                    'data',
+                                    '$data',
                                     style: TextStyle(color: Colors.white),
                                   )));
                                 }
@@ -872,7 +877,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                   color: name.text != "" &&
                                           address.text != "" &&
                                           zipcode.text != "" &&
-                                          countryValue != "" &&
+                                          countryValue != "Country" &&
                                           cityValue != ""
                                       ? Colors.pink
                                       : Color(0xfffaeaea),
@@ -885,7 +890,7 @@ class _NextKinPageState extends State<NextKinPage> {
                                           color: name.text != "" &&
                                                   address.text != "" &&
                                                   zipcode.text != "" &&
-                                                  countryValue != "" &&
+                                                  countryValue != "Country" &&
                                                   cityValue != ""
                                               ? Colors.white
                                               : Colors.black)),

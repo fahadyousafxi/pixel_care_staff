@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                             child: Icon(
                               Icons.menu,
                               color: Colors.blue,
-                              size: 38.sp,
+                              size: 33.sp,
                             ),
 
                             //  Image.asset(
