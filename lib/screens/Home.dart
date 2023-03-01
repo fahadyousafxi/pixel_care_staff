@@ -169,10 +169,10 @@ class _HomePageState extends State<HomePage> {
                                         itemBuilder: (context, index) {
                                           var theDate = snapshot.data?.data!.elementAt(index);
                                           if (todayDate == theDate?.date.toString().substring(0, 10)) {
-                                          todayDate = 'wow';
-                                          todayTimeStart = '${theDate?.timeStart.toString()}';
-                                          todayTimeEnd = '${theDate?.timeEnd.toString()}';
-                                        }
+                                            todayDate = 'wow';
+                                            todayTimeStart = '${theDate?.timeStart.toString()}';
+                                            todayTimeEnd = '${theDate?.timeEnd.toString()}';
+                                          }
                                         return Padding(
                                             padding: EdgeInsets.only(top: 5.h, left: 20.w),
                                             child: Row(

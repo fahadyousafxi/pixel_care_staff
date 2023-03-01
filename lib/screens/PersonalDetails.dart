@@ -395,8 +395,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                         children: [
                           GestureDetector(
                             onTap: () async {
-                               result =
-                                  await FilePicker.platform.pickFiles(
+                               result = await FilePicker.platform.pickFiles(
                                 allowMultiple: false,
                                 type: FileType.image,
                               );
@@ -421,8 +420,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                 Positioned(
                                   top: -5,
                                   right: -1,
-                                  child: SvgPicture.asset(
-                                      'assets/images/camera_icon.svg'),
+                                  child: SvgPicture.asset('assets/images/camera_icon.svg'),
                                 ),
                               ],
                             ),
@@ -497,8 +495,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                   setState(() {});
                                 },
                                 validator: (String? value) {
-                                  final bool isValid =
-                                      EmailValidator.validate(value.toString());
+                                  final bool isValid = EmailValidator.validate(value.toString());
 
                                   if (!isValid) {
                                     return 'Invalid Email';
