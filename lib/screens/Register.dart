@@ -1,15 +1,13 @@
-import 'dart:io';
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixel_app/Controller/AuthController.dart';
-import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../Controller/AuthController.dart';
+import '../widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'SignUp.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -20,20 +18,21 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  GlobalKey<FormState> formkey = new GlobalKey();
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-  TextEditingController email = new TextEditingController();
-  TextEditingController name = new TextEditingController();
-  TextEditingController password = new TextEditingController();
-  TextEditingController confirmpassword = new TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  TextEditingController email = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
 
   var agree = false;
   bool isPasswordHidden = true;
   bool isConfirmPasswordHidden = true;
-  @override
-  void initState() {
-    super.initState();
-  }
+
+  var locatedYes = false;
+  var locatedNo = false;
+  var eligibleYes = false;
+  var eligibleNo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 5.h),
-                      Text('Create account and get started'),
+                      const Text('Create account and get started'),
                     ],
                   ),
                 ),
@@ -95,23 +94,23 @@ class _RegisterPageState extends State<RegisterPage> {
                           hintStyle: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w500,
                             fontSize: 11,
-                            color: Color(0xffACA9A9),
+                            color: const Color(0xffACA9A9),
                           ),
-                          fillColor: Color(0xffEEEEEE),
+                          fillColor: const Color(0xffEEEEEE),
                           filled: true,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -152,23 +151,23 @@ class _RegisterPageState extends State<RegisterPage> {
                           hintStyle: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w500,
                             fontSize: 11,
-                            color: Color(0xffACA9A9),
+                            color: const Color(0xffACA9A9),
                           ),
-                          fillColor: Color(0xffEEEEEE),
+                          fillColor: const Color(0xffEEEEEE),
                           filled: true,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -210,28 +209,28 @@ class _RegisterPageState extends State<RegisterPage> {
                                 isPasswordHidden
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Color(0xffF5591f),
+                                color: const Color(0xffF5591f),
                               )),
                           hintStyle: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w500,
                             fontSize: 11,
-                            color: Color(0xffACA9A9),
+                            color: const Color(0xffACA9A9),
                           ),
-                          fillColor: Color(0xffEEEEEE),
+                          fillColor: const Color(0xffEEEEEE),
                           filled: true,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -276,28 +275,28 @@ class _RegisterPageState extends State<RegisterPage> {
                                 isConfirmPasswordHidden
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Color(0xffF5591f),
+                                color: const Color(0xffF5591f),
                               )),
                           hintStyle: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w500,
                             fontSize: 11,
-                            color: Color(0xffACA9A9),
+                            color: const Color(0xffACA9A9),
                           ),
-                          fillColor: Color(0xffEEEEEE),
+                          fillColor: const Color(0xffEEEEEE),
                           filled: true,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -307,21 +306,95 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    SizedBox(height: 20.h),
+                    Column(
                       children: [
-                        Container(
-                            margin: EdgeInsets.only(top: 10.h, left: 20.w),
-                            child: Checkbox(
-                              value: agree,
+                        const Text('Are you Located in UK ?'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: locatedNo,
                               onChanged: (value) {
                                 setState(() {
-                                  agree = value!;
+                                  locatedNo = value!;
+                                  locatedYes = false;
                                 });
                               },
                               activeColor: Colors.pink,
                               checkColor: Colors.white,
-                            )),
+                            ),
+                            const Text(
+                              'No',
+                            ),
+                            Checkbox(
+                              value: locatedYes,
+                              onChanged: (value) {
+                                setState(() {
+                                  locatedYes = value!;
+                                  locatedNo = false;
+                                });
+                              },
+                              activeColor: Colors.pink,
+                              checkColor: Colors.white,
+                            ),
+                            const Text(
+                              'Yes',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const Text('Are you eligible to Work in UK ?'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: eligibleNo,
+                              onChanged: (value) {
+                                setState(() {
+                                  eligibleNo = value!;
+                                  eligibleYes = false;
+                                });
+                              },
+                              activeColor: Colors.pink,
+                              checkColor: Colors.white,
+                            ),
+                            const Text('No'),
+                            Checkbox(
+                              value: eligibleYes,
+                              onChanged: (value) {
+                                setState(() {
+                                  eligibleYes = value!;
+                                  eligibleNo = false;
+                                });
+                              },
+                              activeColor: Colors.pink,
+                              checkColor: Colors.white,
+                            ),
+                            const Text('Yes'),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 10.h, left: 20.w),
+                          child: Checkbox(
+                            value: agree,
+                            onChanged: (value) {
+                              setState(() {
+                                agree = value!;
+                              });
+                            },
+                            activeColor: Colors.pink,
+                            checkColor: Colors.white,
+                          ),
+                        ),
                         Container(
                           margin: EdgeInsets.only(left: 10.w, top: 10.h),
                           child: InkWell(
@@ -425,7 +498,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ))
                   ],
                 ),
-                SizedBox(height: 70.h),
+                SizedBox(height: 40.h),
                 Column(
                   children: [
                     InkWell(
@@ -433,7 +506,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignUpPage()),
+                                builder: (context) => const SignUpPage()),
                           );
                         },
                         child: Text(
@@ -446,44 +519,54 @@ class _RegisterPageState extends State<RegisterPage> {
                           left: 20.w, right: 20.w, bottom: 20.h),
                       child: InkWell(
                         onTap: () async {
-                          AuthController controller = new AuthController();
-                          if (formkey.currentState!.validate()) {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext context) {
-                                return Container(
-                                    child: Center(
-                                        child: new CircularProgressIndicator(
-                                  color: Color(0xfffaeaea),
-                                )));
-                              },
-                            );
-                            if (agree == true) {
-                              var data = await controller.CreateAccount(
-                                  context: context,
-                                  email: email.text,
-                                  password: password.text,
-                                  name: name.text);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('${data}')));
-                              if (data == 'Register Successfuly.') {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          bottomNavigationBar()),
-                                );
+                          if (locatedYes == true && eligibleYes == true) {
+                            AuthController controller = AuthController();
+                            if (formkey.currentState!.validate()) {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      child: const Center(
+                                          child: CircularProgressIndicator(
+                                    color: Color(0xfffaeaea),
+                                  )));
+                                },
+                              );
+                              if (agree == true) {
+                                var data = await controller.CreateAccount(
+                                    context: context,
+                                    email: email.text,
+                                    password: password.text,
+                                    name: name.text);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('$data')));
+                                if (data == 'Register Successfuly.') {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const bottomNavigationBar()),
+                                  );
+                                } else {
+                                  Navigator.of(context).pop();
+                                }
                               } else {
-                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'Please agree to terms and conditions')));
                               }
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Please agree to terms and conditions')));
                             }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Sorry you are not allowed to use this app'),
+                                backgroundColor: Colors.pink,
+                              ),
+                            );
                           }
-                          //
                         },
                         child: Container(
                           height: 60.h,
@@ -494,7 +577,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     password.text != "" &&
                                     confirmpassword.text != ""
                                 ? Colors.pink
-                                : Color(0xfffaeaea),
+                                : const Color(0xfffaeaea),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(

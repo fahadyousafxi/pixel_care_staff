@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -14,7 +16,7 @@ import 'Model/ApplicationFormModel.dart';
 
 class Declaration extends StatefulWidget {
   Declaration({required this.model});
-  ApplicationFormModel model = new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
 
   @override
   State<Declaration> createState() => _DeclarationState();
@@ -24,17 +26,38 @@ class _DeclarationState extends State<Declaration> {
   bool isChecked1 = true;
   bool isChecked2 = false;
   var emp = false;
-  var month =
-      '${DateTime.now().month == 1 ? 'January' : DateTime.now().month == 1 ? 'February' : DateTime.now().month == 1 ? 'March' : DateTime.now().month == 1 ? 'April' : DateTime.now().month == 1 ? 'May' : DateTime.now().month == 1 ? 'June' : DateTime.now().month == 1 ? 'July' : DateTime.now().month == 1 ? 'August' : DateTime.now().month == 1 ? 'September' : DateTime.now().month == 1 ? 'October' : DateTime.now().month == 1 ? 'November' : 'December'}';
+  var month = DateTime.now().month == 1
+      ? 'January'
+      : DateTime.now().month == 1
+          ? 'February'
+          : DateTime.now().month == 1
+              ? 'March'
+              : DateTime.now().month == 1
+                  ? 'April'
+                  : DateTime.now().month == 1
+                      ? 'May'
+                      : DateTime.now().month == 1
+                          ? 'June'
+                          : DateTime.now().month == 1
+                              ? 'July'
+                              : DateTime.now().month == 1
+                                  ? 'August'
+                                  : DateTime.now().month == 1
+                                      ? 'September'
+                                      : DateTime.now().month == 1
+                                          ? 'October'
+                                          : DateTime.now().month == 1
+                                              ? 'November'
+                                              : 'December';
   var day = '${DateTime.now().day}';
   var year = '${DateTime.now().year}';
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   var scroll = false;
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
-  TextEditingController sign = new TextEditingController();
-  TextEditingController date = new TextEditingController();
+  TextEditingController sign = TextEditingController();
+  TextEditingController date = TextEditingController();
   @override
   void initState() {
     date.text =
@@ -68,8 +91,8 @@ class _DeclarationState extends State<Declaration> {
             //height: MediaQuery.of(context).size.height,
             child: SingleChildScrollView(
               physics: scroll
-                  ? NeverScrollableScrollPhysics()
-                  : AlwaysScrollableScrollPhysics(),
+                  ? const NeverScrollableScrollPhysics()
+                  : const AlwaysScrollableScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -90,7 +113,7 @@ class _DeclarationState extends State<Declaration> {
                               ),
                             ),
                             SizedBox(height: 10.h),
-                            Text(
+                            const Text(
                               'Statement signed by applicant',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -143,22 +166,22 @@ class _DeclarationState extends State<Declaration> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Signature'),
-                          Text('Lock to sign\n'),
+                          const Text('Signature'),
+                          const Text('Lock to sign\n'),
                           Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.9,
                             child: SfSignaturePad(
                               key: _signaturePadKey,
                               backgroundColor: Colors.grey[200],
                             ),
-                            height: 200,
-                            width: MediaQuery.of(context).size.width * 0.9,
                           ),
                         ],
                       ),
                       GestureDetector(
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          padding: EdgeInsets.symmetric(horizontal: 30),
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                           ),
@@ -177,12 +200,12 @@ class _DeclarationState extends State<Declaration> {
                                         });
                                       },
                                       icon: !scroll
-                                          ? Icon(Icons.lock_open)
-                                          : Icon(Icons.lock_outline))
+                                          ? const Icon(Icons.lock_open)
+                                          : const Icon(Icons.lock_outline))
                                 ],
                               ),
                               emp == false
-                                  ? Text("")
+                                  ? const Text("")
                                   : GestureDetector(
                                       onTap: () {
                                         setState(() {
@@ -190,7 +213,7 @@ class _DeclarationState extends State<Declaration> {
                                               .clear();
                                         });
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         'Clear',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -206,7 +229,7 @@ class _DeclarationState extends State<Declaration> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Submission Date '),
+                            const Text('Submission Date '),
                             Padding(
                               padding: EdgeInsets.only(top: 10.h),
                               child: Row(
@@ -220,35 +243,36 @@ class _DeclarationState extends State<Declaration> {
                                       items: List.generate(
                                           31,
                                           (index) => DropdownMenuItem(
-                                                child: Text('${index + 1}'),
                                                 value: '${index + 1}',
+                                                child: Text('${index + 1}'),
                                               )),
                                       onChanged: (String? value) {
                                         day = value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -279,39 +303,40 @@ class _DeclarationState extends State<Declaration> {
                                         'September',
                                         'October',
                                         'November',
-                                        'December'
+                                        'December',
                                       ]
                                           .map((e) => DropdownMenuItem(
-                                                child: Text('${e}'),
                                                 value: e,
+                                                child: Text(e),
                                               ))
                                           .toList(),
                                       onChanged: (String? value) {
                                         month = value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -333,37 +358,38 @@ class _DeclarationState extends State<Declaration> {
                                       items: List.generate(
                                           DateTime.now().year,
                                           (index) => DropdownMenuItem(
-                                                child: Text(
-                                                    '${DateTime.now().year - index}'),
                                                 value:
                                                     '${DateTime.now().year - index}',
+                                                child: Text(
+                                                    '${DateTime.now().year - index}'),
                                               )),
                                       onChanged: (String? value) {
                                         year = value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -396,33 +422,36 @@ class _DeclarationState extends State<Declaration> {
                               Uint8List? pngBytes =
                                   byteData?.buffer.asUint8List();
                               String bs64 = base64Encode(pngBytes!);
-                              String img64 = "data:sign/png;base64," + bs64;
-                              print(img64);
-                              Decleration dec = new Decleration();
+                              String img64 = "data:sign/png;base64,$bs64";
+                              Decleration dec = Decleration();
                               dec.signature = img64;
-                              dec.date = day + '-' + month + '-' + year;
+                              dec.date = '$day-$month-$year';
                               widget.model.decleration = dec;
                               showDialog(
                                 context: context,
                                 barrierDismissible: false,
                                 builder: (BuildContext context) {
                                   return Container(
-                                      child: Center(
-                                          child: new CircularProgressIndicator(
-                                    color: Color(0xfffaeaea),
-                                  )));
+                                    child: const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Color(0xfffaeaea),
+                                      ),
+                                    ),
+                                  );
                                 },
                               );
                               var data = await ApplicationFormController()
-                                  .Apply(widget.model);
+                                  .Apply(widget.model, context);
                               Navigator.pop(context);
                               if (data.toString().contains('Ops something')) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                        content: Text(
-                                  'Request Failed Retry!',
-                                  style: TextStyle(color: Colors.white),
-                                )));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Request Failed Retry!',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                );
                               } else {
                                 SharedPreferences pref =
                                     await SharedPreferences.getInstance();
@@ -441,14 +470,14 @@ class _DeclarationState extends State<Declaration> {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                         ),
-                                        padding: EdgeInsets.all(20),
+                                        padding: const EdgeInsets.all(20),
                                         width:
                                             MediaQuery.of(context).size.width,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.check,
                                               color: Colors.green,
                                               size: 50,
@@ -469,13 +498,13 @@ class _DeclarationState extends State<Declaration> {
                                                 //     color: Colors.pink,
                                                 //     fontWeight: FontWeight.bold),
                                                 ),
-                                            Text(
+                                            const Text(
                                               'Your application has been saved successfully',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w500),
                                             ),
-                                            Center(
+                                            const Center(
                                               child: Text(
                                                 'You will be notified regarding the status  of your application within 48 hours',
                                                 textAlign: TextAlign.justify,
@@ -488,8 +517,9 @@ class _DeclarationState extends State<Declaration> {
                                                 Navigator.of(context)
                                                     .pushAndRemoveUntil(
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                bottomNavigationBar()),
+                                                          builder: (context) =>
+                                                              const bottomNavigationBar(),
+                                                        ),
                                                         (Route route) => false);
                                                 // Navigator.of(context)
                                                 //     .pushReplacement(
@@ -498,12 +528,13 @@ class _DeclarationState extends State<Declaration> {
                                                 //                 bottomNavigationBar()));
                                               },
                                               child: Container(
-                                                padding: EdgeInsets.all(10),
+                                                padding:
+                                                    const EdgeInsets.all(10),
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: Colors.pink.shade500,
                                                 ),
-                                                child: Center(
+                                                child: const Center(
                                                     child: Icon(
                                                   Icons.home_outlined,
                                                   color: Colors.white,
@@ -526,8 +557,9 @@ class _DeclarationState extends State<Declaration> {
                             height: 60.h,
                             width: 350.w,
                             decoration: BoxDecoration(
-                              color:
-                                  emp == true ? Colors.pink : Color(0xfffaeaea),
+                              color: emp == true
+                                  ? Colors.pink
+                                  : const Color(0xfffaeaea),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Center(

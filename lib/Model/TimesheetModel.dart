@@ -8,13 +8,13 @@ class TimesheetModel {
   TimesheetModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -23,24 +23,24 @@ class TimesheetModel {
 }
 
 class Data {
-  String? businessUnit;
-  String? staffName;
-  String? jobPost;
-  int? jobPostId;
-  String? shiftId;
-  String? shiftTime;
-  String? date;
-  String? day;
+  dynamic businessUnit;
+  dynamic staffName;
+  dynamic jobPost;
+  dynamic jobPostId;
+  dynamic shiftId;
+  dynamic shiftTime;
+  dynamic date;
+  dynamic day;
 
   Data(
       {this.businessUnit,
-        this.staffName,
-        this.jobPost,
-        this.jobPostId,
-        this.shiftId,
-        this.shiftTime,
-        this.date,
-        this.day});
+      this.staffName,
+      this.jobPost,
+      this.jobPostId,
+      this.shiftId,
+      this.shiftTime,
+      this.date,
+      this.day});
 
   Data.fromJson(Map<String, dynamic> json) {
     businessUnit = json['business_unit'];
@@ -54,15 +54,15 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['business_unit'] = this.businessUnit;
-    data['staff_name'] = this.staffName;
-    data['job_post'] = this.jobPost;
-    data['job_post_id'] = this.jobPostId;
-    data['shift_id'] = this.shiftId;
-    data['shift_time'] = this.shiftTime;
-    data['date'] = this.date;
-    data['day'] = this.day;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['business_unit'] = businessUnit;
+    data['staff_name'] = staffName;
+    data['job_post'] = jobPost;
+    data['job_post_id'] = jobPostId;
+    data['shift_id'] = shiftId;
+    data['shift_time'] = shiftTime;
+    data['date'] = date;
+    data['day'] = day;
     return data;
   }
 }

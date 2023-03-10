@@ -1,36 +1,27 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/WorkingTimeRegulation.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import 'BankDetails.dart';
-import 'Covid_19_Questions.dart';
 import 'Model/ApplicationFormModel.dart';
 
 class HealthPage extends StatefulWidget {
   HealthPage({required this.model});
-  ApplicationFormModel model=new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
 
   @override
   State<HealthPage> createState() => _HealthPageState();
 }
 
 class _HealthPageState extends State<HealthPage> {
-  List title=['Yes','No'];
-  var title1Selected='Yes';
-  var title2Selected='Yes';
-  var title3Selected='Yes';
-  var title4Selected='Yes';
-  var month='September';
-  var day='1';
-  var year='2022';
+  List title = ['Yes', 'No'];
+  var title1Selected = 'Yes';
+  var title2Selected = 'Yes';
+  var title3Selected = 'Yes';
+  var title4Selected = 'Yes';
+  var month = 'September';
+  var day = '1';
+  var year = '2022';
   var dob;
   bool status = false;
   bool status1 = false;
@@ -45,21 +36,19 @@ class _HealthPageState extends State<HealthPage> {
   bool status10 = false;
   @override
   void initState() {
-    title1Selected=widget.model.covid19?.tuberculosisVaccine??"Yes";
-    title2Selected=widget.model.covid19?.careHomeBefore??"Yes";
-    title3Selected=widget.model.covid19?.demantiaCareBefore??"Yes";
-    title4Selected=widget.model.covid19?.drivingLicense??"Yes";
-
+    title1Selected = widget.model.covid19?.tuberculosisVaccine ?? "Yes";
+    title2Selected = widget.model.covid19?.careHomeBefore ?? "Yes";
+    title3Selected = widget.model.covid19?.demantiaCareBefore ?? "Yes";
+    title4Selected = widget.model.covid19?.drivingLicense ?? "Yes";
 
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-
-
       body: SafeArea(
         child: Container(
           child: SingleChildScrollView(
@@ -78,7 +67,7 @@ class _HealthPageState extends State<HealthPage> {
                         ),
                       ),
                       SizedBox(height: 10.h),
-                      Text(
+                      const Text(
                         'Details about your Health Condition',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
@@ -94,20 +83,7 @@ class _HealthPageState extends State<HealthPage> {
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.red,
-                              ),
-                              child: Icon(
-                                Icons.done,
-                                color: Colors.white,
-                                size: 20.sp,
-                              ),
-                            ),                        Spacer(),
-                            Container(
-                              height: 20.h,
-                              width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -117,11 +93,11 @@ class _HealthPageState extends State<HealthPage> {
                                 size: 20.sp,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -130,11 +106,12 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                               Spacer(),
+                            ),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -143,10 +120,12 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                       Spacer(), Container(
+                            ),
+                            const Spacer(),
+                            Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -155,12 +134,12 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                        Spacer(),
-
+                            ),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -169,11 +148,12 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                        Spacer(),
+                            ),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -182,11 +162,12 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                           Spacer(),
+                            ),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -195,11 +176,26 @@ class _HealthPageState extends State<HealthPage> {
                                 color: Colors.white,
                                 size: 20.sp,
                               ),
-                            ),                                Spacer(),
+                            ),
+                            const Spacer(),
                             Container(
                               height: 20.h,
                               width: 20.w,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red,
+                              ),
+                              child: Icon(
+                                Icons.done,
+                                color: Colors.white,
+                                size: 20.sp,
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                              height: 20.h,
+                              width: 20.w,
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,
                               ),
@@ -218,19 +214,19 @@ class _HealthPageState extends State<HealthPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                                 'Do you suffer from any of the health conditions listed'),
-                            Text('below?'),
+                            const Text('below?'),
                           ],
                         ),
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Diabetes'),
+                            const Text('Diabetes'),
                             // Container(
                             //   child: FlutterSwitch(
                             //     //activeColor: Colors.red,
@@ -255,22 +251,26 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status, onChanged:(val){
-                                      setState(() {
-                                        status=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status, onChanged:(val){
-                                      setState(() {
-                                        status=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
@@ -280,11 +280,14 @@ class _HealthPageState extends State<HealthPage> {
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(width: MediaQuery.of(context).size.width*0.6,child: Text('Heart or Circulatory Disorders')),
+                            Container(
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                child: const Text(
+                                    'Heart or Circulatory Disorders')),
                             // Container(
                             //   child: FlutterSwitch(
                             //     //activeColor: Colors.red,
@@ -309,22 +312,26 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status1, onChanged:(val){
-                                      setState(() {
-                                        status1=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status1,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status1 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status1, onChanged:(val){
-                                      setState(() {
-                                        status1=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status1,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status1 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
@@ -334,13 +341,14 @@ class _HealthPageState extends State<HealthPage> {
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                                width: MediaQuery.of(context).size.width*0.6,
-                                child: Text('Stomach or Intestinal Disorders')),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                child: const Text(
+                                    'Stomach or Intestinal Disorders')),
                             // Container(
                             //   child: FlutterSwitch(
                             //     //activeColor: Colors.red,
@@ -365,22 +373,26 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status2, onChanged:(val){
-                                      setState(() {
-                                        status2=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status2,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status2 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status2, onChanged:(val){
-                                      setState(() {
-                                        status2=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status2,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status2 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
@@ -390,13 +402,13 @@ class _HealthPageState extends State<HealthPage> {
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width:MediaQuery.of(context).size.width*0.6,
-                              child: Text(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: const Text(
                                   'Any disease which cause difficulty in sleeping'),
                             ),
                             // Container(
@@ -423,37 +435,40 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status3, onChanged:(val){
-                                      setState(() {
-                                        status3=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status3,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status3 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status3, onChanged:(val){
-                                      setState(() {
-                                        status3=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status3,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status3 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
                             )
-
                           ],
                         ),
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Chronic chest disorders'),
+                            const Text('Chronic chest disorders'),
                             // Container(
                             //   child: FlutterSwitch(
                             //     //activeColor: Colors.red,
@@ -478,37 +493,40 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status4, onChanged:(val){
-                                      setState(() {
-                                        status4=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status4,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status4 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status4, onChanged:(val){
-                                      setState(() {
-                                        status4=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status4,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status4 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
                             )
-
                           ],
                         ),
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
                                   'Any other medical condiotion, requring medication to a strict timetable?'),
                             ),
@@ -536,37 +554,40 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status5, onChanged:(val){
-                                      setState(() {
-                                        status5=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status5,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status5 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status5, onChanged:(val){
-                                      setState(() {
-                                        status5=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status5,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status5 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
                             )
-
                           ],
                         ),
                       ),
                       Container(
                         padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
+                            const Expanded(
                                 child: Text(
                                     'Have you recently shown flu-like/COVID-19 Symptoms?')),
                             // Container(
@@ -593,112 +614,128 @@ class _HealthPageState extends State<HealthPage> {
                               children: [
                                 Column(
                                   children: [
-                                    Text('Yes'),
-                                    Checkbox(value: status6, onChanged:(val){
-                                      setState(() {
-                                        status6=val!;
-                                      });
-                                    }),
+                                    const Text('Yes'),
+                                    Checkbox(
+                                        value: status6,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status6 = val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('No'),
-                                    Checkbox(value: !status6, onChanged:(val){
-                                      setState(() {
-                                        status6=!val!;
-                                      });
-                                    }),
+                                    const Text('No'),
+                                    Checkbox(
+                                        value: !status6,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            status6 = !val!;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ],
                             )
-
                           ],
                         ),
                       ),
                       Padding(
-                        padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                        padding:
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width*0.8,
+                              width: MediaQuery.of(context).size.width * 0.8,
                               margin: EdgeInsets.only(top: 20.h),
-                              child: Text(
-                                  'if you have answered \'yes\' to any of the above questions, you may be asked to see a doctor or nurse.',textAlign: TextAlign.justify),
-
+                              child: const Text(
+                                  'if you have answered \'yes\' to any of the above questions, you may be asked to see a doctor or nurse.',
+                                  textAlign: TextAlign.justify),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+                        padding:
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width*0.8,
+                              width: MediaQuery.of(context).size.width * 0.8,
                               margin: EdgeInsets.only(top: 20.h),
-                              child: Text(
-                                  'i confirm, in my declaration, that the above information provided is correct to the best of my knowledge.', textAlign: TextAlign.justify
-                              ),),
-
+                              child: const Text(
+                                  'i confirm, in my declaration, that the above information provided is correct to the best of my knowledge.',
+                                  textAlign: TextAlign.justify),
+                            ),
                           ],
                         ),
-                      ),                    ],
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                      child: Text('Date of last negative COVID-19 test'),
+                      child: const Text('Date of last negative COVID-19 test'),
                     ),
                     Padding(
                       padding:
-                      EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
+                          EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             height: 50.h,
                             width: 90.w,
-                            child:
-                            DropdownButtonFormField<String>(
+                            child: DropdownButtonFormField<String>(
                               value: day,
-                              items: List.generate(31, (index) => DropdownMenuItem(child: Text('${index+1}'),value: '${index+1}',)), onChanged:(String ?value){
-                              day=value!;
-                            }, decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                              hintStyle: GoogleFonts.dmSans(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
-                              ),
-                              fillColor: Colors.grey.shade200,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
+                              items: List.generate(
+                                  31,
+                                  (index) => DropdownMenuItem(
+                                        child: Text('${index + 1}'),
+                                        value: '${index + 1}',
+                                      )),
+                              onChanged: (String? value) {
+                                day = value!;
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 5),
+                                hintStyle: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  color: const Color(0xffACA9A9),
+                                ),
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                            ),),
+                            ),
                           ),
                           SizedBox(width: 10.w),
                           Container(
@@ -708,38 +745,60 @@ class _HealthPageState extends State<HealthPage> {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child:DropdownButtonFormField<String>(
-                              value:month,
-                              items: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((e) =>DropdownMenuItem(child: Text('${e}'),value:e,)).toList(), onChanged:(String ?value){
-                              month=value!;
-                            }, decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                              hintStyle: GoogleFonts.dmSans(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
-                              ),
-                              fillColor: Colors.grey.shade200,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
+                            child: DropdownButtonFormField<String>(
+                              value: month,
+                              items: [
+                                'January',
+                                'February',
+                                'March',
+                                'April',
+                                'May',
+                                'June',
+                                'July',
+                                'August',
+                                'September',
+                                'October',
+                                'November',
+                                'December'
+                              ]
+                                  .map((e) => DropdownMenuItem(
+                                        child: Text('${e}'),
+                                        value: e,
+                                      ))
+                                  .toList(),
+                              onChanged: (String? value) {
+                                month = value!;
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 5),
+                                hintStyle: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  color: const Color(0xffACA9A9),
+                                ),
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                            ),),
+                            ),
                           ),
                           SizedBox(width: 10.w),
                           Container(
@@ -749,278 +808,348 @@ class _HealthPageState extends State<HealthPage> {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child:DropdownButtonFormField<String>(
+                            child: DropdownButtonFormField<String>(
                               value: year,
-                              items: List.generate(DateTime.now().year, (index) => DropdownMenuItem(child: Text('${DateTime.now().year-index}'),value: '${DateTime.now().year-index}',)), onChanged:(String ?value){
-                              year=value!;
-                            }, decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                              hintStyle: GoogleFonts.dmSans(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
-                              ),
-                              fillColor: Colors.grey.shade200,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
+                              items: List.generate(
+                                  DateTime.now().year,
+                                  (index) => DropdownMenuItem(
+                                        child: Text(
+                                            '${DateTime.now().year - index}'),
+                                        value: '${DateTime.now().year - index}',
+                                      )),
+                              onChanged: (String? value) {
+                                year = value!;
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 5),
+                                hintStyle: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  color: const Color(0xffACA9A9),
+                                ),
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                            ),),
+                            ),
                           ),
                         ],
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                      child: Text('Have you ever had tuberculosis(TB) vaccine'),
+                      child: const Text(
+                          'Have you ever had tuberculosis(TB) vaccine'),
                     ),
                     Padding(
-                      padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w),
-                      child:
-                      DropdownButtonFormField<String>(
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                      child: DropdownButtonFormField<String>(
                         value: title1Selected,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return 'Please select from this field';
                           }
-                        },                                    items: title.map((e) => DropdownMenuItem<String>(child: Text(e),value:e,)).toList(), onChanged:(String ?value){
-                        title1Selected=value!;
-                      }, decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                        hintStyle: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.sp,
-                          color: Color(0xffACA9A9),
-                        ),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                        },
+                        items: title
+                            .map((e) => DropdownMenuItem<String>(
+                                  child: Text(e),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (String? value) {
+                          title1Selected = value!;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          hintStyle: GoogleFonts.dmSans(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                            color: const Color(0xffACA9A9),
+                          ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),),
+                      ),
                     ),
-
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                      child: Text('Have you worked in a care home before?'),
+                      child:
+                          const Text('Have you worked in a care home before?'),
                     ),
                     Padding(
-                      padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w),
-                      child:
-                      DropdownButtonFormField<String>(
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                      child: DropdownButtonFormField<String>(
                         value: title2Selected,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return 'Please select from this field';
                           }
-                        },                                    items: title.map((e) => DropdownMenuItem<String>(child: Text(e),value:e,)).toList(), onChanged:(String ?value){
-                        title2Selected=value!;
-                      }, decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                        hintStyle: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.sp,
-                          color: Color(0xffACA9A9),
-                        ),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                        },
+                        items: title
+                            .map((e) => DropdownMenuItem<String>(
+                                  child: Text(e),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (String? value) {
+                          title2Selected = value!;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          hintStyle: GoogleFonts.dmSans(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                            color: const Color(0xffACA9A9),
+                          ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),),
+                      ),
                     ),
-
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                      child: Text('Have you worked in demantia care before?'),
+                      child: const Text(
+                          'Have you worked in demantia care before?'),
                     ),
                     Padding(
-                      padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w),
-                      child:
-                      DropdownButtonFormField<String>(
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                      child: DropdownButtonFormField<String>(
                         value: title3Selected,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return 'Please select from this field';
                           }
-                        },                                    items: title.map((e) => DropdownMenuItem<String>(child: Text(e),value:e,)).toList(), onChanged:(String ?value){
-                        title3Selected=value!;
-                      }, decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                        hintStyle: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.sp,
-                          color: Color(0xffACA9A9),
-                        ),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                        },
+                        items: title
+                            .map((e) => DropdownMenuItem<String>(
+                                  child: Text(e),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (String? value) {
+                          title3Selected = value!;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          hintStyle: GoogleFonts.dmSans(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                            color: const Color(0xffACA9A9),
+                          ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),),
+                      ),
                     ),
-
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                      child: Text('Do you have a driving license?'),
+                      child: const Text('Do you have a driving license?'),
                     ),
                     Padding(
-                      padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w),
-                      child:
-                      DropdownButtonFormField<String>(
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                      child: DropdownButtonFormField<String>(
                         value: title4Selected,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return 'Please select from this field';
                           }
-                        },                                    items: title.map((e) => DropdownMenuItem<String>(child: Text(e),value:e,)).toList(), onChanged:(String ?value){
-                        title4Selected=value!;
-                      }, decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                        hintStyle: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.sp,
-                          color: Color(0xffACA9A9),
-                        ),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                        },
+                        items: title
+                            .map((e) => DropdownMenuItem<String>(
+                                  child: Text(e),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (String? value) {
+                          title4Selected = value!;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          hintStyle: GoogleFonts.dmSans(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                            color: const Color(0xffACA9A9),
+                          ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),),
+                      ),
                     ),
-
                   ],
                 ),
-
                 Padding(
-                  padding:
-                  EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h,bottom: 20.h),
+                  padding: EdgeInsets.only(
+                      left: 20.w, right: 20.w, top: 30.h, bottom: 20.h),
                   child: Row(
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap:(){
-                            HealthConditions details=new HealthConditions();
-                            if(status==true){details.diabetes='1';}else{details.diabetes='0';}
-                            if(status1==true){details.circulatoryDisorder='1';}else{details.circulatoryDisorder='0';}
-                            if(status2==true){details.stomachDisorder='1';}else{details.stomachDisorder='0';}
-                            if(status5==true){details.anyOtherConditionThatMedicationStrictTimetable='1';}else{details.anyOtherConditionThatMedicationStrictTimetable='0';}
-                            if(status4==true){details.chronicChestDisorder='1';}else{details.chronicChestDisorder='0';}
-                            if(status3==true){details.deseaseDifficultyInSleep='1';}else{details.deseaseDifficultyInSleep='0';}
-                            if(status6==true){details.haveYouCovid19Symptoms='1';}else{details.haveYouCovid19Symptoms='0';}
-                            widget.model.healthConditions=details;
-                            if(month =='January'){
+                          onTap: () {
+                            HealthConditions details = HealthConditions();
+                            if (status == true) {
+                              details.diabetes = '1';
+                            } else {
+                              details.diabetes = '0';
+                            }
+                            if (status1 == true) {
+                              details.circulatoryDisorder = '1';
+                            } else {
+                              details.circulatoryDisorder = '0';
+                            }
+                            if (status2 == true) {
+                              details.stomachDisorder = '1';
+                            } else {
+                              details.stomachDisorder = '0';
+                            }
+                            if (status5 == true) {
+                              details.anyOtherConditionThatMedicationStrictTimetable =
+                                  '1';
+                            } else {
+                              details.anyOtherConditionThatMedicationStrictTimetable =
+                                  '0';
+                            }
+                            if (status4 == true) {
+                              details.chronicChestDisorder = '1';
+                            } else {
+                              details.chronicChestDisorder = '0';
+                            }
+                            if (status3 == true) {
+                              details.deseaseDifficultyInSleep = '1';
+                            } else {
+                              details.deseaseDifficultyInSleep = '0';
+                            }
+                            if (status6 == true) {
+                              details.haveYouCovid19Symptoms = '1';
+                            } else {
+                              details.haveYouCovid19Symptoms = '0';
+                            }
+                            widget.model.healthConditions = details;
+                            if (month == 'January') {
                               month = '01';
-                            }else  if(month =='February'){
+                            } else if (month == 'February') {
                               month = '02';
-                            }else  if( month =='March'){
+                            } else if (month == 'March') {
                               month = '03';
-                            }else  if(month =='April'){
+                            } else if (month == 'April') {
                               month = '04';
-                            }else  if(month =='May'){
+                            } else if (month == 'May') {
                               month = '05';
-                            }else  if(month =='June'){
+                            } else if (month == 'June') {
                               month = '06';
-                            }else  if(month =='July'){
+                            } else if (month == 'July') {
                               month = '07';
-                            }else  if(month =='August'){
+                            } else if (month == 'August') {
                               month = '08';
-                            }else  if(month =='September'){
+                            } else if (month == 'September') {
                               month = '09';
-                            }else  if(month =='October'){
+                            } else if (month == 'October') {
                               month = '10';
-                            }else  if(month =='November'){
+                            } else if (month == 'November') {
                               month = '11';
-                            }else  if(month =='December'){
+                            } else if (month == 'December') {
                               month = '12';
                             }
-                            Covid19 detail=new Covid19();
-                            detail.covid19Test=year+'-'+month+'-'+day;
-                            detail.tuberculosisVaccine=title1Selected;
-                            detail.careHomeBefore=title2Selected;
-                            detail.demantiaCareBefore=title3Selected;
-                            detail.drivingLicense=title4Selected;
-                            widget.model.covid19=detail;
+                            Covid19 detail = Covid19();
+                            detail.covid19Test = '$year-$month-$day';
+                            detail.tuberculosisVaccine = title1Selected;
+                            detail.careHomeBefore = title2Selected;
+                            detail.demantiaCareBefore = title3Selected;
+                            detail.drivingLicense = title4Selected;
+                            widget.model.covid19 = detail;
                             Navigator.of(context).pop();
                           },
                           child: Container(
@@ -1030,8 +1159,13 @@ class _HealthPageState extends State<HealthPage> {
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: Center(
-                              child: Text('Previous',style: TextStyle(fontWeight: FontWeight.w500,color:Colors.white),),
+                            child: const Center(
+                              child: Text(
+                                'Previous',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
@@ -1040,49 +1174,83 @@ class _HealthPageState extends State<HealthPage> {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            HealthConditions details=new HealthConditions();
-                            if(status==true){details.diabetes='1';}else{details.diabetes='0';}
-                            if(status1==true){details.circulatoryDisorder='1';}else{details.circulatoryDisorder='0';}
-                            if(status2==true){details.stomachDisorder='1';}else{details.stomachDisorder='0';}
-                            if(status5==true){details.anyOtherConditionThatMedicationStrictTimetable='1';}else{details.anyOtherConditionThatMedicationStrictTimetable='0';}
-                            if(status4==true){details.chronicChestDisorder='1';}else{details.chronicChestDisorder='0';}
-                            if(status3==true){details.deseaseDifficultyInSleep='1';}else{details.deseaseDifficultyInSleep='0';}
-                            if(status6==true){details.haveYouCovid19Symptoms='1';}else{details.haveYouCovid19Symptoms='0';}
-                            widget.model.healthConditions=details;
-                            if(month =='January'){
+                            HealthConditions details = HealthConditions();
+                            if (status == true) {
+                              details.diabetes = '1';
+                            } else {
+                              details.diabetes = '0';
+                            }
+                            if (status1 == true) {
+                              details.circulatoryDisorder = '1';
+                            } else {
+                              details.circulatoryDisorder = '0';
+                            }
+                            if (status2 == true) {
+                              details.stomachDisorder = '1';
+                            } else {
+                              details.stomachDisorder = '0';
+                            }
+                            if (status5 == true) {
+                              details.anyOtherConditionThatMedicationStrictTimetable =
+                                  '1';
+                            } else {
+                              details.anyOtherConditionThatMedicationStrictTimetable =
+                                  '0';
+                            }
+                            if (status4 == true) {
+                              details.chronicChestDisorder = '1';
+                            } else {
+                              details.chronicChestDisorder = '0';
+                            }
+                            if (status3 == true) {
+                              details.deseaseDifficultyInSleep = '1';
+                            } else {
+                              details.deseaseDifficultyInSleep = '0';
+                            }
+                            if (status6 == true) {
+                              details.haveYouCovid19Symptoms = '1';
+                            } else {
+                              details.haveYouCovid19Symptoms = '0';
+                            }
+                            widget.model.healthConditions = details;
+                            if (month == 'January') {
                               month = '01';
-                            }else  if(month =='February'){
+                            } else if (month == 'February') {
                               month = '02';
-                            }else  if( month =='March'){
+                            } else if (month == 'March') {
                               month = '03';
-                            }else  if(month =='April'){
+                            } else if (month == 'April') {
                               month = '04';
-                            }else  if(month =='May'){
+                            } else if (month == 'May') {
                               month = '05';
-                            }else  if(month =='June'){
+                            } else if (month == 'June') {
                               month = '06';
-                            }else  if(month =='July'){
+                            } else if (month == 'July') {
                               month = '07';
-                            }else  if(month =='August'){
+                            } else if (month == 'August') {
                               month = '08';
-                            }else  if(month =='September'){
+                            } else if (month == 'September') {
                               month = '09';
-                            }else  if(month =='October'){
+                            } else if (month == 'October') {
                               month = '10';
-                            }else  if(month =='November'){
+                            } else if (month == 'November') {
                               month = '11';
-                            }else  if(month =='December'){
+                            } else if (month == 'December') {
                               month = '12';
                             }
-                            Covid19 detail=new Covid19();
-                            detail.covid19Test=year+'-'+month+'-'+day;
-                            detail.tuberculosisVaccine=title1Selected;
-                            detail.careHomeBefore=title2Selected;
-                            detail.demantiaCareBefore=title3Selected;
-                            detail.drivingLicense=title4Selected;
-                            widget.model.covid19=detail;
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WorkingTimePage(model:widget.model)));
-
+                            Covid19 detail = Covid19();
+                            detail.covid19Test = '$year-$month-$day';
+                            detail.tuberculosisVaccine = title1Selected;
+                            detail.careHomeBefore = title2Selected;
+                            detail.demantiaCareBefore = title3Selected;
+                            detail.drivingLicense = title4Selected;
+                            widget.model.covid19 = detail;
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    WorkingTimePage(model: widget.model),
+                              ),
+                            );
                           },
                           child: Container(
                             height: 60.h,
@@ -1091,8 +1259,13 @@ class _HealthPageState extends State<HealthPage> {
                               color: Colors.pink,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: Center(
-                              child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color:Colors.white),),
+                            child: const Center(
+                              child: Text(
+                                'Next',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
@@ -1100,7 +1273,6 @@ class _HealthPageState extends State<HealthPage> {
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -1109,9 +1281,6 @@ class _HealthPageState extends State<HealthPage> {
     );
   }
 }
-
-
-
 
 //
 // import 'package:flutter/cupertino.dart';

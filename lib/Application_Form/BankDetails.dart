@@ -1,21 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixel_app/Application_Form/Covid_19_Questions.dart';
 import 'package:pixel_app/Application_Form/HealthCondition.dart';
-import 'package:pixel_app/Application_Form/refrence.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Constants/Constant.dart';
-import 'Conviction.dart';
 import 'Model/ApplicationFormModel.dart';
 
 class BankDetailPage extends StatefulWidget {
   BankDetailPage({required this.model});
-  ApplicationFormModel model = new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
   @override
   State<BankDetailPage> createState() => _BankDetailPageState();
 }
@@ -39,27 +34,27 @@ class _BankDetailPageState extends State<BankDetailPage> {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -71,16 +66,16 @@ class _BankDetailPageState extends State<BankDetailPage> {
     );
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
-  TextEditingController companyname = new TextEditingController();
-  TextEditingController bankname = new TextEditingController();
-  TextEditingController accountname = new TextEditingController();
-  TextEditingController accountnum = new TextEditingController();
-  TextEditingController code = new TextEditingController();
-  TextEditingController branch = new TextEditingController();
+  TextEditingController companyname = TextEditingController();
+  TextEditingController bankname = TextEditingController();
+  TextEditingController accountname = TextEditingController();
+  TextEditingController accountnum = TextEditingController();
+  TextEditingController code = TextEditingController();
+  TextEditingController branch = TextEditingController();
   Future<void> _SetVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
 
@@ -114,7 +109,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
     accountname.text = widget.model.bankDetails?.accountName ?? "";
     accountnum.text = widget.model.bankDetails?.accountNo ?? "";
     code.text = widget.model.bankDetails?.sortCode ?? "";
-    Future.delayed(Duration(seconds: 1)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       setState(() {
         formKey.currentState?.validate();
       });
@@ -132,7 +127,8 @@ class _BankDetailPageState extends State<BankDetailPage> {
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+              MaterialPageRoute(
+                  builder: (context) => const bottomNavigationBar()),
               (Route route) => false);
           return false as Future<bool>;
         },
@@ -167,7 +163,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -177,11 +173,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -191,11 +187,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -205,11 +201,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -219,11 +215,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -233,11 +229,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -247,11 +243,11 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 20.h,
                           width: 20.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
                           ),
@@ -261,7 +257,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             size: 20.sp,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 10.h,
                           width: 10.w,
@@ -270,7 +266,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             color: Colors.blue.shade200,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 10.h,
                           width: 10.w,
@@ -288,7 +284,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                        child: Text('Name of Bank'),
+                        child: const Text('Name of Bank'),
                       ),
                       Padding(
                         padding:
@@ -308,27 +304,27 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w500,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
-                            fillColor: Color(0xfff0f0f0),
+                            fillColor: const Color(0xfff0f0f0),
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
@@ -346,7 +342,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                       // ),
                       Container(
                         margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                        child: Text('Account Name'),
+                        child: const Text('Account Name'),
                       ),
                       Padding(
                         padding:
@@ -366,27 +362,27 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w500,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
-                            fillColor: Color(0xfff0f0f0),
+                            fillColor: const Color(0xfff0f0f0),
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
@@ -404,7 +400,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                       // ),
                       Container(
                         margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                        child: Text('Account Number '),
+                        child: const Text('Account Number '),
                       ),
                       Padding(
                         padding:
@@ -424,27 +420,27 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w500,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
-                            fillColor: Color(0xfff0f0f0),
+                            fillColor: const Color(0xfff0f0f0),
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
@@ -461,7 +457,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                       // ),
                       Container(
                         margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                        child: Text('Sort Code'),
+                        child: const Text('Sort Code'),
                       ),
                       Padding(
                         padding:
@@ -481,27 +477,27 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w500,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
-                            fillColor: Color(0xfff0f0f0),
+                            fillColor: const Color(0xfff0f0f0),
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
@@ -526,7 +522,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
-                                  BankDetails details = new BankDetails();
+                                  BankDetails details = BankDetails();
                                   details.accountName = accountname.text;
                                   details.accountNo = accountnum.text;
                                   details.nameOfBank = bankname.text;
@@ -541,7 +537,7 @@ class _BankDetailPageState extends State<BankDetailPage> {
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       'Previous',
                                       style: TextStyle(
@@ -556,23 +552,14 @@ class _BankDetailPageState extends State<BankDetailPage> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
+                                  print(widget.model.bankDetails);
                                   if (formKey.currentState!.validate()) {
-                                    BankDetails details = new BankDetails();
+                                    BankDetails details = BankDetails();
                                     details.accountName = accountname.text;
                                     details.accountNo = accountnum.text;
                                     details.nameOfBank = bankname.text;
                                     details.sortCode = code.text;
                                     widget.model.bankDetails = details;
-
-                                    // uncomment me
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) => refrenceform(
-                                    //       model: widget.model,
-                                    //     ),
-                                    //   ),
-                                    // );
 
                                     Navigator.push(
                                       context,
@@ -591,19 +578,20 @@ class _BankDetailPageState extends State<BankDetailPage> {
                                     color:
                                         formKey.currentState?.validate() == true
                                             ? Colors.pink
-                                            : Color(0xfffaeaea),
+                                            : const Color(0xfffaeaea),
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                   child: Center(
                                     child: Text(
                                       'Next',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          color: formKey.currentState
-                                                      ?.validate() ==
-                                                  true
-                                              ? Colors.white
-                                              : Colors.grey.shade500),
+                                        fontWeight: FontWeight.w500,
+                                        color:
+                                            formKey.currentState?.validate() ==
+                                                    true
+                                                ? Colors.white
+                                                : Colors.grey.shade500,
+                                      ),
                                     ),
                                   ),
                                 ),

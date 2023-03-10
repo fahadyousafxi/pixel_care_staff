@@ -1,6 +1,6 @@
 class ApplicationFormModel {
-  String? postAppliedFor;
-  String? howHeardVacancy;
+  dynamic postAppliedFor;
+  dynamic howHeardVacancy;
   PersonalDetail? personalDetail;
   Convictions? convictions;
   Address? address;
@@ -16,140 +16,139 @@ class ApplicationFormModel {
 
   ApplicationFormModel(
       {this.postAppliedFor,
-        this.howHeardVacancy,
-        this.personalDetail,
-        this.convictions,
-        this.address,
-        this.nextOfKin,
-        this.nmcDetail,
-        this.dbsDetail,
-        this.employment,
-        this.covid19,
-        this.bankDetails,
-        this.healthConditions,
-        this.timeRegulations,
-        this.decleration});
+      this.howHeardVacancy,
+      this.personalDetail,
+      this.convictions,
+      this.address,
+      this.nextOfKin,
+      this.nmcDetail,
+      this.dbsDetail,
+      this.employment,
+      this.covid19,
+      this.bankDetails,
+      this.healthConditions,
+      this.timeRegulations,
+      this.decleration});
 
   ApplicationFormModel.fromJson(Map<String, dynamic> json) {
     postAppliedFor = json['post_applied_for'];
     howHeardVacancy = json['how_heard_vacancy'];
     personalDetail = json['personal_detail'] != null
-        ? new PersonalDetail.fromJson(json['personal_detail'])
+        ? PersonalDetail.fromJson(json['personal_detail'])
         : null;
     convictions = json['convictions'] != null
-        ? new Convictions.fromJson(json['convictions'])
+        ? Convictions.fromJson(json['convictions'])
         : null;
     address =
-    json['address'] != null ? new Address.fromJson(json['address']) : null;
+        json['address'] != null ? Address.fromJson(json['address']) : null;
     nextOfKin = json['next_of_kin'] != null
-        ? new NextOfKin.fromJson(json['next_of_kin'])
+        ? NextOfKin.fromJson(json['next_of_kin'])
         : null;
     nmcDetail = json['nmc_detail'] != null
-        ? new NmcDetail.fromJson(json['nmc_detail'])
+        ? NmcDetail.fromJson(json['nmc_detail'])
         : null;
     dbsDetail = json['dbs_detail'] != null
-        ? new DbsDetail.fromJson(json['dbs_detail'])
+        ? DbsDetail.fromJson(json['dbs_detail'])
         : null;
     if (json['employment'] != null) {
       employment = <Employment>[];
       json['employment'].forEach((v) {
-        employment!.add(new Employment.fromJson(v));
+        employment!.add(Employment.fromJson(v));
       });
     }
-    covid19 = json['covid_19'] != null
-        ? new Covid19.fromJson(json['covid_19'])
-        : null;
+    covid19 =
+        json['covid_19'] != null ? Covid19.fromJson(json['covid_19']) : null;
     bankDetails = json['bank_details'] != null
-        ? new BankDetails.fromJson(json['bank_details'])
+        ? BankDetails.fromJson(json['bank_details'])
         : null;
     healthConditions = json['health_conditions'] != null
-        ? new HealthConditions.fromJson(json['health_conditions'])
+        ? HealthConditions.fromJson(json['health_conditions'])
         : null;
     timeRegulations = json['time_regulations'] != null
-        ? new TimeRegulations.fromJson(json['time_regulations'])
+        ? TimeRegulations.fromJson(json['time_regulations'])
         : null;
     decleration = json['decleration'] != null
-        ? new Decleration.fromJson(json['decleration'])
+        ? Decleration.fromJson(json['decleration'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['post_applied_for'] = this.postAppliedFor;
-    data['how_heard_vacancy'] = this.howHeardVacancy;
-    if (this.personalDetail != null) {
-      data['personal_detail'] = this.personalDetail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['post_applied_for'] = postAppliedFor;
+    data['how_heard_vacancy'] = howHeardVacancy;
+    if (personalDetail != null) {
+      data['personal_detail'] = personalDetail!.toJson();
     }
-    if (this.convictions != null) {
-      data['convictions'] = this.convictions!.toJson();
+    if (convictions != null) {
+      data['convictions'] = convictions!.toJson();
     }
-    if (this.address != null) {
-      data['address'] = this.address!.toJson();
+    if (address != null) {
+      data['address'] = address!.toJson();
     }
-    if (this.nextOfKin != null) {
-      data['next_of_kin'] = this.nextOfKin!.toJson();
+    if (nextOfKin != null) {
+      data['next_of_kin'] = nextOfKin!.toJson();
     }
-    if (this.nmcDetail != null) {
-      data['nmc_detail'] = this.nmcDetail!.toJson();
+    if (nmcDetail != null) {
+      data['nmc_detail'] = nmcDetail!.toJson();
     }
-    if (this.dbsDetail != null) {
-      data['dbs_detail'] = this.dbsDetail!.toJson();
+    if (dbsDetail != null) {
+      data['dbs_detail'] = dbsDetail!.toJson();
     }
-    if (this.employment != null) {
-      data['employment'] = this.employment!.map((v) => v.toJson()).toList();
+    if (employment != null) {
+      data['employment'] = employment!.map((v) => v.toJson()).toList();
     }
-    if (this.covid19 != null) {
-      data['covid_19'] = this.covid19!.toJson();
+    if (covid19 != null) {
+      data['covid_19'] = covid19!.toJson();
     }
-    if (this.bankDetails != null) {
-      data['bank_details'] = this.bankDetails!.toJson();
+    if (bankDetails != null) {
+      data['bank_details'] = bankDetails!.toJson();
     }
-    if (this.healthConditions != null) {
-      data['health_conditions'] = this.healthConditions!.toJson();
+    if (healthConditions != null) {
+      data['health_conditions'] = healthConditions!.toJson();
     }
-    if (this.timeRegulations != null) {
-      data['time_regulations'] = this.timeRegulations!.toJson();
+    if (timeRegulations != null) {
+      data['time_regulations'] = timeRegulations!.toJson();
     }
-    if (this.decleration != null) {
-      data['decleration'] = this.decleration!.toJson();
+    if (decleration != null) {
+      data['decleration'] = decleration!.toJson();
     }
     return data;
   }
 }
 
 class PersonalDetail {
-  String? title;
-  String? surname;
-  String? forename;
-  String? dob;
-  String? gender;
-  String? address;
-  String? townCity;
-  String? postalCode;
-  String? country;
-  String? nationality;
-  String? homeTel;
-  String? dayTimeContact;
-  String? email;
-  String? nationalInsuranceNo;
-  String? remainTakeupEmploymentInUk;
+  dynamic title;
+  dynamic surname;
+  dynamic forename;
+  dynamic dob;
+  dynamic gender;
+  dynamic address;
+  dynamic townCity;
+  dynamic postalCode;
+  dynamic country;
+  dynamic nationality;
+  dynamic homeTel;
+  dynamic dayTimeContact;
+  dynamic email;
+  dynamic nationalInsuranceNo;
+  dynamic remainTakeupEmploymentInUk;
 
   PersonalDetail(
       {this.title,
-        this.surname,
-        this.forename,
-        this.dob,
-        this.gender,
-        this.address,
-        this.townCity,
-        this.postalCode,
-        this.country,
-        this.nationality,
-        this.homeTel,
-        this.dayTimeContact,
-        this.email,
-        this.nationalInsuranceNo,
-        this.remainTakeupEmploymentInUk});
+      this.surname,
+      this.forename,
+      this.dob,
+      this.gender,
+      this.address,
+      this.townCity,
+      this.postalCode,
+      this.country,
+      this.nationality,
+      this.homeTel,
+      this.dayTimeContact,
+      this.email,
+      this.nationalInsuranceNo,
+      this.remainTakeupEmploymentInUk});
 
   PersonalDetail.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -170,28 +169,28 @@ class PersonalDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['surname'] = this.surname;
-    data['forename'] = this.forename;
-    data['dob'] = this.dob;
-    data['gender'] = this.gender;
-    data['address'] = this.address;
-    data['town_city'] = this.townCity;
-    data['postal_code'] = this.postalCode;
-    data['country'] = this.country;
-    data['nationality'] = this.nationality;
-    data['home_tel'] = this.homeTel;
-    data['day_time_contact'] = this.dayTimeContact;
-    data['email'] = this.email;
-    data['national_insurance_no'] = this.nationalInsuranceNo;
-    data['remain_takeup_employment_in_uk'] = this.remainTakeupEmploymentInUk;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['surname'] = surname;
+    data['forename'] = forename;
+    data['dob'] = dob;
+    data['gender'] = gender;
+    data['address'] = address;
+    data['town_city'] = townCity;
+    data['postal_code'] = postalCode;
+    data['country'] = country;
+    data['nationality'] = nationality;
+    data['home_tel'] = homeTel;
+    data['day_time_contact'] = dayTimeContact;
+    data['email'] = email;
+    data['national_insurance_no'] = nationalInsuranceNo;
+    data['remain_takeup_employment_in_uk'] = remainTakeupEmploymentInUk;
     return data;
   }
 }
 
 class Convictions {
-  String? disclosure;
+  dynamic disclosure;
 
   Convictions({this.disclosure});
 
@@ -200,16 +199,16 @@ class Convictions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['disclosure'] = this.disclosure;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['disclosure'] = disclosure;
     return data;
   }
 }
 
 class Address {
-  String? houseNumber;
-  String? postalCode;
-  String? address;
+  dynamic houseNumber;
+  dynamic postalCode;
+  dynamic address;
 
   Address({this.houseNumber, this.postalCode, this.address});
 
@@ -220,37 +219,37 @@ class Address {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['house_number'] = this.houseNumber;
-    data['postal_code'] = this.postalCode;
-    data['address'] = this.address;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['house_number'] = houseNumber;
+    data['postal_code'] = postalCode;
+    data['address'] = address;
     return data;
   }
 }
 
 class NextOfKin {
-  String? title;
-  String? surname;
-  String? forename;
-  String? dob;
-  String? postalCode;
-  String? address;
-  String? homeTel;
-  String? dayTimeContact;
-  String? email;
-  String? relationToYou;
+  dynamic title;
+  dynamic surname;
+  dynamic forename;
+  dynamic dob;
+  dynamic postalCode;
+  dynamic address;
+  dynamic homeTel;
+  dynamic dayTimeContact;
+  dynamic email;
+  dynamic relationToYou;
 
   NextOfKin(
       {this.title,
-        this.surname,
-        this.forename,
-        this.dob,
-        this.postalCode,
-        this.address,
-        this.homeTel,
-        this.dayTimeContact,
-        this.email,
-        this.relationToYou});
+      this.surname,
+      this.forename,
+      this.dob,
+      this.postalCode,
+      this.address,
+      this.homeTel,
+      this.dayTimeContact,
+      this.email,
+      this.relationToYou});
 
   NextOfKin.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -266,24 +265,24 @@ class NextOfKin {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['surname'] = this.surname;
-    data['forename'] = this.forename;
-    data['dob'] = this.dob;
-    data['postal_code'] = this.postalCode;
-    data['address'] = this.address;
-    data['home_tel'] = this.homeTel;
-    data['day_time_contact'] = this.dayTimeContact;
-    data['email'] = this.email;
-    data['relation_to_you'] = this.relationToYou;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['surname'] = surname;
+    data['forename'] = forename;
+    data['dob'] = dob;
+    data['postal_code'] = postalCode;
+    data['address'] = address;
+    data['home_tel'] = homeTel;
+    data['day_time_contact'] = dayTimeContact;
+    data['email'] = email;
+    data['relation_to_you'] = relationToYou;
     return data;
   }
 }
 
 class NmcDetail {
-  String? nmcPinNo;
-  String? expiryDate;
+  dynamic nmcPinNo;
+  dynamic expiryDate;
 
   NmcDetail({this.nmcPinNo, this.expiryDate});
 
@@ -293,24 +292,24 @@ class NmcDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nmc_pin_no'] = this.nmcPinNo;
-    data['expiry_date'] = this.expiryDate;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nmc_pin_no'] = nmcPinNo;
+    data['expiry_date'] = expiryDate;
     return data;
   }
 }
 
 class DbsDetail {
-  String? dbsCertificationNo;
-  String? registerOnlineDbs;
-  String? codeNo;
-  String? permissionToCheckOnline;
+  dynamic dbsCertificationNo;
+  dynamic registerOnlineDbs;
+  dynamic codeNo;
+  dynamic permissionToCheckOnline;
 
   DbsDetail(
       {this.dbsCertificationNo,
-        this.registerOnlineDbs,
-        this.codeNo,
-        this.permissionToCheckOnline});
+      this.registerOnlineDbs,
+      this.codeNo,
+      this.permissionToCheckOnline});
 
   DbsDetail.fromJson(Map<String, dynamic> json) {
     dbsCertificationNo = json['dbs_certification_no'];
@@ -320,34 +319,34 @@ class DbsDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dbs_certification_no'] = this.dbsCertificationNo;
-    data['register_online_dbs'] = this.registerOnlineDbs;
-    data['code_no'] = this.codeNo;
-    data['permission_to_check_online'] = this.permissionToCheckOnline;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['dbs_certification_no'] = dbsCertificationNo;
+    data['register_online_dbs'] = registerOnlineDbs;
+    data['code_no'] = codeNo;
+    data['permission_to_check_online'] = permissionToCheckOnline;
     return data;
   }
 }
 
 class Employment {
-  String? type;
-  String? dateStarted;
-  String? nameOfEmployer;
-  String? positionHeld;
-  String? reasonForLeaving;
-  String? salaryOnLeavingPost;
-  String? noticePeriod;
-  String? dutiesDescription;
+  dynamic type;
+  dynamic dateStarted;
+  dynamic nameOfEmployer;
+  dynamic positionHeld;
+  dynamic reasonForLeaving;
+  dynamic salaryOnLeavingPost;
+  dynamic noticePeriod;
+  dynamic dutiesDescription;
 
   Employment(
       {this.type,
-        this.dateStarted,
-        this.nameOfEmployer,
-        this.positionHeld,
-        this.reasonForLeaving,
-        this.salaryOnLeavingPost,
-        this.noticePeriod,
-        this.dutiesDescription});
+      this.dateStarted,
+      this.nameOfEmployer,
+      this.positionHeld,
+      this.reasonForLeaving,
+      this.salaryOnLeavingPost,
+      this.noticePeriod,
+      this.dutiesDescription});
 
   Employment.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -361,32 +360,32 @@ class Employment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['date_started'] = this.dateStarted;
-    data['name_of_employer'] = this.nameOfEmployer;
-    data['position_held'] = this.positionHeld;
-    data['reason_for_leaving'] = this.reasonForLeaving;
-    data['salary_on_leaving_post'] = this.salaryOnLeavingPost;
-    data['notice_period'] = this.noticePeriod;
-    data['duties_description'] = this.dutiesDescription;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['date_started'] = dateStarted;
+    data['name_of_employer'] = nameOfEmployer;
+    data['position_held'] = positionHeld;
+    data['reason_for_leaving'] = reasonForLeaving;
+    data['salary_on_leaving_post'] = salaryOnLeavingPost;
+    data['notice_period'] = noticePeriod;
+    data['duties_description'] = dutiesDescription;
     return data;
   }
 }
 
 class Covid19 {
-  String? covid19Test;
-  String? tuberculosisVaccine;
-  String? careHomeBefore;
-  String? demantiaCareBefore;
-  String? drivingLicense;
+  dynamic covid19Test;
+  dynamic tuberculosisVaccine;
+  dynamic careHomeBefore;
+  dynamic demantiaCareBefore;
+  dynamic drivingLicense;
 
   Covid19(
       {this.covid19Test,
-        this.tuberculosisVaccine,
-        this.careHomeBefore,
-        this.demantiaCareBefore,
-        this.drivingLicense});
+      this.tuberculosisVaccine,
+      this.careHomeBefore,
+      this.demantiaCareBefore,
+      this.drivingLicense});
 
   Covid19.fromJson(Map<String, dynamic> json) {
     covid19Test = json['covid19_test'];
@@ -397,21 +396,21 @@ class Covid19 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['covid19_test'] = this.covid19Test;
-    data['tuberculosis_vaccine'] = this.tuberculosisVaccine;
-    data['care_home_before'] = this.careHomeBefore;
-    data['demantia_care_before'] = this.demantiaCareBefore;
-    data['driving_license'] = this.drivingLicense;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['covid19_test'] = covid19Test;
+    data['tuberculosis_vaccine'] = tuberculosisVaccine;
+    data['care_home_before'] = careHomeBefore;
+    data['demantia_care_before'] = demantiaCareBefore;
+    data['driving_license'] = drivingLicense;
     return data;
   }
 }
 
 class BankDetails {
-  String? nameOfBank;
-  String? accountName;
-  String? accountNo;
-  String? sortCode;
+  dynamic nameOfBank;
+  dynamic accountName;
+  dynamic accountNo;
+  dynamic sortCode;
 
   BankDetails(
       {this.nameOfBank, this.accountName, this.accountNo, this.sortCode});
@@ -424,32 +423,32 @@ class BankDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name_of_bank'] = this.nameOfBank;
-    data['account_name'] = this.accountName;
-    data['account_no'] = this.accountNo;
-    data['sort_code'] = this.sortCode;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name_of_bank'] = nameOfBank;
+    data['account_name'] = accountName;
+    data['account_no'] = accountNo;
+    data['sort_code'] = sortCode;
     return data;
   }
 }
 
 class HealthConditions {
-  String? diabetes;
-  String? circulatoryDisorder;
-  String? stomachDisorder;
-  String? deseaseDifficultyInSleep;
-  String? chronicChestDisorder;
-  String? anyOtherConditionThatMedicationStrictTimetable;
-  String? haveYouCovid19Symptoms;
+  dynamic diabetes;
+  dynamic circulatoryDisorder;
+  dynamic stomachDisorder;
+  dynamic deseaseDifficultyInSleep;
+  dynamic chronicChestDisorder;
+  dynamic anyOtherConditionThatMedicationStrictTimetable;
+  dynamic haveYouCovid19Symptoms;
 
   HealthConditions(
       {this.diabetes,
-        this.circulatoryDisorder,
-        this.stomachDisorder,
-        this.deseaseDifficultyInSleep,
-        this.chronicChestDisorder,
-        this.anyOtherConditionThatMedicationStrictTimetable,
-        this.haveYouCovid19Symptoms});
+      this.circulatoryDisorder,
+      this.stomachDisorder,
+      this.deseaseDifficultyInSleep,
+      this.chronicChestDisorder,
+      this.anyOtherConditionThatMedicationStrictTimetable,
+      this.haveYouCovid19Symptoms});
 
   HealthConditions.fromJson(Map<String, dynamic> json) {
     diabetes = json['diabetes'];
@@ -458,27 +457,27 @@ class HealthConditions {
     deseaseDifficultyInSleep = json['desease_difficulty_in_sleep'];
     chronicChestDisorder = json['chronic_chest_disorder'];
     anyOtherConditionThatMedicationStrictTimetable =
-    json['any_other_condition_that_medication_strict_timetable'];
+        json['any_other_condition_that_medication_strict_timetable'];
     haveYouCovid19Symptoms = json['have_you_covid19_symptoms'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['diabetes'] = this.diabetes;
-    data['circulatory_disorder'] = this.circulatoryDisorder;
-    data['stomach_disorder'] = this.stomachDisorder;
-    data['desease_difficulty_in_sleep'] = this.deseaseDifficultyInSleep;
-    data['chronic_chest_disorder'] = this.chronicChestDisorder;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['diabetes'] = diabetes;
+    data['circulatory_disorder'] = circulatoryDisorder;
+    data['stomach_disorder'] = stomachDisorder;
+    data['desease_difficulty_in_sleep'] = deseaseDifficultyInSleep;
+    data['chronic_chest_disorder'] = chronicChestDisorder;
     data['any_other_condition_that_medication_strict_timetable'] =
-        this.anyOtherConditionThatMedicationStrictTimetable;
-    data['have_you_covid19_symptoms'] = this.haveYouCovid19Symptoms;
+        anyOtherConditionThatMedicationStrictTimetable;
+    data['have_you_covid19_symptoms'] = haveYouCovid19Symptoms;
     return data;
   }
 }
 
 class TimeRegulations {
-  int? otpOut;
-  int? doNotOtpOut;
+  dynamic otpOut;
+  dynamic doNotOtpOut;
 
   TimeRegulations({this.otpOut, this.doNotOtpOut});
 
@@ -488,16 +487,16 @@ class TimeRegulations {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['otp_out'] = this.otpOut;
-    data['do_not_otp_out'] = this.doNotOtpOut;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['otp_out'] = otpOut;
+    data['do_not_otp_out'] = doNotOtpOut;
     return data;
   }
 }
 
 class Decleration {
-  String? signature;
-  String? date;
+  dynamic signature;
+  dynamic date;
 
   Decleration({this.signature, this.date});
 
@@ -507,9 +506,9 @@ class Decleration {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['signature'] = this.signature;
-    data['date'] = this.date;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['signature'] = signature;
+    data['date'] = date;
     return data;
   }
 }

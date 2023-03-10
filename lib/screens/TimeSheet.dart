@@ -1,18 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
-import 'package:date_time_picker/date_time_picker.dart';
+
 import 'package:duration_picker/duration_picker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Controller/TimesheetController.dart';
-import '../Model/TimeSubtractor.dart';
 import '../Model/TimesheetModel.dart';
 
 class TimeSheetPage extends StatefulWidget {
@@ -62,7 +58,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
               children: [
                 Text(
                   text1,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                   ),
                 ),
@@ -70,7 +66,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
             ),
             Text(
               text2,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.blue,
               ),
             ),
@@ -94,7 +90,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.grey,
           ),
@@ -161,7 +157,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
 //                              iconData: Icons.check_box_outline_blank,
                                   text1: 'Staff Name',
                                   text2:
-                                      '${snapshot.data?.data?.staffName == null ? 'Add availibility first' : snapshot.data?.data?.staffName}',
+                                      '${snapshot.data?.data?.staffName ?? 'Add availability first'}',
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -186,33 +182,19 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Job Post',
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Spacer(),
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                '${snapshot.data?.data?.jobPost}',
-                                                style: TextStyle(
-                                                  color: Colors.blue,
-                                                ),
-                                              ),
-                                              // Icon(
-                                              //   Icons.keyboard_arrow_down_outlined,
-                                              //   color: Colors.grey,
-                                              // ),
-                                            ],
+                                        const Text(
+                                          'Job Post',
+                                          style: TextStyle(
+                                            color: Colors.grey,
                                           ),
-                                        )
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          '${snapshot.data!.data!.jobPost[1]}',
+                                          style: const TextStyle(
+                                            color: Colors.blue,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -221,13 +203,13 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
 //                              iconData: Icons.check_box_outline_blank,
                                   text1: 'Shift Date',
                                   text2:
-                                      '${snapshot.data?.data?.date == null ? 'Add availibility first' : snapshot.data?.data?.date}',
+                                      '${snapshot.data?.data?.date ?? 'Add availability first'}',
                                 ),
                                 MyContainer(
 //                              iconData: Icons.check_box_outline_blank,
                                   text1: 'Shift Select',
                                   text2:
-                                      '${snapshot.data?.data?.shiftTime == null ? 'Add availibility first' : snapshot.data?.data?.shiftTime}',
+                                      '${snapshot.data?.data?.shiftTime ?? 'Add availability first'}',
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -263,7 +245,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Row(
-                                            children: [
+                                            children: const [
                                               Text(
                                                 'Start Time',
                                                 style: TextStyle(
@@ -272,13 +254,13 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                               ),
                                             ],
                                           ),
-                                          Spacer(),
+                                          const Spacer(),
                                           Text(
                                             '${starttime.hour} hrs:${starttime.minute} min',
-                                            style:
-                                                TextStyle(color: Colors.blue),
+                                            style: const TextStyle(
+                                                color: Colors.blue),
                                           ),
-                                          Icon(
+                                          const Icon(
                                             Icons.more_time_outlined,
                                             color: Colors.blue,
                                           )
@@ -321,7 +303,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Row(
-                                            children: [
+                                            children: const [
                                               Text(
                                                 'End Time',
                                                 style: TextStyle(
@@ -330,13 +312,13 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                               ),
                                             ],
                                           ),
-                                          Spacer(),
+                                          const Spacer(),
                                           Text(
                                               '${endtime.hour} hrs:${endtime.minute} min',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.blue,
                                               )),
-                                          Icon(
+                                          const Icon(
                                             Icons.more_time_outlined,
                                             color: Colors.blue,
                                           )
@@ -369,7 +351,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Row(
-                                          children: [
+                                          children: const [
                                             Text(
                                               'Break Time',
                                               style: TextStyle(
@@ -378,25 +360,28 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                             ),
                                           ],
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         Text(
                                           '${brk} min',
-                                          style: TextStyle(color: Colors.blue),
+                                          style: const TextStyle(
+                                              color: Colors.blue),
                                         ),
                                         InkWell(
                                             onTap: () async {
                                               var duration =
                                                   await showDurationPicker(
                                                       context: context,
-                                                      initialTime: Duration(
-                                                          seconds: 60));
+                                                      initialTime:
+                                                          const Duration(
+                                                              seconds: 60));
                                               setState(() {
                                                 if (duration!.inMinutes <= 60) {
                                                   brk = duration.inMinutes;
                                                 } else {
                                                   ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                          content: Text(
+                                                      .showSnackBar(
+                                                          const SnackBar(
+                                                              content: Text(
                                                     'Cannot Exceed Break Time Over 1 Hour',
                                                     style: TextStyle(
                                                         color: Colors.white),
@@ -404,7 +389,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                                 }
                                               });
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.more_time_outlined,
                                               color: Colors.blue,
                                             ))
@@ -457,7 +442,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Row(
-                                            children: [
+                                            children: const [
                                               // Icon(Icons.check_box_outline_blank,
                                               //     color: Colors.grey),
                                               // SizedBox(width: 20,),
@@ -469,7 +454,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                               ),
                                             ],
                                           ),
-                                          Spacer(),
+                                          const Spacer(),
                                           Container(
                                             child: Row(
                                               children: [
@@ -485,10 +470,11 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                                 if (file != null)
                                                   Image.file(file!,
                                                       fit: BoxFit.cover),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
-                                                Icon(Icons.camera_alt_outlined,
+                                                const Icon(
+                                                    Icons.camera_alt_outlined,
                                                     color: Colors.grey),
                                               ],
                                             ),
@@ -508,7 +494,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                     onTap: () async {
                                       if (file == null) {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
+                                            .showSnackBar(const SnackBar(
                                                 content: Text(
                                           'Please input images',
                                           style: TextStyle(color: Colors.white),
@@ -518,12 +504,11 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                           context: context,
                                           barrierDismissible: false,
                                           builder: (BuildContext context) {
-                                            return Container(
-                                                child: Center(
-                                                    child:
-                                                        new CircularProgressIndicator(
+                                            return const Center(
+                                                child:
+                                                    CircularProgressIndicator(
                                               color: Color(0xfffaeaea),
-                                            )));
+                                            ));
                                           },
                                         );
 
@@ -555,7 +540,8 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                             .showSnackBar(SnackBar(
                                                 content: Text(
                                           '$data',
-                                          style: TextStyle(color: Colors.white),
+                                          style: const TextStyle(
+                                              color: Colors.white),
                                         )));
                                       }
                                     },
@@ -565,7 +551,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                       decoration: BoxDecoration(
                                         color: file != null
                                             ? Colors.pink
-                                            : Color(0xfffAEAEA),
+                                            : const Color(0xfffAEAEA),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: Center(
@@ -591,7 +577,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                                 child: Container(
                                   height: 30,
                                   width: 30,
-                                  child: CircularProgressIndicator(
+                                  child: const CircularProgressIndicator(
                                     color: Color(0xfffaeaea),
                                   ),
                                 ),

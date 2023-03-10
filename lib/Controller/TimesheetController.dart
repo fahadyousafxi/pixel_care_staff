@@ -56,6 +56,7 @@ class TimesheetController {
 
     http.StreamedResponse response = await request.send();
 
+    print(jsonDecode(await response.stream.bytesToString())['message']);
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 }

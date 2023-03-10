@@ -1,23 +1,17 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Constants/Constant.dart';
-import 'Address.dart';
 import 'Conviction.dart';
 import 'Model/ApplicationFormModel.dart';
-import 'Next_of_Kin.dart';
-import 'Reference_Form.dart';
 
 class PersonalDetailPage extends StatefulWidget {
   PersonalDetailPage({required this.model});
-  ApplicationFormModel model = new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
 
   @override
   State<PersonalDetailPage> createState() => _PersonalDetailPageState();
@@ -41,27 +35,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -73,20 +67,20 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
     );
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
-  TextEditingController surname = new TextEditingController();
-  TextEditingController forename = new TextEditingController();
-  TextEditingController address = new TextEditingController();
-  TextEditingController town = new TextEditingController();
-  TextEditingController code = new TextEditingController();
-  TextEditingController national = new TextEditingController();
-  TextEditingController hometel = new TextEditingController();
-  TextEditingController daytel = new TextEditingController();
-  TextEditingController email = new TextEditingController();
-  TextEditingController insurance = new TextEditingController();
+  TextEditingController surname = TextEditingController();
+  TextEditingController forename = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController town = TextEditingController();
+  TextEditingController code = TextEditingController();
+  TextEditingController national = TextEditingController();
+  TextEditingController hometel = TextEditingController();
+  TextEditingController daytel = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController insurance = TextEditingController();
   List title = ['Mr.', 'Ms.', 'Other'];
   List gen = ['Male', 'Female', 'Other'];
   List country = [
@@ -377,7 +371,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
     email.text = widget.model.personalDetail?.email ?? "";
     insurance.text = widget.model.personalDetail?.nationalInsuranceNo ?? "";
     areufree = widget.model.personalDetail?.remainTakeupEmploymentInUk ?? "No";
-    Future.delayed(Duration(seconds: 1)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       setState(() {
         formKey.currentState?.validate();
       });
@@ -397,7 +391,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
           onWillPop: () {
             bottomNavigationBarState.selectedIndex = 0;
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+                MaterialPageRoute(
+                    builder: (context) => const bottomNavigationBar()),
                 (Route route) => false);
             return false as Future<bool>;
           },
@@ -419,7 +414,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             ),
                           ),
                           SizedBox(height: 10.h),
-                          Text(
+                          const Text(
                             'Fill all fields with best of your knowledge',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -443,7 +438,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -452,7 +447,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -461,7 +456,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -470,7 +465,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -479,7 +474,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -488,7 +483,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -497,7 +492,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -514,7 +509,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Title'),
+                          child: const Text('Title'),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -527,8 +522,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             },
                             items: title
                                 .map((e) => DropdownMenuItem<String>(
-                                      child: Text(e),
                                       value: e,
+                                      child: Text(e),
                                     ))
                                 .toList(),
                             onChanged: (String? value) async {
@@ -540,28 +535,28 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               setState(() {});
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
                               fillColor: Colors.grey.shade200,
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -572,7 +567,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Surname'),
+                          child: const Text('Surname'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -592,27 +587,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             },
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -624,7 +619,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Forename'),
+                          child: const Text('Forename'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -644,27 +639,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             },
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -676,7 +671,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Date of Birth'),
+                          child: const Text('Date of Birth'),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
@@ -692,8 +687,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   items: List.generate(
                                       31,
                                       (index) => DropdownMenuItem(
-                                            child: Text('${index + 1}'),
                                             value: '${index + 1}',
+                                            child: Text('${index + 1}'),
                                           )),
                                   onChanged: (String? value) async {
                                     SharedPreferences _prefs =
@@ -703,28 +698,28 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     setState(() {});
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -758,8 +753,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     'December'
                                   ]
                                       .map((e) => DropdownMenuItem(
-                                            child: Text('${e}'),
                                             value: e,
+                                            child: Text('${e}'),
                                           ))
                                       .toList(),
                                   onChanged: (String? value) async {
@@ -770,28 +765,28 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     setState(() {});
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -813,10 +808,10 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   items: List.generate(
                                       DateTime.now().year,
                                       (index) => DropdownMenuItem(
-                                            child: Text(
-                                                '${DateTime.now().year - index}'),
                                             value:
                                                 '${DateTime.now().year - index}',
+                                            child: Text(
+                                                '${DateTime.now().year - index}'),
                                           )),
                                   onChanged: (String? value) async {
                                     year = value!;
@@ -826,28 +821,28 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     setState(() {});
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -868,7 +863,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   Container(
                                     margin:
                                         EdgeInsets.only(left: 20.w, top: 15.h),
-                                    child: Text('Gender'),
+                                    child: const Text('Gender'),
                                   ),
                                   SizedBox(height: 10.h),
                                   Padding(
@@ -883,8 +878,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                       },
                                       items: gen
                                           .map((e) => DropdownMenuItem<String>(
-                                                child: Text(e),
                                                 value: e,
+                                                child: Text(e),
                                               ))
                                           .toList(),
                                       onChanged: (String? value) async {
@@ -897,28 +892,29 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                         setState(() {});
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -934,7 +930,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Address'),
+                          child: const Text('Address'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -953,27 +949,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               }
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -994,7 +990,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           left: 20.w, top: 15.h),
-                                      child: Text('Town/City'),
+                                      child: const Text('Town/City'),
                                     ),
                                     SizedBox(height: 10.h),
                                     Padding(
@@ -1017,27 +1013,30 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                           }
                                         },
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(18),
+                                          contentPadding:
+                                              const EdgeInsets.all(18),
                                           hintStyle: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15.sp,
-                                            color: Color(0xffACA9A9),
+                                            color: const Color(0xffACA9A9),
                                           ),
-                                          fillColor: Color(0xfff0f0f0),
+                                          fillColor: const Color(0xfff0f0f0),
                                           filled: true,
-                                          border: OutlineInputBorder(
+                                          border: const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
@@ -1057,7 +1056,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           left: 20.w, top: 15.h),
-                                      child: Text('Post Code'),
+                                      child: const Text('Post Code'),
                                     ),
                                     SizedBox(height: 10.h),
                                     Padding(
@@ -1081,27 +1080,30 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                         },
                                         keyboardType: TextInputType.multiline,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(18),
+                                          contentPadding:
+                                              const EdgeInsets.all(18),
                                           hintStyle: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15.sp,
-                                            color: Color(0xffACA9A9),
+                                            color: const Color(0xffACA9A9),
                                           ),
-                                          fillColor: Color(0xfff0f0f0),
+                                          fillColor: const Color(0xfff0f0f0),
                                           filled: true,
-                                          border: OutlineInputBorder(
+                                          border: const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
@@ -1119,7 +1121,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Country'),
+                          child: const Text('Country'),
                         ),
                         Padding(
                           padding:
@@ -1133,8 +1135,8 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             },
                             items: country
                                 .map((e) => DropdownMenuItem<String>(
-                                      child: Text(e),
                                       value: e,
+                                      child: Text(e),
                                     ))
                                 .toList(),
                             onChanged: (String? value) async {
@@ -1146,28 +1148,28 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               setState(() {});
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
                               fillColor: Colors.grey.shade200,
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -1187,7 +1189,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                     Container(
                                       margin: EdgeInsets.only(
                                           left: 05.w, top: 15.h),
-                                      child: Text('Nationality'),
+                                      child: const Text('Nationality'),
                                     ),
                                     SizedBox(height: 10.h),
                                     Padding(
@@ -1210,27 +1212,30 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                           }
                                         },
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(18),
+                                          contentPadding:
+                                              const EdgeInsets.all(18),
                                           hintStyle: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15.sp,
-                                            color: Color(0xffACA9A9),
+                                            color: const Color(0xffACA9A9),
                                           ),
-                                          fillColor: Color(0xfff0f0f0),
+                                          fillColor: const Color(0xfff0f0f0),
                                           filled: true,
-                                          border: OutlineInputBorder(
+                                          border: const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
@@ -1280,27 +1285,30 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                           }
                                         },
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(18),
+                                          contentPadding:
+                                              const EdgeInsets.all(18),
                                           hintStyle: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15.sp,
-                                            color: Color(0xffACA9A9),
+                                            color: const Color(0xffACA9A9),
                                           ),
-                                          fillColor: Color(0xfff0f0f0),
+                                          fillColor: const Color(0xfff0f0f0),
                                           filled: true,
-                                          border: OutlineInputBorder(
+                                          border: const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(8),
@@ -1375,7 +1383,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Email Address'),
+                          child: const Text('Email Address'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -1403,27 +1411,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -1435,7 +1443,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('National Insurance Number'),
+                          child: const Text('National Insurance Number'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -1455,27 +1463,27 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                               }
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -1487,7 +1495,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text(
+                          child: const Text(
                               'Are you free to remain & take up employment in the UK?'),
                         ),
                         Padding(
@@ -1513,7 +1521,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                           : null,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'No',
                                         style: TextStyle(
@@ -1543,7 +1551,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                           : null,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'Yes',
                                         style: TextStyle(
@@ -1594,12 +1602,12 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                 } else if (month == 'December') {
                                   month = '12';
                                 }
-                                PersonalDetail details = new PersonalDetail();
+                                PersonalDetail details = PersonalDetail();
                                 if (true) {
                                   details.title = titleSelected;
                                   details.surname = surname.text;
                                   details.forename = forename.text;
-                                  details.dob = year + '-' + month + '-' + day;
+                                  details.dob = '$year-$month-$day';
                                   details.gender = selectedGender;
                                   details.address = address.text;
                                   details.townCity = town.text;
@@ -1624,7 +1632,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'Previous',
                                     style: TextStyle(
@@ -1664,12 +1672,12 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                 } else if (month == 'December') {
                                   month = '12';
                                 }
-                                PersonalDetail details = new PersonalDetail();
+                                PersonalDetail details = PersonalDetail();
                                 if (formKey.currentState!.validate()) {
                                   details.title = titleSelected;
                                   details.surname = surname.text;
                                   details.forename = forename.text;
-                                  details.dob = year + '-' + month + '-' + day;
+                                  details.dob = '$year-$month-$day';
                                   details.gender = selectedGender;
                                   details.address = address.text;
                                   details.townCity = town.text;
@@ -1699,7 +1707,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                               true &&
                                           areufree != null
                                       ? Colors.pink
-                                      : Color(0xfffaeaea),
+                                      : const Color(0xfffaeaea),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(

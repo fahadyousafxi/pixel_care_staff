@@ -1,22 +1,20 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
-import 'package:flutter/services.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+
 import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
 import '../Model/AccademicQualModel.dart';
 import '../screens/AcademicQualification.dart';
-import 'Employment_Previous.dart';
 import 'Model/ApplicationFormModel.dart';
 import 'Trainings.dart';
 
 class EducationalPage extends StatefulWidget {
   EducationalPage({required this.model});
-  ApplicationFormModel model = new ApplicationFormModel();
+  ApplicationFormModel model = ApplicationFormModel();
 
   @override
   State<EducationalPage> createState() => _EducationalPageState();
@@ -38,27 +36,27 @@ class _EducationalPageState extends State<EducationalPage> {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -77,8 +75,8 @@ class _EducationalPageState extends State<EducationalPage> {
     super.initState();
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +86,8 @@ class _EducationalPageState extends State<EducationalPage> {
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+              MaterialPageRoute(
+                  builder: (context) => const bottomNavigationBar()),
               (Route route) => false);
           return false as Future<bool>;
         },
@@ -114,7 +113,7 @@ class _EducationalPageState extends State<EducationalPage> {
                             ),
                           ),
                           SizedBox(height: 10.h),
-                          Text(
+                          const Text(
                             'All Educational Qualifications',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -133,7 +132,7 @@ class _EducationalPageState extends State<EducationalPage> {
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -143,11 +142,11 @@ class _EducationalPageState extends State<EducationalPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -157,11 +156,11 @@ class _EducationalPageState extends State<EducationalPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -171,11 +170,11 @@ class _EducationalPageState extends State<EducationalPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -185,7 +184,7 @@ class _EducationalPageState extends State<EducationalPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -194,7 +193,7 @@ class _EducationalPageState extends State<EducationalPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -203,7 +202,7 @@ class _EducationalPageState extends State<EducationalPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -212,7 +211,7 @@ class _EducationalPageState extends State<EducationalPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -221,7 +220,7 @@ class _EducationalPageState extends State<EducationalPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -241,17 +240,18 @@ class _EducationalPageState extends State<EducationalPage> {
                             onTap: () {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => AcademicPage()));
+                                      builder: (context) =>
+                                          const AcademicPage()));
                             },
                             child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.blue),
-                                padding: EdgeInsets.all(10),
-                                margin: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.all(10),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
+                                  children: const [
                                     Text(
                                       ' Add New Qualification ',
                                       style: TextStyle(color: Colors.white),
@@ -267,14 +267,14 @@ class _EducationalPageState extends State<EducationalPage> {
                             future: AuthController().GetQual(),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                if (snapshot.data!.data!.length != 0) {
-                                  Future.delayed(Duration(seconds: 1))
+                                if (snapshot.data!.data!.isNotEmpty) {
+                                  Future.delayed(const Duration(seconds: 1))
                                       .then((value) => setState(() {
                                             emp = true;
                                           }));
                                   return Column(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Column(
@@ -285,11 +285,13 @@ class _EducationalPageState extends State<EducationalPage> {
                                                         MediaQuery.of(context)
                                                             .size
                                                             .width,
-                                                    padding: EdgeInsets.all(10),
-                                                    margin:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 10,
-                                                            horizontal: 20),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    margin: const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 20),
                                                     decoration: BoxDecoration(
                                                         color: Colors
                                                             .grey.shade100,
@@ -319,7 +321,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Text(
+                                                                  const Text(
                                                                     'Degree: ',
                                                                     style: TextStyle(
                                                                         fontWeight:
@@ -331,7 +333,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                   Text(
                                                                       '${snapshot.data?.data?.elementAt(index).degree}',
                                                                       style:
-                                                                          TextStyle()),
+                                                                          const TextStyle()),
                                                                 ],
                                                               ),
                                                             ),
@@ -351,24 +353,24 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                                 context) {
                                                                           return AlertDialog(
                                                                             title:
-                                                                                Text('Are you sure?'),
+                                                                                const Text('Are you sure?'),
                                                                             content:
                                                                                 SingleChildScrollView(
                                                                               child: ListBody(
-                                                                                children: <Widget>[
+                                                                                children: const <Widget>[
                                                                                   Text('This action cannot be undone.'),
                                                                                 ],
                                                                               ),
                                                                             ),
                                                                             actions: <Widget>[
                                                                               TextButton(
-                                                                                child: Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                                                                                child: const Text('Cancel', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
                                                                                 onPressed: () {
                                                                                   Navigator.of(context).pop();
                                                                                 },
                                                                               ),
                                                                               TextButton(
-                                                                                child: Text(
+                                                                                child: const Text(
                                                                                   'Delete',
                                                                                   style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                                                                                 ),
@@ -377,7 +379,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                                   var response = await AuthController().DeleteQual(snapshot.data?.data?.elementAt(index).id);
 
                                                                                   setState(() {
-                                                                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                                                                         content: Text(
                                                                                       "This record and its details will be permanently deleted.",
                                                                                       style: TextStyle(color: Colors.white),
@@ -439,7 +441,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                             )
                                                           ],
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 05,
                                                         ),
                                                         Container(
@@ -448,7 +450,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text(
+                                                              const Text(
                                                                 'University: ',
                                                                 style: TextStyle(
                                                                     fontWeight:
@@ -461,11 +463,11 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                   child: Text(
                                                                       '${snapshot.data?.data?.elementAt(index).university}',
                                                                       style:
-                                                                          TextStyle())),
+                                                                          const TextStyle())),
                                                             ],
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 10,
                                                         ),
                                                         Container(
@@ -474,7 +476,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text(
+                                                              const Text(
                                                                 'Passing Year: ',
                                                                 style: TextStyle(
                                                                     fontWeight:
@@ -487,7 +489,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                                                   child: Text(
                                                                       '${snapshot.data?.data?.elementAt(index).passingYear}',
                                                                       style:
-                                                                          TextStyle())),
+                                                                          const TextStyle())),
                                                             ],
                                                           ),
                                                         ),
@@ -501,7 +503,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                     height: MediaQuery.of(context).size.height *
                                         0.5,
                                     width: MediaQuery.of(context).size.width,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'No qualification added yet!',
                                         style: TextStyle(color: Colors.grey),
@@ -544,7 +546,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'Previous',
                                     style: TextStyle(
@@ -563,11 +565,13 @@ class _EducationalPageState extends State<EducationalPage> {
                                   //EducationDetails details=new EducationDetails();
                                   // widget.model.educationDetails=details;
                                   print(widget.model.toJson());
+                                  print(widget.model);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            TrainingPage(model: widget.model)),
+                                      builder: (context) =>
+                                          TrainingPage(model: widget.model),
+                                    ),
                                   );
                                 }
                               },
@@ -577,7 +581,7 @@ class _EducationalPageState extends State<EducationalPage> {
                                 decoration: BoxDecoration(
                                   color: emp == true
                                       ? Colors.pink
-                                      : Color(0xfffaeaea),
+                                      : const Color(0xfffaeaea),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(

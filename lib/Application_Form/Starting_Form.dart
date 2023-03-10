@@ -1,16 +1,11 @@
-import 'dart:convert';
+// ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Personal_Details.dart';
-import 'package:pixel_app/screens/PersonalDetails.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import 'Address.dart';
 import 'Model/ApplicationFormModel.dart';
 
 class StartingFormPage extends StatefulWidget {
@@ -31,7 +26,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
     'Admin'
   ];
   var titleSelected = 'Registered Nurse (RGN)';
-  TextEditingController pin = new TextEditingController();
+  TextEditingController pin = TextEditingController();
   List titlegen = ['Mr', 'Miss'];
   var titleSelectedgen = 'Mr';
   var month = 'September';
@@ -40,28 +35,28 @@ class _StartingFormPageState extends State<StartingFormPage> {
   var dob;
 
   Future<void> _SetVals() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (_prefs.getString("heared") != null) {
-      howKnow.text = _prefs.getString("heared").toString();
+    if (prefs.getString("heared") != null) {
+      howKnow.text = prefs.getString("heared").toString();
     }
-    if (_prefs.getString("pin") != null) {
-      pin.text = _prefs.getString("pin").toString();
-    }
-
-    if (_prefs.getString("daydb") != null) {
-      day = _prefs.getString("day").toString();
+    if (prefs.getString("pin") != null) {
+      pin.text = prefs.getString("pin").toString();
     }
 
-    if (_prefs.getString("monthdb") != null) {
-      month = _prefs.getString("month").toString();
-    }
-    if (_prefs.getString("yeardb") != null) {
-      year = _prefs.getString("year").toString();
+    if (prefs.getString("daydb") != null) {
+      day = prefs.getString("day").toString();
     }
 
-    if (_prefs.getString("rgn") != null) {
-      titleSelected = _prefs.getString("rgn").toString();
+    if (prefs.getString("monthdb") != null) {
+      month = prefs.getString("month").toString();
+    }
+    if (prefs.getString("yeardb") != null) {
+      year = prefs.getString("year").toString();
+    }
+
+    if (prefs.getString("rgn") != null) {
+      titleSelected = prefs.getString("rgn").toString();
     }
     setState(() {});
   }
@@ -78,33 +73,34 @@ class _StartingFormPageState extends State<StartingFormPage> {
           if (value!.isEmpty) {
             return 'Please fill out this field';
           }
+          return null;
         },
         onChanged: (val) async {
           await _SetVals();
           setState(() {});
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           hintStyle: GoogleFonts.dmSans(
             fontWeight: FontWeight.w500,
             fontSize: 15.sp,
-            color: Color(0xffACA9A9),
+            color: const Color(0xffACA9A9),
           ),
-          fillColor: Color(0xfff0f0f0),
+          fillColor: const Color(0xfff0f0f0),
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -116,11 +112,11 @@ class _StartingFormPageState extends State<StartingFormPage> {
     );
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-  GlobalKey<FormState> formKey = new GlobalKey();
-  TextEditingController position = new TextEditingController();
-  TextEditingController howKnow = new TextEditingController();
-  ApplicationFormModel model = new ApplicationFormModel();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController position = TextEditingController();
+  TextEditingController howKnow = TextEditingController();
+  ApplicationFormModel model = ApplicationFormModel();
 
   @override
   void initState() {
@@ -153,7 +149,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                           ),
                         ),
                         SizedBox(height: 10.h),
-                        Text(
+                        const Text(
                           'Proceed With Form To Get Started',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -166,7 +162,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                           children: [
                             Container(
                               margin: EdgeInsets.only(left: 20.w),
-                              child: Text('Position Applied For'),
+                              child: const Text('Position Applied For'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -176,44 +172,46 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                   if (value!.isEmpty) {
                                     return 'Please select from this field';
                                   }
+                                  return null;
                                 },
                                 items: title
                                     .map((e) => DropdownMenuItem<String>(
-                                          child: Text(e),
                                           value: e,
+                                          child: Text(e),
                                         ))
                                     .toList(),
                                 onChanged: (String? value) {
                                   setState(() async {
-                                    SharedPreferences _prefs = await SharedPreferences.getInstance();
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
                                     titleSelected = value!;
-                                    _prefs.setString("rgn", value);
+                                    prefs.setString("rgn", value);
                                     setState(() {});
                                   });
                                 },
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 5),
                                   hintStyle: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.sp,
-                                    color: Color(0xffACA9A9),
+                                    color: const Color(0xffACA9A9),
                                   ),
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
                                     ),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
                                     ),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
@@ -222,9 +220,212 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                 ),
                               ),
                             ),
+
+                            Visibility(
+                              visible:
+                                  titleSelected == 'Registered Nurse (RGN)',
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                    child: const Text('Company Name'),
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 10.h, left: 20.w, right: 20.w),
+                                    child: TextFormField(
+                                      controller: howKnow,
+                                      // validator: (value) {
+                                      //   if (value!.isEmpty) {
+                                      //     return 'Please fill out this field';
+                                      //   }
+                                      //   return null;
+                                      // },
+                                      // onChanged: (val) async {
+                                      //   SharedPreferences prefs =
+                                      //       await SharedPreferences.getInstance();
+                                      //
+                                      //   prefs.setString("heared", val.toString());
+                                      //
+                                      //   setState(() {});
+                                      // },
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(18),
+                                        hintStyle: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15.sp,
+                                          color: const Color(0xffACA9A9),
+                                        ),
+                                        fillColor: const Color(0xfff0f0f0),
+                                        filled: true,
+                                        border: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        hintText: 'Enter company name',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible:
+                                  titleSelected == 'Registered Nurse (RGN)',
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                    child: const Text('Company INC. No'),
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 10.h, left: 20.w, right: 20.w),
+                                    child: TextFormField(
+                                      controller: howKnow,
+                                      // validator: (value) {
+                                      //   if (value!.isEmpty) {
+                                      //     return 'Please fill out this field';
+                                      //   }
+                                      //   return null;
+                                      // },
+                                      // onChanged: (val) async {
+                                      //   SharedPreferences prefs =
+                                      //       await SharedPreferences.getInstance();
+                                      //
+                                      //   prefs.setString("heared", val.toString());
+                                      //
+                                      //   setState(() {});
+                                      // },
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(18),
+                                        hintStyle: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15.sp,
+                                          color: const Color(0xffACA9A9),
+                                        ),
+                                        fillColor: const Color(0xfff0f0f0),
+                                        filled: true,
+                                        border: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        hintText: 'Enter company INC. No',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible:
+                                  titleSelected == 'Registered Nurse (RGN)',
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                    child: const Text(
+                                        'Weekly number of hours allowed'),
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 10.h, left: 20.w, right: 20.w),
+                                    child: TextFormField(
+                                      controller: howKnow,
+                                      // validator: (value) {
+                                      //   if (value!.isEmpty) {
+                                      //     return 'Please fill out this field';
+                                      //   }
+                                      //   return null;
+                                      // },
+                                      // onChanged: (val) async {
+                                      //   SharedPreferences prefs =
+                                      //       await SharedPreferences.getInstance();
+                                      //
+                                      //   prefs.setString("heared", val.toString());
+                                      //
+                                      //   setState(() {});
+                                      // },
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(18),
+                                        hintStyle: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15.sp,
+                                          color: const Color(0xffACA9A9),
+                                        ),
+                                        fillColor: const Color(0xfff0f0f0),
+                                        filled: true,
+                                        border: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        hintText:
+                                            'Enter weekly number of hours allowed',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
                             Container(
                               margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                              child: Text('How you heard about the vacancy?'),
+                              child: const Text(
+                                  'How you heard about the vacancy?'),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -235,37 +436,38 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                   if (value!.isEmpty) {
                                     return 'Please fill out this field';
                                   }
+                                  return null;
                                 },
                                 onChanged: (val) async {
-                                  SharedPreferences _prefs =
+                                  SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
 
-                                  _prefs.setString("heared", val.toString());
+                                  prefs.setString("heared", val.toString());
 
                                   setState(() {});
                                 },
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(18),
+                                  contentPadding: const EdgeInsets.all(18),
                                   hintStyle: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.sp,
-                                    color: Color(0xffACA9A9),
+                                    color: const Color(0xffACA9A9),
                                   ),
-                                  fillColor: Color(0xfff0f0f0),
+                                  fillColor: const Color(0xfff0f0f0),
                                   filled: true,
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
                                     ),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
                                     ),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8),
@@ -284,14 +486,15 @@ class _StartingFormPageState extends State<StartingFormPage> {
                             Visibility(
                               visible:
                                   titleSelected == 'Registered Nurse (RGN)' ||
-                                      titleSelected == 'Registered Mental Nurse (RMN)',
+                                      titleSelected ==
+                                          'Registered Mental Nurse (RMN)',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     margin:
                                         EdgeInsets.only(left: 20.w, top: 15.h),
-                                    child: Text('NMC Pin Number'),
+                                    child: const Text('NMC Pin Number'),
                                   ),
                                   SizedBox(height: 10.h),
                                   Padding(
@@ -304,37 +507,39 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                         if (value!.isEmpty) {
                                           return 'Please fill out this field';
                                         }
+                                        return null;
                                       },
                                       onChanged: (val) async {
-                                        SharedPreferences _prefs =
+                                        SharedPreferences prefs =
                                             await SharedPreferences
                                                 .getInstance();
 
-                                        _prefs.setString("pin", val.toString());
+                                        prefs.setString("pin", val.toString());
                                         setState(() {});
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.all(18),
+                                        contentPadding:
+                                            const EdgeInsets.all(18),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
-                                        fillColor: Color(0xfff0f0f0),
+                                        fillColor: const Color(0xfff0f0f0),
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -347,7 +552,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                   Container(
                                     margin:
                                         EdgeInsets.only(left: 20.w, top: 15.h),
-                                    child: Text('Expiry Date'),
+                                    child: const Text('Expiry Date'),
                                   ),
                                   SizedBox(height: 10.h),
                                   Padding(
@@ -366,43 +571,45 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                             items: List.generate(
                                                 31,
                                                 (index) => DropdownMenuItem(
+                                                      value: '${index + 1}',
                                                       child:
                                                           Text('${index + 1}'),
-                                                      value: '${index + 1}',
                                                     )),
                                             onChanged: (String? value) async {
                                               day = value!;
-                                              SharedPreferences _prefs =
+                                              SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              _prefs.setString("daydb", day);
+                                              prefs.setString("daydb", day);
                                               setState(() {});
                                             },
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       vertical: 5,
                                                       horizontal: 5),
                                               hintStyle: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 15.sp,
-                                                color: Color(0xffACA9A9),
+                                                color: const Color(0xffACA9A9),
                                               ),
                                               fillColor: Colors.grey.shade200,
                                               filled: true,
-                                              border: OutlineInputBorder(
+                                              border: const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
@@ -440,44 +647,45 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               'December'
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                                      child: Text('${e}'),
                                                       value: e,
+                                                      child: Text('${e}'),
                                                     ))
                                                 .toList(),
                                             onChanged: (String? value) async {
                                               month = value!;
-                                              SharedPreferences _prefs =
+                                              SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              _prefs.setString(
-                                                  "monthdb", month);
+                                              prefs.setString("monthdb", month);
                                               setState(() {});
                                             },
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       vertical: 4,
                                                       horizontal: 4),
                                               hintStyle: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14.sp,
-                                                color: Color(0xffACA9A9),
+                                                color: const Color(0xffACA9A9),
                                               ),
                                               fillColor: Colors.grey.shade200,
                                               filled: true,
-                                              border: OutlineInputBorder(
+                                              border: const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
@@ -499,49 +707,51 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               DropdownButtonFormField<String>(
                                             value:
                                                 // njh
-                                                year == "null"   ? "2010" : year,
+                                                year == "null" ? "2010" : year,
                                             items: List.generate(
                                                 DateTime.now().year + 10,
                                                 (index) => DropdownMenuItem(
-                                                      child: Text(
-                                                          '${DateTime.now().year + 10 - index}'),
                                                       value:
                                                           '${DateTime.now().year + 10 - index}',
+                                                      child: Text(
+                                                          '${DateTime.now().year + 10 - index}'),
                                                     )),
                                             onChanged: (String? value) async {
                                               year = value!;
-                                              SharedPreferences _prefs =
+                                              SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              _prefs.setString("yeardb", year);
+                                              prefs.setString("yeardb", year);
 
                                               setState(() {});
                                             },
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       vertical: 5,
                                                       horizontal: 5),
                                               hintStyle: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 15.sp,
-                                                color: Color(0xffACA9A9),
+                                                color: const Color(0xffACA9A9),
                                               ),
                                               fillColor: Colors.grey.shade200,
                                               filled: true,
-                                              border: OutlineInputBorder(
+                                              border: const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8),
@@ -604,51 +814,50 @@ class _StartingFormPageState extends State<StartingFormPage> {
                           DateTime now = DateTime.now();
 
                           // if (int.parse(year) == now.year) {
-                            // if (now.month >= int.parse(month)) {
-                              // if (int.parse(day) >= now.day) {
-                                if (formKey.currentState!.validate()) {
-                                  formKey.currentState!.save();
-                                  SharedPreferences _prefs =
-                                      await SharedPreferences.getInstance();
-                                  _prefs.setString("monthdb", month);
+                          // if (now.month >= int.parse(month)) {
+                          // if (int.parse(day) >= now.day) {
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save();
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString("monthdb", month);
 
-                                  _prefs.setString("yeardb", year);
+                            prefs.setString("yeardb", year);
 
-                                  _prefs.setString("daydb", day);
-                                  NmcDetail nmc = new NmcDetail();
-                                  model.postAppliedFor =
-                                      title.indexOf(titleSelected).toString();
-                                  model.howHeardVacancy = howKnow.text;
-                                  nmc.nmcPinNo = pin.text;
-                                  nmc.expiryDate =
-                                      year + '-' + month + '-' + day;
-                                  model.nmcDetail = nmc;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PersonalDetailPage(model: model)),
-                                  );
-                                }
-                                print("Evaluated");
-                              // } else {
-                              //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              //       content: Text(
-                              //           'Expiry Date Must not be from past....................')));
-                              //   print(
-                              //       "Expiry Date Must not be from past....................");
-                              // }
-                            // }
-                            // else if(){
+                            prefs.setString("daydb", day);
+                            NmcDetail nmc = NmcDetail();
+                            model.postAppliedFor =
+                                title.indexOf(titleSelected).toString();
+                            model.howHeardVacancy = howKnow.text;
+                            nmc.nmcPinNo = pin.text;
+                            nmc.expiryDate = '$year-$month-$day';
+                            model.nmcDetail = nmc;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PersonalDetailPage(model: model)),
+                            );
+                          }
+                          print("Evaluated");
+                          // } else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //       content: Text(
+                          //           'Expiry Date Must not be from past....................')));
+                          //   print(
+                          //       "Expiry Date Must not be from past....................");
+                          // }
+                          // }
+                          // else if(){
 
-                            // }
-                            // else {
-                            //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            //       content: Text(
-                            //           'Expiry Date Must not be from past....................')));
-                            //   print(
-                            //       "Expiry Date Must not be from past....................");
-                            // }
+                          // }
+                          // else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //       content: Text(
+                          //           'Expiry Date Must not be from past....................')));
+                          //   print(
+                          //       "Expiry Date Must not be from past....................");
+                          // }
                           // } else if (int.parse(year) > now.year) {
                           //   if (int.parse(month) >= now.month ||
                           //       int.parse(month) <= now.month) {
@@ -698,15 +907,6 @@ class _StartingFormPageState extends State<StartingFormPage> {
                           //       "Expiry Date Must not be from past....................");
                           // }
 
-
-
-
-
-
-
-
-
-
                           /// old Comment
                           // } else {
                           //   ScaffoldMessenger.of(context).showSnackBar(
@@ -720,7 +920,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                         decoration: BoxDecoration(
                           color: formKey.currentState?.validate() == true
                               ? Colors.pink
-                              : Color(0xfffaeaea),
+                              : const Color(0xfffaeaea),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(

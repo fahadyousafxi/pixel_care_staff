@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixel_app/Model/AccademicQualModel.dart';
 
-import '../Application_Form/Reference_Form.dart';
 import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
+import '../widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'AcademicQualification.dart';
 import 'Profile.dart';
-import '../widgets/bottomNavigationBar/BottomNavigation.dart';
-
 
 class AccademicView extends StatefulWidget {
   const AccademicView({Key? key}) : super(key: key);
@@ -34,8 +31,8 @@ class _AccademicViewState extends State<AccademicView> {
       onWillPop: () {
         bottomNavigationBarState.selectedIndex = 0;
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ProfilePage()),
-                (Route route) => false);
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
+            (Route route) => false);
         return false as Future<bool>;
       },
       child: Scaffold(
@@ -45,10 +42,10 @@ class _AccademicViewState extends State<AccademicView> {
           backgroundColor: Colors.pink,
           leading: GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const ProfilePage()));
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               )),
@@ -68,18 +65,18 @@ class _AccademicViewState extends State<AccademicView> {
                   setState(() {
                     academicnav = true;
                   });
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => AcademicPage()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const AcademicPage()));
                 },
                 child: Container(
                     height: 30,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white),
-                    padding: EdgeInsets.all(05),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(05),
+                    margin: const EdgeInsets.all(10),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           ' Add New Qualification ',
                           style: TextStyle(color: Colors.black),
@@ -96,20 +93,19 @@ class _AccademicViewState extends State<AccademicView> {
                   if (snapshot.data!.data!.length != 0) {
                     return Column(
                       children: [
-                        SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Column(
                             children: List.generate(
                                 snapshot.data!.data!.length,
                                 (index) => Container(
                                       width: MediaQuery.of(context).size.width,
-                                      padding: EdgeInsets.all(10),
-                                      margin: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 20),
                                       decoration: BoxDecoration(
                                           color: Colors.grey.shade100,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: Colors.grey.shade400,
@@ -129,7 +125,7 @@ class _AccademicViewState extends State<AccademicView> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    const Text(
                                                       'Degree: ',
                                                       style: TextStyle(
                                                           fontWeight:
@@ -138,7 +134,8 @@ class _AccademicViewState extends State<AccademicView> {
                                                     ),
                                                     Text(
                                                         '${snapshot.data?.data?.elementAt(index).degree}',
-                                                        style: TextStyle()),
+                                                        style:
+                                                            const TextStyle()),
                                                   ],
                                                 ),
                                               ),
@@ -153,12 +150,12 @@ class _AccademicViewState extends State<AccademicView> {
                                                           builder: (BuildContext
                                                               context) {
                                                             return AlertDialog(
-                                                              title: Text(
+                                                              title: const Text(
                                                                   'Are you sure?'),
                                                               content:
                                                                   SingleChildScrollView(
                                                                 child: ListBody(
-                                                                  children: <
+                                                                  children: const <
                                                                       Widget>[
                                                                     Text(
                                                                         'This action cannot be undone.'),
@@ -167,56 +164,56 @@ class _AccademicViewState extends State<AccademicView> {
                                                               ),
                                                               actions: <Widget>[
                                                                 TextButton(
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Cancel',
                                                                       style: TextStyle(
                                                                           color: Colors
                                                                               .green,
                                                                           fontWeight:
                                                                               FontWeight.bold)),
-                                                                  onPressed: () {
+                                                                  onPressed:
+                                                                      () {
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
                                                                   },
                                                                 ),
                                                                 TextButton(
-                                                                  child: Text(
+                                                                  child:
+                                                                      const Text(
                                                                     'Delete',
                                                                     style: TextStyle(
                                                                         color: Colors
                                                                             .red,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold),
+                                                                            FontWeight.bold),
                                                                   ),
                                                                   onPressed:
                                                                       () async {
                                                                     // Perform the delete action here
                                                                     ScaffoldMessenger.of(
                                                                             context)
-                                                                        .showSnackBar(
-                                                                            SnackBar(
-                                                                                content: Text(
+                                                                        .showSnackBar(const SnackBar(
+                                                                            content: Text(
                                                                       "Deletion is in progress...",
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .white),
+                                                                          color:
+                                                                              Colors.white),
                                                                     )));
-                                                                    var response =
-                                                                        await AuthController().DeleteQual(snapshot
-                                                                            .data
-                                                                            ?.data
-                                                                            ?.elementAt(
-                                                                                index)
-                                                                            .id);
-                                                                    setState(() {
+                                                                    var response = await AuthController().DeleteQual(snapshot
+                                                                        .data
+                                                                        ?.data
+                                                                        ?.elementAt(
+                                                                            index)
+                                                                        .id);
+                                                                    setState(
+                                                                        () {
                                                                       ScaffoldMessenger.of(
                                                                               context)
                                                                           .showSnackBar(SnackBar(
                                                                               content: Text(
                                                                         response,
-                                                                        style: TextStyle(
+                                                                        style: const TextStyle(
                                                                             color:
                                                                                 Colors.white),
                                                                       )));
@@ -229,9 +226,8 @@ class _AccademicViewState extends State<AccademicView> {
                                                                         .pushReplacement(
                                                                       context,
                                                                       MaterialPageRoute(
-                                                                          builder:
-                                                                              (context) =>
-                                                                                  AccademicView()),
+                                                                          builder: (context) =>
+                                                                              const AccademicView()),
                                                                     );
                                                                   },
                                                                 ),
@@ -240,7 +236,7 @@ class _AccademicViewState extends State<AccademicView> {
                                                           },
                                                         );
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.delete,
                                                         color: Colors.red,
                                                       ))
@@ -248,7 +244,7 @@ class _AccademicViewState extends State<AccademicView> {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 05,
                                           ),
                                           Container(
@@ -256,20 +252,22 @@ class _AccademicViewState extends State<AccademicView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'University: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).university}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -277,16 +275,18 @@ class _AccademicViewState extends State<AccademicView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Passing Year: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).passingYear}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
@@ -299,7 +299,7 @@ class _AccademicViewState extends State<AccademicView> {
                     return Container(
                       height: MediaQuery.of(context).size.height * 0.8,
                       width: MediaQuery.of(context).size.width,
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'No qualification added yet!',
                           style: TextStyle(color: Colors.grey),
