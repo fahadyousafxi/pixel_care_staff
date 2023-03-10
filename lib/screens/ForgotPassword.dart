@@ -106,17 +106,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             uemail = email.text;
                             controller.ForgotPassword(email.text, context);
 
-                            // showDialog(
-                            //   context: context,
-                            //   barrierDismissible: false,
-                            //   builder: (BuildContext context) {
-                            //     return Container(
-                            //         child: Center(
-                            //             child: new CircularProgressIndicator(
-                            //       color: Color(0xfffaeaea),
-                            //     )));
-                            //   },
-                            // );
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return Container(
+                                    child: Center(
+                                        child: new CircularProgressIndicator(
+                                  color: Color(0xfffaeaea),
+                                )));
+                              },
+                            );
                           }
                           //
                         },
@@ -130,7 +130,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           child: Center(
                             child: Text(
                               'Send',
-                              style: TextStyle(fontSize: 18.sp, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 18.sp, color: Colors.white),
                             ),
                           ),
                         ),
@@ -146,7 +147,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  Color myColor(bool? validate){
+  Color myColor(bool? validate) {
     Color? myGreen = Colors.green;
     Color fill = Colors.red;
     // Color fill = Color(0xfffaeaea);

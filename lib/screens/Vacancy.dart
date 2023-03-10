@@ -899,18 +899,10 @@
 //   }
 // }
 
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Model/VacancyModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Controller/VacancyController.dart';
 
@@ -936,7 +928,6 @@ class _VacancyPageState extends State<VacancyPage> {
   Future<void> GetData() async {
     allVacancies = VacancyController().GetAll();
     relevantVacancies = VacancyController().GetRelevant();
-
   }
 
   GetData1() async {
@@ -1018,7 +1009,8 @@ class _VacancyPageState extends State<VacancyPage> {
                     // ),
 
                     Padding(
-                      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
+                      padding:
+                          EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
                       child: Container(
                         height: 60.h,
                         width: 700.w,
@@ -1049,7 +1041,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'All',
+                                      'Relevant',
                                       style: TextStyle(
                                           color: index == 1
                                               ? Colors.black
@@ -1087,7 +1079,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'Relevant',
+                                      'All',
                                       style: TextStyle(
                                           color: index == 0
                                               ? Colors.black
@@ -1375,7 +1367,8 @@ class _VacancyPageState extends State<VacancyPage> {
                                           child: Container(
                                               margin: EdgeInsets.fromLTRB(
                                                   20, 20, 20, 10),
-                                              child: Text("No Vacancy Available")));
+                                              child: Text(
+                                                  "No Vacancy Available")));
                                     } else {
                                       return ListView.builder(
                                           itemCount:
@@ -1409,9 +1402,11 @@ class _VacancyPageState extends State<VacancyPage> {
                                                           top: 10.h),
                                                       child: Row(
                                                         children: [
-
                                                           /// calendar image
-                                                          Flexible(child: Image(image: AssetImage('assets/images/calendar2.png'))),
+                                                          Flexible(
+                                                              child: Image(
+                                                                  image: AssetImage(
+                                                                      'assets/images/calendar2.png'))),
                                                           SizedBox(width: 12.w),
                                                           Container(
                                                             height: 80.h,
@@ -1481,16 +1476,16 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               // ),
                                                               Container(
                                                                 width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width *
+                                                                            context)
+                                                                        .size
+                                                                        .width *
                                                                     0.6,
                                                                 child: Text(
                                                                   'No of Staff: ${snapshot.data?.data!.elementAt(index).noOfStaff.toString()}',
                                                                   maxLines: 3,
                                                                   overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                   // style:
                                                                   // TextStyle(
                                                                   //   color: Colors
@@ -1503,16 +1498,16 @@ class _VacancyPageState extends State<VacancyPage> {
 
                                                               Container(
                                                                 width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width *
+                                                                            context)
+                                                                        .size
+                                                                        .width *
                                                                     0.6,
                                                                 child: Text(
-                                                                  'Shift Details: ${snapshot.data?.data?.elementAt(index).shiftDetailName}',
+                                                                  'Shifts: ${snapshot.data?.data?.elementAt(index).shiftDetailName}',
                                                                   maxLines: 3,
                                                                   overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                   // style:
                                                                   // TextStyle(
                                                                   //   color: Colors
@@ -1538,7 +1533,8 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                       width:
                                                                           5.w),
                                                                   Text(
-                                                                    '${snapshot.data?.data!.elementAt(index).date.toString().substring(0,10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0,11)}',
+                                                                    // '${snapshot.data?.data!.elementAt(index).date.toString().substring(0, 10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0, 11)}',
+                                                                    '${snapshot.data?.data!.elementAt(index).date.toString().substring(0, 10)} ',
                                                                     style:
                                                                         TextStyle(
                                                                       color: Color(
@@ -1643,7 +1639,6 @@ class _VacancyPageState extends State<VacancyPage> {
                                 stream: relevantVacancies.asStream(),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
-
                                     if (snapshot.data?.data == null) {
                                       return Center(
                                           child: Container(
@@ -1653,16 +1648,32 @@ class _VacancyPageState extends State<VacancyPage> {
                                                   "No Relavent Vacancy Available")));
                                     } else {
                                       return ListView.builder(
-                                          itemCount: snapshot.data!.data!.length,
+                                          itemCount:
+                                              snapshot.data!.data!.length,
                                           itemBuilder: (context, index) {
                                             // start setting date
                                             String? date = '';
-                                            if(snapshot.data!.data!.elementAt(index).date != null){
-                                              date = snapshot.data!.data!.elementAt(index).date.toString().substring(0,10);
+                                            if (snapshot.data!.data!
+                                                    .elementAt(index)
+                                                    .date !=
+                                                null) {
+                                              date = snapshot.data!.data!
+                                                  .elementAt(index)
+                                                  .date
+                                                  .toString()
+                                                  .substring(0, 10);
                                             }
-                                            if(snapshot.data!.data!.elementAt(index).jobEndDate != null){
+                                            if (snapshot.data!.data!
+                                                    .elementAt(index)
+                                                    .jobEndDate !=
+                                                null) {
                                               date = "${date} - ";
-                                              date = date + snapshot.data!.data!.elementAt(index).jobEndDate.toString().substring(0,11);
+                                              date = date +
+                                                  snapshot.data!.data!
+                                                      .elementAt(index)
+                                                      .jobEndDate
+                                                      .toString()
+                                                      .substring(0, 11);
                                             }
                                             // end setting date
 
@@ -1694,8 +1705,13 @@ class _VacancyPageState extends State<VacancyPage> {
                                                           top: 10.h),
                                                       child: Row(
                                                         children: [
-
-                                                          Flexible(child: Image(image: AssetImage('assets/images/calendar2.png'), height: 44, width: 44,)),
+                                                          Flexible(
+                                                              child: Image(
+                                                            image: AssetImage(
+                                                                'assets/images/calendar2.png'),
+                                                            height: 44,
+                                                            width: 44,
+                                                          )),
 
                                                           // Column(
                                                           //   children: [
@@ -1813,32 +1829,32 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               // ),
                                                               Container(
                                                                   width: MediaQuery.of(
-                                                                      context)
-                                                                      .size
-                                                                      .width *
+                                                                              context)
+                                                                          .size
+                                                                          .width *
                                                                       0.6,
                                                                   child: Text(
                                                                     // jhb
                                                                     '${snapshot.data?.data?.elementAt(index).careHome!.name}',
                                                                     maxLines: 3,
                                                                     overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   )),
 
                                                               Container(
                                                                   width: MediaQuery.of(
-                                                                      context)
-                                                                      .size
-                                                                      .width *
+                                                                              context)
+                                                                          .size
+                                                                          .width *
                                                                       0.6,
                                                                   child: Text(
                                                                     // jhb
                                                                     '${snapshot.data?.data?.elementAt(index).title}',
                                                                     maxLines: 3,
                                                                     overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   )),
 
                                                               // Container(
@@ -1864,16 +1880,16 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               // ),
                                                               Container(
                                                                 width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width *
+                                                                            context)
+                                                                        .size
+                                                                        .width *
                                                                     0.6,
                                                                 child: Text(
                                                                   'No of Staff: ${snapshot.data?.data!.elementAt(index).noOfStaff.toString()}',
                                                                   maxLines: 3,
                                                                   overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                   // style:
                                                                   // TextStyle(
                                                                   //   color: Colors
@@ -1886,16 +1902,16 @@ class _VacancyPageState extends State<VacancyPage> {
 
                                                               Container(
                                                                 width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width *
+                                                                            context)
+                                                                        .size
+                                                                        .width *
                                                                     0.6,
                                                                 child: Text(
-                                                                  'Shift Details: ${snapshot.data?.data?.elementAt(index).shiftDetailName}',
+                                                                  'Shifts: ${snapshot.data?.data?.elementAt(index).shiftDetailName}',
                                                                   maxLines: 3,
                                                                   overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                   // style:
                                                                   // TextStyle(
                                                                   //   color: Colors
@@ -1924,7 +1940,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                     date.toString(),
                                                                     // '${snapshot.data?.data!.elementAt(index).date.toString().substring(0,10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0,11)}',
                                                                     style:
-                                                                    TextStyle(
+                                                                        TextStyle(
                                                                       color: Color(
                                                                           0xff687bb9),
                                                                     ),
@@ -1992,7 +2008,9 @@ class _VacancyPageState extends State<VacancyPage> {
                                     }
                                   } else {
                                     return Container(
-                                      height: MediaQuery.of(context).size.height * 0.8,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
                                       width: MediaQuery.of(context).size.width,
                                       child: Center(
                                         child: Container(

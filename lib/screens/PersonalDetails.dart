@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Model/UserModel.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Controller/AuthController.dart';
 
@@ -24,7 +22,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
   GlobalKey<FormState> formkey = new GlobalKey();
   double rating = 1.0;
   var month = 'September';
-  var day = '1';
+  var day = '01';
   var year = '2022';
   dynamic userDob = '2022';
   var imageLink;
@@ -243,15 +241,15 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
   TextEditingController nxt = TextEditingController();
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("1"), value: "1"),
-      DropdownMenuItem(child: Text("2"), value: "2"),
-      DropdownMenuItem(child: Text("3"), value: "3"),
-      DropdownMenuItem(child: Text("4"), value: "4"),
-      DropdownMenuItem(child: Text("5"), value: "5"),
-      DropdownMenuItem(child: Text("6"), value: "6"),
-      DropdownMenuItem(child: Text("7"), value: "7"),
-      DropdownMenuItem(child: Text("8"), value: "8"),
-      DropdownMenuItem(child: Text("9"), value: "9"),
+      DropdownMenuItem(child: Text("01"), value: "01"),
+      DropdownMenuItem(child: Text("02"), value: "02"),
+      DropdownMenuItem(child: Text("03"), value: "03"),
+      DropdownMenuItem(child: Text("04"), value: "04"),
+      DropdownMenuItem(child: Text("05"), value: "05"),
+      DropdownMenuItem(child: Text("06"), value: "06"),
+      DropdownMenuItem(child: Text("07"), value: "07"),
+      DropdownMenuItem(child: Text("08"), value: "08"),
+      DropdownMenuItem(child: Text("09"), value: "09"),
       DropdownMenuItem(child: Text("10"), value: "10"),
       DropdownMenuItem(child: Text("11"), value: "11"),
       DropdownMenuItem(child: Text("12"), value: "12"),
@@ -334,34 +332,79 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                 imageLink = file;
                 if (model.data!.dob != null) {
                   year = model.data!.dob.toString().split('-').first;
-                  if (model.data!.dob.toString().split('-').elementAt(1) == '01') {
+                  if (model.data!.dob.toString().split('-').elementAt(1) ==
+                      '01') {
                     month = 'January';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '02') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '02') {
                     month = 'February';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '03') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '03') {
                     month = 'March';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '04') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '04') {
                     month = 'April';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '05') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '05') {
                     month = 'May';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '06') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '06') {
                     month = 'June';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '07') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '07') {
                     month = 'July';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '08') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '08') {
                     month = 'August';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '09') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '09') {
                     month = 'September';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '10') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '10') {
                     month = 'October';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '11') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '11') {
                     month = 'November';
-                  } else if (model.data!.dob.toString().split('-').elementAt(1) == '12') {
+                  } else if (model.data!.dob
+                          .toString()
+                          .split('-')
+                          .elementAt(1) ==
+                      '12') {
                     month = 'December';
                   }
                   day = model.data!.dob.toString().split('-').last;
 
-                  selectedCountry =  model.data!.country.toString();
+                  selectedCountry = model.data!.country.toString();
                 }
                 return SingleChildScrollView(
                   child: Column(
@@ -395,16 +438,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                         children: [
                           GestureDetector(
                             onTap: () async {
-                               result = await FilePicker.platform.pickFiles(
+                              result = await FilePicker.platform.pickFiles(
                                 allowMultiple: false,
                                 type: FileType.image,
                               );
                               if (result != null) {
                                 file = File(result!.files.single.path!);
                                 model.data!.avatar = file!.path;
-                                setState(() {
-
-                                });
+                                setState(() {});
                               } else {
                                 // User canceled the picker
                               }
@@ -414,13 +455,16 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                 CircleAvatar(
                                   radius: 70.r,
                                   // backgroundColor: result == null ? Colors.red : Colors.green,
-                                  backgroundImage: result == null ? NetworkImage(
-                                      "${snapShot.data!.data!.avatar}") :  Image.file(file!).image,
+                                  backgroundImage: result == null
+                                      ? NetworkImage(
+                                          "${snapShot.data!.data!.avatar}")
+                                      : Image.file(file!).image,
                                 ),
                                 Positioned(
                                   top: -5,
                                   right: -1,
-                                  child: SvgPicture.asset('assets/images/camera_icon.svg'),
+                                  child: SvgPicture.asset(
+                                      'assets/images/camera_icon.svg'),
                                 ),
                               ],
                             ),
@@ -495,7 +539,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                   setState(() {});
                                 },
                                 validator: (String? value) {
-                                  final bool isValid = EmailValidator.validate(value.toString());
+                                  final bool isValid =
+                                      EmailValidator.validate(value.toString());
 
                                   if (!isValid) {
                                     return 'Invalid Email';
@@ -934,7 +979,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                               },
                             );
                             var data = await AuthController().UpdateProfile(
-                                name: name.text.toString(), email: email.text.toString(), phone: phone.text,  nextOfKin: nxt.text.toString(), country: selectedCountry, dob: userDob, imageLink: imageLink, imageFile: file);
+                                name: name.text.toString(),
+                                email: email.text.toString(),
+                                phone: phone.text,
+                                nextOfKin: nxt.text.toString(),
+                                country: selectedCountry,
+                                dob: userDob,
+                                imageLink: imageLink,
+                                imageFile: file);
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
