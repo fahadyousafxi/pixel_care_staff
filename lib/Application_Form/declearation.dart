@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Controller/ApplicationFormController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -460,7 +457,7 @@ class _DeclarationState extends State<Declaration> {
                                             //   'assets/images/conglogo.png',
                                             //   height: 200.h,
                                             //   width: 200.w,
-                                            // ),
+                                            //
                                             Text('Congratulations',
                                                 textAlign: TextAlign.center,
                                                 style: GoogleFonts.andadaPro(
