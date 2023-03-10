@@ -1,4 +1,4 @@
-package com.example.pixel_app
+package com.stackbuffers.pixelstaffapp
 
 import io.flutter.embedding.android.FlutterActivity
 
