@@ -772,9 +772,9 @@ PODS:
   - "permission_handler (5.1.0+2)":
     - Flutter
   - PromisesObjC (2.2.0)
-  - SDWebImage (5.15.4):
-    - SDWebImage/Core (= 5.15.4)
-  - SDWebImage/Core (5.15.4)
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -882,7 +882,7 @@ SPEC CHECKSUMS:
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
-  SDWebImage: 1c39de67663e5eebb2f41324d5d580eeea12dd4c
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
