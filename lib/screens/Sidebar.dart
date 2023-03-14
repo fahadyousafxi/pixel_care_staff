@@ -24,7 +24,7 @@ class _SidebarPageState extends State<SidebarPage> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xfffaeaea),
+      backgroundColor: const Color(0xfffaeaea),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -37,66 +37,73 @@ class _SidebarPageState extends State<SidebarPage> {
                   height: 70.h,
                   width: 700.w,
                   decoration: BoxDecoration(
-                    color: Color(0xfff9bfc8),
+                    color: const Color(0xfff9bfc8),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: FutureBuilder<UserModel>(
                       future: AuthController().GetUserData(),
                       builder: (context, snapshot) {
-                        return GestureDetector(
-                          onTap: () {
-                            bottomNavigationBarState.selectedIndex = 3;
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => bottomNavigationBar()),
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 10.w),
-                                height: 50.h,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xfffaeaea),
-                                  borderRadius: BorderRadius.circular(5),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        '${snapshot.data?.data?.avatar}'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10.w),
-                              Padding(
-                                padding: EdgeInsets.only(top: 10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                        return snapshot.connectionState ==
+                                ConnectionState.waiting
+                            ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  bottomNavigationBarState.selectedIndex = 3;
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const bottomNavigationBar()),
+                                  );
+                                },
+                                child: Row(
                                   children: [
-                                    Text(
-                                      '${snapshot.data?.data?.name}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20.sp,
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10.w),
+                                      height: 50.h,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xfffaeaea),
+                                        borderRadius: BorderRadius.circular(5),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              '${snapshot.data?.data?.avatar}'),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(height: 5.h),
-                                    Text(
-                                      'View Profile',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15.sp,
+                                    SizedBox(width: 10.w),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10.h),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${snapshot.data?.data?.name}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 20.sp,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5.h),
+                                          Text(
+                                            'View Profile',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15.sp,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
+                              );
                       }),
                 ),
                 SizedBox(height: 30.h),
@@ -106,13 +113,13 @@ class _SidebarPageState extends State<SidebarPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => bottomNavigationBar()),
+                          builder: (context) => const bottomNavigationBar()),
                     );
                   },
                   child: Text(
                     'Home',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -125,13 +132,13 @@ class _SidebarPageState extends State<SidebarPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => bottomNavigationBar()),
+                          builder: (context) => const bottomNavigationBar()),
                     );
                   },
                   child: Text(
                     'Profile',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -140,13 +147,16 @@ class _SidebarPageState extends State<SidebarPage> {
                 SizedBox(height: 30.h),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => StartingFormPage()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const StartingFormPage(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Application Form',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -163,7 +173,7 @@ class _SidebarPageState extends State<SidebarPage> {
                   child: Text(
                     'Shifts & Schedules\n\t\t\t\t\t\t\t(Bookings)',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -173,12 +183,12 @@ class _SidebarPageState extends State<SidebarPage> {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DownLoadsPage()));
+                        builder: (context) => const DownLoadsPage()));
                   },
                   child: Text(
                     'Downloads',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -188,12 +198,12 @@ class _SidebarPageState extends State<SidebarPage> {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PayOutsScreen()));
+                        builder: (context) => const PayOutsScreen()));
                   },
                   child: Text(
                     'Pay-outs',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -246,13 +256,14 @@ class _SidebarPageState extends State<SidebarPage> {
                     pref.setString('token', 'asdf');
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()),
                     );
                   },
                   child: Text(
                     'Logout',
                     style: TextStyle(
-                      color: Color(0xff969bc5),
+                      color: const Color(0xff969bc5),
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),

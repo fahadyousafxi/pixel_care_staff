@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 class Jobs extends StatefulWidget {
   const Jobs({Key? key}) : super(key: key);
@@ -19,8 +14,6 @@ class _JobsState extends State<Jobs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -59,7 +52,7 @@ class _JobsState extends State<Jobs> {
                     ),
                     Padding(
                       padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
+                          EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
                       child: Container(
                         height: 60.h,
                         width: 700.w,
@@ -74,8 +67,10 @@ class _JobsState extends State<Jobs> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: index==0?Color(0xfffaeaea):Colors.white,
-                                    borderRadius: BorderRadius.only(
+                                    color: index == 0
+                                        ? const Color(0xfffaeaea)
+                                        : Colors.white,
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(6),
                                       bottomLeft: Radius.circular(6),
                                     ),
@@ -101,8 +96,10 @@ class _JobsState extends State<Jobs> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: index==1?Color(0xfffaeaea):Colors.white,
-                                    borderRadius: BorderRadius.only(
+                                    color: index == 1
+                                        ? const Color(0xfffaeaea)
+                                        : Colors.white,
+                                    borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(6),
                                       bottomRight: Radius.circular(6),
                                     ),
@@ -146,16 +143,16 @@ class _JobsState extends State<Jobs> {
                                       Icon(
                                         Icons.calendar_today,
                                         size: 40.sp,
-                                        color: Color(0xff687bb9),
+                                        color: const Color(0xff687bb9),
                                       ),
                                     ],
                                   ),
                                   SizedBox(width: 10.w),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text('Cardinal Heenan House'),
+                                      const Text('Cardinal Heenan House'),
                                       Text(
                                         'Nurse',
                                         style: TextStyle(
@@ -170,7 +167,7 @@ class _JobsState extends State<Jobs> {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   // SizedBox(width: 20.w),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -197,7 +194,7 @@ class _JobsState extends State<Jobs> {
                                       Text(
                                         '10:00 - 01:00',
                                         style: TextStyle(
-                                            color: Color(0xff687bb9),
+                                            color: const Color(0xff687bb9),
                                             fontSize: 17.sp),
                                       ),
                                     ],
@@ -226,16 +223,16 @@ class _JobsState extends State<Jobs> {
                                       Icon(
                                         Icons.calendar_today,
                                         size: 40.sp,
-                                        color: Color(0xff687bb9),
+                                        color: const Color(0xff687bb9),
                                       ),
                                     ],
                                   ),
                                   SizedBox(width: 10.w),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text('Cardinal Heenan House'),
+                                      const Text('Cardinal Heenan House'),
                                       Text(
                                         'Nurse',
                                         style: TextStyle(
@@ -250,7 +247,7 @@ class _JobsState extends State<Jobs> {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   // SizedBox(width: 20.w),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -277,7 +274,7 @@ class _JobsState extends State<Jobs> {
                                       Text(
                                         '10:00 - 01:00',
                                         style: TextStyle(
-                                            color: Color(0xff687bb9),
+                                            color: const Color(0xff687bb9),
                                             fontSize: 17.sp),
                                       ),
                                     ],
@@ -306,16 +303,16 @@ class _JobsState extends State<Jobs> {
                                       Icon(
                                         Icons.calendar_today,
                                         size: 40.sp,
-                                        color: Color(0xff687bb9),
+                                        color: const Color(0xff687bb9),
                                       ),
                                     ],
                                   ),
                                   SizedBox(width: 10.w),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text('Cardinal Heenan House'),
+                                      const Text('Cardinal Heenan House'),
                                       Text(
                                         'Nurse',
                                         style: TextStyle(
@@ -330,7 +327,7 @@ class _JobsState extends State<Jobs> {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   // SizedBox(width: 20.w),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -357,7 +354,7 @@ class _JobsState extends State<Jobs> {
                                       Text(
                                         '10:00 - 01:00',
                                         style: TextStyle(
-                                            color: Color(0xff687bb9),
+                                            color: const Color(0xff687bb9),
                                             fontSize: 17.sp),
                                       ),
                                     ],
@@ -374,12 +371,10 @@ class _JobsState extends State<Jobs> {
                       visible: index == 1,
                       child: Column(
                         children: [
-
                           Padding(
                             padding: EdgeInsets.only(
                                 left: 20.w, right: 20.w, top: 20.h),
                             child: Container(
-
                               width: 700.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
@@ -389,129 +384,142 @@ class _JobsState extends State<Jobs> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 10.w, right: 10.w, top: 10.h),                                    child: Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                              SizedBox(width: 20.w),
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Container(
-                                                height: 60.h,
-                                                width: 50.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(10),
-                                                  border: Border.all(
-                                                      color: Colors.blue, width: 2),
+                                        left: 10.w, right: 10.w, top: 10.h),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'APR',
-                                                      style: TextStyle(
+                                                SizedBox(width: 20.w),
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 60.h,
+                                                  width: 50.w,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                        color: Colors.blue,
+                                                        width: 2),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        'APR',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 12.sp,
+                                                        ),
+                                                      ),
+                                                      const Divider(
+                                                        thickness: 1,
                                                         color: Colors.grey,
-                                                        fontSize: 12.sp,
                                                       ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 1,
-                                                      color: Colors.grey,
-                                                    ),
-                                                    Text(
-                                                      '18',
-                                                      style: TextStyle(
-                                                        color: Colors.red,
+                                                      const Text(
+                                                        '18',
+                                                        style: TextStyle(
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Container(
+                                          height: 80.h,
+                                          width: 1.w,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Cardinal Heenan House'),
+                                            Text(
+                                              'Lorem ipsum dummy text of the industry.',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Container(
-                                        height: 80.h,
-                                        width: 1.w,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Cardinal Heenan House'),
-                                          Text(
-                                            'Lorem ipsum dummy text of the industry.',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
                                             ),
-                                          ),
-                                          Text(
-                                            'Lorem Ipsum has been the standard dummy ',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          Text(
-                                            'sads iower piip....',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5.h),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.access_time,
-                                                color: Color(0xff687bb9),
-                                                size: 20.sp,
+                                            Text(
+                                              'Lorem Ipsum has been the standard dummy ',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                              SizedBox(width: 5.w),
-                                              Text(
-                                                '10:00 - 11:00',
-                                                style: TextStyle(
-                                                  color: Color(0xff687bb9),
+                                            ),
+                                            Text(
+                                              'sads iower piip....',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
+                                              ),
+                                            ),
+                                            SizedBox(height: 5.h),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color:
+                                                      const Color(0xff687bb9),
+                                                  size: 20.sp,
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                SizedBox(width: 5.w),
+                                                const Text(
+                                                  '10:00 - 11:00',
+                                                  style: TextStyle(
+                                                    color: Color(0xff687bb9),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Container(
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xfffaeaea),
+                                        borderRadius: BorderRadius.circular(6),
                                       ),
-                                    ],
-                                  ),
-                                  ),
-                                  SizedBox(height:10),
-                                  Container(child:Center(child: Text('Apply',style: TextStyle(color:Colors.grey),)),height: 40,width: MediaQuery.of(context).size.width,decoration:BoxDecoration(color: Color(0xfffaeaea),                                borderRadius: BorderRadius.circular(6),
-                                  ))
-
+                                      child: const Center(
+                                          child: Text(
+                                        'Apply',
+                                        style: TextStyle(color: Colors.grey),
+                                      )))
                                 ],
                               ),
                             ),
-                          ), Padding(
+                          ),
+                          Padding(
                             padding: EdgeInsets.only(
                                 left: 20.w, right: 20.w, top: 20.h),
                             child: Container(
-
                               width: 700.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
@@ -521,129 +529,142 @@ class _JobsState extends State<Jobs> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 10.w, right: 10.w, top: 10.h),                                    child: Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                              SizedBox(width: 20.w),
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Container(
-                                                height: 60.h,
-                                                width: 50.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(10),
-                                                  border: Border.all(
-                                                      color: Colors.blue, width: 2),
+                                        left: 10.w, right: 10.w, top: 10.h),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'APR',
-                                                      style: TextStyle(
+                                                SizedBox(width: 20.w),
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 60.h,
+                                                  width: 50.w,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                        color: Colors.blue,
+                                                        width: 2),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        'APR',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 12.sp,
+                                                        ),
+                                                      ),
+                                                      const Divider(
+                                                        thickness: 1,
                                                         color: Colors.grey,
-                                                        fontSize: 12.sp,
                                                       ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 1,
-                                                      color: Colors.grey,
-                                                    ),
-                                                    Text(
-                                                      '18',
-                                                      style: TextStyle(
-                                                        color: Colors.red,
+                                                      const Text(
+                                                        '18',
+                                                        style: TextStyle(
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Container(
+                                          height: 80.h,
+                                          width: 1.w,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Cardinal Heenan House'),
+                                            Text(
+                                              'Lorem ipsum dummy text of the industry.',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Container(
-                                        height: 80.h,
-                                        width: 1.w,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Cardinal Heenan House'),
-                                          Text(
-                                            'Lorem ipsum dummy text of the industry.',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
                                             ),
-                                          ),
-                                          Text(
-                                            'Lorem Ipsum has been the standard dummy ',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          Text(
-                                            'sads iower piip....',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5.h),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.access_time,
-                                                color: Color(0xff687bb9),
-                                                size: 20.sp,
+                                            Text(
+                                              'Lorem Ipsum has been the standard dummy ',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                              SizedBox(width: 5.w),
-                                              Text(
-                                                '10:00 - 11:00',
-                                                style: TextStyle(
-                                                  color: Color(0xff687bb9),
+                                            ),
+                                            Text(
+                                              'sads iower piip....',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
+                                              ),
+                                            ),
+                                            SizedBox(height: 5.h),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color:
+                                                      const Color(0xff687bb9),
+                                                  size: 20.sp,
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                SizedBox(width: 5.w),
+                                                const Text(
+                                                  '10:00 - 11:00',
+                                                  style: TextStyle(
+                                                    color: Color(0xff687bb9),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Container(
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xfffaeaea),
+                                        borderRadius: BorderRadius.circular(6),
                                       ),
-                                    ],
-                                  ),
-                                  ),
-                                  SizedBox(height:10),
-                                  Container(child:Center(child: Text('Apply',style: TextStyle(color:Colors.grey),)),height: 40,width: MediaQuery.of(context).size.width,decoration:BoxDecoration(color: Color(0xfffaeaea),                                borderRadius: BorderRadius.circular(6),
-                                  ))
-
+                                      child: const Center(
+                                          child: Text(
+                                        'Apply',
+                                        style: TextStyle(color: Colors.grey),
+                                      )))
                                 ],
                               ),
                             ),
-                          ), Padding(
+                          ),
+                          Padding(
                             padding: EdgeInsets.only(
                                 left: 20.w, right: 20.w, top: 20.h),
                             child: Container(
-
                               width: 700.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
@@ -653,121 +674,134 @@ class _JobsState extends State<Jobs> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 10.w, right: 10.w, top: 10.h),                                    child: Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                              SizedBox(width: 20.w),
-                                              Container(
-                                                height: 10.h,
-                                                width: 2.w,
-                                                color: Colors.blue,
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Container(
-                                                height: 60.h,
-                                                width: 50.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(10),
-                                                  border: Border.all(
-                                                      color: Colors.blue, width: 2),
+                                        left: 10.w, right: 10.w, top: 10.h),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'APR',
-                                                      style: TextStyle(
+                                                SizedBox(width: 20.w),
+                                                Container(
+                                                  height: 10.h,
+                                                  width: 2.w,
+                                                  color: Colors.blue,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 60.h,
+                                                  width: 50.w,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    border: Border.all(
+                                                        color: Colors.blue,
+                                                        width: 2),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        'APR',
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 12.sp,
+                                                        ),
+                                                      ),
+                                                      const Divider(
+                                                        thickness: 1,
                                                         color: Colors.grey,
-                                                        fontSize: 12.sp,
                                                       ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 1,
-                                                      color: Colors.grey,
-                                                    ),
-                                                    Text(
-                                                      '18',
-                                                      style: TextStyle(
-                                                        color: Colors.red,
+                                                      const Text(
+                                                        '18',
+                                                        style: TextStyle(
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Container(
+                                          height: 80.h,
+                                          width: 1.w,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Cardinal Heenan House'),
+                                            Text(
+                                              'Lorem ipsum dummy text of the industry.',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Container(
-                                        height: 80.h,
-                                        width: 1.w,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Cardinal Heenan House'),
-                                          Text(
-                                            'Lorem ipsum dummy text of the industry.',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
                                             ),
-                                          ),
-                                          Text(
-                                            'Lorem Ipsum has been the standard dummy ',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          Text(
-                                            'sads iower piip....',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.sp,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5.h),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.access_time,
-                                                color: Color(0xff687bb9),
-                                                size: 20.sp,
+                                            Text(
+                                              'Lorem Ipsum has been the standard dummy ',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
                                               ),
-                                              SizedBox(width: 5.w),
-                                              Text(
-                                                '10:00 - 11:00',
-                                                style: TextStyle(
-                                                  color: Color(0xff687bb9),
+                                            ),
+                                            Text(
+                                              'sads iower piip....',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.sp,
+                                              ),
+                                            ),
+                                            SizedBox(height: 5.h),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color:
+                                                      const Color(0xff687bb9),
+                                                  size: 20.sp,
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                SizedBox(width: 5.w),
+                                                const Text(
+                                                  '10:00 - 11:00',
+                                                  style: TextStyle(
+                                                    color: Color(0xff687bb9),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Container(
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xfffaeaea),
+                                        borderRadius: BorderRadius.circular(6),
                                       ),
-                                    ],
-                                  ),
-                                  ),
-                                  SizedBox(height:10),
-                                  Container(child:Center(child: Text('Apply',style: TextStyle(color:Colors.grey),)),height: 40,width: MediaQuery.of(context).size.width,decoration:BoxDecoration(color: Color(0xfffaeaea),                                borderRadius: BorderRadius.circular(6),
-                                  ))
-
+                                      child: const Center(
+                                          child: Text(
+                                        'Apply',
+                                        style: TextStyle(color: Colors.grey),
+                                      )))
                                 ],
                               ),
                             ),

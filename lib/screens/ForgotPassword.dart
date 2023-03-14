@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixel_app/screens/SignUp.dart';
 
 import '../Constants/Constant.dart';
 import '../Controller/AuthController.dart';
@@ -14,18 +15,36 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  TextEditingController email = new TextEditingController();
-  GlobalKey<FormState> formkey = new GlobalKey();
+  TextEditingController email = TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const SignUpPage(),
+              ),
+            );
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.grey,
+          ),
+        ),
+        backgroundColor: Colors.grey.shade50,
+        elevation: 0,
+      ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Form(
           key: formkey,
           child: SafeArea(
             child: Column(
               children: [
+                SizedBox(height: 30.h),
                 Column(
                   children: [
                     Text(
@@ -37,7 +56,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 22.w),
+                SizedBox(height: 22.h),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,23 +89,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           hintStyle: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w500,
                             fontSize: 14.sp,
-                            color: Color(0xffACA9A9),
+                            color: const Color(0xffACA9A9),
                           ),
-                          fillColor: Color(0xffEEEEEE),
+                          fillColor: const Color(0xffEEEEEE),
                           filled: true,
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -101,7 +120,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       padding: EdgeInsets.only(left: 20.w, right: 20.w),
                       child: InkWell(
                         onTap: () async {
-                          AuthController controller = new AuthController();
+                          AuthController controller = AuthController();
+
                           if (formkey.currentState!.validate()) {
                             uemail = email.text;
                             controller.ForgotPassword(email.text, context);
@@ -111,8 +131,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               barrierDismissible: false,
                               builder: (BuildContext context) {
                                 return Container(
-                                    child: Center(
-                                        child: new CircularProgressIndicator(
+                                    child: const Center(
+                                        child: CircularProgressIndicator(
                                   color: Color(0xfffaeaea),
                                 )));
                               },

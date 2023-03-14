@@ -41,7 +41,7 @@ class _PassportState extends State<Passport> {
             // Navigator.pushReplacement(context,
             //     MaterialPageRoute(builder: (context) => DocumentsUpload()));
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.grey,
           ),
@@ -85,7 +85,7 @@ class _PassportState extends State<Passport> {
       body: SingleChildScrollView(
         child: Container(
             color: Colors.grey.shade50,
-            padding: EdgeInsets.all(17),
+            padding: const EdgeInsets.all(17),
             child: Form(
               key: formKey,
               child: Column(
@@ -99,7 +99,7 @@ class _PassportState extends State<Passport> {
                           style: TextStyle(
                               fontSize: 16.sp, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         TextFormField(
@@ -112,27 +112,27 @@ class _PassportState extends State<Passport> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w600,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
                             fillColor: Colors.grey.shade200,
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
@@ -169,35 +169,35 @@ class _PassportState extends State<Passport> {
                                   items: List.generate(
                                       31,
                                       (index) => DropdownMenuItem(
-                                            child: Text('${index + 1}'),
                                             value: '${index + 1}',
+                                            child: Text('${index + 1}'),
                                           )),
                                   onChanged: (String? value) {
                                     day1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -231,36 +231,36 @@ class _PassportState extends State<Passport> {
                                     'December'
                                   ]
                                       .map((e) => DropdownMenuItem(
-                                            child: Text('${e}'),
                                             value: e,
+                                            child: Text('${e}'),
                                           ))
                                       .toList(),
                                   onChanged: (String? value) {
                                     month1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -282,37 +282,37 @@ class _PassportState extends State<Passport> {
                                   items: List.generate(
                                       DateTime.now().year + 10,
                                       (index) => DropdownMenuItem(
-                                            child: Text(
-                                                '${DateTime.now().year + 10 - index}'),
                                             value:
                                                 '${DateTime.now().year + 10 - index}',
+                                            child: Text(
+                                                '${DateTime.now().year + 10 - index}'),
                                           )),
                                   onChanged: (String? value) {
                                     year1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -331,19 +331,37 @@ class _PassportState extends State<Passport> {
                     height: 20.h,
                   ),
                   Column(
-                      children: List.generate(images.length, (index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .3,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: FileImage(images.elementAt(index)))),
-                    );
-                  })),
-                  SizedBox(
-                    height: 20.h,
+                    children: List.generate(
+                      images.length,
+                      (index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 5),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * .2,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: FileImage(
+                                images.elementAt(index),
+                              ),
+                            ),
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                images.removeAt(index);
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
+                  SizedBox(height: 20.h),
                   InkWell(
                     onTap: () async {
                       FilePickerResult? result =
@@ -352,12 +370,12 @@ class _PassportState extends State<Passport> {
                         type: FileType.image,
                       );
                       if (result != null) {
-                        result.files.forEach((element) {
+                        for (var element in result.files) {
                           File file = File(element.path!);
                           setState(() {
                             images.add(file);
                           });
-                        });
+                        }
                       } else {
                         // User canceled the picker
                       }
@@ -365,10 +383,7 @@ class _PassportState extends State<Passport> {
                     child: DottedBorder(
                       color: Colors.black,
                       strokeWidth: 1,
-                      dashPattern: [
-                        10,
-                        10,
-                      ],
+                      dashPattern: const [10, 10],
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * .3,
@@ -387,18 +402,14 @@ class _PassportState extends State<Passport> {
                               //   height: 80.h,
                               //   width: 80.w,
                               // ),
-                              SizedBox(
-                                height: 15,
-                              ),
+                              const SizedBox(height: 15),
                               Text(
                                 'Tap to upload multiple photos',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.sp),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
+                              const SizedBox(height: 5),
                               Text(
                                 'File should be .jpg and less than 10 MB',
                                 style: TextStyle(
@@ -447,8 +458,9 @@ class _PassportState extends State<Passport> {
 
                       if (formKey.currentState!.validate()) {
                         if (images.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                  content: Text(
                             'Please input images',
                             style: TextStyle(color: Colors.white),
                           )));
@@ -458,8 +470,8 @@ class _PassportState extends State<Passport> {
                             barrierDismissible: false,
                             builder: (BuildContext context) {
                               return Container(
-                                  child: Center(
-                                      child: new CircularProgressIndicator(
+                                  child: const Center(
+                                      child: CircularProgressIndicator(
                                 color: Color(0xfffaeaea),
                               )));
                             },
@@ -482,7 +494,7 @@ class _PassportState extends State<Passport> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(
                             '$data',
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           )));
                         }
                       }
@@ -497,7 +509,7 @@ class _PassportState extends State<Passport> {
                                 passportNo != null &&
                                 images.isNotEmpty
                             ? Colors.pink
-                            : Color(0xfffaeaea),
+                            : const Color(0xfffaeaea),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Center(

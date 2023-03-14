@@ -11,6 +11,8 @@ import 'package:intl/intl.dart';
 import '../Controller/TimesheetController.dart';
 import '../Model/TimesheetModel.dart';
 
+enum Choose { no, yes }
+
 class TimeSheetPage extends StatefulWidget {
   const TimeSheetPage({Key? key}) : super(key: key);
 
@@ -29,6 +31,7 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
   DateTime end = DateTime.now();
   var brk = 0;
   File? file;
+  Choose? char = Choose.no;
 
   var totalhours = '';
   Widget MyContainer({
@@ -146,438 +149,521 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                         future: TimesheetController().GetAvail(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            return Column(
-                              children: [
-                                MyContainer(
-//                              iconData: Icons.check_box_outline_blank,
-                                  text1: 'Business Unit',
-                                  text2: 'Doha Group',
-                                ),
-                                MyContainer(
-//                              iconData: Icons.check_box_outline_blank,
-                                  text1: 'Staff Name',
-                                  text2:
-                                      '${snapshot.data?.data?.staffName ?? 'Add availability first'}',
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.w, right: 20.w, top: 20.w),
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: 20.w, right: 20.w),
-                                    height: 60.h,
-                                    width: 700.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey.shade400
-                                                .withOpacity(0.7),
-                                            spreadRadius: 1,
-                                            blurRadius: 5)
-                                      ],
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'Job Post',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        Text(
-                                          '${snapshot.data!.data!.jobPost[1]}',
-                                          style: const TextStyle(
-                                            color: Colors.blue,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                MyContainer(
-//                              iconData: Icons.check_box_outline_blank,
-                                  text1: 'Shift Date',
-                                  text2:
-                                      '${snapshot.data?.data?.date ?? 'Add availability first'}',
-                                ),
-                                MyContainer(
-//                              iconData: Icons.check_box_outline_blank,
-                                  text1: 'Shift Select',
-                                  text2:
-                                      '${snapshot.data?.data?.shiftTime ?? 'Add availability first'}',
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.w, right: 20.w, top: 20.w),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      starttime = (await showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay.now(),
-                                      ))!;
-                                      setState(() {
-                                        starttime = starttime;
-                                      });
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 20.w, right: 20.w),
-                                      height: 60.h,
-                                      width: 700.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.grey.shade400
-                                                  .withOpacity(0.7),
-                                              spreadRadius: 1,
-                                              blurRadius: 5)
-                                        ],
-                                        color: Colors.white,
+                            return snapshot.data!.data == null
+                                ? const Center(
+                                    heightFactor: 26,
+                                    child: Text(
+                                      'Please submit your Application Form',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.pink,
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                'Start Time',
+                                    ),
+                                  )
+                                : Column(
+                                    children: [
+                                      MyContainer(
+//                              iconData: Icons.check_box_outline_blank,
+                                        text1: 'Business Unit',
+                                        text2: 'Doha Group',
+                                      ),
+                                      MyContainer(
+//                              iconData: Icons.check_box_outline_blank,
+                                        text1: 'Staff Name',
+                                        text2:
+                                            '${snapshot.data?.data?.staffName ?? 'Add availability first'}',
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20.w, right: 20.w, top: 20.w),
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 20.w, right: 20.w),
+                                          height: 60.h,
+                                          width: 700.w,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.grey.shade400
+                                                      .withOpacity(0.7),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 5)
+                                            ],
+                                            color: Colors.white,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Job Post',
                                                 style: TextStyle(
                                                   color: Colors.grey,
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            '${starttime.hour} hrs:${starttime.minute} min',
-                                            style: const TextStyle(
-                                                color: Colors.blue),
-                                          ),
-                                          const Icon(
-                                            Icons.more_time_outlined,
-                                            color: Colors.blue,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.w, right: 20.w, top: 20.w),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      endtime = (await showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay.now(),
-                                      ))!;
-                                      setState(() {
-                                        endtime = endtime;
-                                      });
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 20.w, right: 20.w),
-                                      height: 60.h,
-                                      width: 700.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.grey.shade400
-                                                  .withOpacity(0.7),
-                                              spreadRadius: 1,
-                                              blurRadius: 5)
-                                        ],
-                                        color: Colors.white,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: const [
+                                              const Spacer(),
                                               Text(
-                                                'End Time',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
+                                                '${snapshot.data!.data!.jobPost[1]}',
+                                                style: const TextStyle(
+                                                  color: Colors.blue,
                                                 ),
                                               ),
                                             ],
                                           ),
-                                          const Spacer(),
-                                          Text(
-                                              '${endtime.hour} hrs:${endtime.minute} min',
-                                              style: const TextStyle(
-                                                color: Colors.blue,
-                                              )),
-                                          const Icon(
-                                            Icons.more_time_outlined,
-                                            color: Colors.blue,
-                                          )
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.w, right: 20.w, top: 20.w),
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: 20.w, right: 20.w),
-                                    height: 60.h,
-                                    width: 700.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey.shade400
-                                                .withOpacity(0.7),
-                                            spreadRadius: 1,
-                                            blurRadius: 5)
-                                      ],
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: const [
-                                            Text(
-                                              'Break Time',
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                              ),
+                                      MyContainer(
+//                              iconData: Icons.check_box_outline_blank,
+                                        text1: 'Shift Date',
+                                        text2:
+                                            '${snapshot.data?.data?.date ?? 'Add availability first'}',
+                                      ),
+                                      MyContainer(
+//                              iconData: Icons.check_box_outline_blank,
+                                        text1: 'Shift Select',
+                                        text2:
+                                            '${snapshot.data?.data?.shiftTime ?? 'Add availability first'}',
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20.w, right: 20.w, top: 20.w),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            starttime = (await showTimePicker(
+                                              context: context,
+                                              initialTime: TimeOfDay.now(),
+                                            ))!;
+                                            setState(() {
+                                              starttime = starttime;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 20.w, right: 20.w),
+                                            height: 60.h,
+                                            width: 700.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey.shade400
+                                                        .withOpacity(0.7),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ],
+                                              color: Colors.white,
                                             ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        Text(
-                                          '${brk} min',
-                                          style: const TextStyle(
-                                              color: Colors.blue),
-                                        ),
-                                        InkWell(
-                                            onTap: () async {
-                                              var duration =
-                                                  await showDurationPicker(
-                                                      context: context,
-                                                      initialTime:
-                                                          const Duration(
-                                                              seconds: 60));
-                                              setState(() {
-                                                if (duration!.inMinutes <= 60) {
-                                                  brk = duration.inMinutes;
-                                                } else {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                          const SnackBar(
-                                                              content: Text(
-                                                    'Cannot Exceed Break Time Over 1 Hour',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  )));
-                                                }
-                                              });
-                                            },
-                                            child: const Icon(
-                                              Icons.more_time_outlined,
-                                              color: Colors.blue,
-                                            ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                MyContainer(
-//                              iconData: Icons.check_box_outline_blank,
-                                  text1: 'Total Hours',
-                                  text2: '${GetTotalHours()}',
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.w, right: 20.w, top: 20.w),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      FilePickerResult? result =
-                                          await FilePicker.platform.pickFiles(
-                                        allowMultiple: false,
-                                        type: FileType.image,
-                                      );
-                                      if (result != null) {
-                                        setState(() {
-                                          file =
-                                              File(result.files.single.path!);
-                                        });
-                                      } else {
-                                        // User canceled the picker
-                                      }
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 20.w, right: 20.w),
-                                      height: 60.h,
-                                      width: 700.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.grey.shade400
-                                                  .withOpacity(0.7),
-                                              spreadRadius: 1,
-                                              blurRadius: 5)
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: const [
-                                              // Icon(Icons.check_box_outline_blank,
-                                              //     color: Colors.grey),
-                                              // SizedBox(width: 20,),
-                                              Text(
-                                                'Last Report',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const Spacer(),
-                                          Container(
                                             child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
+                                                Row(
+                                                  children: const [
+                                                    Text(
+                                                      'Start Time',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Spacer(),
                                                 Text(
-                                                  '',
-                                                  style: TextStyle(
-                                                    color: Colors.grey.shade700,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5.w,
-                                                ),
-                                                if (file != null)
-                                                  Image.file(file!,
-                                                      fit: BoxFit.cover),
-                                                const SizedBox(
-                                                  width: 10,
+                                                  '${starttime.hour} hrs:${starttime.minute} min',
+                                                  style: const TextStyle(
+                                                      color: Colors.blue),
                                                 ),
                                                 const Icon(
-                                                    Icons.camera_alt_outlined,
-                                                    color: Colors.grey),
+                                                  Icons.more_time_outlined,
+                                                  color: Colors.blue,
+                                                )
                                               ],
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 20.h,
-                                      left: 20.w,
-                                      right: 20.w,
-                                      bottom: 20.h),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      if (file == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                                content: Text(
-                                          'Please input images',
-                                          style: TextStyle(color: Colors.white),
-                                        )));
-                                      } else {
-                                        showDialog(
-                                          context: context,
-                                          barrierDismissible: false,
-                                          builder: (BuildContext context) {
-                                            return const Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                              color: Color(0xfffaeaea),
-                                            ));
-                                          },
-                                        );
-
-                                        // ScaffoldMessenger.of(context)
-                                        //     .showSnackBar(SnackBar(
-                                        //         content: Text(
-                                        //   'End Time: ${endtime.hour}:${endtime.minute} \n Start Time :${starttime.hour}:${starttime.minute} \n Break : $brk \n  scheduleid: ${snapshot.data?.data?.shiftId}  total: ${GetTotalHours().replaceAll('hrs', '').replaceAll('min', '')} \n unit: asdf  applicationid:${snapshot.data?.data?.jobPostId}  image: $file',
-                                        //   style: TextStyle(color: Colors.white),
-                                        // )));
-
-                                        var data = await TimesheetController().save(
-                                            image: file,
-                                            end:
-                                                '${endtime.hour}:${endtime.minute}',
-                                            applicationid:
-                                                snapshot.data?.data?.jobPostId,
-                                            brek: '$brk min',
-                                            scheduleid:
-                                                snapshot.data?.data?.shiftId,
-                                            start:
-                                                '${starttime.hour}:${starttime.minute}',
-                                            total: GetTotalHours()
-                                                .replaceAll('hrs', '')
-                                                .replaceAll('min', ''),
-                                            unit: 'asdf');
-
-                                        Navigator.pop(context);
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                content: Text(
-                                          '$data',
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                        )));
-                                      }
-                                    },
-                                    child: Container(
-                                      height: 60.h,
-                                      width: 600.w,
-                                      decoration: BoxDecoration(
-                                        color: file != null
-                                            ? Colors.pink
-                                            : const Color(0xfffAEAEA),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Submit',
-                                          style: TextStyle(
-                                            color: file != null
-                                                ? Colors.white
-                                                : Colors.black,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            );
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20.w, right: 20.w, top: 20.w),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            endtime = (await showTimePicker(
+                                              context: context,
+                                              initialTime: TimeOfDay.now(),
+                                            ))!;
+                                            setState(() {
+                                              endtime = endtime;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 20.w, right: 20.w),
+                                            height: 60.h,
+                                            width: 700.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey.shade400
+                                                        .withOpacity(0.7),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ],
+                                              color: Colors.white,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: const [
+                                                    Text(
+                                                      'End Time',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Spacer(),
+                                                Text(
+                                                    '${endtime.hour} hrs:${endtime.minute} min',
+                                                    style: const TextStyle(
+                                                      color: Colors.blue,
+                                                    )),
+                                                const Icon(
+                                                  Icons.more_time_outlined,
+                                                  color: Colors.blue,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          var duration =
+                                              await showDurationPicker(
+                                                  context: context,
+                                                  initialTime: const Duration(
+                                                      seconds: 60));
+                                          setState(() {
+                                            if (duration!.inMinutes <= 60) {
+                                              brk = duration.inMinutes;
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                      content: Text(
+                                                'Cannot Exceed Break Time Over 1 Hour',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )));
+                                            }
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 20.w,
+                                              right: 20.w,
+                                              top: 20.w),
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 20.w, right: 20.w),
+                                            height: 60.h,
+                                            width: 700.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey.shade400
+                                                        .withOpacity(0.7),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ],
+                                              color: Colors.white,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: const [
+                                                    Text(
+                                                      'Break Time',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Spacer(),
+                                                Text(
+                                                  '$brk min',
+                                                  style: const TextStyle(
+                                                      color: Colors.blue),
+                                                ),
+                                                const Icon(
+                                                  Icons.more_time_outlined,
+                                                  color: Colors.blue,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      MyContainer(
+//                              iconData: Icons.check_box_outline_blank,
+                                        text1: 'Total Hours',
+                                        text2: '${GetTotalHours()}',
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20.w, right: 20.w, top: 20.w),
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 20.w, right: 20.w),
+                                          height: 60.h,
+                                          width: 700.w,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.grey.shade400
+                                                      .withOpacity(0.7),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 5)
+                                            ],
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Text(
+                                                'Transportation',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              SizedBox(width: 50.w),
+                                              RadioMenuButton(
+                                                value: Choose.no,
+                                                groupValue: char,
+                                                onChanged: (Choose? value) {
+                                                  setState(() {
+                                                    char = value;
+                                                  });
+                                                },
+                                                child: const Text('No'),
+                                              ),
+                                              RadioMenuButton(
+                                                value: Choose.yes,
+                                                groupValue: char,
+                                                onChanged: (Choose? value) {
+                                                  setState(() {
+                                                    char = value;
+                                                  });
+                                                },
+                                                child: const Text('Yes'),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20.w, right: 20.w, top: 20.w),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            FilePickerResult? result =
+                                                await FilePicker.platform
+                                                    .pickFiles(
+                                              allowMultiple: false,
+                                              type: FileType.image,
+                                            );
+                                            if (result != null) {
+                                              setState(() {
+                                                file = File(
+                                                    result.files.single.path!);
+                                              });
+                                            } else {
+                                              // User canceled the picker
+                                            }
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 20.w, right: 20.w),
+                                            height: 60.h,
+                                            width: 700.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey.shade400
+                                                        .withOpacity(0.7),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 5)
+                                              ],
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: const [
+                                                    // Icon(Icons.check_box_outline_blank,
+                                                    //     color: Colors.grey),
+                                                    // SizedBox(width: 20,),
+                                                    Text(
+                                                      'Last Report',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Spacer(),
+                                                Container(
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        '',
+                                                        style: TextStyle(
+                                                          color: Colors
+                                                              .grey.shade700,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5.w,
+                                                      ),
+                                                      if (file != null)
+                                                        Image.file(file!,
+                                                            fit: BoxFit.cover),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      const Icon(
+                                                          Icons
+                                                              .camera_alt_outlined,
+                                                          color: Colors.grey),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 20.h,
+                                            left: 20.w,
+                                            right: 20.w,
+                                            bottom: 20.h),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            if (file == null) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                      content: Text(
+                                                'Please input images',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )));
+                                            } else {
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                    color: Color(0xfffaeaea),
+                                                  ));
+                                                },
+                                              );
+
+                                              // ScaffoldMessenger.of(context)
+                                              //     .showSnackBar(SnackBar(
+                                              //         content: Text(
+                                              //   'End Time: ${endtime.hour}:${endtime.minute} \n Start Time :${starttime.hour}:${starttime.minute} \n Break : $brk \n  scheduleid: ${snapshot.data?.data?.shiftId}  total: ${GetTotalHours().replaceAll('hrs', '').replaceAll('min', '')} \n unit: asdf  applicationid:${snapshot.data?.data?.jobPostId}  image: $file',
+                                              //   style: TextStyle(color: Colors.white),
+                                              // )));
+
+                                              var data =
+                                                  await TimesheetController()
+                                                      .save(
+                                                image: file,
+                                                end:
+                                                    '${endtime.hour}:${endtime.minute}',
+                                                applicationid: snapshot
+                                                    .data?.data?.jobPostId,
+                                                brek: '$brk min',
+                                                scheduleid: snapshot
+                                                    .data?.data?.shiftId,
+                                                start:
+                                                    '${starttime.hour}:${starttime.minute}',
+                                                total: GetTotalHours()
+                                                    .replaceAll('hrs', '')
+                                                    .replaceAll('min', ''),
+                                                unit: 'asdf',
+                                                transportation: char,
+                                              );
+
+                                              Navigator.pop(context);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                '$data',
+                                                style: const TextStyle(
+                                                    color: Colors.white),
+                                              )));
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 60.h,
+                                            width: 600.w,
+                                            decoration: BoxDecoration(
+                                              color: file != null
+                                                  ? Colors.pink
+                                                  : const Color(0xfffAEAEA),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                'Submit',
+                                                style: TextStyle(
+                                                  color: file != null
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
                           } else {
-                            return Container(
+                            return SizedBox(
                               height: MediaQuery.of(context).size.height * 0.86,
                               width: MediaQuery.of(context).size.width,
-                              child: Center(
-                                child: Container(
+                              child: const Center(
+                                child: SizedBox(
                                   height: 30,
                                   width: 30,
-                                  child: const CircularProgressIndicator(
+                                  child: CircularProgressIndicator(
                                     color: Color(0xfffaeaea),
                                   ),
                                 ),

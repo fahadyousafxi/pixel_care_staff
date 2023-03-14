@@ -1,11 +1,8 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Constants/Constant.dart';
@@ -13,8 +10,6 @@ import 'package:pixel_app/Constants/Constant.dart';
 import '../Application_Form/Trainings.dart';
 import '../Controller/AuthController.dart';
 import '../screens/ProfileTrainingCertificate.dart';
-import '../widgets/bottomNavigationBar/BottomNavigation.dart';
-import 'document_upload.dart';
 
 class TrainingCertificates extends StatefulWidget {
   const TrainingCertificates({Key? key}) : super(key: key);
@@ -28,7 +23,6 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
   GlobalKey<FormState> formKey = new GlobalKey();
   List<File>? images = [];
   List<String>? pdfs = [];
-
 
   var date;
   var month = 'September';
@@ -148,7 +142,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
         child: SingleChildScrollView(
           child: Container(
               color: Colors.grey.shade50,
-              padding: EdgeInsets.all(17),
+              padding: const EdgeInsets.all(17),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -188,7 +182,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                                     .width *
                                                 0.8,
                                             child: Text(e),
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 border: Border(
                                                     bottom: BorderSide(
                                               color: Colors.black,
@@ -205,28 +199,28 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                     });
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -308,28 +302,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                       });
                                     },
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 5),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 5),
                                       hintStyle: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15.sp,
-                                        color: Color(0xffACA9A9),
+                                        color: const Color(0xffACA9A9),
                                       ),
                                       fillColor: Colors.grey.shade200,
                                       filled: true,
-                                      border: OutlineInputBorder(
+                                      border: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      enabledBorder: OutlineInputBorder(
+                                      enabledBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
@@ -374,28 +369,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                       });
                                     },
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 5),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 5),
                                       hintStyle: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15.sp,
-                                        color: Color(0xffACA9A9),
+                                        color: const Color(0xffACA9A9),
                                       ),
                                       fillColor: Colors.grey.shade200,
                                       filled: true,
-                                      border: OutlineInputBorder(
+                                      border: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      enabledBorder: OutlineInputBorder(
+                                      enabledBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
@@ -429,28 +425,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                       });
                                     },
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 5),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 5),
                                       hintStyle: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15.sp,
-                                        color: Color(0xffACA9A9),
+                                        color: const Color(0xffACA9A9),
                                       ),
                                       fillColor: Colors.grey.shade200,
                                       filled: true,
-                                      border: OutlineInputBorder(
+                                      border: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      enabledBorder: OutlineInputBorder(
+                                      enabledBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
@@ -541,28 +538,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                         // day=value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -606,28 +604,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                         // month=value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -660,28 +659,29 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                         // year=value!;
                                       },
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
                                         hintStyle: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15.sp,
-                                          color: Color(0xffACA9A9),
+                                          color: const Color(0xffACA9A9),
                                         ),
                                         fillColor: Colors.grey.shade200,
                                         filled: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(8),
@@ -703,15 +703,32 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                     Column(
                         children: List.generate(images!.length, (index) {
                       return Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * .3,
+                        height: MediaQuery.of(context).size.height * .2,
 
                         /// pdf changes
 
                         decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: FileImage(images!.elementAt(index)))),
+                          image: DecorationImage(
+                            image: FileImage(
+                              images!.elementAt(index),
+                            ),
+                          ),
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              images!.removeAt(index);
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+
                         // child: Stack(
                         //   children: [
                         //     if (pdfs != null)
@@ -744,7 +761,6 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         //       // ),
                         //   ],
                         // ),
-
                       );
                     })),
                     SizedBox(
@@ -752,8 +768,6 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                     ),
                     InkWell(
                       onTap: () async {
-
-
                         // _modalBottomSheetMenu();
                         FilePickerResult? result =
                             await FilePicker.platform.pickFiles(
@@ -770,9 +784,6 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         } else {
                           // User canceled the picker
                         }
-
-
-
                       },
                       child: DottedBorder(
                         color: Colors.black,
@@ -799,7 +810,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                 //   height: 80.h,
                                 //   width: 80.w,
                                 // ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Text(
@@ -808,7 +819,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15.sp),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 // Text(
@@ -882,8 +893,9 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         date = year1 + '-' + month1 + '-' + day1;
                         if (formKey.currentState!.validate()) {
                           if (images!.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                    content: Text(
                               'Please input images',
                               style: TextStyle(color: Colors.white),
                             )));
@@ -893,8 +905,8 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                               barrierDismissible: false,
                               builder: (BuildContext context) {
                                 return Container(
-                                    child: Center(
-                                        child: new CircularProgressIndicator(
+                                    child: const Center(
+                                        child: CircularProgressIndicator(
                                   color: Color(0xfffaeaea),
                                 )));
                               },
@@ -911,7 +923,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                               '$data',
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             )));
                             if (navigator) {
                               Navigator.pushReplacement(
@@ -938,7 +950,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                         decoration: BoxDecoration(
                           color: images!.isNotEmpty
                               ? Colors.pink
-                              : Color(0xfffaeaea),
+                              : const Color(0xfffaeaea),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(
@@ -961,74 +973,70 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
     );
   }
 
-  void _modalBottomSheetMenu(){
+  void _modalBottomSheetMenu() {
     showModalBottomSheet(
         context: context,
-        builder: (builder){
-          return  Container(
+        builder: (builder) {
+          return Container(
             height: 350.0,
             color: Colors.white, //could change this to Color(0xFF737373),
             //so you don't have to change MaterialApp canvasColor
-            child:  Container(
+            child: Container(
                 // decoration: new BoxDecoration(
                 //     color: Colors.white,
                 //     borderRadius: new BorderRadius.only(
                 //         topLeft: const Radius.circular(10.0),
                 //         topRight: const Radius.circular(10.0))),
-                child:  Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: () async {
-                        FilePickerResult? result =
-                            await FilePicker.platform.pickFiles(
-                          allowMultiple: true,
-                          type: FileType.image,
-                        );
-                        if (result != null) {
-                          result.files.forEach((element) {
-                            File file = File(element.path!);
-                            setState(() {
-                              images!.add(file);
-                            });
-                          });
-                        } else {
-                          // User canceled the picker
-                        }
-                      },
-                      child: Center(
-                        child:  Text("Pick From Gallary"),
-                      ),
-                    ),
-                    InkWell(
-
-                      onTap: () async {
-                        FilePickerResult? result =
-                            await FilePicker.platform.pickFiles(
-                          allowMultiple: true,
-                          type: FileType.any,
-                        );
-                        if (result != null) {
-                          result.files.forEach((element) {
-                            File file = File(element.path!);
-                            setState(() {
-                              images!.add(file);
-                            });
-                          });
-                        } else {
-                          // User canceled the picker
-                        }
-                      },
-
-                      child: Center(
-                        child:  Text("Pick From Files"),
-                      ),
-                    ),
-                  ],
-                )),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () async {
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      allowMultiple: true,
+                      type: FileType.image,
+                    );
+                    if (result != null) {
+                      result.files.forEach((element) {
+                        File file = File(element.path!);
+                        setState(() {
+                          images!.add(file);
+                        });
+                      });
+                    } else {
+                      // User canceled the picker
+                    }
+                  },
+                  child: const Center(
+                    child: Text("Pick From Gallary"),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      allowMultiple: true,
+                      type: FileType.any,
+                    );
+                    if (result != null) {
+                      result.files.forEach((element) {
+                        File file = File(element.path!);
+                        setState(() {
+                          images!.add(file);
+                        });
+                      });
+                    } else {
+                      // User canceled the picker
+                    }
+                  },
+                  child: const Center(
+                    child: Text("Pick From Files"),
+                  ),
+                ),
+              ],
+            )),
           );
-        }
-    );
+        });
   }
-
 }

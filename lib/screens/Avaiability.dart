@@ -389,20 +389,17 @@
 //
 //
 
-
-
-
-
-
 /// my
+
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:pixel_app/Model/AvailabilityModel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:pixel_app/Controller/AvailabilityController.dart';
+import 'package:pixel_app/Model/AvailabilityModel.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class AvailabilityView extends StatefulWidget {
   const AvailabilityView({Key? key}) : super(key: key);
@@ -412,9 +409,6 @@ class AvailabilityView extends StatefulWidget {
 }
 
 class _AvailabilityViewState extends State<AvailabilityView> {
-
-
-
   var dateId = 32;
 
   int selectedDateId = 0;
@@ -424,8 +418,8 @@ class _AvailabilityViewState extends State<AvailabilityView> {
   var _focusedDay = DateTime.now();
   var selected = 1;
   var enable = false;
-  final f = new DateFormat('yyyy-MM-dd');
-  GlobalKey<ScaffoldState> key = new GlobalKey();
+  final f = DateFormat('yyyy-MM-dd');
+  GlobalKey<ScaffoldState> key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -466,35 +460,32 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                       .asStream(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      Data data = new Data(
-
-                          date: _selectedDay.year.toString() +
-                              "-" +
-                              _selectedDay.month.toString() +
-                              "-" +
-                              _selectedDay.day.toString(),
+                      Data data = Data(
+                          date:
+                              "${_selectedDay.year}-${_selectedDay.month}-${_selectedDay.day}",
                           scheduleList: selected.toString(),
-                          id: DateTime.now().microsecondsSinceEpoch
-                      );
-                        var contain = false;
+                          id: DateTime.now().microsecondsSinceEpoch);
+                      var contain = false;
 
                       var focus = 10;
 
-
                       // hint
-                      snapshot.data!.data.forEach((element) {
-                        print(element.scheduleList);
+                      for (var element in snapshot.data!.data) {
+                        // print(element.scheduleList);
                         if (element.date == data.date) {
-                          setState(() {
-                            contain = true;
-                          });
+                          contain = true;
+                          // setState(() {});
 
-
-                          dateId = int.parse(element.date.toString());
+                          dateId = int.parse(element.date
+                              .toString()
+                              .split('')
+                              .toList()
+                              .elementAt(0)
+                              .toString());
                           focus = int.parse(element.scheduleList.toString());
-                          print("$dateId  asdfasdfasdfdsf asdfsdfsdf");
                         }
-                      });
+                      }
+
                       return Container(
                         height: MediaQuery.of(context).size.height * 0.86,
                         width: MediaQuery.of(context).size.width,
@@ -514,8 +505,8 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                             children: [
                               TableCalendar(
                                 startingDayOfWeek: StartingDayOfWeek.monday,
-                                headerStyle:
-                                    HeaderStyle(formatButtonVisible: false),
+                                headerStyle: const HeaderStyle(
+                                    formatButtonVisible: false),
                                 firstDay: DateTime.utc(2010, 10, 16),
                                 rowHeight: 50.h,
                                 calendarStyle: CalendarStyle(
@@ -526,8 +517,6 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                               ? Colors.pink.shade300
                                               : Colors.grey),
                                 ),
-
-
                                 selectedDayPredicate: (date) {
                                   if (date == _focusedDay) {
                                     return true;
@@ -538,10 +527,10 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                 onPageChanged: (val) {
                                   setState(() {
                                     if (DateTime.now().month == val.month) {
-                                      _selectedDay = DateTime(val.year, val.month,
-                                          DateTime.now().day);
-                                      _focusedDay = DateTime(val.year, val.month,
-                                          DateTime.now().day);
+                                      _selectedDay = DateTime(val.year,
+                                          val.month, DateTime.now().day);
+                                      _focusedDay = DateTime(val.year,
+                                          val.month, DateTime.now().day);
                                     } else {
                                       _selectedDay =
                                           DateTime(val.year, val.month, 1);
@@ -556,13 +545,13 @@ class _AvailabilityViewState extends State<AvailabilityView> {
 
                                   // data
 
-                                  Data data = new Data(
-                                      date: date.year.toString() +
-                                          "-${date.month.toString().length == 1 ? "0" + date.month.toString() : date.month.toString()}-${date.day.toString().length == 1 ? "0" + date.day.toString() : date.day.toString()}",
+                                  Data data = Data(
+                                      date:
+                                          "${date.year}-${date.month.toString().length == 1 ? "0${date.month}" : date.month.toString()}-${date.day.toString().length == 1 ? "0${date.day}" : date.day.toString()}",
                                       scheduleList: "2",
-                                      id: DateTime.now().microsecondsSinceEpoch
-                                  );
-                                  snapshot.data!.data.forEach((element) {
+                                      id: DateTime.now()
+                                          .microsecondsSinceEpoch);
+                                  for (var element in snapshot.data!.data) {
                                     // && int.parse(element.date.toString().split("-").first)>=DateTime.now().year&& int.parse(element.date.toString().split("-").elementAt(1))>=DateTime.now().month&& int.parse(element.date.toString().split("-").last)>=DateTime.now().day
                                     //print(DateFormat("yyyy-MM-dd")
                                     // .parse(element.date!));
@@ -584,14 +573,15 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                         cool = 2;
                                       }
                                     }
-                                  });
+                                  }
                                   return cool == 0
                                       ? Container()
                                       : cool == 2
                                           ? Container(
                                               height: 45.h,
                                               width: 45.w,
-                                              color: Colors.blue.withOpacity(0.5),
+                                              color:
+                                                  Colors.blue.withOpacity(0.5),
                                             )
                                           : Container(
                                               height: 45.h,
@@ -603,41 +593,32 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                 lastDay: DateTime.utc(2030, 3, 14),
                                 focusedDay: _focusedDay,
                                 currentDay: _selectedDay,
-
                                 onDaySelected: (selectedDay, focusedDay) {
-
                                   // yes selectedDay
 
-
-
-                                  print('yes $selectedDay asdfsdf');
+                                  // print('yes $selectedDay asdfsdf');
                                   setState(() {
                                     _selectedDay = selectedDay;
                                     _focusedDay =
                                         focusedDay; // update `_focusedDay` here as well
                                   });
 
-                                  String selectedDate = selectedDay.toString().substring(0, 10);
-
+                                  String selectedDate =
+                                      selectedDay.toString().substring(0, 10);
 
                                   for (var element in snapshot.data!.data) {
-                                    setState(() {
-                                    });
-                                    if(element.date.toString() == selectedDate){
-                                      print("dddddddddddddddssssssssss   $selectedDate");
-
+                                    setState(() {});
+                                    if (element.date.toString() ==
+                                        selectedDate) {
+                                      // print("dddddddddddddddssssssssss   $selectedDate");
 
                                       selectedDateId = element.id!;
-                                      print("dddddddddddddddssssssssssdddddddddddddddssssssssss   $selectedDateId");
-
+                                      // print("dddddddddddddddssssssssssdddddddddddddddssssssssss   $selectedDateId");
                                     }
 
-
-                                    print("asdfsdfsadfasdfsadfasdf ${element.date}  asdfsdfsadfasdfsadfasdf" );
+                                    // print("asdfsdfsadfasdfsadfasdf ${element.date}  asdfsdfsadfasdfsadfasdf");
                                     // dateId = int.parse(element.id.toString());
                                     // print("$dateId  asdfasdfasdfdsf asdfsdfsdf");
-
-
                                   }
                                 },
                               ),
@@ -668,7 +649,7 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                           width:
                                               MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(
-                                            color: Color(0xfffaeaea),
+                                            color: const Color(0xfffaeaea),
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             border: selected == 1
@@ -685,10 +666,11 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                                 children: [
                                                   Icon(
                                                     Icons.sunny,
-                                                    color: Colors.yellow.shade600,
+                                                    color:
+                                                        Colors.yellow.shade600,
                                                     size: 50.h,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Text(
@@ -710,7 +692,7 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                                           fontSize: 14.sp,
                                                           color: Colors.grey),
                                                     )
-                                                  : Text(''),
+                                                  : const Text(''),
                                             ],
                                           )),
                                     ),
@@ -750,7 +732,7 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                                     color: Colors.blue,
                                                     size: 50.h,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Text(
@@ -772,14 +754,14 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                                           fontSize: 14.sp,
                                                           color: Colors.grey),
                                                     )
-                                                  : Text(''),
+                                                  : const Text(''),
                                             ],
                                           )),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               InkWell(
@@ -791,11 +773,8 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                       .SaveAvail(
                                           time: selected,
                                           cond: contain ? false : true,
-                                          date: _selectedDay.year.toString() +
-                                              "-" +
-                                              _selectedDay.month.toString() +
-                                              "-" +
-                                              _selectedDay.day.toString());
+                                          date:
+                                              "${_selectedDay.year}-${_selectedDay.month}-${_selectedDay.day}");
                                   setState(() {
                                     enable = false;
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -811,7 +790,7 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                   ),
                                   child: Center(
                                     child: enable
-                                        ? Container(
+                                        ? const SizedBox(
                                             height: 20,
                                             width: 20,
                                             child: CircularProgressIndicator(
@@ -819,46 +798,32 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                             ))
                                         : Text(
                                             contain ? 'Edit' : 'Save',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.white),
                                           ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               InkWell(
                                 onTap: () async {
-
                                   // code of deleting
-                                  var response =
-                                      await AvailabilityController().DeleteAvail(
+                                  var response = await AvailabilityController()
+                                      .DeleteAvail(selectedDateId);
+                                  // snapshot.data?.data.elementAt(index).id
 
-                                        // snapshot.data?.data.elementAt(index).id
+                                  setState(() {});
+                                  // print("ffffffffffff $selectedDateId  asdfasdfasdfdsf asdfsdfsdf");
 
-                                        selectedDateId
-                                      );
-
-
-
-                                  setState(() {
-
-                                  });
-                                  print("ffffffffffff $selectedDateId  asdfasdfasdfdsf asdfsdfsdf");
-
-                                  ScaffoldMessenger.of(
-                                      context)
-                                      .showSnackBar(
-                                      const SnackBar(
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
                                           content: Text(
-                                            "Successfully Deleted",
-                                            style: TextStyle(
-                                                color: Colors
-                                                    .white),
-                                          )));
-
+                                    "Successfully Deleted",
+                                    style: TextStyle(color: Colors.white),
+                                  )));
                                 },
                                 child: Container(
                                   height: 50.h,
@@ -867,8 +832,9 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                     color: Colors.pink,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: Center(
-                                    child: Text('Delete',
+                                  child: const Center(
+                                    child: Text(
+                                      'Delete',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
@@ -894,14 +860,12 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                           ),
                         ),
                       );
-
-                    }
-                    else {
-                      return Container(
+                    } else {
+                      return SizedBox(
                         height: MediaQuery.of(context).size.height * 0.86,
                         width: MediaQuery.of(context).size.width,
-                        child: Center(
-                          child: Container(
+                        child: const Center(
+                          child: SizedBox(
                             height: 30,
                             width: 30,
                             child: CircularProgressIndicator(
@@ -919,17 +883,6 @@ class _AvailabilityViewState extends State<AvailabilityView> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /// old code
 // import 'package:flutter/material.dart';

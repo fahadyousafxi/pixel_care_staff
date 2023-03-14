@@ -23,15 +23,17 @@ class TimesheetController {
         jsonDecode(await response.stream.bytesToString()));
   }
 
-  save(
-      {unit,
-      applicationid,
-      scheduleid,
-      start,
-      end,
-      brek,
-      total,
-      File? image}) async {
+  save({
+    unit,
+    applicationid,
+    scheduleid,
+    start,
+    end,
+    brek,
+    total,
+    File? image,
+    transportation,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
     var headers = {
@@ -47,16 +49,17 @@ class TimesheetController {
       'start_time': '$start',
       'end_time': '$end',
       'break_time': '$brek',
-      'total_hours': '$total'
+      'total_hours': '$total',
+      'transportation': '$transportation'
     });
 
     request.files
         .add(await http.MultipartFile.fromPath('last_report', image!.path));
     request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+    var response = await request.send();
 
-    print(jsonDecode(await response.stream.bytesToString())['message']);
+    // print(jsonDecode(await response.stream.bytesToString())['message']);
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
 }

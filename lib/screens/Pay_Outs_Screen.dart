@@ -2,11 +2,11 @@
 
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:pixel_app/screens/Pdf_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Constants/Constant.dart';
@@ -19,9 +19,6 @@ class PayOutsScreen extends StatefulWidget {
 }
 
 class _PayOutsScreenState extends State<PayOutsScreen> {
-  String fileurl = "https://www.africau.edu/images/default/sample.pdf";
-  // final fileurl =  DownloadController();
-  // String fileurl = ref;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +28,7 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.grey,
           ),
@@ -72,72 +69,74 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
             //   ),
             // ),
             ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 1,
-                padding: EdgeInsets.symmetric(vertical: 10),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.all(6),
-                    child: InkWell(
-                      onTap: () async {
-                        downloadPDF();
+              scrollDirection: Axis.vertical,
+              itemCount: 1,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: InkWell(
+                    onTap: () async {
+                      downloadPDF();
 
-                        // Map<Permission, PermissionStatus> statuses = await [
-                        //   Permission.storage,
-                        //   //add more permission to request here.
-                        // ].request();
-                        //
-                        // if (statuses[Permission.storage]!.isGranted) {
-                        //   var dir =
-                        //   await DownloadsPathProvider.downloadsDirectory;
-                        //   if (dir != null) {
-                        //     String savename = "myfile.pdf";
-                        //     String savePath = dir.path + "/$savename";
-                        //     print(savePath);
-                        //     //output:  /storage/emulated/0/Download/banner.png
-                        //
-                        //     try {
-                        //       await Dio().download(fileurl.toString(), savePath,
-                        //           onReceiveProgress: (received, total) {
-                        //             if (total != -1) {
-                        //               print((received / total * 100)
-                        //                   .toStringAsFixed(0) +
-                        //                   "%");
-                        //               //you can build progressbar feature too
-                        //             }
-                        //           });
-                        //       print("File is saved to download folder.");
-                        //     } on DioError catch (e) {
-                        //       print(e.message);
-                        //     }
-                        //   }
-                        // } else {
-                        //   print("No permission to read and write.");
-                        // }
-                        //
-                        // // Navigator.pushReplacement(
-                        // //     context,
-                        // //     MaterialPageRoute(
-                        // //         builder: (context) => widgets[index]));
-                      },
-                      child: Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(5),
-                              // border: ,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blue,
-                                  spreadRadius: 1,
-                                )
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(child: Text('Download My Pay-Outs')),
-                          )
+                      // Map<Permission, PermissionStatus> statuses = await [
+                      //   Permission.storage,
+                      //   //add more permission to request here.
+                      // ].request();
+                      //
+                      // if (statuses[Permission.storage]!.isGranted) {
+                      //   var dir =
+                      //   await DownloadsPathProvider.downloadsDirectory;
+                      //   if (dir != null) {
+                      //     String savename = "myfile.pdf";
+                      //     String savePath = dir.path + "/$savename";
+                      //     print(savePath);
+                      //     //output:  /storage/emulated/0/Download/banner.png
+                      //
+                      //     try {
+                      //       await Dio().download(fileurl.toString(), savePath,
+                      //           onReceiveProgress: (received, total) {
+                      //             if (total != -1) {
+                      //               print((received / total * 100)
+                      //                   .toStringAsFixed(0) +
+                      //                   "%");
+                      //               //you can build progressbar feature too
+                      //             }
+                      //           });
+                      //       print("File is saved to download folder.");
+                      //     } on DioError catch (e) {
+                      //       print(e.message);
+                      //     }
+                      //   }
+                      // } else {
+                      //   print("No permission to read and write.");
+                      // }
+                      //
+                      // // Navigator.pushReplacement(
+                      // //     context,
+                      // //     MaterialPageRoute(
+                      // //         builder: (context) => widgets[index]));
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(5),
+                          // border: ,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.blue,
+                              spreadRadius: 1,
+                            )
+                          ]),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text('Download My Pay-Outs'),
+                        ),
+                      ),
 //                         ListTile(
 //                           leading: Icon(
 //                             Icons.file_copy_outlined,
@@ -163,10 +162,11 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
 //                                 TextStyle(color: Colors.blue, fontSize: 15.sp),
 //                           ),
 //                         ),
-                          ),
                     ),
-                  );
-                })
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -178,17 +178,15 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Container(
-            child: Center(
-                child: CircularProgressIndicator(
-          color: const Color(0xfffaeaea),
-        )));
+        return const Center(
+            child: CircularProgressIndicator(
+          color: Color(0xfffaeaea),
+        ));
       },
     );
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token');
 
-    Dio dioClient = Dio();
     final url = Uri.parse('$baseUrl/api/user/payout/pdf');
     final headers = {
       "Authorization": "Bearer $token",
@@ -206,23 +204,22 @@ class _PayOutsScreenState extends State<PayOutsScreen> {
         await file.create();
       }
       var files = await file.writeAsBytes(response.bodyBytes);
-      print('fffffffffffffffffffffff');
-      print(file.toString());
+      print(files.toString());
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          // backgroundColor: Colors.grey,
-          content: Text(('Downloaded')),
+        const SnackBar(
+          content: Text(
+            ('Downloaded'),
+          ),
         ),
       );
-      // files.exists() == false
-      //     ? ScaffoldMessenger.of(context)
-      //     .showSnackBar(const SnackBar(content: Text('PDF NOT FOUND')))
-      //     : Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (_) => PDFScreen(
-      //       path: files.path,
-      //       url:
-      //       'https://pixelcare.stackbuffers.com/api/user/payout/pdf',
-      //     )));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => PDFScreen(
+            path: file.path,
+            url: '$baseUrl/api/user/payout/pdf',
+          ),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('PDF NOT FOUND')));

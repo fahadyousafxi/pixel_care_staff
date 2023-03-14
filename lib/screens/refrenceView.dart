@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixel_app/Model/ReferenceModel.dart';
 import 'package:pixel_app/screens/EditReference.dart';
 import 'package:pixel_app/screens/Profile.dart';
@@ -15,14 +14,14 @@ class RefrenceView extends StatefulWidget {
 }
 
 class _RefrenceViewState extends State<RefrenceView> {
-  GlobalKey<ScaffoldState> key = new GlobalKey();
+  GlobalKey<ScaffoldState> key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
         // bottomNavigationBarState.selectedIndex = 0;
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => ProfilePage()));
+            MaterialPageRoute(builder: (context) => const ProfilePage()));
         return false as Future<bool>;
       },
       child: Scaffold(
@@ -32,27 +31,30 @@ class _RefrenceViewState extends State<RefrenceView> {
           backgroundColor: Colors.pink,
           leading: GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               )),
           actions: [
             GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => ReferencePage()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const ReferencePage()));
                 },
                 child: Container(
                     height: 30,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white),
-                    padding: EdgeInsets.all(05),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(05),
+                    margin: const EdgeInsets.all(10),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           ' Add New Reference ',
                           style: TextStyle(color: Colors.black),
@@ -69,7 +71,7 @@ class _RefrenceViewState extends State<RefrenceView> {
                   return SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Column(
@@ -77,12 +79,13 @@ class _RefrenceViewState extends State<RefrenceView> {
                                 snapshot.data!.data!.length,
                                 (index) => Container(
                                       width: MediaQuery.of(context).size.width,
-                                      padding: EdgeInsets.all(10),
-                                      margin: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 20),
                                       decoration: BoxDecoration(
                                           color: Colors.grey.shade100,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: Colors.grey.shade400,
@@ -102,7 +105,7 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    const Text(
                                                       'Name: ',
                                                       style: TextStyle(
                                                           fontWeight:
@@ -111,7 +114,8 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                     ),
                                                     Text(
                                                         '${snapshot.data?.data?.elementAt(index).name}',
-                                                        style: TextStyle()),
+                                                        style:
+                                                            const TextStyle()),
                                                   ],
                                                 ),
                                               ),
@@ -121,58 +125,52 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                       onTap: () {
                                                         Navigator.of(context).push(
                                                             MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    EditReferencePage(
-                                                                      address: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .address,
-                                                                      email: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .email,
-                                                                      jobTitle: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .jobTitle,
-                                                                      name: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .name,
-                                                                      organization: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .organization,
-                                                                      phoneNumber: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .phoneNumber,
-                                                                      relation: snapshot
-                                                                          .data
-                                                                          ?.data
-                                                                          ?.elementAt(
-                                                                              index)
-                                                                          .relation,
-                                                                    )));
+                                                                builder:
+                                                                    (context) =>
+                                                                        EditReferencePage(
+                                                                          address: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .address,
+                                                                          email: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .email,
+                                                                          jobTitle: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .jobTitle,
+                                                                          name: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .name,
+                                                                          organization: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .organization,
+                                                                          phoneNumber: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .phoneNumber,
+                                                                          relation: snapshot
+                                                                              .data
+                                                                              ?.data
+                                                                              ?.elementAt(index)
+                                                                              .relation,
+                                                                        )));
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.edit_note,
                                                         color: Colors.green,
                                                         size: 30,
                                                       )),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   GestureDetector(
@@ -184,12 +182,12 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                           builder: (BuildContext
                                                               context) {
                                                             return AlertDialog(
-                                                              title: Text(
+                                                              title: const Text(
                                                                   'Are you sure?'),
                                                               content:
                                                                   SingleChildScrollView(
                                                                 child: ListBody(
-                                                                  children: <
+                                                                  children: const <
                                                                       Widget>[
                                                                     Text(
                                                                         'This action cannot be undone.'),
@@ -198,57 +196,57 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                               ),
                                                               actions: <Widget>[
                                                                 TextButton(
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Cancel',
                                                                       style: TextStyle(
                                                                           color: Colors
                                                                               .green,
                                                                           fontWeight:
                                                                               FontWeight.bold)),
-                                                                  onPressed: () {
+                                                                  onPressed:
+                                                                      () {
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
                                                                   },
                                                                 ),
                                                                 TextButton(
-                                                                  child: Text(
+                                                                  child:
+                                                                      const Text(
                                                                     'Delete',
                                                                     style: TextStyle(
                                                                         color: Colors
                                                                             .red,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold),
+                                                                            FontWeight.bold),
                                                                   ),
                                                                   onPressed:
                                                                       () async {
                                                                     // Perform the delete action here
                                                                     ScaffoldMessenger.of(
                                                                             context)
-                                                                        .showSnackBar(
-                                                                            SnackBar(
-                                                                                content: Text(
+                                                                        .showSnackBar(const SnackBar(
+                                                                            content: Text(
                                                                       "Deletion is in progress...",
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .white),
+                                                                          color:
+                                                                              Colors.white),
                                                                     )));
-                                                                    var response =
-                                                                        await AuthController().DeleteRef(snapshot
-                                                                            .data
-                                                                            ?.data
-                                                                            ?.elementAt(
-                                                                                index)
-                                                                            .id);
-                                                                    setState(() {
+                                                                    var response = await AuthController().DeleteRef(snapshot
+                                                                        .data
+                                                                        ?.data
+                                                                        ?.elementAt(
+                                                                            index)
+                                                                        .id);
+                                                                    setState(
+                                                                        () {
                                                                       ScaffoldMessenger.of(
                                                                               context)
                                                                           .showSnackBar(SnackBar(
                                                                               content: Text(
                                                                         response
                                                                             .toString(),
-                                                                        style: TextStyle(
+                                                                        style: const TextStyle(
                                                                             color:
                                                                                 Colors.white),
                                                                       )));
@@ -260,7 +258,7 @@ class _RefrenceViewState extends State<RefrenceView> {
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (context) =>
-                                                                                RefrenceView()));
+                                                                                const RefrenceView()));
                                                                   },
                                                                 ),
                                                               ],
@@ -270,7 +268,7 @@ class _RefrenceViewState extends State<RefrenceView> {
 
                                                         ///////////
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.delete,
                                                         color: Colors.red,
                                                       ))
@@ -283,19 +281,20 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Job Title: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Text(
                                                     '${snapshot.data?.data?.elementAt(index).jobTitle}',
-                                                    style: TextStyle()),
+                                                    style: const TextStyle()),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -303,20 +302,22 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Organization: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).organization}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -324,20 +325,22 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Address: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).address}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -345,20 +348,22 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Phone Number: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).phoneNumber}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -366,20 +371,22 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Email: ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).email}',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Container(
@@ -387,16 +394,18 @@ class _RefrenceViewState extends State<RefrenceView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'How this person knows you? ',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Flexible(
                                                     child: Text(
                                                         '${snapshot.data?.data?.elementAt(index).relation} ',
-                                                        style: TextStyle())),
+                                                        style:
+                                                            const TextStyle())),
                                               ],
                                             ),
                                           ),
@@ -407,10 +416,10 @@ class _RefrenceViewState extends State<RefrenceView> {
                     ),
                   );
                 } else {
-                  return Container(
+                  return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.8,
                     width: MediaQuery.of(context).size.width,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'No reference added yet!',
                         style: TextStyle(color: Colors.grey),
@@ -419,11 +428,11 @@ class _RefrenceViewState extends State<RefrenceView> {
                   );
                 }
               } else {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                      child: Container(
+                      child: SizedBox(
                     height: 30,
                     width: 30,
                     child: CircularProgressIndicator(

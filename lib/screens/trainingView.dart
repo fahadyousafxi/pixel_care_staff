@@ -13,7 +13,7 @@ class TrainingView extends StatefulWidget {
 }
 
 class _TrainingViewState extends State<TrainingView> {
-  GlobalKey<ScaffoldState> key = new GlobalKey();
+  GlobalKey<ScaffoldState> key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +202,7 @@ class _TrainingViewState extends State<TrainingView> {
                     ],
                   );
                 } else {
-                  return Container(
+                  return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.8,
                     width: MediaQuery.of(context).size.width,
                     child: const Center(
@@ -214,11 +214,11 @@ class _TrainingViewState extends State<TrainingView> {
                   );
                 }
               } else {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                      child: Container(
+                      child: SizedBox(
                     height: 30,
                     width: 30,
                     child: CircularProgressIndicator(

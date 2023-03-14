@@ -667,7 +667,7 @@ class _HealthPageState extends State<HealthPage> {
                               width: MediaQuery.of(context).size.width * 0.8,
                               margin: EdgeInsets.only(top: 20.h),
                               child: const Text(
-                                  'i confirm, in my declaration, that the above information provided is correct to the best of my knowledge.',
+                                  'I confirm, in my declaration, that the above information provided is correct to the best of my knowledge.',
                                   textAlign: TextAlign.justify),
                             ),
                           ],

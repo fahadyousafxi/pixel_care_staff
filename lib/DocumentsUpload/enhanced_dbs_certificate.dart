@@ -314,10 +314,22 @@ class _EnhanceDBSCertificateState extends State<EnhanceDBSCertificate> {
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .3,
+                      height: MediaQuery.of(context).size.height * .2,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: FileImage(images.elementAt(index)))),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            images.removeAt(index);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ),
                     );
                   })),
                   SizedBox(

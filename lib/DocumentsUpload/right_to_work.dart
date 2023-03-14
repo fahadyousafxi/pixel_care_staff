@@ -1,18 +1,13 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixel_app/Constants/Constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Controller/DocumentController.dart';
-import '../widgets/bottomNavigationBar/BottomNavigation.dart';
-import 'document_upload.dart';
 
 class RightToWork extends StatefulWidget {
   const RightToWork({Key? key}) : super(key: key);
@@ -28,8 +23,8 @@ class _RightToWorkState extends State<RightToWork> {
     'Driving License',
   ];
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
   List<File> images = [];
   var date;
   var number;
@@ -68,7 +63,7 @@ class _RightToWorkState extends State<RightToWork> {
       body: SingleChildScrollView(
         child: Container(
             color: Colors.grey.shade50,
-            padding: EdgeInsets.all(17),
+            padding: const EdgeInsets.all(17),
             child: Form(
               key: formKey,
               child: Column(
@@ -82,21 +77,21 @@ class _RightToWorkState extends State<RightToWork> {
                           style: TextStyle(
                               fontSize: 16.sp, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         DropdownButtonFormField(
-                          icon: Icon(Icons.keyboard_arrow_down),
+                          icon: const Icon(Icons.keyboard_arrow_down),
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(
+                            border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                                 borderSide: BorderSide.none),
                             filled: true,
                             hintStyle: TextStyle(color: Colors.grey[800]),
                             hintText: "Choose*",
-                            fillColor: Color(0xffF3F3F4),
+                            fillColor: const Color(0xffF3F3F4),
                           ),
                           value: dropDownVal,
                           onChanged: (Value) {
@@ -106,20 +101,18 @@ class _RightToWorkState extends State<RightToWork> {
                           },
                           items: dropDownItems
                               .map((v) =>
-                                  DropdownMenuItem(value: v, child: Text("$v")))
+                                  DropdownMenuItem(value: v, child: Text(v)))
                               .toList(),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Text(
-                          'British Residence Permit',
+                          dropDownVal == 'British Residence Permit'
+                              ? 'British Residence Permit'
+                              : 'Driving License',
                           style: TextStyle(
                               fontSize: 16.sp, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(
-                          height: 6,
-                        ),
+                        const SizedBox(height: 6),
                         TextFormField(
                           onChanged: (val) {
                             number = val;
@@ -130,36 +123,38 @@ class _RightToWorkState extends State<RightToWork> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(18),
+                            contentPadding: const EdgeInsets.all(18),
                             hintStyle: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w600,
                               fontSize: 15.sp,
-                              color: Color(0xffACA9A9),
+                              color: const Color(0xffACA9A9),
                             ),
-                            fillColor: Color(0xffF3F3F4),
+                            fillColor: const Color(0xffF3F3F4),
                             filled: true,
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8),
                               ),
                             ),
-                            hintText: 'Enter BRP number',
+                            hintText: dropDownVal == 'British Residence Permit'
+                                ? 'Enter BRP number'
+                                : 'Enter Driving License',
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
@@ -167,7 +162,7 @@ class _RightToWorkState extends State<RightToWork> {
                           style: TextStyle(
                               fontSize: 16.sp, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         Padding(
@@ -183,35 +178,35 @@ class _RightToWorkState extends State<RightToWork> {
                                   items: List.generate(
                                       31,
                                       (index) => DropdownMenuItem(
-                                            child: Text('${index + 1}'),
                                             value: '${index + 1}',
+                                            child: Text('${index + 1}'),
                                           )),
                                   onChanged: (String? value) {
                                     day1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -245,36 +240,36 @@ class _RightToWorkState extends State<RightToWork> {
                                     'December'
                                   ]
                                       .map((e) => DropdownMenuItem(
-                                            child: Text('${e}'),
                                             value: e,
+                                            child: Text(e),
                                           ))
                                       .toList(),
                                   onChanged: (String? value) {
                                     month1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -296,37 +291,37 @@ class _RightToWorkState extends State<RightToWork> {
                                   items: List.generate(
                                       DateTime.now().year + 10,
                                       (index) => DropdownMenuItem(
-                                            child: Text(
-                                                '${DateTime.now().year + 10 - index}'),
                                             value:
                                                 '${DateTime.now().year + 10 - index}',
+                                            child: Text(
+                                                '${DateTime.now().year + 10 - index}'),
                                           )),
                                   onChanged: (String? value) {
                                     year1 = value!;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -347,12 +342,24 @@ class _RightToWorkState extends State<RightToWork> {
                   Column(
                       children: List.generate(images.length, (index) {
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .3,
+                      height: MediaQuery.of(context).size.height * .2,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: FileImage(images.elementAt(index)))),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            images.removeAt(index);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ),
                     );
                   })),
                   SizedBox(
@@ -401,7 +408,7 @@ class _RightToWorkState extends State<RightToWork> {
                               //   height: 80.h,
                               //   width: 80.w,
                               // ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               Text(
@@ -410,7 +417,7 @@ class _RightToWorkState extends State<RightToWork> {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.sp),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
@@ -461,8 +468,9 @@ class _RightToWorkState extends State<RightToWork> {
                       print(date);
                       if (formKey.currentState!.validate()) {
                         if (images.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                  content: Text(
                             'Please input images',
                             style: TextStyle(color: Colors.white),
                           )));
@@ -473,8 +481,8 @@ class _RightToWorkState extends State<RightToWork> {
                             builder: (BuildContext context) {
                               return Container(
                                   child: Center(
-                                      child: new CircularProgressIndicator(
-                                color: Color(0xfffaeaea),
+                                      child: CircularProgressIndicator(
+                                color: const Color(0xfffaeaea),
                               )));
                             },
                           );
@@ -496,7 +504,7 @@ class _RightToWorkState extends State<RightToWork> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(
                             '$data',
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           )));
                         }
                       }
@@ -511,7 +519,7 @@ class _RightToWorkState extends State<RightToWork> {
                                 number != null &&
                                 images.isNotEmpty
                             ? Colors.pink
-                            : Color(0xfffaeaea),
+                            : const Color(0xfffaeaea),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Center(

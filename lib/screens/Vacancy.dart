@@ -955,7 +955,7 @@ class _VacancyPageState extends State<VacancyPage> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.grey,
           ),
@@ -1011,7 +1011,7 @@ class _VacancyPageState extends State<VacancyPage> {
                     Padding(
                       padding:
                           EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
-                      child: Container(
+                      child: SizedBox(
                         height: 60.h,
                         width: 700.w,
                         child: Row(
@@ -1034,7 +1034,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                           spreadRadius: 1,
                                           blurRadius: 10)
                                     ],
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(6),
                                       bottomLeft: Radius.circular(6),
                                     ),
@@ -1072,7 +1072,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                         blurRadius: 10,
                                       )
                                     ],
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(6),
                                       bottomRight: Radius.circular(6),
                                     ),
@@ -1356,7 +1356,7 @@ class _VacancyPageState extends State<VacancyPage> {
                           //     :
                           Column(
                         children: [
-                          Container(
+                          SizedBox(
                             height: MediaQuery.of(context).size.height * 0.8,
                             child: StreamBuilder<vacancyModel>(
                                 stream: allVacancies.asStream(),
@@ -1365,9 +1365,9 @@ class _VacancyPageState extends State<VacancyPage> {
                                     if (snapshot.data?.data == null) {
                                       return Center(
                                           child: Container(
-                                              margin: EdgeInsets.fromLTRB(
+                                              margin: const EdgeInsets.fromLTRB(
                                                   20, 20, 20, 10),
-                                              child: Text(
+                                              child: const Text(
                                                   "No Vacancy Available")));
                                     } else {
                                       return ListView.builder(
@@ -1403,7 +1403,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                       child: Row(
                                                         children: [
                                                           /// calendar image
-                                                          Flexible(
+                                                          const Flexible(
                                                               child: Image(
                                                                   image: AssetImage(
                                                                       'assets/images/calendar2.png'))),
@@ -1423,7 +1423,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                     .start,
                                                             children: [
                                                               /// changes in vacancies
-                                                              Container(
+                                                              SizedBox(
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -1438,7 +1438,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                             .ellipsis,
                                                                   )),
 
-                                                              Container(
+                                                              SizedBox(
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -1474,7 +1474,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               //     ),
                                                               //   ),
                                                               // ),
-                                                              Container(
+                                                              SizedBox(
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
@@ -1496,7 +1496,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                 ),
                                                               ),
 
-                                                              Container(
+                                                              SizedBox(
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
@@ -1525,7 +1525,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                   Icon(
                                                                     Icons
                                                                         .access_time,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xff687bb9),
                                                                     size: 20.sp,
                                                                   ),
@@ -1536,7 +1536,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                     // '${snapshot.data?.data!.elementAt(index).date.toString().substring(0, 10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0, 11)}',
                                                                     '${snapshot.data?.data!.elementAt(index).date.toString().substring(0, 10)} ',
                                                                     style:
-                                                                        TextStyle(
+                                                                        const TextStyle(
                                                                       color: Color(
                                                                           0xff687bb9),
                                                                     ),
@@ -1548,7 +1548,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                         ],
                                                       ),
                                                     ),
-                                                    SizedBox(height: 10),
+                                                    const SizedBox(height: 10),
                                                     GestureDetector(
                                                       onTap: () async {
                                                         await apply(
@@ -1563,9 +1563,10 @@ class _VacancyPageState extends State<VacancyPage> {
                                                           child: Center(
                                                               child: Text(
                                                             '${data.contains(snapshot.data!.data!.elementAt(index).id.toString()) ? 'Applied' : 'Apply'}',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
+                                                            style:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
                                                           )),
                                                           height: 40,
                                                           width: MediaQuery.of(
@@ -1595,13 +1596,13 @@ class _VacancyPageState extends State<VacancyPage> {
                                           });
                                     }
                                   } else {
-                                    return Container(
+                                    return SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.8,
                                       width: MediaQuery.of(context).size.width,
-                                      child: Center(
-                                        child: Container(
+                                      child: const Center(
+                                        child: SizedBox(
                                           height: 30,
                                           width: 30,
                                           child: CircularProgressIndicator(
@@ -1633,7 +1634,7 @@ class _VacancyPageState extends State<VacancyPage> {
                           //     :
                           Column(
                         children: [
-                          Container(
+                          SizedBox(
                             height: MediaQuery.of(context).size.height * 0.8,
                             child: StreamBuilder<vacancyModel>(
                                 stream: relevantVacancies.asStream(),
@@ -1642,9 +1643,9 @@ class _VacancyPageState extends State<VacancyPage> {
                                     if (snapshot.data?.data == null) {
                                       return Center(
                                           child: Container(
-                                              margin: EdgeInsets.fromLTRB(
+                                              margin: const EdgeInsets.fromLTRB(
                                                   20, 20, 20, 10),
-                                              child: Text(
+                                              child: const Text(
                                                   "No Relavent Vacancy Available")));
                                     } else {
                                       return ListView.builder(
@@ -1705,7 +1706,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                           top: 10.h),
                                                       child: Row(
                                                         children: [
-                                                          Flexible(
+                                                          const Flexible(
                                                               child: Image(
                                                             image: AssetImage(
                                                                 'assets/images/calendar2.png'),
@@ -1827,7 +1828,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               //     ),
                                                               //   ),
                                                               // ),
-                                                              Container(
+                                                              SizedBox(
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -1842,7 +1843,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                             .ellipsis,
                                                                   )),
 
-                                                              Container(
+                                                              SizedBox(
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -1878,7 +1879,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                               //     ),
                                                               //   ),
                                                               // ),
-                                                              Container(
+                                                              SizedBox(
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
@@ -1900,7 +1901,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                 ),
                                                               ),
 
-                                                              Container(
+                                                              SizedBox(
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
@@ -1929,7 +1930,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                   Icon(
                                                                     Icons
                                                                         .access_time,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xff687bb9),
                                                                     size: 20.sp,
                                                                   ),
@@ -1940,7 +1941,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                                     date.toString(),
                                                                     // '${snapshot.data?.data!.elementAt(index).date.toString().substring(0,10)} - ${snapshot.data?.data!.elementAt(index).jobEndDate.toString().substring(0,11)}',
                                                                     style:
-                                                                        TextStyle(
+                                                                        const TextStyle(
                                                                       color: Color(
                                                                           0xff687bb9),
                                                                     ),
@@ -1960,7 +1961,7 @@ class _VacancyPageState extends State<VacancyPage> {
                                                         ],
                                                       ),
                                                     ),
-                                                    SizedBox(height: 10),
+                                                    const SizedBox(height: 10),
                                                     GestureDetector(
                                                       onTap: () async {
                                                         await apply(
@@ -1975,9 +1976,10 @@ class _VacancyPageState extends State<VacancyPage> {
                                                           child: Center(
                                                               child: Text(
                                                             '${data.contains(snapshot.data!.data!.elementAt(index).id.toString()) ? 'Applied' : 'Apply'}',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
+                                                            style:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
                                                           )),
                                                           height: 40,
                                                           width: MediaQuery.of(
@@ -2007,13 +2009,13 @@ class _VacancyPageState extends State<VacancyPage> {
                                           });
                                     }
                                   } else {
-                                    return Container(
+                                    return SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.8,
                                       width: MediaQuery.of(context).size.width,
-                                      child: Center(
-                                        child: Container(
+                                      child: const Center(
+                                        child: SizedBox(
                                           height: 30,
                                           width: 30,
                                           child: CircularProgressIndicator(

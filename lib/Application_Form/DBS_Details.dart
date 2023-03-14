@@ -55,7 +55,7 @@ class _DBSPageState extends State<DBSPage> {
     title2Selected = widget.model.dbsDetail?.permissionToCheckOnline ?? "Yes";
     code.text = widget.model.dbsDetail?.codeNo ?? "";
     num.text = widget.model.dbsDetail?.dbsCertificationNo ?? "";
-    Future.delayed(Duration(seconds: 1)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       setState(() {
         formKey.currentState?.validate();
       });
@@ -73,7 +73,7 @@ class _DBSPageState extends State<DBSPage> {
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => bottomNavigationBar()),
+              MaterialPageRoute(builder: (context) => const bottomNavigationBar()),
               (Route route) => false);
           return false as Future<bool>;
         },
@@ -99,7 +99,7 @@ class _DBSPageState extends State<DBSPage> {
                             ),
                           ),
                           SizedBox(height: 10.h),
-                          Text(
+                          const Text(
                             'Detail about Disclosure & Barring Service',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -118,7 +118,7 @@ class _DBSPageState extends State<DBSPage> {
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -128,11 +128,11 @@ class _DBSPageState extends State<DBSPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -142,11 +142,11 @@ class _DBSPageState extends State<DBSPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 20.h,
                             width: 20.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
@@ -156,7 +156,7 @@ class _DBSPageState extends State<DBSPage> {
                               size: 20.sp,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -165,7 +165,7 @@ class _DBSPageState extends State<DBSPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -174,7 +174,7 @@ class _DBSPageState extends State<DBSPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -183,7 +183,7 @@ class _DBSPageState extends State<DBSPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -192,7 +192,7 @@ class _DBSPageState extends State<DBSPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -201,7 +201,7 @@ class _DBSPageState extends State<DBSPage> {
                               color: Colors.blue.shade200,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: 10.h,
                             width: 10.w,
@@ -219,7 +219,7 @@ class _DBSPageState extends State<DBSPage> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('DBS Certificate Number'),
+                          child: const Text('DBS Certificate Number'),
                         ),
                         SizedBox(height: 10.h),
                         Padding(
@@ -236,29 +236,30 @@ class _DBSPageState extends State<DBSPage> {
                               if (value!.isEmpty) {
                                 return 'Please fill out this field';
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.all(18),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: const Color(0xfff0f0f0),
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -270,7 +271,7 @@ class _DBSPageState extends State<DBSPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: Text('Are you registered online with DBS? '),
+                          child: const Text('Are you registered online with DBS? '),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -280,6 +281,7 @@ class _DBSPageState extends State<DBSPage> {
                               if (value!.isEmpty) {
                                 return 'Please select from this field';
                               }
+                              return null;
                             },
                             items: title
                                 .map((e) => DropdownMenuItem<String>(
@@ -296,28 +298,28 @@ class _DBSPageState extends State<DBSPage> {
                               setState(() {});
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
                               fillColor: Colors.grey.shade200,
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
@@ -338,7 +340,7 @@ class _DBSPageState extends State<DBSPage> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                                child: Text('Code number'),
+                                child: const Text('Code number'),
                               ),
                               SizedBox(height: 10.h),
                               Padding(
@@ -356,29 +358,30 @@ class _DBSPageState extends State<DBSPage> {
                                     if (value!.isEmpty) {
                                       return 'Please fill out this field';
                                     }
+                                    return null;
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(18),
+                                    contentPadding: const EdgeInsets.all(18),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
-                                    fillColor: Color(0xfff0f0f0),
+                                    fillColor: const Color(0xfff0f0f0),
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -390,7 +393,7 @@ class _DBSPageState extends State<DBSPage> {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                                child: Text(
+                                child: const Text(
                                     'Do we have permission to check online?'),
                               ),
                               Padding(
@@ -402,6 +405,7 @@ class _DBSPageState extends State<DBSPage> {
                                     if (value!.isEmpty) {
                                       return 'Please select from this field';
                                     }
+                                    return null;
                                   },
                                   items: title2
                                       .map((e) => DropdownMenuItem<String>(
@@ -418,28 +422,28 @@ class _DBSPageState extends State<DBSPage> {
                                     setState(() {});
                                   },
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     hintStyle: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.sp,
-                                      color: Color(0xffACA9A9),
+                                      color: const Color(0xffACA9A9),
                                     ),
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
                                       ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(8),
@@ -477,7 +481,7 @@ class _DBSPageState extends State<DBSPage> {
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'Previous',
                                     style: TextStyle(
@@ -518,7 +522,7 @@ class _DBSPageState extends State<DBSPage> {
                                           : num.text.isNotEmpty &&
                                                   titleSelected == "No"
                                               ? Colors.pink
-                                              : Color(0xfffaeaea),
+                                              : const Color(0xfffaeaea),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(

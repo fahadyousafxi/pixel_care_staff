@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:pixel_app/Controller/AuthController.dart';
+import 'package:pixel_app/screens/ForgotPassword.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   const OtpVerificationPage({Key? key}) : super(key: key);
@@ -24,10 +24,28 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const ForgotPasswordPage(),
+              ),
+            );
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.grey,
+          ),
+        ),
+        backgroundColor: Colors.grey.shade50,
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
           children: [
+            SizedBox(height: 100.h),
             Text(
               'Verify  OTP',
               style: TextStyle(
@@ -36,15 +54,13 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
               ),
             ),
             SizedBox(
-              height: 100.w,
+              height: 30.h,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('Otp Verification'),
-                const SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30.h),
                 // Implement 4 input fields
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -57,11 +73,9 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     OtpInput(_fieldsix, false)
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30.h),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * .4,
+                  width: MediaQuery.of(context).size.width * .77,
                   // height: 70,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -87,8 +101,9 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                           AuthController _cnt = AuthController();
                           _cnt.VerifyOtp(_otp!, context);
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                  content: Text(
                             'Provide Complete Otp',
                             style: TextStyle(color: Colors.white),
                           )));

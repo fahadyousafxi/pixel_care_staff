@@ -1,6 +1,9 @@
 class ApplicationFormModel {
-  dynamic postAppliedFor;
-  dynamic howHeardVacancy;
+  String? postAppliedFor;
+  String? companyName;
+  String? incorporationNumber;
+  String? weeklyHoursAllowed;
+  String? howHeardVacancy;
   PersonalDetail? personalDetail;
   Convictions? convictions;
   Address? address;
@@ -16,6 +19,9 @@ class ApplicationFormModel {
 
   ApplicationFormModel(
       {this.postAppliedFor,
+      this.companyName,
+      this.incorporationNumber,
+      this.weeklyHoursAllowed,
       this.howHeardVacancy,
       this.personalDetail,
       this.convictions,
@@ -32,6 +38,9 @@ class ApplicationFormModel {
 
   ApplicationFormModel.fromJson(Map<String, dynamic> json) {
     postAppliedFor = json['post_applied_for'];
+    companyName = json['company_name'];
+    incorporationNumber = json['incorporation_number'];
+    weeklyHoursAllowed = json['weekly_hours_allowed'];
     howHeardVacancy = json['how_heard_vacancy'];
     personalDetail = json['personal_detail'] != null
         ? PersonalDetail.fromJson(json['personal_detail'])
@@ -75,6 +84,9 @@ class ApplicationFormModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['post_applied_for'] = postAppliedFor;
+    data['company_name'] = companyName;
+    data['incorporation_number'] = incorporationNumber;
+    data['weekly_hours_allowed'] = weeklyHoursAllowed;
     data['how_heard_vacancy'] = howHeardVacancy;
     if (personalDetail != null) {
       data['personal_detail'] = personalDetail!.toJson();
@@ -117,21 +129,21 @@ class ApplicationFormModel {
 }
 
 class PersonalDetail {
-  dynamic title;
-  dynamic surname;
-  dynamic forename;
-  dynamic dob;
-  dynamic gender;
-  dynamic address;
-  dynamic townCity;
-  dynamic postalCode;
-  dynamic country;
-  dynamic nationality;
-  dynamic homeTel;
-  dynamic dayTimeContact;
-  dynamic email;
-  dynamic nationalInsuranceNo;
-  dynamic remainTakeupEmploymentInUk;
+  String? title;
+  String? surname;
+  String? forename;
+  String? dob;
+  String? gender;
+  String? address;
+  String? townCity;
+  String? postalCode;
+  String? country;
+  String? nationality;
+  String? homeTel;
+  String? dayTimeContact;
+  String? email;
+  String? nationalInsuranceNo;
+  String? remainTakeupEmploymentInUk;
 
   PersonalDetail(
       {this.title,
@@ -190,7 +202,7 @@ class PersonalDetail {
 }
 
 class Convictions {
-  dynamic disclosure;
+  String? disclosure;
 
   Convictions({this.disclosure});
 
@@ -206,9 +218,9 @@ class Convictions {
 }
 
 class Address {
-  dynamic houseNumber;
-  dynamic postalCode;
-  dynamic address;
+  String? houseNumber;
+  String? postalCode;
+  String? address;
 
   Address({this.houseNumber, this.postalCode, this.address});
 
@@ -228,16 +240,16 @@ class Address {
 }
 
 class NextOfKin {
-  dynamic title;
-  dynamic surname;
-  dynamic forename;
-  dynamic dob;
-  dynamic postalCode;
-  dynamic address;
-  dynamic homeTel;
-  dynamic dayTimeContact;
-  dynamic email;
-  dynamic relationToYou;
+  String? title;
+  String? surname;
+  String? forename;
+  String? dob;
+  String? postalCode;
+  String? address;
+  String? homeTel;
+  String? dayTimeContact;
+  String? email;
+  String? relationToYou;
 
   NextOfKin(
       {this.title,
@@ -281,8 +293,8 @@ class NextOfKin {
 }
 
 class NmcDetail {
-  dynamic nmcPinNo;
-  dynamic expiryDate;
+  String? nmcPinNo;
+  String? expiryDate;
 
   NmcDetail({this.nmcPinNo, this.expiryDate});
 
@@ -300,10 +312,10 @@ class NmcDetail {
 }
 
 class DbsDetail {
-  dynamic dbsCertificationNo;
-  dynamic registerOnlineDbs;
-  dynamic codeNo;
-  dynamic permissionToCheckOnline;
+  String? dbsCertificationNo;
+  String? registerOnlineDbs;
+  String? codeNo;
+  String? permissionToCheckOnline;
 
   DbsDetail(
       {this.dbsCertificationNo,
@@ -329,14 +341,14 @@ class DbsDetail {
 }
 
 class Employment {
-  dynamic type;
-  dynamic dateStarted;
-  dynamic nameOfEmployer;
-  dynamic positionHeld;
-  dynamic reasonForLeaving;
-  dynamic salaryOnLeavingPost;
-  dynamic noticePeriod;
-  dynamic dutiesDescription;
+  String? type;
+  String? dateStarted;
+  String? nameOfEmployer;
+  String? positionHeld;
+  String? reasonForLeaving;
+  String? salaryOnLeavingPost;
+  String? noticePeriod;
+  String? dutiesDescription;
 
   Employment(
       {this.type,
@@ -374,11 +386,11 @@ class Employment {
 }
 
 class Covid19 {
-  dynamic covid19Test;
-  dynamic tuberculosisVaccine;
-  dynamic careHomeBefore;
-  dynamic demantiaCareBefore;
-  dynamic drivingLicense;
+  String? covid19Test;
+  String? tuberculosisVaccine;
+  String? careHomeBefore;
+  String? demantiaCareBefore;
+  String? drivingLicense;
 
   Covid19(
       {this.covid19Test,
@@ -407,10 +419,10 @@ class Covid19 {
 }
 
 class BankDetails {
-  dynamic nameOfBank;
-  dynamic accountName;
-  dynamic accountNo;
-  dynamic sortCode;
+  String? nameOfBank;
+  String? accountName;
+  String? accountNo;
+  String? sortCode;
 
   BankDetails(
       {this.nameOfBank, this.accountName, this.accountNo, this.sortCode});
@@ -433,13 +445,13 @@ class BankDetails {
 }
 
 class HealthConditions {
-  dynamic diabetes;
-  dynamic circulatoryDisorder;
-  dynamic stomachDisorder;
-  dynamic deseaseDifficultyInSleep;
-  dynamic chronicChestDisorder;
-  dynamic anyOtherConditionThatMedicationStrictTimetable;
-  dynamic haveYouCovid19Symptoms;
+  String? diabetes;
+  String? circulatoryDisorder;
+  String? stomachDisorder;
+  String? deseaseDifficultyInSleep;
+  String? chronicChestDisorder;
+  String? anyOtherConditionThatMedicationStrictTimetable;
+  String? haveYouCovid19Symptoms;
 
   HealthConditions(
       {this.diabetes,
@@ -476,8 +488,8 @@ class HealthConditions {
 }
 
 class TimeRegulations {
-  dynamic otpOut;
-  dynamic doNotOtpOut;
+  int? otpOut;
+  int? doNotOtpOut;
 
   TimeRegulations({this.otpOut, this.doNotOtpOut});
 
@@ -495,8 +507,8 @@ class TimeRegulations {
 }
 
 class Decleration {
-  dynamic signature;
-  dynamic date;
+  String? signature;
+  String? date;
 
   Decleration({this.signature, this.date});
 

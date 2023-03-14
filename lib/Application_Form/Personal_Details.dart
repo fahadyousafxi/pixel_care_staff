@@ -1493,78 +1493,78 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                             ),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: const Text(
-                              'Are you free to remain & take up employment in the UK?'),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: 20.w, right: 20.w, top: 10.h),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      areufree = 'No';
-                                    });
-                                  },
-                                  child: Container(
-                                    height: 30.h,
-                                    width: 300.w,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      border: areufree == 'No'
-                                          ? Border.all(
-                                              color: Colors.pink, width: 4)
-                                          : null,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        'No',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      areufree = 'Yes';
-                                    });
-                                  },
-                                  child: Container(
-                                    height: 30.h,
-                                    width: 300.w,
-                                    decoration: BoxDecoration(
-                                      color: Colors.pink,
-                                      border: areufree == 'Yes'
-                                          ? Border.all(
-                                              color: Colors.blue, width: 4)
-                                          : null,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        'Yes',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   margin: EdgeInsets.only(left: 20.w, top: 15.h),
+                        //   child: const Text(
+                        //       'Are you free to remain & take up employment in the UK?'),
+                        // ),
+                        // Padding(
+                        //   padding: EdgeInsets.only(
+                        //       left: 20.w, right: 20.w, top: 10.h),
+                        //   child: Row(
+                        //     children: [
+                        //       Expanded(
+                        //         child: GestureDetector(
+                        //           onTap: () {
+                        //             setState(() {
+                        //               areufree = 'No';
+                        //             });
+                        //           },
+                        //           child: Container(
+                        //             height: 30.h,
+                        //             width: 300.w,
+                        //             decoration: BoxDecoration(
+                        //               color: Colors.blue,
+                        //               border: areufree == 'No'
+                        //                   ? Border.all(
+                        //                       color: Colors.pink, width: 4)
+                        //                   : null,
+                        //               borderRadius: BorderRadius.circular(5),
+                        //             ),
+                        //             child: const Center(
+                        //               child: Text(
+                        //                 'No',
+                        //                 style: TextStyle(
+                        //                     fontWeight: FontWeight.w500,
+                        //                     color: Colors.white),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       SizedBox(width: 10.w),
+                        //       Expanded(
+                        //         child: GestureDetector(
+                        //           onTap: () {
+                        //             setState(() {
+                        //               areufree = 'Yes';
+                        //             });
+                        //           },
+                        //           child: Container(
+                        //             height: 30.h,
+                        //             width: 300.w,
+                        //             decoration: BoxDecoration(
+                        //               color: Colors.pink,
+                        //               border: areufree == 'Yes'
+                        //                   ? Border.all(
+                        //                       color: Colors.blue, width: 4)
+                        //                   : null,
+                        //               borderRadius: BorderRadius.circular(5),
+                        //             ),
+                        //             child: const Center(
+                        //               child: Text(
+                        //                 'Yes',
+                        //                 style: TextStyle(
+                        //                     fontWeight: FontWeight.w500,
+                        //                     color: Colors.white),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(height: 30.h),

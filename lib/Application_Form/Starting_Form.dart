@@ -58,6 +58,15 @@ class _StartingFormPageState extends State<StartingFormPage> {
     if (prefs.getString("rgn") != null) {
       titleSelected = prefs.getString("rgn").toString();
     }
+    if (prefs.getString("company") != null) {
+      company.text = prefs.getString("company").toString();
+    }
+    if (prefs.getString("incNo") != null) {
+      incNo.text = prefs.getString("incNo").toString();
+    }
+    if (prefs.getString("weekly") != null) {
+      weekly.text = prefs.getString("weekly").toString();
+    }
     setState(() {});
   }
 
@@ -116,6 +125,9 @@ class _StartingFormPageState extends State<StartingFormPage> {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController position = TextEditingController();
   TextEditingController howKnow = TextEditingController();
+  TextEditingController company = TextEditingController();
+  TextEditingController incNo = TextEditingController();
+  TextEditingController weekly = TextEditingController();
   ApplicationFormModel model = ApplicationFormModel();
 
   @override
@@ -164,6 +176,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                               margin: EdgeInsets.only(left: 20.w),
                               child: const Text('Position Applied For'),
                             ),
+                            SizedBox(height: 10.h),
                             Padding(
                               padding: EdgeInsets.only(left: 20.w, right: 20.w),
                               child: DropdownButtonFormField<String>(
@@ -223,35 +236,38 @@ class _StartingFormPageState extends State<StartingFormPage> {
 
                             Visibility(
                               visible:
-                                  titleSelected == 'Registered Nurse (RGN)',
+                                  titleSelected == 'Registered Nurse (RGN)' ||
+                                      titleSelected ==
+                                          'Registered Mental Nurse (RMN)',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     margin:
-                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                        EdgeInsets.only(left: 20.w, top: 10.h),
                                     child: const Text('Company Name'),
                                   ),
-                                  SizedBox(height: 10.h),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: 10.h, left: 20.w, right: 20.w),
                                     child: TextFormField(
-                                      controller: howKnow,
-                                      // validator: (value) {
-                                      //   if (value!.isEmpty) {
-                                      //     return 'Please fill out this field';
-                                      //   }
-                                      //   return null;
-                                      // },
-                                      // onChanged: (val) async {
-                                      //   SharedPreferences prefs =
-                                      //       await SharedPreferences.getInstance();
-                                      //
-                                      //   prefs.setString("heared", val.toString());
-                                      //
-                                      //   setState(() {});
-                                      // },
+                                      controller: company,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Please fill out this field';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (val) async {
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+
+                                        prefs.setString(
+                                            "company", val.toString());
+
+                                        setState(() {});
+                                      },
                                       decoration: InputDecoration(
                                         contentPadding:
                                             const EdgeInsets.all(18),
@@ -289,35 +305,39 @@ class _StartingFormPageState extends State<StartingFormPage> {
                             ),
                             Visibility(
                               visible:
-                                  titleSelected == 'Registered Nurse (RGN)',
+                                  titleSelected == 'Registered Nurse (RGN)' ||
+                                      titleSelected ==
+                                          'Registered Mental Nurse (RMN)',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     margin:
-                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                        EdgeInsets.only(left: 20.w, top: 10.h),
                                     child: const Text('Company INC. No'),
                                   ),
-                                  SizedBox(height: 10.h),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: 10.h, left: 20.w, right: 20.w),
                                     child: TextFormField(
-                                      controller: howKnow,
-                                      // validator: (value) {
-                                      //   if (value!.isEmpty) {
-                                      //     return 'Please fill out this field';
-                                      //   }
-                                      //   return null;
-                                      // },
-                                      // onChanged: (val) async {
-                                      //   SharedPreferences prefs =
-                                      //       await SharedPreferences.getInstance();
-                                      //
-                                      //   prefs.setString("heared", val.toString());
-                                      //
-                                      //   setState(() {});
-                                      // },
+                                      keyboardType: TextInputType.number,
+                                      controller: incNo,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Please fill out this field';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (val) async {
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+
+                                        prefs.setString(
+                                            "incNo", val.toString());
+
+                                        setState(() {});
+                                      },
                                       decoration: InputDecoration(
                                         contentPadding:
                                             const EdgeInsets.all(18),
@@ -354,37 +374,37 @@ class _StartingFormPageState extends State<StartingFormPage> {
                               ),
                             ),
                             Visibility(
-                              visible:
-                                  titleSelected == 'Registered Nurse (RGN)',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     margin:
-                                        EdgeInsets.only(left: 20.w, top: 15.h),
+                                        EdgeInsets.only(left: 20.w, top: 10.h),
                                     child: const Text(
                                         'Weekly number of hours allowed'),
                                   ),
-                                  SizedBox(height: 10.h),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: 10.h, left: 20.w, right: 20.w),
                                     child: TextFormField(
-                                      controller: howKnow,
-                                      // validator: (value) {
-                                      //   if (value!.isEmpty) {
-                                      //     return 'Please fill out this field';
-                                      //   }
-                                      //   return null;
-                                      // },
-                                      // onChanged: (val) async {
-                                      //   SharedPreferences prefs =
-                                      //       await SharedPreferences.getInstance();
-                                      //
-                                      //   prefs.setString("heared", val.toString());
-                                      //
-                                      //   setState(() {});
-                                      // },
+                                      keyboardType: TextInputType.number,
+                                      controller: weekly,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Please fill out this field';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (val) async {
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+
+                                        prefs.setString(
+                                            "weekly", val.toString());
+
+                                        setState(() {});
+                                      },
                                       decoration: InputDecoration(
                                         contentPadding:
                                             const EdgeInsets.all(18),
@@ -648,7 +668,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                             ]
                                                 .map((e) => DropdownMenuItem(
                                                       value: e,
-                                                      child: Text('${e}'),
+                                                      child: Text(e),
                                                     ))
                                                 .toList(),
                                             onChanged: (String? value) async {
@@ -829,14 +849,19 @@ class _StartingFormPageState extends State<StartingFormPage> {
                             model.postAppliedFor =
                                 title.indexOf(titleSelected).toString();
                             model.howHeardVacancy = howKnow.text;
+                            model.companyName = company.text;
+                            model.incorporationNumber = incNo.text;
+                            model.weeklyHoursAllowed = weekly.text;
                             nmc.nmcPinNo = pin.text;
                             nmc.expiryDate = '$year-$month-$day';
                             model.nmcDetail = nmc;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      PersonalDetailPage(model: model)),
+                                builder: (context) => PersonalDetailPage(
+                                  model: model,
+                                ),
+                              ),
                             );
                           }
                           print("Evaluated");
