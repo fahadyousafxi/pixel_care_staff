@@ -778,7 +778,10 @@ class _AvailabilityViewState extends State<AvailabilityView> {
                                   setState(() {
                                     enable = false;
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text('$data')));
+                                      SnackBar(
+                                        content: Text('$data'),
+                                      ),
+                                    );
                                   });
                                 },
                                 child: Container(

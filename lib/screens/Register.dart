@@ -542,11 +542,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('$data')));
                                 if (data == 'Register Successfuly.') {
-                                  Navigator.pushReplacement(
+                                  Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const bottomNavigationBar()),
+                                      builder: (context) =>
+                                          const bottomNavigationBar(),
+                                    ),
+                                    (route) => false,
                                   );
                                 } else {
                                   Navigator.of(context).pop();
