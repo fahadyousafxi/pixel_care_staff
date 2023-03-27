@@ -225,7 +225,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 50),
+                      const Spacer(),
                       Container(
                         child: InkWell(
                           onTap: () {
