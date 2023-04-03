@@ -20,6 +20,7 @@ class PersonalDetailsPage extends StatefulWidget {
 class _PersonalDetailsPageState extends State<PersonalDetailsPage>
     with SingleTickerProviderStateMixin {
   GlobalKey<FormState> formkey = new GlobalKey();
+  var title = 'Mother';
   double rating = 1.0;
   var month = 'September';
   var day = '01';
@@ -914,11 +915,11 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                           Padding(
                             padding: EdgeInsets.only(
                                 top: 10.h, left: 20.w, right: 20.w),
-                            child: TextFormField(
-                              controller: nxt,
-                              onChanged: (value) {
-                                model.data!.nextOfKin = value;
-                                setState(() {});
+                            child: DropdownButtonFormField<String>(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please select title';
+                                }
                               },
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(18),
@@ -947,10 +948,81 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                     Radius.circular(8),
                                   ),
                                 ),
-                                hintText: '${snapShot.data?.data?.nextOfKin}',
+                                hintText: 'Choose title',
                               ),
+                              items: [
+                                'Mother',
+                                'Father',
+                                'Spouse',
+                                'Son',
+                                'Daughter',
+                                'Siblings',
+                                'Uncle',
+                                'Friend',
+                                'Teacher',
+                                'Colleague'
+                              ]
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      child: Text(
+                                        e.toString(),
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      value: e,
+                                    ),
+                                  )
+                                  .toList(),
+                              // value: snapshot.data!.data!.title == null ? title : snapshot.data!.data!.title,
+                              value: snapShot.data!.data!.nextOfKin != null
+                                  ? snapShot.data!.data!.nextOfKin
+                                  : title,
+                              onChanged: (String? value) {
+                                title = value!;
+                                nxt.text = value;
+                                model.data!.nextOfKin = value;
+                              },
                             ),
                           ),
+                          // Padding(
+                          //   padding: EdgeInsets.only(
+                          //       top: 10.h, left: 20.w, right: 20.w),
+                          //   child: TextFormField(
+                          //     controller: nxt,
+                          //     onChanged: (value) {
+                          //       model.data!.nextOfKin = value;
+                          //       setState(() {});
+                          //     },
+                          //     decoration: InputDecoration(
+                          //       contentPadding: EdgeInsets.all(18),
+                          //       hintStyle: GoogleFonts.dmSans(
+                          //         fontWeight: FontWeight.w500,
+                          //         fontSize: 15.sp,
+                          //         color: Color(0xffACA9A9),
+                          //       ),
+                          //       fillColor: Colors.grey.shade200,
+                          //       filled: true,
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //       enabledBorder: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //       focusedBorder: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.all(
+                          //           Radius.circular(8),
+                          //         ),
+                          //       ),
+                          //       hintText: '${snapShot.data?.data?.nextOfKin}',
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       SizedBox(height: 30.h),
@@ -1005,7 +1077,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                       selectedCountry != "" &&
                                       nxt.text != ""
                                   ? Colors.pink
-                                  : Color(0xfffaeaea),
+                                  // : Color(0xfffaeaea),
+                                  : Colors.pink,
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Center(
@@ -1018,7 +1091,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage>
                                             selectedCountry != "" &&
                                             nxt.text != ""
                                         ? Colors.white
-                                        : Colors.black),
+                                        : Colors.white),
                               ),
                             ),
                           ),

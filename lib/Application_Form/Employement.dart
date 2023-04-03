@@ -1,18 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Constants/Constant.dart';
 import 'BankDetails.dart';
-import 'Covid_19_Questions.dart';
-import 'Employment_Previous.dart';
 import 'Model/ApplicationFormModel.dart';
-import 'Next_of_Kin.dart';
-import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 
 class EmploymentPage extends StatefulWidget {
   EmploymentPage({required this.model});
@@ -90,6 +84,7 @@ class _EmploymentPageState extends State<EmploymentPage> {
   var month = 'September';
   var day = '1';
   var year = '2022';
+  String? typeEmployment;
   List<Employment> detailslist = [];
   Future<void> _SetVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -119,6 +114,10 @@ class _EmploymentPageState extends State<EmploymentPage> {
     }
     if (_prefs.getString("yeare") != null) {
       year1 = _prefs.getString("yeare").toString();
+    }
+
+    if (_prefs.getString("typeEmployment") != null) {
+      typeEmployment = _prefs.getString("typeEmployment").toString();
     }
 
     setState(() {});
@@ -314,12 +313,15 @@ class _EmploymentPageState extends State<EmploymentPage> {
                           padding: EdgeInsets.only(left: 20.w, right: 20.w),
                           child: DropdownButtonFormField<String>(
                             /// Previous d
-                            value: "Previous",
+                            value: typeEmployment == null
+                                ? "Previous"
+                                : typeEmployment,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please select from this field';
                               }
                             },
+
                             items: title
                                 .map((e) => DropdownMenuItem<String>(
                                       child: Text(e),
@@ -330,6 +332,8 @@ class _EmploymentPageState extends State<EmploymentPage> {
                               SharedPreferences _prefs =
                                   await SharedPreferences.getInstance();
                               _prefs.setString("Title4", value.toString());
+                              _prefs.setString(
+                                  "typeEmployment", value.toString());
 
                               titleSelected = value!;
                               setState(() {});
@@ -828,11 +832,10 @@ class _EmploymentPageState extends State<EmploymentPage> {
                                                 detailslist.isNotEmpty) {
                                               detailslist.forEach((element) {
                                                 if (element.type == 'Present' &&
-                                                        titleSelected ==
-                                                            'Present' &&
+                                                    titleSelected ==
+                                                        'Present' &&
                                                     element.type == 'Nill' &&
-                                                        titleSelected ==
-                                                            'Nill') {
+                                                    titleSelected == 'Nill') {
                                                   aded = true;
                                                 }
                                               });
@@ -843,7 +846,6 @@ class _EmploymentPageState extends State<EmploymentPage> {
                                                       content: Text(
                                                           // 'Select Title as Previous')));
                                                           'Saved! Now add more employments')));
-
                                             } else {
                                               detailslist.add(details);
                                               setState(() {

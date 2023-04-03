@@ -338,13 +338,22 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
 
     if (_prefs.getString("day") != null) {
       day = _prefs.getString("day").toString();
+      print('***********************');
+      print(day);
+      print('***********************');
     }
 
     if (_prefs.getString("month") != null) {
       month = _prefs.getString("month").toString();
+      print('***********************');
+      print(month);
+      print('***********************');
     }
     if (_prefs.getString("year") != null) {
       year = _prefs.getString("year").toString();
+      print('***********************');
+      print(year);
+      print('***********************');
     }
 
     if (_prefs.getString("selectedGender") != null) {
@@ -683,7 +692,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                 height: 50.h,
                                 width: 90.w,
                                 child: DropdownButtonFormField<String>(
-                                  value: "1",
+                                  value: day != null ? day : "1",
                                   items: List.generate(
                                       31,
                                       (index) => DropdownMenuItem(
@@ -737,7 +746,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButtonFormField<String>(
-                                  value: "January",
+                                  value: month != null ? month : "January",
                                   items: [
                                     'January',
                                     'February',
@@ -804,7 +813,7 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButtonFormField<String>(
-                                  value: "2022",
+                                  value: year != null ? year : "2022",
                                   items: List.generate(
                                       DateTime.now().year,
                                       (index) => DropdownMenuItem(

@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:pixel_app/Application_Form/declearation.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,11 +22,14 @@ class _WorkingTimePageState extends State<WorkingTimePage> {
   Future<void> _SetVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
 
-    if (_prefs.getBool("isChecked1") != null) {
-      isChecked1 = _prefs.getBool("isChecked1")!;
-    }
-    if (_prefs.getBool("isChecked2") != null) {
-      isChecked2 = _prefs.getBool("isChecked2")!;
+    // if (_prefs.getBool("isChecked1") != null) {
+    //   isChecked1 = _prefs.getBool("isChecked1")!;
+    // }
+    // if (_prefs.getBool("isChecked2") != null) {
+    //   isChecked2 = _prefs.getBool("isChecked2")!;
+    // }
+    if (_prefs.getInt("grpWTR") != null) {
+      grp = _prefs.getInt("grpWTR")!;
     }
 
     setState(() {});
@@ -37,6 +37,7 @@ class _WorkingTimePageState extends State<WorkingTimePage> {
 
   @override
   void initState() {
+    _SetVals();
     widget.model.timeRegulations?.doNotOtpOut == 0 ? grp = 1 : grp = 0;
     // TODO: implement initState
     hide();
@@ -48,12 +49,11 @@ class _WorkingTimePageState extends State<WorkingTimePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: WillPopScope(
-
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => bottomNavigationBar()),
-                  (Route route) => false);
+              (Route route) => false);
           return false as Future<bool>;
         },
         // onWillPop: () => false as Future<bool>,
@@ -121,7 +121,13 @@ class _WorkingTimePageState extends State<WorkingTimePage> {
                   RadioListTile(
                     activeColor: Colors.red,
                     value: 1,
-                    onChanged: (newValue) => setState(() => grp = newValue),
+                    onChanged: (newValue) async {
+                      SharedPreferences _prefs =
+                          await SharedPreferences.getInstance();
+                      _prefs.setInt("grpWTR", 1);
+                      // print(newValue);
+                      setState(() => grp = newValue);
+                    },
                     groupValue: grp,
                     title: Text(
                         'I do wish to opt out of the 48-hours average working week.'),
@@ -129,7 +135,13 @@ class _WorkingTimePageState extends State<WorkingTimePage> {
                   RadioListTile(
                     activeColor: Colors.red,
                     value: 0,
-                    onChanged: (newValue) => setState(() => grp = newValue),
+                    onChanged: (newValue) async {
+                      SharedPreferences _prefs =
+                          await SharedPreferences.getInstance();
+                      _prefs.setInt("grpWTR", 0);
+                      // print(newValue);
+                      setState(() => grp = newValue);
+                    },
                     groupValue: grp,
                     title: Text(
                         'I do not wish to opt out of the 48-hours average working week.'),

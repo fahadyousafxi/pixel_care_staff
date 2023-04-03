@@ -151,13 +151,17 @@ class _TimeSheetPageState extends State<TimeSheetPage> {
                           if (snapshot.hasData) {
                             return snapshot.data!.data == null
                                 ? const Center(
-                                    heightFactor: 26,
-                                    child: Text(
-                                      'Please submit your Application Form',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.pink,
+                                    heightFactor: 15,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 48.0),
+                                      child: Text(
+                                        'Please Submit your Availability & Application Form',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.pink,
+                                        ),
                                       ),
                                     ),
                                   )

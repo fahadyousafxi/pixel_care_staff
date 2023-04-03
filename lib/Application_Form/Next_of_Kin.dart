@@ -1,18 +1,13 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Constants/Constant.dart';
-import '../screens/NMC_details.dart';
 import 'DBS_Details.dart';
 import 'Model/ApplicationFormModel.dart';
-import 'NmcDetailsForm.dart';
-import 'Personal_Details.dart';
 
 class NextOfKinPage extends StatefulWidget {
   NextOfKinPage({required this.model});
@@ -84,6 +79,18 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
   TextEditingController daytel = new TextEditingController();
   TextEditingController email = new TextEditingController();
   List title = ['Mr.', 'Ms.', 'Other'];
+  List relationShips = [
+    'Mother',
+    'Father',
+    'Spouse',
+    'Son',
+    'Daughter',
+    'Siblings',
+    'Uncle',
+    'Friend',
+    'Teacher',
+    'Colleague',
+  ];
   var titleSelected = 'Mr';
   var month = 'September';
   var day = '1';
@@ -131,6 +138,7 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
     if (_prefs.getString("relation") != null) {
       relation.text = _prefs.getString("relation").toString();
     }
+
     setState(() {});
   }
 
@@ -479,7 +487,7 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                                 height: 50.h,
                                 width: 90.w,
                                 child: DropdownButtonFormField<String>(
-                                  value: "1",
+                                  value: day != null ? day : "1",
                                   items: List.generate(
                                       31,
                                       (index) => DropdownMenuItem(
@@ -533,7 +541,10 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButtonFormField<String>(
-                                  value: "January",
+                                  value:
+                                      // month != null ?
+                                      month,
+                                  // : "January",
                                   items: [
                                     'January',
                                     'February',
@@ -600,7 +611,7 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButtonFormField<String>(
-                                  value: "2022",
+                                  value: year != null ? year : "2022",
                                   items: List.generate(
                                       DateTime.now().year,
                                       (index) => DropdownMenuItem(
@@ -962,50 +973,108 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                         SizedBox(height: 10.h),
                         Padding(
                           padding: EdgeInsets.only(left: 20.w, right: 20.w),
-                          child: TextFormField(
-                            onChanged: (val) async {
+                          child: DropdownButtonFormField<String>(
+                            // value: title4Selected,
+                            value:
+                                relation.text == '' ? "Mother" : relation.text,
+                            hint: Text('Select Relation'),
+
+                            /// validator
+                            // validator: (value) {
+                            //   if (value!.isEmpty) {
+                            //     return 'Please select from this field';
+                            //   }
+                            // },
+                            items: relationShips
+                                .map((e) => DropdownMenuItem<String>(
+                                      child: Text(e),
+                                      value: e,
+                                    ))
+                                .toList(),
+                            onChanged: (String? value) async {
+                              relation.text = value!;
                               SharedPreferences _prefs =
                                   await SharedPreferences.getInstance();
-                              _prefs.setString("relation", val);
-                              setState(() {});
-                            },
-                            controller: relation,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please fill out this field';
-                              }
+                              _prefs.setString("relation", value.toString());
+                              // _prefs.setString("title4SelectedH", value.toString());
                             },
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(18),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 5),
                               hintStyle: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.sp,
-                                color: Color(0xffACA9A9),
+                                color: const Color(0xffACA9A9),
                               ),
-                              fillColor: Color(0xfff0f0f0),
+                              fillColor: Colors.grey.shade200,
                               filled: true,
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(8),
                                 ),
                               ),
-                              hintText: 'Enter relationship to you',
                             ),
                           ),
                         ),
+                        // Padding(
+                        //   padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                        //   child: TextFormField(
+                        //     onChanged: (val) async {
+                        //       SharedPreferences _prefs =
+                        //           await SharedPreferences.getInstance();
+                        //       _prefs.setString("relation", val);
+                        //       setState(() {});
+                        //     },
+                        //     controller: relation,
+                        //     validator: (value) {
+                        //       if (value!.isEmpty) {
+                        //         return 'Please fill out this field';
+                        //       }
+                        //     },
+                        //     decoration: InputDecoration(
+                        //       contentPadding: EdgeInsets.all(18),
+                        //       hintStyle: GoogleFonts.dmSans(
+                        //         fontWeight: FontWeight.w500,
+                        //         fontSize: 15.sp,
+                        //         color: Color(0xffACA9A9),
+                        //       ),
+                        //       fillColor: Color(0xfff0f0f0),
+                        //       filled: true,
+                        //       border: OutlineInputBorder(
+                        //         borderSide: BorderSide.none,
+                        //         borderRadius: BorderRadius.all(
+                        //           Radius.circular(8),
+                        //         ),
+                        //       ),
+                        //       enabledBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide.none,
+                        //         borderRadius: BorderRadius.all(
+                        //           Radius.circular(8),
+                        //         ),
+                        //       ),
+                        //       focusedBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide.none,
+                        //         borderRadius: BorderRadius.all(
+                        //           Radius.circular(8),
+                        //         ),
+                        //       ),
+                        //       hintText: 'Enter relationship to you',
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(height: 30.h),

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 import 'package:pixel_app/widgets/bottomNavigationBar/BottomNavigation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Constants/Constant.dart';
 import 'Educational_Details.dart';
 import 'Model/ApplicationFormModel.dart';
@@ -28,11 +26,12 @@ class _DBSPageState extends State<DBSPage> {
   List title2 = ['Yes', 'No'];
   var titleSelected = 'Yes';
   var title2Selected = 'Yes';
+  String? yesNo;
   Future<void> _SetVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
 
     if (_prefs.getString("numdb") != null) {
-      num.text = _prefs.getString("numdbdb").toString();
+      num.text = _prefs.getString("numdb").toString();
     }
 
     if (_prefs.getString("codedbs") != null) {
@@ -43,6 +42,10 @@ class _DBSPageState extends State<DBSPage> {
     }
     if (_prefs.getString("Title3") != null) {
       title2Selected = _prefs.getString("Title3").toString();
+    }
+
+    if (_prefs.getString("DBSYesNo") != null) {
+      yesNo = _prefs.getString("DBSYesNo").toString();
     }
 
     setState(() {});
@@ -73,7 +76,8 @@ class _DBSPageState extends State<DBSPage> {
         onWillPop: () {
           bottomNavigationBarState.selectedIndex = 0;
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const bottomNavigationBar()),
+              MaterialPageRoute(
+                  builder: (context) => const bottomNavigationBar()),
               (Route route) => false);
           return false as Future<bool>;
         },
@@ -271,12 +275,13 @@ class _DBSPageState extends State<DBSPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
-                          child: const Text('Are you registered online with DBS? '),
+                          child: const Text(
+                              'Are you registered online with DBS? '),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20.w, right: 20.w),
                           child: DropdownButtonFormField<String>(
-                            value: "Yes",
+                            value: yesNo == null ? "Yes" : yesNo,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please select from this field';
@@ -293,6 +298,7 @@ class _DBSPageState extends State<DBSPage> {
                               SharedPreferences _prefs =
                                   await SharedPreferences.getInstance();
                               _prefs.setString("Title2", value.toString());
+                              _prefs.setString("DBSYesNo", value.toString());
 
                               titleSelected = value!;
                               setState(() {});

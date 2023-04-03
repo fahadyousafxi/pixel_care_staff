@@ -44,4 +44,24 @@ class ApplicationFormController {
 
     return jsonDecode(await response.stream.bytesToString())['message'];
   }
+
+  ///***************************  Update Apply  ****************************
+  updateApply(ApplicationFormModel? model, context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var token = pref.getString('token');
+    var headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request(
+      'PUT',
+      Uri.parse('$baseUrl/api/user/apply-care-home-jobs/update'),
+    );
+    request.body = json.encode(model!.toJson());
+    request.headers.addAll(headers);
+    var response = await request.send();
+    // http.StreamedResponse response = await request.send();
+
+    return jsonDecode(await response.stream.bytesToString())['message'];
+  }
 }

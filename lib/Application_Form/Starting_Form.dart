@@ -29,9 +29,9 @@ class _StartingFormPageState extends State<StartingFormPage> {
   TextEditingController pin = TextEditingController();
   List titlegen = ['Mr', 'Miss'];
   var titleSelectedgen = 'Mr';
-  var month = 'September';
+  var month = 'January';
   var day = '1';
-  var year = '2010';
+  var year = '2023';
   var dob;
 
   Future<void> _SetVals() async {
@@ -44,15 +44,17 @@ class _StartingFormPageState extends State<StartingFormPage> {
       pin.text = prefs.getString("pin").toString();
     }
 
-    if (prefs.getString("daydb") != null) {
-      day = prefs.getString("day").toString();
+    if (prefs.getString("dayed") != null) {
+      day = prefs.getString("dayed").toString();
     }
 
-    if (prefs.getString("monthdb") != null) {
-      month = prefs.getString("month").toString();
+    if (prefs.getString("monthed") != null) {
+      month = prefs.getString("monthed").toString();
+      print(month);
+      print(prefs.getString("monthed").toString());
     }
-    if (prefs.getString("yeardb") != null) {
-      year = prefs.getString("year").toString();
+    if (prefs.getString("yeared") != null) {
+      year = prefs.getString("yeared").toString();
     }
 
     if (prefs.getString("rgn") != null) {
@@ -68,6 +70,10 @@ class _StartingFormPageState extends State<StartingFormPage> {
       weekly.text = prefs.getString("weekly").toString();
     }
     setState(() {});
+  }
+
+  void currentDate() {
+    DateTime.now().month;
   }
 
   Widget MyTextField(
@@ -600,7 +606,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              prefs.setString("daydb", day);
+                                              prefs.setString("dayed", day);
                                               setState(() {});
                                             },
                                             decoration: InputDecoration(
@@ -649,9 +655,10 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                           ),
                                           child:
                                               DropdownButtonFormField<String>(
-                                            value: month == "null"
-                                                ? "January"
-                                                : month,
+                                            value: month,
+                                            // == null
+                                            // ? "January"
+                                            // : month,
                                             items: [
                                               'January',
                                               'February',
@@ -676,7 +683,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              prefs.setString("monthdb", month);
+                                              prefs.setString("monthed", month);
                                               setState(() {});
                                             },
                                             decoration: InputDecoration(
@@ -727,7 +734,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               DropdownButtonFormField<String>(
                                             value:
                                                 // njh
-                                                year == "null" ? "2010" : year,
+                                                year == "null" ? "2023" : year,
                                             items: List.generate(
                                                 DateTime.now().year + 10,
                                                 (index) => DropdownMenuItem(
@@ -741,7 +748,7 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                               SharedPreferences prefs =
                                                   await SharedPreferences
                                                       .getInstance();
-                                              prefs.setString("yeardb", year);
+                                              prefs.setString("yeared", year);
 
                                               setState(() {});
                                             },

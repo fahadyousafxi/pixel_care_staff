@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/WorkingTimeRegulation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Model/ApplicationFormModel.dart';
 
@@ -34,8 +35,71 @@ class _HealthPageState extends State<HealthPage> {
   bool status8 = false;
   bool status9 = false;
   bool status10 = false;
+
+  Future<void> _SetVals() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+
+    if (_prefs.getString("dayH") != null) {
+      day = _prefs.getString("dayH").toString();
+    }
+    if (_prefs.getString("monthH") != null) {
+      month = _prefs.getString("monthH").toString();
+    }
+    if (_prefs.getString("yearH") != null) {
+      year = _prefs.getString("yearH").toString();
+    }
+
+    if (_prefs.getString("title1SelectedH") != null) {
+      title1Selected = _prefs.getString("title1SelectedH").toString();
+    }
+    if (_prefs.getString("title2SelectedH") != null) {
+      title2Selected = _prefs.getString("title2SelectedH").toString();
+    }
+    if (_prefs.getString("title3SelectedH") != null) {
+      title3Selected = _prefs.getString("title3SelectedH").toString();
+    }
+    if (_prefs.getString("title4SelectedH") != null) {
+      title4Selected = _prefs.getString("title4SelectedH").toString();
+    }
+
+    if (_prefs.getBool("statusH") != null) {
+      status = _prefs.getBool("statusH")!;
+    }
+
+    if (_prefs.getBool("status1H") != null) {
+      status1 = _prefs.getBool("status1H")!;
+    }
+
+    if (_prefs.getBool("status2H") != null) {
+      status2 = _prefs.getBool("status2H")!;
+    }
+
+    if (_prefs.getBool("status3H") != null) {
+      status3 = _prefs.getBool("status3H")!;
+    }
+
+    if (_prefs.getBool("status4H") != null) {
+      status4 = _prefs.getBool("status4H")!;
+    }
+
+    if (_prefs.getBool("status5H") != null) {
+      status5 = _prefs.getBool("status5H")!;
+    }
+    if (_prefs.getBool("status6H") != null) {
+      status6 = _prefs.getBool("status6H")!;
+    }
+
+    //
+    // if (_prefs.getString("typeEmployment") != null) {
+    //   typeEmployment = _prefs.getString("typeEmployment").toString();
+    // }
+
+    setState(() {});
+  }
+
   @override
   void initState() {
+    _SetVals();
     title1Selected = widget.model.covid19?.tuberculosisVaccine ?? "Yes";
     title2Selected = widget.model.covid19?.careHomeBefore ?? "Yes";
     title3Selected = widget.model.covid19?.demantiaCareBefore ?? "Yes";
@@ -247,6 +311,7 @@ class _HealthPageState extends State<HealthPage> {
                             //     },
                             //   ),
                             // ),
+
                             Row(
                               children: [
                                 Column(
@@ -254,7 +319,12 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          _prefs.setBool("statusH", val!);
+                                          print(val!);
                                           setState(() {
                                             status = val!;
                                           });
@@ -266,10 +336,15 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          // _prefs.setBool("statusH", val!);
                                           setState(() {
                                             status = !val!;
                                           });
+                                          _prefs.setBool("statusH", status);
                                         }),
                                   ],
                                 ),
@@ -315,10 +390,15 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status1,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status1 = val!;
+                                            print(val);
                                           });
+                                          _prefs.setBool("status1H", status1);
                                         }),
                                   ],
                                 ),
@@ -327,10 +407,16 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status1,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          // _prefs.setBool("status1H", val!);
                                           setState(() {
                                             status1 = !val!;
+                                            print(val);
                                           });
+                                          _prefs.setBool("status1H", status1);
                                         }),
                                   ],
                                 ),
@@ -376,10 +462,15 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status2,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          // _prefs.setBool("status2H", val!);
                                           setState(() {
                                             status2 = val!;
                                           });
+                                          _prefs.setBool("status2H", status2);
                                         }),
                                   ],
                                 ),
@@ -388,10 +479,15 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status2,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          // _prefs.setBool("status2H", val!);
                                           setState(() {
                                             status2 = !val!;
                                           });
+                                          _prefs.setBool("status2H", status2);
                                         }),
                                   ],
                                 ),
@@ -438,10 +534,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status3,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status3 = val!;
                                           });
+                                          _prefs.setBool("status3H", status3);
                                         }),
                                   ],
                                 ),
@@ -450,10 +550,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status3,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status3 = !val!;
                                           });
+                                          _prefs.setBool("status3H", status3);
                                         }),
                                   ],
                                 ),
@@ -496,10 +600,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status4,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status4 = val!;
                                           });
+                                          _prefs.setBool("status4H", status4);
                                         }),
                                   ],
                                 ),
@@ -508,10 +616,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status4,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status4 = !val!;
                                           });
+                                          _prefs.setBool("status4H", status4);
                                         }),
                                   ],
                                 ),
@@ -557,10 +669,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status5,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status5 = val!;
                                           });
+                                          _prefs.setBool("status5H", status5);
                                         }),
                                   ],
                                 ),
@@ -569,10 +685,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status5,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status5 = !val!;
                                           });
+                                          _prefs.setBool("status5H", status5);
                                         }),
                                   ],
                                 ),
@@ -617,10 +737,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('Yes'),
                                     Checkbox(
                                         value: status6,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status6 = val!;
                                           });
+                                          _prefs.setBool("status6H", status6);
                                         }),
                                   ],
                                 ),
@@ -629,10 +753,14 @@ class _HealthPageState extends State<HealthPage> {
                                     const Text('No'),
                                     Checkbox(
                                         value: !status6,
-                                        onChanged: (val) {
+                                        onChanged: (val) async {
+                                          SharedPreferences _prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
                                           setState(() {
                                             status6 = !val!;
                                           });
+                                          _prefs.setBool("status6H", status6);
                                         }),
                                   ],
                                 ),
@@ -703,8 +831,12 @@ class _HealthPageState extends State<HealthPage> {
                                         child: Text('${index + 1}'),
                                         value: '${index + 1}',
                                       )),
-                              onChanged: (String? value) {
+                              onChanged: (String? value) async {
                                 day = value!;
+                                SharedPreferences _prefs =
+                                    await SharedPreferences.getInstance();
+                                _prefs.setString("dayH", value.toString());
+                                setState(() {});
                               },
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -766,8 +898,12 @@ class _HealthPageState extends State<HealthPage> {
                                         value: e,
                                       ))
                                   .toList(),
-                              onChanged: (String? value) {
+                              onChanged: (String? value) async {
                                 month = value!;
+                                SharedPreferences _prefs =
+                                    await SharedPreferences.getInstance();
+                                _prefs.setString("monthH", value.toString());
+                                setState(() {});
                               },
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -817,8 +953,13 @@ class _HealthPageState extends State<HealthPage> {
                                             '${DateTime.now().year - index}'),
                                         value: '${DateTime.now().year - index}',
                                       )),
-                              onChanged: (String? value) {
+                              onChanged: (String? value) async {
                                 year = value!;
+
+                                SharedPreferences _prefs =
+                                    await SharedPreferences.getInstance();
+                                _prefs.setString("yearH", value.toString());
+                                setState(() {});
                               },
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -874,8 +1015,12 @@ class _HealthPageState extends State<HealthPage> {
                                   value: e,
                                 ))
                             .toList(),
-                        onChanged: (String? value) {
+                        onChanged: (String? value) async {
                           title1Selected = value!;
+
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          _prefs.setString("title1SelectedH", value.toString());
                         },
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -928,8 +1073,11 @@ class _HealthPageState extends State<HealthPage> {
                                   value: e,
                                 ))
                             .toList(),
-                        onChanged: (String? value) {
+                        onChanged: (String? value) async {
                           title2Selected = value!;
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          _prefs.setString("title2SelectedH", value.toString());
                         },
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -982,8 +1130,11 @@ class _HealthPageState extends State<HealthPage> {
                                   value: e,
                                 ))
                             .toList(),
-                        onChanged: (String? value) {
+                        onChanged: (String? value) async {
                           title3Selected = value!;
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          _prefs.setString("title3SelectedH", value.toString());
                         },
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -1035,8 +1186,11 @@ class _HealthPageState extends State<HealthPage> {
                                   value: e,
                                 ))
                             .toList(),
-                        onChanged: (String? value) {
+                        onChanged: (String? value) async {
                           title4Selected = value!;
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          _prefs.setString("title4SelectedH", value.toString());
                         },
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(

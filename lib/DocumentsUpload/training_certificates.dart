@@ -105,7 +105,7 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
         leading: InkWell(
           onTap: () {
             if (navigator) {
-              Navigator.pushReplacement(
+              Navigator.pop(
                   context,
                   MaterialPageRoute(
                       builder: (context) => TrainingCertificateProfile(
@@ -716,16 +716,28 @@ class _TrainingCertificatesState extends State<TrainingCertificates> {
                             ),
                           ),
                         ),
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              images!.removeAt(index);
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            size: 30,
-                            color: Colors.white,
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              Container(
+                                // margin: EdgeInsets.all(88),
+                                width: 44,
+                                height: 44,
+                                decoration: BoxDecoration(color: Colors.black),
+                                child: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      images!.removeAt(index);
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 30,
+                                    color: Colors.pink,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
 

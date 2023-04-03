@@ -1,13 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Application_Form/Educational_Details.dart';
 import 'package:pixel_app/Constants/Constant.dart';
-import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import '../Controller/AuthController.dart';
 import 'accademicView.dart';
@@ -205,7 +200,7 @@ class _AcademicPageState extends State<AcademicPage> {
                                 (e) => DropdownMenuItem(
                                   child: Text(
                                     e.toString(),
-                                    style: TextStyle(color: Colors.grey),
+                                    style: TextStyle(color: Colors.black),
                                   ),
                                   value: e,
                                 ),

@@ -28,25 +28,25 @@ class _DeclarationState extends State<Declaration> {
   var emp = false;
   var month = DateTime.now().month == 1
       ? 'January'
-      : DateTime.now().month == 1
+      : DateTime.now().month == 2
           ? 'February'
-          : DateTime.now().month == 1
+          : DateTime.now().month == 3
               ? 'March'
-              : DateTime.now().month == 1
+              : DateTime.now().month == 4
                   ? 'April'
-                  : DateTime.now().month == 1
+                  : DateTime.now().month == 5
                       ? 'May'
-                      : DateTime.now().month == 1
+                      : DateTime.now().month == 6
                           ? 'June'
-                          : DateTime.now().month == 1
+                          : DateTime.now().month == 7
                               ? 'July'
-                              : DateTime.now().month == 1
+                              : DateTime.now().month == 8
                                   ? 'August'
-                                  : DateTime.now().month == 1
+                                  : DateTime.now().month == 9
                                       ? 'September'
-                                      : DateTime.now().month == 1
+                                      : DateTime.now().month == 10
                                           ? 'October'
-                                          : DateTime.now().month == 1
+                                          : DateTime.now().month == 11
                                               ? 'November'
                                               : 'December';
   var day = '${DateTime.now().day}';
@@ -58,25 +58,37 @@ class _DeclarationState extends State<Declaration> {
 
   TextEditingController sign = TextEditingController();
   TextEditingController date = TextEditingController();
-  @override
-  void initState() {
-    date.text =
-        "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}";
-    // TODO: implement initState
-    super.initState();
-  }
 
-  Future<void> _SetVals() async {
+  Future<void> _setVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
 
     if (_prefs.getString("sign") != null) {
       sign.text = _prefs.getString("sign").toString();
     }
+
+    // if (_prefs.getString("day") != null) {
+    //   year = _prefs.getString("yeared").toString();
+    // }
+    // if (_prefs.getString("yeared") != null) {
+    //   year = _prefs.getString("yeared").toString();
+    // }
+    // if (_prefs.getString("yeared") != null) {
+    //   year = _prefs.getString("yeared").toString();
+    // }
     // if (_prefs.getString("date") != null) {
     //   date.text = _prefs.getString("date");
     // }
 
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    _setVals();
+    date.text =
+        "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}";
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -412,6 +424,168 @@ class _DeclarationState extends State<Declaration> {
                         left: 20.w, right: 20.w, top: 20.h, bottom: 20.h),
                     child: Row(
                       children: [
+                        // InkWell(
+                        //   onTap: () async {
+                        //     if (formKey.currentState!.validate()) {
+                        //       final data1 = await _signaturePadKey.currentState!
+                        //           .toImage(pixelRatio: 3.0);
+                        //       ByteData? byteData = await data1.toByteData(
+                        //           format: ui.ImageByteFormat.png);
+                        //       Uint8List? pngBytes =
+                        //           byteData?.buffer.asUint8List();
+                        //       String bs64 = base64Encode(pngBytes!);
+                        //       String img64 = "data:sign/png;base64,$bs64";
+                        //       Decleration dec = Decleration();
+                        //       dec.signature = img64;
+                        //       dec.date = '$day-$month-$year';
+                        //       widget.model.decleration = dec;
+                        //       showDialog(
+                        //         context: context,
+                        //         barrierDismissible: false,
+                        //         builder: (BuildContext context) {
+                        //           return Container(
+                        //             child: const Center(
+                        //               child: CircularProgressIndicator(
+                        //                 color: Color(0xfffaeaea),
+                        //               ),
+                        //             ),
+                        //           );
+                        //         },
+                        //       );
+                        //       var data = await ApplicationFormController()
+                        //           .Apply(widget.model, context);
+                        //       Navigator.pop(context);
+                        //       if (data.toString().contains('Ops something')) {
+                        //         ScaffoldMessenger.of(context).showSnackBar(
+                        //           const SnackBar(
+                        //             content: Text(
+                        //               'Request Failed Retry!',
+                        //               style: TextStyle(color: Colors.white),
+                        //             ),
+                        //           ),
+                        //         );
+                        //       } else {
+                        //         SharedPreferences pref =
+                        //             await SharedPreferences.getInstance();
+                        //         pref.setString("appForm",
+                        //             widget.model.toJson().toString());
+                        //         showDialog(
+                        //           context: context,
+                        //           barrierDismissible: false,
+                        //           builder: (BuildContext context) {
+                        //             return Dialog(
+                        //               backgroundColor: Colors.transparent,
+                        //               child: Container(
+                        //                 height: 400.h,
+                        //                 decoration: BoxDecoration(
+                        //                   color: Colors.white,
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(20),
+                        //                 ),
+                        //                 padding: const EdgeInsets.all(20),
+                        //                 width:
+                        //                     MediaQuery.of(context).size.width,
+                        //                 child: Column(
+                        //                   mainAxisAlignment:
+                        //                       MainAxisAlignment.spaceBetween,
+                        //                   children: [
+                        //                     const Icon(
+                        //                       Icons.check,
+                        //                       color: Colors.green,
+                        //                       size: 50,
+                        //                     ),
+                        //                     // Image.asset(
+                        //                     //   'assets/images/conglogo.png',
+                        //                     //   height: 200.h,
+                        //                     //   width: 200.w,
+                        //                     //
+                        //                     Text('Congratulations',
+                        //                         textAlign: TextAlign.center,
+                        //                         style: GoogleFonts.andadaPro(
+                        //                             fontSize: 30.sp,
+                        //                             color: Colors.pink,
+                        //                             fontWeight: FontWeight.bold)
+                        //                         // TextStyle(
+                        //                         //     fontSize: 30.sp,
+                        //                         //     color: Colors.pink,
+                        //                         //     fontWeight: FontWeight.bold),
+                        //                         ),
+                        //                     const Text(
+                        //                       'Your application has been saved successfully',
+                        //                       textAlign: TextAlign.center,
+                        //                       style: TextStyle(
+                        //                           fontWeight: FontWeight.w500),
+                        //                     ),
+                        //                     const Center(
+                        //                       child: Text(
+                        //                         'You will be notified regarding the status  of your application within 48 hours',
+                        //                         textAlign: TextAlign.justify,
+                        //                       ),
+                        //                     ),
+                        //                     GestureDetector(
+                        //                       onTap: () {
+                        //                         bottomNavigationBarState
+                        //                             .selectedIndex = 0;
+                        //                         Navigator.of(context)
+                        //                             .pushAndRemoveUntil(
+                        //                                 MaterialPageRoute(
+                        //                                   builder: (context) =>
+                        //                                       const bottomNavigationBar(),
+                        //                                 ),
+                        //                                 (Route route) => false);
+                        //                         // Navigator.of(context)
+                        //                         //     .pushReplacement(
+                        //                         //         MaterialPageRoute(
+                        //                         //             builder: (context) =>
+                        //                         //                 bottomNavigationBar()));
+                        //                       },
+                        //                       child: Container(
+                        //                         padding:
+                        //                             const EdgeInsets.all(10),
+                        //                         decoration: BoxDecoration(
+                        //                           shape: BoxShape.circle,
+                        //                           color: Colors.pink.shade500,
+                        //                         ),
+                        //                         child: const Center(
+                        //                             child: Icon(
+                        //                           Icons.home_outlined,
+                        //                           color: Colors.white,
+                        //                         )),
+                        //                       ),
+                        //                     )
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             );
+                        //           },
+                        //         );
+                        //       }
+                        //     }
+                        //     // bottomNavigationBarState.selectedIndex=0;
+                        //     //
+                        //     // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>bottomNavigationBar()),(route) => false,);
+                        //   },
+                        //   child: Container(
+                        //     height: 60.h,
+                        //     width: 350.w,
+                        //     decoration: BoxDecoration(
+                        //       color: emp == true
+                        //           ? Colors.pink
+                        //           : const Color(0xfffaeaea),
+                        //       borderRadius: BorderRadius.circular(5),
+                        //     ),
+                        //     child: Center(
+                        //       child: Text(
+                        //         'Save',
+                        //         style: TextStyle(
+                        //             fontWeight: FontWeight.w500,
+                        //             color: emp == true
+                        //                 ? Colors.white
+                        //                 : Colors.grey.shade500),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         InkWell(
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
