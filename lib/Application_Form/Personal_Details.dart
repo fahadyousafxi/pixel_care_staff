@@ -299,6 +299,21 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
   var year = '2022';
   var dob;
 
+  List<String> months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
   Future<void> _SetVals() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     if (_prefs.getString("Surname") != null) {
@@ -746,21 +761,11 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButtonFormField<String>(
-                                  value: month != null ? month : "January",
-                                  items: [
-                                    'January',
-                                    'February',
-                                    'March',
-                                    'April',
-                                    'May',
-                                    'June',
-                                    'July',
-                                    'August',
-                                    'September',
-                                    'October',
-                                    'November',
-                                    'December'
-                                  ]
+                                  value:
+                                      month != null || !months.contains(month)
+                                          ? month
+                                          : "January",
+                                  items: months
                                       .map((e) => DropdownMenuItem(
                                             value: e,
                                             child: Text('${e}'),

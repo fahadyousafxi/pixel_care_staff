@@ -312,6 +312,7 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                           margin: EdgeInsets.only(left: 20.w, top: 15.h),
                           child: Text('Title'),
                         ),
+                        // date time picker
                         SizedBox(
                           height: 10,
                         ),
@@ -661,6 +662,77 @@ class _NextOfKinPageState extends State<NextOfKinPage> {
                             ],
                           ),
                         ),
+
+                        /// ios style calender testing by Fahad
+                        // SizedBox(
+                        //   height: 22,
+                        // ),
+                        // SizedBox(
+                        //   height: 120,
+                        //   child: CupertinoDatePicker(
+                        //     mode: CupertinoDatePickerMode.date,
+                        //     initialDateTime: DateTime.now(),
+                        //     onDateTimeChanged: (DateTime newDateTime) {
+                        //       // Do something
+                        //       print('${newDateTime.month}');
+                        //       print('${newDateTime.year}');
+                        //       print('${newDateTime.day}');
+                        //     },
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 22,
+                        // ),
+                        // Center(
+                        //   child: ElevatedButton(
+                        //       onPressed: () {
+                        //         showCupertinoModalPopup(
+                        //           context: context,
+                        //           builder: (BuildContext context) {
+                        //             return Container(
+                        //               height: 300,
+                        //               color: Colors.grey.shade200,
+                        //               child: Column(
+                        //                 crossAxisAlignment:
+                        //                     CrossAxisAlignment.end,
+                        //                 children: [
+                        //                   TextButton(
+                        //                       onPressed: () {
+                        //                         Navigator.pop(context);
+                        //                       },
+                        //                       child: Text('Done')),
+                        //                   Padding(
+                        //                     padding: const EdgeInsets.symmetric(
+                        //                         vertical: 58.0),
+                        //                     child: SizedBox(
+                        //                       height: 120,
+                        //                       child: CupertinoDatePicker(
+                        //                         mode: CupertinoDatePickerMode
+                        //                             .date,
+                        //                         initialDateTime: DateTime.now(),
+                        //                         onDateTimeChanged:
+                        //                             (DateTime newDateTime) {
+                        //                           // Do something
+                        //                           print('${newDateTime.month}');
+                        //                           print('${newDateTime.year}');
+                        //                           print('${newDateTime.day}');
+                        //                         },
+                        //                       ),
+                        //                     ),
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //             );
+                        //             //   Container(
+                        //             //   height: 333,
+                        //             //   color: Colors.grey.shade200,
+                        //             // );
+                        //           },
+                        //         );
+                        //       },
+                        //       child: Text('Testing')),
+                        // ),
+
                         Row(
                           children: [
                             Expanded(

@@ -1,17 +1,12 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixel_app/Controller/DocumentController.dart';
-import 'package:pixel_app/DocumentsUpload/document_upload.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Constants/Constant.dart';
-import '../widgets/bottomNavigationBar/BottomNavigation.dart';
 
 class Passport extends StatefulWidget {
   const Passport({Key? key}) : super(key: key);
@@ -359,6 +354,21 @@ class _PassportState extends State<Passport> {
                           ),
                         );
                       },
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        print(images.elementAt(0));
+                      },
+                      child: Text('Testing')),
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: FileImage(
+                          File(
+                              '/data/user/0/com.stackbuffers.pixelstaffapp/cache/file_picker/IMG_20230312_195550.jpg'),
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 20.h),

@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../Controller/AuthController.dart';
-import '../widgets/bottomNavigationBar/BottomNavigation.dart';
 import 'SignUp.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -180,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Container(
                       margin: EdgeInsets.only(left: 20.w, top: 20.w),
                       child: Text(
-                        'password',
+                        'Password',
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -501,18 +500,46 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 40.h),
                 Column(
                   children: [
-                    InkWell(
-                        onTap: () {
+                    // InkWell(
+                    //     onTap: () {
+                    //       Navigator.pushReplacement(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => const SignUpPage()),
+                    //       );
+                    //     },
+                    //     child: Text(
+                    //       'Login',
+                    //       style: TextStyle(fontSize: 16.sp),
+                    //     )),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 20.w, right: 20.w, bottom: 20.h),
+                      child: InkWell(
+                        onTap: () async {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SignUpPage()),
                           );
                         },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(fontSize: 16.sp),
-                        )),
+                        child: Container(
+                          height: 60.h,
+                          width: 600.w,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontSize: 16.sp, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 20.h),
                     Padding(
                       padding: EdgeInsets.only(
@@ -542,13 +569,20 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('$data')));
                                 if (data == 'Register Successfuly.') {
-                                  Navigator.pushAndRemoveUntil(
+                                  /// direct access to home page is commented
+                                  // Navigator.pushAndRemoveUntil(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         const bottomNavigationBar(),
+                                  //   ),
+                                  //   (route) => false,
+                                  // );
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const bottomNavigationBar(),
+                                      builder: (context) => const SignUpPage(),
                                     ),
-                                    (route) => false,
                                   );
                                 } else {
                                   Navigator.of(context).pop();

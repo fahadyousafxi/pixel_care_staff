@@ -25,6 +25,20 @@ class _StartingFormPageState extends State<StartingFormPage> {
     'Chef',
     'Admin'
   ];
+  List<String> months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
   var titleSelected = 'Registered Nurse (RGN)';
   TextEditingController pin = TextEditingController();
   List titlegen = ['Mr', 'Miss'];
@@ -655,24 +669,14 @@ class _StartingFormPageState extends State<StartingFormPage> {
                                           ),
                                           child:
                                               DropdownButtonFormField<String>(
-                                            value: month,
+                                            value: month == null ||
+                                                    !months.contains(month)
+                                                ? "January"
+                                                : month,
                                             // == null
                                             // ? "January"
                                             // : month,
-                                            items: [
-                                              'January',
-                                              'February',
-                                              'March',
-                                              'April',
-                                              'May',
-                                              'June',
-                                              'July',
-                                              'August',
-                                              'September',
-                                              'October',
-                                              'November',
-                                              'December'
-                                            ]
+                                            items: months
                                                 .map((e) => DropdownMenuItem(
                                                       value: e,
                                                       child: Text(e),

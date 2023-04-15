@@ -246,29 +246,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.35.h),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.3.h),
               Column(
                 children: [
-                  InkWell(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
-                        );
-                      },
-                      child: SizedBox(
-                        height: 60.h,
-                        width: 600.w,
-                        child: Center(
-                          child: Text(
-                            'Register',
-                            style: TextStyle(fontSize: 18.sp),
-                          ),
-                        ),
-                      )),
-                  SizedBox(height: 20.h),
                   Padding(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
                     child: InkWell(
@@ -347,6 +327,37 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: email.text != "" && password.text != ""
                                     ? Colors.white
                                     : Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 60.h,
+                        width: 600.w,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
